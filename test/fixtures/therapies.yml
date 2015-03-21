@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  capacity: 
+  length_in_minutes: 
+
+two:
+  name: MyString
+  capacity: 
+  length_in_minutes: 

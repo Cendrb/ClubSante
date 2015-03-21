@@ -1,4 +1,30 @@
 Rails.application.routes.draw do
+  get 'calendars/show'
+
+  get 'sessions/new'
+
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
+  resources :users
+
+  resources :exercises
+
+  resources :exercise_days
+
+  resources :therapies
+  
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    get 'logout' => :destroy
+  end
+  
+  controller :calendars do
+    get 'calendars/:id' => :show, as: :calendar
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

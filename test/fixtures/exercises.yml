@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  beginning: 2015-03-17 20:21:08
+  exercise_day_id: 1
+
+two:
+  beginning: 2015-03-17 20:21:08
+  exercise_day_id: 1

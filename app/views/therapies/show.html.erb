@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @therapy.name %>
+</p>
+
+<p>
+  <strong>Capacity:</strong>
+  <%= @therapy.capacity %>
+</p>
+
+<p>
+  <strong>Length in minutes:</strong>
+  <%= @therapy.duration_in_minutes %>
+</p>
+
+<p>
+  <%= link_to 'Rezervace', @therapy.calendar %></br>
+  <%= link_to 'Předloha', @therapy.calendar.timetable_templates %>
+</p>
+
+<%= link_to 'Upravit', edit_therapy_path(@therapy) %> |
+<%= link_to 'Zpět', therapies_path %>
