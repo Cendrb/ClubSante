@@ -1,0 +1,17 @@
+<%= form_for(@timetable_template) do |f| %>
+  <% if @timetable_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@timetable_template.errors.count, "error") %> prohibited this timetable_template from being saved:</h2>
+
+      <ul>
+      <% @timetable_template.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

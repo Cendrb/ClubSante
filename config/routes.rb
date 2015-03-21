@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :timetable_templates
+
   get 'calendars/show'
 
   get 'sessions/new'
