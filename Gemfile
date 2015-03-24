@@ -35,6 +35,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Email validation
 gem 'validates_email_format_of'
 
+# JQuery UI
+gem 'jquery-ui-rails', '~> 5.0.3'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,0 +1,17 @@
+<%= form_for(@exercise_template) do |f| %>
+  <% if @exercise_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@exercise_template.errors.count, "error") %> prohibited this exercise_template from being saved:</h2>
+
+      <ul>
+      <% @exercise_template.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

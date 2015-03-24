@@ -1,15 +1,92 @@
-<p id="notice"><%= notice %></p>
+<p id="notice">
+	<%= notice %>
+</p>
 
-<table>
-	<% @timetable_template.weekday_templates.each do |weekday| %>
-		<tr>
-			<% weekday.exercise_templates.each do |exercise| %>
-				<td>
-					
-				</td>
+<style type="text/css">
+	.timetable_template_exercise
+	{
+		height: <%= @timetable_template.calendar.therapy.duration_in_minutes %>px;
+	}
+	.timetable_template_weekday
+	{
+		height: <%= @max_pixel_height %>px;
+		vertical-align: top;
+	}
+	.timetable_template_hour
+	{
+		height: <%= @max_pixel_height / 24 %>px;
+		text-align: center;
+		position: relative;
+		border-bottom: 1px solid black;
+		margin-bottom: -1px;
+	}
+</style>
+
+<script>
+	function getTimeFor(ui)
+	{
+		var offset = (ui.offset.top - 15)
+		var hours = Math.floor(offset / 60);
+		var minutes = offset % 60;
+		var time = new Date();
+		time.setHours(hours, minutes);
+		return time;
+	}
+	$(function() {
+		$(".timetable_template_exercise").draggable({ axis: "y", containment: "parent", grid: [0, 10] });
+		
+		$(".timetable_template_weekday").click(function(event)
+		{
+			
+			$.ajax({
+				type: "POST",
+				url: "/exercise_templates.whoa",
+				data: { exercise_template: { beginning: "fap", weekday_template_id: $(this).data("id") } },
+				success: function(msg){
+					ui.helper.find(".timetable_template_exercise_status").text("Uloženo");
+				}
+			});
+		});
+		
+		$(".timetable_template_exercise").on("drag", function(event, ui) {
+			var time = getTimeFor(ui);
+			var endTime = new Date(time + ui.helper.attr("data-duration") * 60000);
+			var options = { hour: "2-digit", minute: "2-digit" };
+			ui.helper.find(".timetable_template_exercise_time").text(time.toLocaleTimeString("cs-CS", options) + " - " + endTime.toLocaleTimeString("cs-CS", options));
+		});
+		
+		$(".timetable_template_exercise").on("dragstop", function(event, ui) {
+			var id = ui.helper.attr("data-id");
+			ui.helper.find(".timetable_template_exercise_status").text("Ukládání...");
+			$.ajax({
+				type: "PATCH",
+				url: "/exercise_templates/" + id + ".whoa",
+				data: { exercise_template: { beginning: getTimeFor(ui) } },
+				success: function(msg){
+					ui.helper.find(".timetable_template_exercise_status").text("Uloženo");
+				}
+			});
+		});
+	});
+	</script>
+
+<table id="timetable_template">
+	<tr>
+		<td> 
+			<% for hour in 0..24 %>
+				<div class="timetable_template_hour">
+					<%= hour %>:00
+				</div>
 			<% end %>
-		</tr>
-	<% end %>
+		</td>
+		<% @timetable_template.weekday_templates.each do |weekday| %>
+			<td class="timetable_template_weekday" data-id=<%= weekday.id %>>
+				<% weekday.exercise_templates.each do |exercise| %>
+					<%= render exercise %>
+				<% end %>
+			</td>
+		<% end %>
+	</tr>
 </table>
 
 <%= link_to 'Edit', edit_timetable_template_path(@timetable_template) %> |

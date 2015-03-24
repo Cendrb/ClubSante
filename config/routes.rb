@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :exercise_templates
+
   resources :timetable_templates
 
   get 'calendars/show'
