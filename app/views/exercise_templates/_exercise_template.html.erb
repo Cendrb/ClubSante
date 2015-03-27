@@ -1,0 +1,4 @@
+<div class="timetable_template_exercise ui-draggable ui-draggable-handle" data-id=<%= exercise_template.id %> data-duration=<%= exercise_template.weekday_template.timetable_template.calendar.therapy.duration_in_minutes %> style="position: absolute; top: <%= exercise_template.beginning.hour * 60 + exercise_template.beginning.min + 1 %>px;">
+	<div class="timetable_template_exercise_time"><%= exercise_template.beginning.to_s(:time) %> - <%= (exercise_template.beginning + exercise_template.weekday_template.timetable_template.calendar.therapy.duration_in_minutes.minutes).to_s(:time) %></div>
+	<div class="timetable_template_exercise_status">Uloženo</div>
+</div> 

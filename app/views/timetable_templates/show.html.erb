@@ -10,6 +10,7 @@
 	.timetable_template_weekday
 	{
 		height: <%= @max_pixel_height %>px;
+		position: relative;
 		vertical-align: top;
 	}
 	.timetable_template_hour
@@ -32,27 +33,20 @@
 		time.setHours(hours, minutes);
 		return time;
 	}
-	$(function() {
-		$(".timetable_template_exercise").draggable({ axis: "y", containment: "parent", grid: [0, 10] });
-		
-		$(".timetable_template_weekday").click(function(event)
-		{
-			
-			$.ajax({
-				type: "POST",
-				url: "/exercise_templates.whoa",
-				data: { exercise_template: { beginning: "fap", weekday_template_id: $(this).data("id") } },
-				success: function(msg){
-					ui.helper.find(".timetable_template_exercise_status").text("Uloženo");
-				}
-			});
-		});
+	
+	function setupDraggables()
+	{
+		$(".timetable_template_exercise").draggable({ axis: "y", containment: "parent", grid: [0, <%= @min_diff_time %>] });
 		
 		$(".timetable_template_exercise").on("drag", function(event, ui) {
 			var time = getTimeFor(ui);
-			var endTime = new Date(time + ui.helper.attr("data-duration") * 60000);
+			var endTime = new Date(time.getTime() + ui.helper.attr("data-duration") * 60000);
 			var options = { hour: "2-digit", minute: "2-digit" };
 			ui.helper.find(".timetable_template_exercise_time").text(time.toLocaleTimeString("cs-CS", options) + " - " + endTime.toLocaleTimeString("cs-CS", options));
+		});
+		
+		$(".timetable_template_exercise").on("dragstart", function(event, ui) {
+			$(this).data("origPosition", $(this).position());
 		});
 		
 		$(".timetable_template_exercise").on("dragstop", function(event, ui) {
@@ -64,9 +58,55 @@
 				data: { exercise_template: { beginning: getTimeFor(ui) } },
 				success: function(msg){
 					ui.helper.find(".timetable_template_exercise_status").text("Uloženo");
+				},
+				error: function(xhr, textStatus, errorThrown){
+					ui.helper.animate(ui.helper.data().origPosition, "fast");
+					ui.helper.find(".timetable_template_exercise_status").text("Nezdařilo se");
 				}
 			});
 		});
+		
+		//$(document).oncontextmenu = function() {return false;};
+		
+		$(".timetable_template_exercise").mousedown(function(e){ 
+    		if( e.button == 2 ) {
+    			var element = $(this);
+      			var id = $(this).attr("data-id");
+				$(this).find(".timetable_template_exercise_status").text("Odstraňování...");
+				$.ajax({
+					type: "DELETE",
+					url: "/exercise_templates/" + id + ".whoa",
+					success: function(msg){
+						console.log("WHOA");
+						element.remove();
+					}
+				});
+      			return false; 
+    		} 
+    		return true; 
+  		}); 
+	}
+	
+	$(function() {
+		setupDraggables();
+		
+		$(".timetable_template_weekday").click(function(event)
+		{
+				console.log("creating a penis!");
+				var relativeY = event.pageY - $(this).offset().top;
+				var beginningHours = Math.floor(relativeY / 60);
+				var beginningMinutes = Math.floor((relativeY % 60) / <%= @min_diff_time * 2 %>) * <%= @min_diff_time * 2 %>;
+				$.ajax({
+					type: "POST",
+					url: "/exercise_templates.js",
+					data: { exercise_template: { beginning: beginningHours + ":" + beginningMinutes, weekday_template_id: $(this).data("id") } },
+					dataType: 'script',
+					format: 'js',
+					success: function(msg){
+						setupDraggables();
+					}
+				});
+		});	
 	});
 	</script>
 
@@ -80,7 +120,7 @@
 			<% end %>
 		</td>
 		<% @timetable_template.weekday_templates.each do |weekday| %>
-			<td class="timetable_template_weekday" data-id=<%= weekday.id %>>
+			<td class="timetable_template_weekday" oncontextmenu="return false;" data-id=<%= weekday.id %>>
 				<% weekday.exercise_templates.each do |exercise| %>
 					<%= render exercise %>
 				<% end %>

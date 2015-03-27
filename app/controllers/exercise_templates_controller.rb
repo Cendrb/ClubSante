@@ -30,9 +30,13 @@ class ExerciseTemplatesController < ApplicationController
       if @exercise_template.save
         format.html { redirect_to @exercise_template, notice: 'Exercise template was successfully created.' }
         format.json { render :show, status: :created, location: @exercise_template }
+        format.js
+        format.whoa { render plain: 'success', status: :ok }
       else
         format.html { render :new }
         format.json { render json: @exercise_template.errors, status: :unprocessable_entity }
+        format.whoa { render plain: 'fail', status: :unprocessable_entity }
+        format.js { render plain: 'fail', status: :unprocessable_entity }
       end
     end
   end
@@ -60,6 +64,7 @@ class ExerciseTemplatesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to exercise_templates_url, notice: 'Exercise template was successfully destroyed.' }
       format.json { head :no_content }
+      format.whoa { render plain: 'success', status: :ok }
     end
   end
 
