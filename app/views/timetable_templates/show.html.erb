@@ -112,6 +112,12 @@
 
 <table id="timetable_template">
 	<tr>
+		<td></td>
+		<% I18n.t(:"date.day_names").rotate.each do |weekday_name| %>
+			<td><%= weekday_name %></td>
+		<% end %>
+	</tr>
+	<tr>
 		<td> 
 			<% for hour in 0..24 %>
 				<div class="timetable_template_hour">
