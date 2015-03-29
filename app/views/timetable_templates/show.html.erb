@@ -19,11 +19,13 @@
 		text-align: center;
 		position: relative;
 		border-bottom: 1px solid black;
-		margin-bottom: -1px;
+		margin-bottom: -2px;
 	}
 </style>
 
 <script>
+	var current_timetable_id = <%= @timetable_template.id %>;
+
 	function getTimeFor(ui)
 	{
 		var offset = (ui.offset.top - 15)
@@ -92,14 +94,13 @@
 		
 		$(".timetable_template_weekday").click(function(event)
 		{
-				console.log("creating a penis!");
 				var relativeY = event.pageY - $(this).offset().top;
 				var beginningHours = Math.floor(relativeY / 60);
 				var beginningMinutes = Math.floor((relativeY % 60) / <%= @min_diff_time * 2 %>) * <%= @min_diff_time * 2 %>;
 				$.ajax({
 					type: "POST",
 					url: "/exercise_templates.js",
-					data: { exercise_template: { beginning: beginningHours + ":" + beginningMinutes, weekday_template_id: $(this).data("id") } },
+					data: { exercise_template: { beginning: beginningHours + ":" + beginningMinutes, weekday: $(this).data("id"), timetable_template_id: current_timetable_id } },
 					dataType: 'script',
 					format: 'js',
 					success: function(msg){
@@ -125,10 +126,12 @@
 				</div>
 			<% end %>
 		</td>
-		<% @timetable_template.weekday_templates.each do |weekday| %>
-			<td class="timetable_template_weekday" oncontextmenu="return false;" data-id=<%= weekday.id %>>
-				<% weekday.exercise_templates.each do |exercise| %>
-					<%= render exercise %>
+		<% for i in 0..6 do %>
+			<td class="timetable_template_weekday" oncontextmenu="return false;" data-id=<%= i %>>
+				<% if @timetable_template.exercise_templates.where(weekday: i).count > 0 %>
+					<% @timetable_template.exercise_templates.where(weekday: i).each do |exercise| %>
+						<%= render exercise %>
+					<% end %>
 				<% end %>
 			</td>
 		<% end %>

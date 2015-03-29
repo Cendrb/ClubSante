@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317212917) do
+ActiveRecord::Schema.define(version: 20150329165134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,26 +24,21 @@ ActiveRecord::Schema.define(version: 20150317212917) do
 
   add_index "calendars", ["therapy_id"], name: "index_calendars_on_therapy_id", using: :btree
 
-  create_table "exercise_days", force: :cascade do |t|
-    t.date     "date"
-    t.integer  "timetable_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "exercise_templates", force: :cascade do |t|
-    t.string   "weekday_template_id"
     t.time     "beginning"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "weekday"
+    t.integer  "timetable_template_id"
   end
 
   create_table "exercises", force: :cascade do |t|
     t.time     "beginning"
-    t.integer  "exercise_day_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.boolean  "available",       default: true
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "available",    default: true
+    t.date     "date"
+    t.integer  "timetable_id"
   end
 
   create_table "therapies", force: :cascade do |t|
@@ -77,13 +72,6 @@ ActiveRecord::Schema.define(version: 20150317212917) do
     t.integer  "access_level"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-  end
-
-  create_table "weekday_templates", force: :cascade do |t|
-    t.integer  "weekday"
-    t.integer  "timetable_template_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
   end
 
 end

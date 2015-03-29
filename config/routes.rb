@@ -15,8 +15,6 @@ Rails.application.routes.draw do
 
   resources :exercises
 
-  resources :exercise_days
-
   resources :therapies
   
   controller :sessions do

@@ -36,7 +36,7 @@ class ExerciseTemplatesController < ApplicationController
         format.html { render :new }
         format.json { render json: @exercise_template.errors, status: :unprocessable_entity }
         format.whoa { render plain: 'fail', status: :unprocessable_entity }
-        format.js { render plain: 'fail', status: :unprocessable_entity }
+        format.js { render json: @exercise_template.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -52,7 +52,7 @@ class ExerciseTemplatesController < ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @exercise_template.errors, status: :unprocessable_entity }
-        format.whoa { render plain: 'fail', status: :unprocessable_entity }
+        format.whoa { render plain: @exercise_template.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -76,6 +76,6 @@ class ExerciseTemplatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exercise_template_params
-      params.require(:exercise_template).permit(:beginning, :weekday_template_id)
+      params.require(:exercise_template).permit(:beginning, :weekday, :timetable_template_id)
     end
 end

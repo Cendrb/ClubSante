@@ -1,4 +1,4 @@
 class ExerciseTemplate < ActiveRecord::Base
-  validates_presence_of :beginning, :weekday_template_id
-  belongs_to :weekday_template
+  validates_presence_of :beginning, :timetable_template_id
+  belongs_to :timetable_template
 end
