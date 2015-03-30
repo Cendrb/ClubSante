@@ -1,6 +1,27 @@
 <table>
-	<tr></tr>
 	<tr>
-		<% %>
+		<% I18n.t(:"date.day_names").rotate.each do |weekday_name| %>
+			<td><%= weekday_name %></td>
+		<% end %>
+		</tr>
+	<tr>
+		<td> 
+			<% for hour in @first_hour..@last_hour %>
+				<div class="calendar_hour">
+					<%= hour %>:00
+				</div>
+			<% end %>
+		</td>
+		
+		<% for weekday in 0..6 %>
+			<td class="calendar_template_weekday" oncontextmenu="return false;" data-id=<%= weekday %>>
+				<% @templates.each do |template| %>
+					<%= render partial: "exercise_templates/exercise_template_for_calendar", locals: { exercise_template: template } %>
+				<% end %>
+				
+				<% @registered.each do |registered| %>
+				<% end %>
+			</td>
+		<% end %>
 	</tr>
 </table>
