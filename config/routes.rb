@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
 
   resources :users do
-    post 'signup' => :signup
+    post 'signup_for' => :signup
   end
 
   resources :exercises

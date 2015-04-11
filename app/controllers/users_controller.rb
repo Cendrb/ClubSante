@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :signup]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   
   # GET /users
   # GET /users.json
@@ -52,14 +52,18 @@ class UsersController < ApplicationController
   end
 
   def signup
-    exercise_template = Exercise.find(params[:exercise_template_id])
     date = Date.parse(params[:date])
+    if params[:exercise_template_id]
+      exercise_template = ExerciseTemplate.find(params[:exercise_template_id])
+    else
+      exercise = Exercise.find(params[:exercise_id])
+    end
 
     if params[:ticket_id]
       # ticket already selected
       ticket_signup(Ticket.find(params[:ticket_id]), exercise_template, date)
     else
-      tickets_available = @user.tickets_with_entries_avalaible(exercise_template.therapy, date)
+      tickets_available = current_user.tickets_with_entries_avalaible(exercise_template.therapy, date)
 
       if tickets_available.count > 0
         if tickets_available.count == 1
@@ -77,6 +81,8 @@ class UsersController < ApplicationController
   private
 
   def ticket_signup(ticket, template, date)
+    @exercise = Exercise.create(date: date, timetable: template.timetable_template.calendar.timetable)
+    @exercise.signup_with(ticket)
     render "signup.js.erb"
   end
 

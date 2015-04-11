@@ -36,12 +36,12 @@
 				var clicked = $(this);
 				$.ajax({
 					type: "POST",
-					url: "/exercise_templates.js",
-					data: { exercise_template: { beginning: beginningHours + ":" + beginningMinutes, weekday: $(this).data("id"), timetable_template_id: current_timetable_id } },
+					url: "/users/signup_for",
+					data: { exercise_template_id:  },
 					dataType: 'script',
 					format: 'js',
 					success: function(msg){
-						
+						alert("suckcess");
 					}
 				});
 			});
