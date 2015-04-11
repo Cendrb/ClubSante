@@ -1,9 +1,60 @@
-<table>
+<style type="text/css">
+	#calendar_timetable
+	{
+  		border-collapse: collapse;
+	}
+	td
+  	{
+    	width: 10em;
+    	border: 1px solid black;
+  	}
+	.calendar_template_exercise
+	{
+		border: 2px solid green;
+    	width: 100%;
+    	background-color: orange;
+	}
+	.calendar_weekday
+	{
+		position: relative;
+		vertical-align: top;
+	}
+	.calendar_hour
+	{
+		height: <%= @pixels_per_minute * 60 %>px;
+		text-align: center;
+		position: relative;
+		border-bottom: 1px solid black;
+		margin-bottom: -2px;
+	}
+</style>
+
+<script>
+	$(function() {
+		$(".calendar_template_exercise").click(function(event)
+			{
+				var clicked = $(this);
+				$.ajax({
+					type: "POST",
+					url: "/exercise_templates.js",
+					data: { exercise_template: { beginning: beginningHours + ":" + beginningMinutes, weekday: $(this).data("id"), timetable_template_id: current_timetable_id } },
+					dataType: 'script',
+					format: 'js',
+					success: function(msg){
+						
+					}
+				});
+			});
+	});
+</script>
+
+<table id="calendar_timetable">
 	<tr>
+		<td></td>
 		<% I18n.t(:"date.day_names").rotate.each do |weekday_name| %>
 			<td><%= weekday_name %></td>
 		<% end %>
-		</tr>
+	</tr>
 	<tr>
 		<td> 
 			<% for hour in @first_hour..@last_hour %>
@@ -14,9 +65,9 @@
 		</td>
 		
 		<% for weekday in 0..6 %>
-			<td class="calendar_template_weekday" oncontextmenu="return false;" data-id=<%= weekday %>>
-				<% @templates.each do |template| %>
-					<%= render partial: "exercise_templates/exercise_template_for_calendar", locals: { exercise_template: template } %>
+			<td class="calendar_weekday" oncontextmenu="return false;" data-id=<%= weekday %>>
+				<% @templates.where(weekday: weekday).each do |template| %>
+					<%= render partial: "exercise_templates/exercise_template_for_calendar", locals: { exercise_template: template, pixels_per_minute: @pixels_per_minute, beginning_offset: @first_hour * 60 * @pixels_per_minute } %>
 				<% end %>
 				
 				<% @registered.each do |registered| %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time_restriction: 2015-03-31 22:43:35
+  entries_remaining: 1
+  activated_on: 2015-03-31 22:43:35
+  paid: false
+  user_id: 1
+
+two:
+  time_restriction: 2015-03-31 22:43:35
+  entries_remaining: 1
+  activated_on: 2015-03-31 22:43:35
+  paid: false
+  user_id: 1

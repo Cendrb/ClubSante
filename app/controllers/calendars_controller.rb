@@ -40,5 +40,7 @@ class CalendarsController < ApplicationController
     #    return (registered.date)..(registered.date + @calendar.therapy.duration_in_minutes.minutes).overlaps?((template.beginning)..(template.beginning + @calendar.therapy.duration_in_minutes.minutes))
     #  end
     #end
+    
+    @pixels_per_minute = 1
   end
 end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :signup]
+  
   # GET /users
   # GET /users.json
   def index
@@ -51,6 +51,35 @@ class UsersController < ApplicationController
     end
   end
 
+  def signup
+    exercise_template = Exercise.find(params[:exercise_template_id])
+    date = Date.parse(params[:date])
+
+    if params[:ticket_id]
+      # ticket already selected
+      ticket_signup(Ticket.find(params[:ticket_id]), exercise_template, date)
+    else
+      tickets_available = @user.tickets_with_entries_avalaible(exercise_template.therapy, date)
+
+      if tickets_available.count > 0
+        if tickets_available.count == 1
+          # just one - no need for an additional form
+          ticket_signup(tickets_available.first, exercise_template, date)
+        else
+          # more than one - show js form
+        end
+      else
+        # any usable tickets were not found
+      end
+    end
+  end
+
+  private
+
+  def ticket_signup(ticket, template, date)
+    render "signup.js.erb"
+  end
+
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
@@ -62,13 +91,14 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)
+  end
 end

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :tickets
+
+  resources :entries
+
   resources :exercise_templates
 
   resources :timetable_templates
@@ -11,7 +15,9 @@ Rails.application.routes.draw do
 
   get 'sessions/destroy'
 
-  resources :users
+  resources :users do
+    post 'signup' => :signup
+  end
 
   resources :exercises
 

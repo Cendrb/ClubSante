@@ -1,4 +1,6 @@
-<div class="calendar_template_exercise" data-id=<%= exercise_template.id %> data-duration=<%= exercise_template.timetable_template.calendar.therapy.duration_in_minutes %> style="position: absolute; top: <%= exercise_template.beginning.hour * 60 + exercise_template.beginning.min %>px;">
+<div class="calendar_template_exercise" 
+data-id=<%= exercise_template.id %> 
+data-duration=<%= exercise_template.timetable_template.calendar.therapy.duration_in_minutes %> 
+style="position: absolute; top: <%= ((exercise_template.beginning.hour * 60 + exercise_template.beginning.min) * pixels_per_minute) - beginning_offset %>px; height: <%= exercise_template.timetable_template.calendar.therapy.duration_in_minutes * pixels_per_minute %>px">
 	<div class="calendar_template_exercise_time"><%= exercise_template.beginning.to_s(:time) %> - <%= (exercise_template.beginning + exercise_template.timetable_template.calendar.therapy.duration_in_minutes.minutes).to_s(:time) %></div>
-	<div class="calendar_template_exercise_status">Uloženo</div>
 </div> 

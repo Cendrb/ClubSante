@@ -1,6 +1,8 @@
 require 'digest/sha2'
 
 class User < ActiveRecord::Base
+  has_many :tickets
+  
   validates :email, presence: true, uniqueness: true #, email_format: {message: 'není platný email'}
   validates :password, confirmation: true
   validate :password_must_be_present
@@ -15,6 +17,18 @@ class User < ActiveRecord::Base
       generate_salt
       self.hashed_password = self.class.encrypt_password(password, salt)
     end
+  end
+  
+  def tickets_with_entries_avalaible(therapy, required_date)
+    tickets = Ticket.where(user: self, paid: true, therapy: therapy)
+    
+    count = 0
+    tickets.each do |ticket|
+      if ticket.entries_available?
+        count += 1
+      end
+    end
+    return count
   end
 
   private

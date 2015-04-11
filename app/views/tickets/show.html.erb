@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Time restriction:</strong>
+  <%= @ticket.time_restriction %>
+</p>
+
+<p>
+  <strong>Entries remaining:</strong>
+  <%= @ticket.entries_remaining %>
+</p>
+
+<p>
+  <strong>Activated on:</strong>
+  <%= @ticket.activated_on %>
+</p>
+
+<p>
+  <strong>Paid:</strong>
+  <%= @ticket.paid %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @ticket.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>
