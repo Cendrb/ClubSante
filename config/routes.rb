@@ -15,8 +15,11 @@ Rails.application.routes.draw do
 
   get 'sessions/destroy'
 
-  resources :users do
-    post 'signup_for' => :signup
+  resources :users
+  
+  controller :users do
+    post 'users/signup_for_new' => :signup_for_new
+    post 'users/signup_for_existing' => :signup_for_existing
   end
 
   resources :exercises

@@ -19,16 +19,15 @@ class User < ActiveRecord::Base
     end
   end
   
-  def tickets_with_entries_avalaible(therapy, required_date)
+  def tickets_with_entries_available(therapy, required_date)
     tickets = Ticket.where(user: self, paid: true, therapy: therapy)
     
-    count = 0
     tickets.each do |ticket|
       if ticket.entries_available?
-        count += 1
+        tickets.remove(ticket)
       end
     end
-    return count
+    return tickets
   end
 
   private

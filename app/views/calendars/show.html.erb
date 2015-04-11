@@ -36,8 +36,8 @@
 				var clicked = $(this);
 				$.ajax({
 					type: "POST",
-					url: "/users/signup_for",
-					data: { exercise_template_id:  },
+					url: "/users/signup_for_new",
+					data: { exercise_template_id: clicked.data("id"), date: clicked.data("date") },
 					dataType: 'script',
 					format: 'js',
 					success: function(msg){
@@ -51,8 +51,10 @@
 <table id="calendar_timetable">
 	<tr>
 		<td></td>
+		<% counter = 0 %>
 		<% I18n.t(:"date.day_names").rotate.each do |weekday_name| %>
-			<td><%= weekday_name %></td>
+			<td><%= weekday_name %> (<%= l(@monday_date + counter.days) %>)</td>
+			<% counter += 1 %>
 		<% end %>
 	</tr>
 	<tr>
@@ -65,9 +67,10 @@
 		</td>
 		
 		<% for weekday in 0..6 %>
-			<td class="calendar_weekday" oncontextmenu="return false;" data-id=<%= weekday %>>
+			<td class="calendar_weekday" oncontextmenu="return false;" data-weekday=<%= weekday %>">
+				<% date = @monday_date + weekday.days %>
 				<% @templates.where(weekday: weekday).each do |template| %>
-					<%= render partial: "exercise_templates/exercise_template_for_calendar", locals: { exercise_template: template, pixels_per_minute: @pixels_per_minute, beginning_offset: @first_hour * 60 * @pixels_per_minute } %>
+					<%= render partial: "exercise_templates/exercise_template_for_calendar", locals: { exercise_template: template, date: date, pixels_per_minute: @pixels_per_minute, beginning_offset: @first_hour * 60 * @pixels_per_minute } %>
 				<% end %>
 				
 				<% @registered.each do |registered| %>

@@ -33,6 +33,8 @@ class CalendarsController < ApplicationController
     @first_hour = [registered_min_hour, @templates.minimum(:beginning).hour].min
     @last_hour = [registered_max_hour, @templates.maximum(:beginning).hour].max + 1
     
+    @monday_date = Date.today - (Date.today.wday - 1).days
+    
     # TERRIBLE CODE
     #@templates = @templates.to_a
     #@templates.delete_if do |template|

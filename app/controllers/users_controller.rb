@@ -51,39 +51,51 @@ class UsersController < ApplicationController
     end
   end
 
-  def signup
+  def signup_for_new
     date = Date.parse(params[:date])
-    if params[:exercise_template_id]
-      exercise_template = ExerciseTemplate.find(params[:exercise_template_id])
-    else
-      exercise = Exercise.find(params[:exercise_id])
-    end
+    exercise_template = ExerciseTemplate.find(params[:exercise_template_id])
 
-    if params[:ticket_id]
-      # ticket already selected
-      ticket_signup(Ticket.find(params[:ticket_id]), exercise_template, date)
-    else
-      tickets_available = current_user.tickets_with_entries_avalaible(exercise_template.therapy, date)
-
-      if tickets_available.count > 0
-        if tickets_available.count == 1
-          # just one - no need for an additional form
-          ticket_signup(tickets_available.first, exercise_template, date)
-        else
-          # more than one - show js form
-        end
-      else
-        # any usable tickets were not found
-      end
-    end
+    ticket = ticket_selector(exercise_template.timetable_template.calendar.therapy, date)
+    
+    @exercise = Exercise.new(date: date, timetable: exercise_template.timetable_template.calendar.timetable)
+    @exercise.signup_with(ticket)
+    render "signup_create_exercise.js.erb"
+  end
+  
+  def signup_for_existing
+    exercise = Exercise.find(params[:exercise_id])
+    
+    ticket = ticket_selector(exercise.timetable.calendar.therapy, exercise.date)
+    
+    @exercise = exercise
+    @exercise.signup_with(ticket)
+    render "signup_edit_existing_exercise.js.erb"
   end
 
   private
-
-  def ticket_signup(ticket, template, date)
-    @exercise = Exercise.create(date: date, timetable: template.timetable_template.calendar.timetable)
-    @exercise.signup_with(ticket)
-    render "signup.js.erb"
+  
+  def ticket_selector(therapy, date)
+    if params[:ticket_id]
+      # ticket already selected
+      return Ticket.find(params[:ticket_id])
+    else
+      tickets_available = current_user.tickets_with_entries_available(therapy, date)
+      
+      if tickets_available.count > 0
+        if tickets_available.count == 1
+          # just one - no need for an additional form
+          return tickets_available.first
+        else
+          # more than one - show js form
+          render "ticket_selector_form.js.erb"
+          return nil
+        end
+      else
+        # any usable tickets were not found
+        redirect_to tickets_path
+        return nil
+      end
+    end
   end
 
   # DELETE /users/1
