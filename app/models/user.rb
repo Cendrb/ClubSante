@@ -19,15 +19,8 @@ class User < ActiveRecord::Base
     end
   end
   
-  def tickets_with_entries_available(therapy, required_date)
-    tickets = Ticket.where(user: self, paid: true, therapy: therapy)
-    
-    tickets.each do |ticket|
-      if ticket.entries_available?
-        tickets.remove(ticket)
-      end
-    end
-    return tickets
+  def full_name
+    return "#{first_name} #{last_name}"
   end
 
   private

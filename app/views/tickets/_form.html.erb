@@ -1,3 +1,21 @@
+<script>
+$(function() {
+	$(".type_selector").change(function() {
+		if(this.value == "Omezená vstupy")
+		{
+			//$(".entries").prop("disabled", false);
+			$(".entries").show();
+		}
+		else
+		{
+		  	//$(".entries").prop("disabled", true);
+		  	$(".entries").hide();
+		}
+	});
+	$(".type_selector").change();
+});
+</script>
+
 <%= form_for(@ticket) do |f| %>
   <% if @ticket.errors.any? %>
     <div id="error_explanation">
@@ -12,26 +30,32 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :time_restriction %><br>
-    <%= f.datetime_select :time_restriction %>
+  	<%= select_tag :type, options_for_select([ "Časově omezená", "Omezená vstupy" ], params[:type]), class: "type_selector" %>
+  </div>
+  <div class="field entries">
+	<%= f.label :entries_remaining, "Zbývající vstupy", class: "entries" %><br>
+	<%= f.number_field :entries_remaining, class: "entries" %>
   </div>
   <div class="field">
-    <%= f.label :entries_remaining %><br>
-    <%= f.number_field :entries_remaining %>
+  	Platnost<br />
+    <%= number_field_tag :time_restriction_days, params[:time_restriction_days] %>
+    <%= label_tag :time_restriction_days, 'dní' %><br>
+    <%= number_field_tag :time_restriction_months, params[:time_restriction_months] %>
+    <%= label_tag :time_restriction_months, 'měsíců' %>
   </div>
   <div class="field">
-    <%= f.label :activated_on %><br>
-    <%= f.datetime_select :activated_on %>
+    <%= label_tag :activate, 'Platí od dnešního dne' %>
+    <%= check_box_tag :activate, true, params[:activate] %>
   </div>
   <div class="field">
-    <%= f.label :paid %><br>
-    <%= f.check_box :paid %>
+    <%= f.label :therapy_id, "Terapie" %><br>
+    <%= f.collection_select(:therapy_id, Therapy.all, :id, :name) %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+    <%= f.label :user_id, "Uživatel" %><br>
+    <%= f.collection_select(:user_id, User.all, :id, :full_name) %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Uložit" %>
   </div>
 <% end %>

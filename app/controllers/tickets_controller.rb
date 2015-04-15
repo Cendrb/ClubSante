@@ -15,6 +15,10 @@ class TicketsController < ApplicationController
   # GET /tickets/new
   def new
     @ticket = Ticket.new
+    params[:type] = "Časově omezená"
+    params[:activate] = true
+    params[:time_restriction_days] = 0
+    params[:time_restriction_months] = 6
   end
 
   # GET /tickets/1/edit
@@ -24,16 +28,37 @@ class TicketsController < ApplicationController
   # POST /tickets
   # POST /tickets.json
   def create
-    @ticket = Ticket.new(ticket_params)
-
-    respond_to do |format|
-      if @ticket.save
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
-        format.json { render :show, status: :created, location: @ticket }
-      else
-        format.html { render :new }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
+    params.permit!
+    @ticket = Ticket.new(params[:ticket])
+    if params[:activate]
+      @ticket.activated_on = Date.today
+    else
+      @ticket.activated_on = nil
+    end
+    if params[:type] == "Časově omezená"
+      @ticket.entries_remaining = -1
+      
+      # pokud omezena vstupy -> activerecord nastaví sám od sebe do modelu (form_for)
+    end
+    if params[:time_restriction_days] && params[:time_restriction_months]
+      @ticket.time_restriction = (params[:time_restriction_days].to_i.days + params[:time_restriction_months].to_i.months).to_i
+      respond_to do |format|
+        if @ticket.save
+          format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
+          format.json { render :show, status: :created, location: @ticket }
+        else
+          format.html { render :new }
+          format.json { render json: @ticket.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      if !params[:time_restriction_days]
+        @ticket.errors.add(:time_restriction_days, "musí být kladné číslo")
+      end
+      if !params[:time_restriction_months]
+        @ticket.errors.add(:time_restriction_months, "musí být kladné číslo")
+      end
+      render :new
     end
   end
 
@@ -69,6 +94,6 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:time_restriction, :entries_remaining, :activated_on, :paid, :user_id)
+      params.require(:ticket).permit(:entries_remaining, :user_id, :time_restriction, :paid, :activated_on, :therapy_id)
     end
 end

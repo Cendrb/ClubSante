@@ -57,9 +57,15 @@ class UsersController < ApplicationController
 
     ticket = ticket_selector(exercise_template.timetable_template.calendar.therapy, date)
     
-    @exercise = Exercise.new(date: date, timetable: exercise_template.timetable_template.calendar.timetable)
-    @exercise.signup_with(ticket)
-    render "signup_create_exercise.js.erb"
+    if ticket
+      if ticket && ticket.entries_available?(date)
+        @exercise = Exercise.create(date: date, timetable: exercise_template.timetable_template.calendar.timetable)
+        @exercise.signup_with(ticket)
+        render "signup_create_exercise.js.erb"
+      else
+        render nothing: true
+      end
+    end
   end
   
   def signup_for_existing
@@ -67,9 +73,15 @@ class UsersController < ApplicationController
     
     ticket = ticket_selector(exercise.timetable.calendar.therapy, exercise.date)
     
-    @exercise = exercise
-    @exercise.signup_with(ticket)
-    render "signup_edit_existing_exercise.js.erb"
+    if ticket
+      if ticket.entries_available?
+        @exercise = exercise
+        @exercise.signup_with(ticket)
+        render "signup_edit_existing_exercise.js.erb"
+      else
+        render nothing: true
+      end
+    end
   end
 
   private
@@ -87,13 +99,11 @@ class UsersController < ApplicationController
           return tickets_available.first
         else
           # more than one - show js form
-          render "ticket_selector_form.js.erb"
-          return nil
+          render "ticket_selector_form.js.erb" and return
         end
       else
         # any usable tickets were not found
-        redirect_to tickets_path
-        return nil
+        redirect_to tickets_path and return
       end
     end
   end

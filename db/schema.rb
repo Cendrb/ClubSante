@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331210145) do
+ActiveRecord::Schema.define(version: 20150412090019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(version: 20150331210145) do
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.datetime "time_restriction"
     t.integer  "entries_remaining"
     t.datetime "activated_on"
     t.boolean  "paid",              default: true
@@ -65,6 +64,7 @@ ActiveRecord::Schema.define(version: 20150331210145) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.integer  "therapy_id"
+    t.integer  "time_restriction"
   end
 
   create_table "timetable_templates", force: :cascade do |t|
