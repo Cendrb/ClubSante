@@ -1,9 +1,9 @@
 class EntryValidator < ActiveModel::Validator
   def validate(record)
-    unless record.ticket.entries_available?(record)
-      record.errors[:ticket] << "Na zvolené kartě není dostatek vstupů nebo již skončila její platnost"
-    end
-    unless record.exercise.entries.count < record.exercise.therapy.capacity && record.exercise.available
+    #unless record.ticket.entries_available?(record)
+    #  record.errors[:ticket] << "Na zvolené kartě není dostatek vstupů nebo již skončila její platnost"
+    #end
+    unless record.exercise.entries.count < record.exercise.timetable.calendar.therapy.capacity && record.exercise.available
       record.errors[:exercise] << "Kapacita zvoleného cvičení byla dosažena"
     end
   end

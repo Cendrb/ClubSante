@@ -1,0 +1,29 @@
+<tr>
+	<td>
+		<% if ticket.activated_on == nil %>
+			ještě nebyla aktivována
+		<% else %>
+			<%= l (ticket.activated_on + ticket.time_restriction), format: :date %>
+		<% end %>
+	</td>
+	<td>
+		<% if ticket.entries_remaining == -1 %>
+			není omezená vstupy
+		<% else %>
+			<%= ticket.entries_remaining %>
+		<% end %>
+	</td>
+	<td>
+		<%= ticket.therapy.name %>
+	</td>
+	<td>
+		<%= ticket.paid %>
+	</td>
+	<td>
+		<% if @exercise_template %>
+			<%= button_to "Použít", {controller: "users", action: "signup_for_new", method: :post, date: @date, exercise_template_id: @exercise_template.id, ticket_id: ticket.id, beginning_offset: @beginning_offset}, disabled: !ticket.entries_available?(@date, therapy), remote: true %>
+		<% else %>
+			<%= button_to "Použít", {controller: "users", action: "signup_for_existing", method: :post, exercise_id: @exercise.id, ticket_id: ticket.id, beginning_offset: @beginning_offset}, disabled: !ticket.entries_available?(@date, therapy), remote: true %>
+		<% end %>
+	</td>
+</tr>

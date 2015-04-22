@@ -1,0 +1,7 @@
+<div class="calendar_exercise"
+data-id=<%= exercise.id %>
+data-duration=<%= exercise.timetable.calendar.therapy.duration_in_minutes %>
+style="position: absolute; top: <%= ((exercise.date.hour * 60 + exercise.date.min) * Calendar.pixels_per_minute) - beginning_offset %>px; height: <%= exercise.timetable.calendar.therapy.duration_in_minutes * Calendar.pixels_per_minute %>px">
+	<div class="calendar_exercise_time"><%= exercise.date.to_s(:time) %> - <%= (exercise.date + exercise.timetable.calendar.therapy.duration_in_minutes.minutes).to_s(:time) %></div>
+	<div class="calendar_exercise_capacity">obsazeno <%= exercise.entries.count %> z <%= exercise.timetable.calendar.therapy.capacity %></div>
+</div>

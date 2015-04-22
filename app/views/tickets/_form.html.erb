@@ -3,16 +3,19 @@ $(function() {
 	$(".type_selector").change(function() {
 		if(this.value == "Omezená vstupy")
 		{
-			//$(".entries").prop("disabled", false);
 			$(".entries").show();
 		}
 		else
 		{
-		  	//$(".entries").prop("disabled", true);
 		  	$(".entries").hide();
 		}
 	});
 	$(".type_selector").change();
+	
+	if(<%= params[:activate] == "nope" %>)
+	{
+		$(".activate").hide();
+	}
 });
 </script>
 
@@ -43,7 +46,7 @@ $(function() {
     <%= number_field_tag :time_restriction_months, params[:time_restriction_months] %>
     <%= label_tag :time_restriction_months, 'měsíců' %>
   </div>
-  <div class="field">
+  <div class="field activate">
     <%= label_tag :activate, 'Platí od dnešního dne' %>
     <%= check_box_tag :activate, true, params[:activate] %>
   </div>

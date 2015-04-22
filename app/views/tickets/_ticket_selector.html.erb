@@ -1,0 +1,24 @@
+<div id="ticket_selector" title="Výběr permanentky">
+	<table>
+		<tr>
+			<th>
+				Platná do
+			</th>
+			<th>
+				Zbývá vstupů
+			</th>
+			<th>
+				Terapie
+			</th>
+			<th>
+				Zaplaceno
+			</th>
+			<th>
+				Použitelná
+			</th>
+		</tr>
+		<% tickets.each do |ticket| %>
+			<%= render partial: "tickets/ticket_selector_line", locals: { ticket: ticket, therapy: therapy }%>
+		<% end %>
+	</table>
+</div>

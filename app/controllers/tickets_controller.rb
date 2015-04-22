@@ -23,13 +23,59 @@ class TicketsController < ApplicationController
 
   # GET /tickets/1/edit
   def edit
+    if @ticket.entries_remaining == -1
+      params[:type] = "Časově omezená"
+    else
+      params[:type] = "Omezená vstupy"
+    end
+    
+    params[:activate] = "nope"
+    
+    params[:time_restriction_days] = (@ticket.time_restriction/60/60/24) % 30
+    params[:time_restriction_months] = (@ticket.time_restriction/60/60/24/30)
   end
 
   # POST /tickets
   # POST /tickets.json
   def create
+    @ticket = Ticket.new(ticket_params)
     params.permit!
-    @ticket = Ticket.new(params[:ticket])
+    if params[:activate]
+      @ticket.activated_on = Date.today
+    else
+      @ticket.activated_on = nil
+    end
+    if params[:type] == "Časově omezená"
+      @ticket.entries_remaining = -1
+      
+      # pokud omezena vstupy -> activerecord nastaví sám od sebe do modelu (form_for)
+    end
+    if params[:time_restriction_days] && params[:time_restriction_months]
+      @ticket.time_restriction = (params[:time_restriction_days].to_i.days + params[:time_restriction_months].to_i.months).to_i
+      respond_to do |format|
+        if @ticket.save
+          format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
+          format.json { render :show, status: :created, location: @ticket }
+        else
+          format.html { render :new }
+          format.json { render json: @ticket.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      if !params[:time_restriction_days]
+        @ticket.errors.add(:time_restriction_days, "musí být kladné číslo")
+      end
+      if !params[:time_restriction_months]
+        @ticket.errors.add(:time_restriction_months, "musí být kladné číslo")
+      end
+      render :new
+    end
+  end
+
+  # PATCH/PUT /tickets/1
+  # PATCH/PUT /tickets/1.json
+  def update
+    params.permit!
     if params[:activate]
       @ticket.activated_on = Date.today
     else
@@ -59,20 +105,6 @@ class TicketsController < ApplicationController
         @ticket.errors.add(:time_restriction_months, "musí být kladné číslo")
       end
       render :new
-    end
-  end
-
-  # PATCH/PUT /tickets/1
-  # PATCH/PUT /tickets/1.json
-  def update
-    respond_to do |format|
-      if @ticket.update(ticket_params)
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ticket }
-      else
-        format.html { render :edit }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
-      end
     end
   end
 

@@ -1,1 +1,1 @@
-alert("allahu kabar");
+$(".calendar_template_exercise[data-id=<%= @exercise_template.id %>]").replaceWith("<%= escape_javascript(render partial: "exercises/exercise", locals: { exercise: @exercise, beginning_offset: @beginning_offset }) %>");

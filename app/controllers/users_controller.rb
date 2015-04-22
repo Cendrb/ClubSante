@@ -53,30 +53,32 @@ class UsersController < ApplicationController
 
   def signup_for_new
     date = Date.parse(params[:date])
-    exercise_template = ExerciseTemplate.find(params[:exercise_template_id])
+    @exercise_template = ExerciseTemplate.find(params[:exercise_template_id])
+    @beginning_offset = params[:beginning_offset].to_i
 
-    ticket = ticket_selector(exercise_template.timetable_template.calendar.therapy, date)
+    ticket = ticket_selector(@exercise_template.timetable_template.calendar.therapy, date)
+    date = date.to_datetime + @exercise_template.beginning.seconds_since_midnight.seconds
     
     if ticket
-      if ticket && ticket.entries_available?(date)
-        @exercise = Exercise.create(date: date, timetable: exercise_template.timetable_template.calendar.timetable)
-        @exercise.signup_with(ticket)
+      if ticket.entries_available?(date, @exercise_template.timetable_template.calendar.therapy)
+        @exercise = Exercise.create(date: date, timetable: @exercise_template.timetable_template.calendar.timetable)
+        ticket.register_entry(@exercise)
         render "signup_create_exercise.js.erb"
       else
-        render nothing: true
+        render plain: "allahu akbar"
       end
     end
   end
   
   def signup_for_existing
-    exercise = Exercise.find(params[:exercise_id])
+    @exercise = Exercise.find(params[:exercise_id])
+    @beginning_offset = params[:beginning_offset].to_i
     
-    ticket = ticket_selector(exercise.timetable.calendar.therapy, exercise.date)
+    ticket = ticket_selector(@exercise.timetable.calendar.therapy, @exercise.date)
     
     if ticket
-      if ticket.entries_available?
-        @exercise = exercise
-        @exercise.signup_with(ticket)
+      if ticket.entries_available?(@exercise.date, @exercise.timetable.calendar.therapy)
+        ticket.register_entry(@exercise)
         render "signup_edit_existing_exercise.js.erb"
       else
         render nothing: true
@@ -91,7 +93,7 @@ class UsersController < ApplicationController
       # ticket already selected
       return Ticket.find(params[:ticket_id])
     else
-      tickets_available = current_user.tickets_with_entries_available(therapy, date)
+      tickets_available = current_user.tickets.with_available_entries(therapy, date)
       
       if tickets_available.count > 0
         if tickets_available.count == 1
@@ -99,11 +101,14 @@ class UsersController < ApplicationController
           return tickets_available.first
         else
           # more than one - show js form
-          render "ticket_selector_form.js.erb" and return
+          @tickets = current_user.tickets
+          @target_therapy = therapy
+          @target_date = date
+          render "ticket_selector_form.js.erb", status: 200 and return
         end
       else
         # any usable tickets were not found
-        redirect_to tickets_path and return
+        render "any_tickets.js.erb", status: 401 and return
       end
     end
   end

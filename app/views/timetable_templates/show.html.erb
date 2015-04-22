@@ -40,7 +40,7 @@
 
 	function getTimeFor(ui)
 	{
-		var offset = (ui.offset.top - 15)
+		var offset = (ui.offset.top - 15);
 		var hours = Math.floor(offset / 60);
 		var minutes = offset % 60;
 		var time = new Date();
@@ -79,9 +79,7 @@
 				}
 			});
 		});
-		
-		//$(document).oncontextmenu = function() {return false;};
-		
+
 		$(".timetable_template_exercise").mousedown(function(e){ 
     		if( e.button == 2 ) {
     			var element = $(this);
@@ -91,7 +89,6 @@
 					type: "DELETE",
 					url: "/exercise_templates/" + id + ".whoa",
 					success: function(msg){
-						console.log("WHOA");
 						element.remove();
 					}
 				});
@@ -100,6 +97,7 @@
     		return true; 
   		}); 
 	}
+
 	
 	$(function() {
 		setupDraggables();
@@ -116,6 +114,7 @@
 					dataType: 'script',
 					format: 'js',
 					success: function(msg){
+						$(".timetable_template_exercise").off();
 						setupDraggables();
 					}
 				});

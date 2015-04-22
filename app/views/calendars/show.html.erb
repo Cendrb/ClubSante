@@ -14,6 +14,12 @@
     	width: 100%;
     	background-color: orange;
 	}
+	.calendar_exercise
+	{
+		border: 2px solid green;
+    	width: 100%;
+    	background-color: red;
+	}
 	.calendar_weekday
 	{
 		position: relative;
@@ -21,7 +27,7 @@
 	}
 	.calendar_hour
 	{
-		height: <%= @pixels_per_minute * 60 %>px;
+		height: <%= Calendar.pixels_per_minute * 60 %>px;
 		text-align: center;
 		position: relative;
 		border-bottom: 1px solid black;
@@ -30,6 +36,24 @@
 </style>
 
 <script>
+	function setupClickHandlerFor(id)
+	{
+			$(".calendar_exercise[data-id=" + id + "]").click(function(event)
+			{
+				var clicked = $(this);
+				$.ajax({
+					type: "POST",
+					url: "/users/signup_for_existing",
+					data: { exercise_id: clicked.data("id"), beginning_offset: $("#calendar_timetable").data("beginning_offset") },
+					dataType: 'script',
+					format: 'js',
+					success: function(msg){
+						setupClickHandlerFor(clicked.data("id"));
+					}
+				});
+			});
+	}
+
 	$(function() {
 		$(".calendar_template_exercise").click(function(event)
 			{
@@ -37,18 +61,33 @@
 				$.ajax({
 					type: "POST",
 					url: "/users/signup_for_new",
-					data: { exercise_template_id: clicked.data("id"), date: clicked.data("date") },
+					data: { exercise_template_id: clicked.data("id"), date: clicked.data("date"), beginning_offset: $("#calendar_timetable").data("beginning_offset") },
 					dataType: 'script',
 					format: 'js',
 					success: function(msg){
-						alert("suckcess");
+						setupClickHandlerFor(clicked.data("id"));
+					}
+				});
+			});
+			
+		$(".calendar_exercise").click(function(event)
+			{
+				var clicked = $(this);
+				$.ajax({
+					type: "POST",
+					url: "/users/signup_for_existing",
+					data: { exercise_id: clicked.data("id"), beginning_offset: $("#calendar_timetable").data("beginning_offset") },
+					dataType: 'script',
+					format: 'js',
+					success: function(msg){
+						setupClickHandlerFor(clicked.data("id"));
 					}
 				});
 			});
 	});
 </script>
 
-<table id="calendar_timetable">
+<table id="calendar_timetable" data-beginning_offset=<%= @beginning_offset %>>
 	<tr>
 		<td></td>
 		<% counter = 0 %>
@@ -70,10 +109,11 @@
 			<td class="calendar_weekday" oncontextmenu="return false;" data-weekday=<%= weekday %>">
 				<% date = @monday_date + weekday.days %>
 				<% @templates.where(weekday: weekday).each do |template| %>
-					<%= render partial: "exercise_templates/exercise_template_for_calendar", locals: { exercise_template: template, date: date, pixels_per_minute: @pixels_per_minute, beginning_offset: @first_hour * 60 * @pixels_per_minute } %>
+					<%= render partial: "exercise_templates/exercise_template_for_calendar", locals: { exercise_template: template, date: date, beginning_offset: @beginning_offset } %>
 				<% end %>
 				
-				<% @registered.each do |registered| %>
+				<% @registered.where("date::date = ?", date).each do |registered| %>
+					<%= render partial: "exercises/exercise", locals: { exercise: registered, beginning_offset: @first_hour * 60 * Calendar.pixels_per_minute } %>
 				<% end %>
 			</td>
 		<% end %>
