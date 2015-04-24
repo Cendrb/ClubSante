@@ -55,17 +55,19 @@ class UsersController < ApplicationController
     date = Date.parse(params[:date])
     @exercise_template = ExerciseTemplate.find(params[:exercise_template_id])
     @beginning_offset = params[:beginning_offset].to_i
-
-    ticket = ticket_selector(@exercise_template.timetable_template.calendar.therapy, date)
-    date = date.to_datetime + @exercise_template.beginning.seconds_since_midnight.seconds
     
-    if ticket
-      if ticket.entries_available?(date, @exercise_template.timetable_template.calendar.therapy)
-        @exercise = Exercise.create(date: date, timetable: @exercise_template.timetable_template.calendar.timetable)
-        ticket.register_entry(@exercise)
-        render "signup_create_exercise.js.erb"
-      else
-        render plain: "allahu akbar"
+    if validate_date_signup(date)
+      ticket = ticket_selector(@exercise_template.timetable_template.calendar.therapy, date)
+      date = date.to_datetime + @exercise_template.beginning.seconds_since_midnight.seconds
+      
+      if ticket
+        if ticket.entries_available?(date, @exercise_template.timetable_template.calendar.therapy)
+          @exercise = Exercise.create(date: date, timetable: @exercise_template.timetable_template.calendar.timetable)
+          ticket.register_entry(@exercise)
+          render "signup_create_exercise.js.erb"
+        else
+          render plain: "allahu akbar"
+        end
       end
     end
   end
@@ -74,19 +76,42 @@ class UsersController < ApplicationController
     @exercise = Exercise.find(params[:exercise_id])
     @beginning_offset = params[:beginning_offset].to_i
     
-    ticket = ticket_selector(@exercise.timetable.calendar.therapy, @exercise.date)
-    
-    if ticket
-      if ticket.entries_available?(@exercise.date, @exercise.timetable.calendar.therapy)
-        ticket.register_entry(@exercise)
-        render "signup_edit_existing_exercise.js.erb"
-      else
-        render nothing: true
+    if validate_exercise_signup(@exercise) && validate_date_signup(@exercise.date)
+      ticket = ticket_selector(@exercise.timetable.calendar.therapy, @exercise.date)
+      
+      if ticket
+        if ticket.entries_available?(@exercise.date, @exercise.timetable.calendar.therapy)
+          ticket.register_entry(@exercise)
+          render "signup_edit_existing_exercise.js.erb"
+        else
+          render nothing: true
+        end
       end
     end
   end
 
   private
+  
+  def validate_date_signup(date)
+    if date < Date.today
+      render_alert "Nemůžete si rezervovat datum v minulosti"
+      return false
+    end
+    return true
+  end
+  
+  def validate_exercise_signup(exercise)
+    capacity = exercise.timetable.calendar.therapy.capacity
+    if exercise.entries.count >= capacity
+      render_alert "Kapacita tohoto cvičení byla již dosažena (#{capacity})"
+      return false
+    end
+    return true
+  end
+  
+  def render_alert(message)
+    render "alert", locals: { message: message }, status: 401
+  end
   
   def ticket_selector(therapy, date)
     if params[:ticket_id]
@@ -108,7 +133,8 @@ class UsersController < ApplicationController
         end
       else
         # any usable tickets were not found
-        render "any_tickets.js.erb", status: 401 and return
+        render_alert "Nebyly nalezeny žádné platné permanentky"
+        return
       end
     end
   end
