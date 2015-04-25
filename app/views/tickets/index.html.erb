@@ -9,12 +9,13 @@
       <th>Zbývající počet vstupů</th>
       <th>Terapie</th>
       <th>Zaplaceno</th>
+      <th>Uživatel</th>
     </tr>
   </thead>
 
   <tbody>
     <% @tickets.each do |ticket| %>
-      <%= render partial: "tickets/ticket_line", locals: { ticket: ticket } %>
+      <%= render partial: "tickets/ticket", locals: { ticket: ticket } %>
     <% end %>
   </tbody>
 </table>

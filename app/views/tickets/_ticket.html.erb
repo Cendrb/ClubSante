@@ -1,0 +1,24 @@
+<tr>
+	<td><% if ticket.activated_on == nil %>
+			ještě nebyla aktivována
+		<% else %>
+			<%= l (ticket.activated_on + ticket.time_restriction), format: :date %>
+		<% end %>
+	</td>
+	<td>
+		<% if ticket.entries_remaining == -1 %>
+			není omezená vstupy
+		<% else %>
+			<%= ticket.entries_remaining %>
+		<% end %>
+	</td>
+	<td>
+		<%= ticket.therapy.name %>
+	</td>
+	<td>
+		<%= ticket.paid %>
+	</td>
+	<td>
+		<%= ticket.user.full_name %>
+	</td>
+</tr>
