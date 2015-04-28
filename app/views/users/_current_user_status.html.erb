@@ -1,0 +1,10 @@
+<div class="current_user_status">
+	<% if current_user %>
+		Jméno: <%= current_user.full_name %><br />
+		<%= link_to "Přehled", user_summary_path %><br />
+		<%= link_to "Odhlásit se", logout_path %>
+	<% else %>
+		Nejste přihlášeni
+		<%= link_to "Přihlásit se", login_path %>
+	<% end %>
+</div>

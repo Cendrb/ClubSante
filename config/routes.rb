@@ -10,17 +10,12 @@ Rails.application.routes.draw do
 
   get 'calendars/show'
 
-  get 'sessions/new'
-
-  get 'sessions/create'
-
-  get 'sessions/destroy'
-
   resources :users
   
   controller :users do
-    post 'users/signup_for_new'
-    post 'users/signup_for_existing'
+    post 'users/subscribe_for_new'
+    post 'users/subscribe_for_existing'
+    post 'users/unsubscribe_from', as: 'unsubscribe'
   end
 
   resources :exercises
@@ -36,6 +31,13 @@ Rails.application.routes.draw do
   controller :calendars do
     get 'calendars/:id' => :show, as: :calendar
   end
+  
+  root to: 'users#summary'
+  
+  get 'user_summary' => 'users#summary', as: 'user_summary'
+  
+  get 'register' => 'users#new'
+  delete 'destroy_account/:id', to: 'users#self_destroy', as: 'destroy_account'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

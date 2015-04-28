@@ -1,0 +1,27 @@
+<h2>Vaše permanentky</h2>
+<% if @tickets.count > 0 %>
+	<table id="user_summary_tickets_table">
+		<tr>
+			<th>Konec platnosti</th>
+			<th>Zbývá vstupů</th>
+			<th>Terapie</th>
+		</tr>
+		<%= render partial: "tickets/user_summary_ticket_line", collection: @tickets %>
+	</table>
+<% else %>
+	Nemáte zakoupeny žádné permanentky
+<% end %>
+
+<h2>Vaše cvičení</h2>
+<% if @exercises.count > 0 %>
+	<table id="user_summary_exercises_table">
+		<tr>
+			<th>Datum a čas</th>
+			<th>Terapie</th>
+			<th>Akce</th>
+		</tr>
+		<%= render partial: "exercises/user_summary_exercise_line", collection: @exercises %>
+	</table>
+<% else %>
+	Nemáte zarezervovaná žádná cvičení
+<% end %>

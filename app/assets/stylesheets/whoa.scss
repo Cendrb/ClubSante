@@ -1,0 +1,42 @@
+body
+{
+  margin: 0;
+  padding: 0;
+  background-color: #48b040;
+  #container
+  {
+    #page
+    {
+      padding: 2em;
+      margin: 5em auto 0 auto;
+      width: 80%;
+      height: auto;
+      border-radius: 30px;
+      background-color: white;
+    } 
+  }
+}
+
+
+.current_user_status
+{
+  padding: 0.5em;
+  border-radius: 5px;
+  background-color: #FFFEE1;
+  width: 20%;
+  float: right;
+}
+
+#ticket_selector
+{
+  border-collapse: collapse;
+}
+
+#user_summary_tickets_table
+{
+  td, th
+  {
+    border: 1px black solid;
+  }
+  border-collapse: collapse;
+}

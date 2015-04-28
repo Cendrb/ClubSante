@@ -1,0 +1,12 @@
+<% exercise = user_summary_exercise_line %>
+<tr data-id=<%= exercise.id %>>
+	<td>
+		<%= l exercise.date %>
+	</td>
+	<td>
+		<%= exercise.timetable.calendar.therapy.name %>
+	</td>
+	<td>
+		<%= button_to "Odhlásit", unsubscribe_path(exercise_id: exercise.id), {onclick: "return confirm('Pokračováním se odhlásíte z tohoto cvičení. Chcete pokračovat?')", remote: true} %>
+	</td>
+</tr>

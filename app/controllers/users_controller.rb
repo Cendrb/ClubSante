@@ -6,6 +6,16 @@ class UsersController < ApplicationController
   def index
     @users = User.all
   end
+  
+  def summary
+    user = current_user
+    if user
+      @tickets = user.tickets
+      @exercises = Exercise.joins(:entries).joins(entries: :ticket).joins(entries: {ticket: :user}).where("tickets.user_id = ?", user.id).where("exercises.date >= ?", Date.today).order(:date)
+    else
+      redirect_to login_path
+    end
+  end
 
   # GET /users/1
   # GET /users/1.json
@@ -51,7 +61,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def signup_for_new
+  def subscribe_for_new
     date = Date.parse(params[:date])
     @exercise_template = ExerciseTemplate.find(params[:exercise_template_id])
     @beginning_offset = params[:beginning_offset].to_i
@@ -64,7 +74,7 @@ class UsersController < ApplicationController
         if ticket.entries_available?(date, @exercise_template.timetable_template.calendar.therapy)
           @exercise = Exercise.create(date: date, timetable: @exercise_template.timetable_template.calendar.timetable)
           ticket.register_entry(@exercise)
-          render "signup_create_exercise.js.erb"
+          render "subscribe_create_exercise.js.erb"
         else
           render plain: "allahu akbar"
         end
@@ -72,7 +82,7 @@ class UsersController < ApplicationController
     end
   end
   
-  def signup_for_existing
+  def subscribe_for_existing
     @exercise = Exercise.find(params[:exercise_id])
     @beginning_offset = params[:beginning_offset].to_i
     
@@ -82,11 +92,25 @@ class UsersController < ApplicationController
       if ticket
         if ticket.entries_available?(@exercise.date, @exercise.timetable.calendar.therapy)
           ticket.register_entry(@exercise)
-          render "signup_edit_existing_exercise.js.erb"
+          render "subscribe_edit_existing_exercise.js.erb"
         else
           render nothing: true
         end
       end
+    end
+  end
+  
+  def unsubscribe_from
+    @exercise = Exercise.find(params[:exercise_id])
+    @beginning_offset = params[:beginning_offset].to_i
+    entry = Entry.joins(:ticket).where("tickets.user_id = ?", current_user.id).where("exercise_id = ?", @exercise.id).first
+    ticket = entry.ticket
+    ticket.unregister_entry(@exercise, entry)
+    
+    if(params[:source] == "calendar_view")
+      render "users/unsubscribe_from_calendar_view"
+    else
+      render "users/unsubscribe_from_user_summary_list"
     end
   end
 
@@ -101,9 +125,13 @@ class UsersController < ApplicationController
   end
   
   def validate_exercise_signup(exercise)
-    capacity = exercise.timetable.calendar.therapy.capacity
-    if exercise.entries.count >= capacity
-      render_alert "Kapacita tohoto cvičení byla již dosažena (#{capacity})"
+    if exercise.full?
+      render_alert "Kapacita tohoto cvičení byla již dosažena (#{exercise.timetable.calendar.therapy.capacity})"
+      return false
+    end
+    
+    if exercise.signed_up?(current_user)
+      render_alert "Nemůžete se přihlásit na jedno cvičení vícekrát"
       return false
     end
     return true

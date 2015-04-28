@@ -12,13 +12,11 @@
 	{
 		border: 2px solid black;
     	width: 100%;
-    	background-color: orange;
 	}
 	.calendar_exercise
 	{
 		border: 2px solid black;
     	width: 100%;
-    	background-color: red;
 	}
 	.calendar_weekday
 	{
@@ -33,6 +31,18 @@
 		border-bottom: 1px solid black;
 		margin-bottom: -2px;
 	}
+	.free_exercise
+	{
+		background-color: green;
+	}
+	.full_exercise
+	{
+		background-color: red;
+	}
+	.signed_exercise
+	{
+		background-color: yellow;
+	}
 </style>
 
 <script>
@@ -41,16 +51,35 @@
 			$(".calendar_exercise[data-id=" + id + "]").click(function(event)
 			{
 				var clicked = $(this);
-				$.ajax({
-					type: "POST",
-					url: "/users/signup_for_existing",
-					data: { exercise_id: clicked.data("id"), beginning_offset: $("#calendar_timetable").data("beginning_offset") },
-					dataType: 'script',
-					format: 'js',
-					success: function(msg){
-						setupHandlersFor(clicked.data("id"));
+				if(clicked.data("registered-by-current-user") == true)
+				{
+					if(confirm("Na toto cvičení jste již přihlášen. Chcete se z něj odhlásit?"))
+					{
+						$.ajax({
+							type: "POST",
+							url: "/users/unsubscribe_from",
+							data: { exercise_id: clicked.data("id"), source: "calendar_view", beginning_offset: $("#calendar_timetable").data("beginning_offset") },
+							dataType: 'script',
+							format: 'js',
+							success: function(msg){
+								setupHandlersFor(clicked.data("id"));
+							}
+						});
 					}
-				});
+				}
+				else
+				{
+					$.ajax({
+						type: "POST",
+						url: "/users/subscribe_for_existing",
+						data: { exercise_id: clicked.data("id"), beginning_offset: $("#calendar_timetable").data("beginning_offset") },
+						dataType: 'script',
+						format: 'js',
+						success: function(msg){
+							setupHandlersFor(clicked.data("id"));
+						}
+					});
+				}
 			});
 	}
 
@@ -60,7 +89,7 @@
 				var clicked = $(this);
 				$.ajax({
 					type: "POST",
-					url: "/users/signup_for_new",
+					url: "/users/subscribe_for_new",
 					data: { exercise_template_id: clicked.data("id"), date: clicked.data("date"), beginning_offset: $("#calendar_timetable").data("beginning_offset") },
 					dataType: 'script',
 					format: 'js',
@@ -73,19 +102,36 @@
 		$(".calendar_exercise").click(function(event)
 			{
 				var clicked = $(this);
-				$.ajax({
-					type: "POST",
-					url: "/users/signup_for_existing",
-					data: { exercise_id: clicked.data("id"), beginning_offset: $("#calendar_timetable").data("beginning_offset") },
-					dataType: 'script',
-					format: 'js',
-					success: function(msg){
-						setupHandlersFor(clicked.data("id"));
+				if(clicked.data("registered-by-current-user") == true)
+				{
+					if(confirm("Na toto cvičení jste již přihlášen. Chcete se z něj odhlásit?"))
+					{
+						$.ajax({
+							type: "POST",
+							url: "/users/unsubscribe_from",
+							data: { exercise_id: clicked.data("id"), source: "calendar_view", beginning_offset: $("#calendar_timetable").data("beginning_offset") },
+							dataType: 'script',
+							format: 'js',
+							success: function(msg){
+								setupHandlersFor(clicked.data("id"));
+							}
+						});
 					}
-				});
+				}
+				else
+				{
+					$.ajax({
+						type: "POST",
+						url: "/users/subscribe_for_existing",
+						data: { exercise_id: clicked.data("id"), beginning_offset: $("#calendar_timetable").data("beginning_offset") },
+						dataType: 'script',
+						format: 'js',
+						success: function(msg){
+							setupHandlersFor(clicked.data("id"));
+						}
+					});
+				}
 			});
-			
-		$(".calendar_template_exercise, .calendar_exercise").tooltip
 	});
 </script>
 

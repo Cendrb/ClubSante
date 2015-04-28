@@ -32,5 +32,16 @@ class Ticket < ActiveRecord::Base
     return entry
   end
   
+  def unregister_entry(exercise, entry)
+    entry.destroy
+    if self.entries_remaining == -1
+        # time based
+      else
+        # entries based
+        self.entries_remaining += 1
+        self.save!
+      end
+  end
+  
   validates_presence_of :time_restriction, :entries_remaining, :activated_on, :user_id, :therapy_id, :paid
 end

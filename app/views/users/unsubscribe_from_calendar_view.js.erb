@@ -1,0 +1,1 @@
+$(".calendar_exercise[data-id=<%= @exercise.id %>]").replaceWith("<%= escape_javascript(render partial: "exercises/exercise", locals: { exercise: @exercise, beginning_offset: @beginning_offset }) %>");
