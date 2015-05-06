@@ -1,8 +1,8 @@
-<div class="calendar_exercise <%= exercise.signed_up?(current_user) ? "signed_exercise" : (exercise.full? ? "full_exercise" : "free_exercise") %>"
+<div class="calendar_exercise_style calendar_exercise <%= exercise.signed_up?(current_user) ? "signed_exercise" : (exercise.full? ? "full_exercise" : "free_exercise") %>"
 data-id=<%= exercise.id %>
+data-tooltip="<%= exercise.get_time_range_string %><br /><%= exercise.get_duration_string %><br /><%= exercise.get_capacity_string %>" 
 data-duration=<%= exercise.timetable.calendar.therapy.duration_in_minutes %>
 data-registered-by-current-user=<%= Entry.joins(:exercise).joins(:ticket).where("exercises.id = ?", exercise.id).where("tickets.user_id = ?", current_user.id).count > 0 %>
 style="position: absolute; top: <%= ((exercise.date.hour * 60 + exercise.date.min) * Calendar.pixels_per_minute) - beginning_offset %>px; height: <%= exercise.timetable.calendar.therapy.duration_in_minutes * Calendar.pixels_per_minute %>px">
-	<div class="calendar_exercise_time"><%= exercise.date.to_s(:time) %> - <%= (exercise.date + exercise.timetable.calendar.therapy.duration_in_minutes.minutes).to_s(:time) %></div>
-	<div class="calendar_exercise_capacity">obsazeno <%= exercise.entries.count %> z <%= exercise.timetable.calendar.therapy.capacity %></div>
+<%= exercise.date.to_s(:time) %>
 </div>

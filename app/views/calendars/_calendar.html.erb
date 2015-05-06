@@ -1,0 +1,90 @@
+<% @calendar = calendar %>
+<% @registered = @calendar.timetable.exercises#.between(1.days.ago, 5.days.from_now)
+    @templates = @calendar.timetable_template.exercise_templates#.where("weekday IN (:weekdays)", weekdays: weekdays)
+
+    @first_hour = Calendar.min_hour_for(@registered, @templates)
+    @last_hour = Calendar.max_hour_for(@registered, @templates)
+    @monday_date = beginning_date - (beginning_date.wday - 1).days
+    
+    @beginning_offset = @first_hour * 60 * Calendar.pixels_per_minute %>
+<% puts @beginning_offset %>
+<style type="text/css">
+	#calendar_timetable
+	{
+  		border-collapse: collapse;
+	}
+	td
+  	{
+    	width: 10em;
+    	border: 1px solid black;
+  	}
+	.calendar_exercise_style
+	{
+    	width: 100%;
+    	display: flex;
+		justify-content: center; /* align horizontal */
+		align-items: center; /* align vertical */
+	}
+	.calendar_weekday
+	{
+		position: relative;
+		vertical-align: top;
+	}
+	.calendar_hour
+	{
+		height: <%= Calendar.pixels_per_minute * 60 %>px;
+		text-align: center;
+		position: relative;
+		border-bottom: 1px solid black;
+		margin-bottom: -2px;
+	}
+	.free_exercise
+	{
+		background-color: green;
+	}
+	.full_exercise
+	{
+		background-color: red;
+	}
+	.signed_exercise
+	{
+		background-color: yellow;
+	}
+</style>
+
+<script>
+
+</script>
+
+<table id="calendar_timetable" data-beginning_offset=<%= @beginning_offset %>>
+	<tr>
+		<td></td>
+		<% counter = 0 %>
+		<% I18n.t(:"date.day_names").rotate.each do |weekday_name| %>
+			<td><%= weekday_name %> (<%= l(@monday_date + counter.days) %>)</td>
+			<% counter += 1 %>
+		<% end %>
+	</tr>
+	<tr>
+		<td> 
+			<% for hour in @first_hour..@last_hour %>
+				<div class="calendar_hour">
+					<%= hour %>:00
+				</div>
+			<% end %>
+		</td>
+		
+		<% for weekday in 0..6 %>
+			<td class="calendar_weekday" oncontextmenu="return false;" data-weekday=<%= weekday %>">
+				<% date = @monday_date + weekday.days %>
+				<% @templates.where(weekday: weekday).each do |template| %>
+					<%= render partial: "exercise_templates/exercise_template_for_calendar", locals: { exercise_template: template, date: date, beginning_offset: @beginning_offset } %>
+				<% end %>
+				
+				<% @registered.where("date::date = ?", date).each do |registered| %>
+					<%= render partial: "exercises/exercise", locals: { exercise: registered, beginning_offset: @first_hour * 60 * Calendar.pixels_per_minute } %>
+				<% end %>
+			</td>
+		<% end %>
+	</tr>
+</table>

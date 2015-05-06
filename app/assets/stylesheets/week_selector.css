@@ -1,0 +1,32 @@
+#week_selector
+{
+	right: 0;
+	position: relative;
+	background-color: #FF0000;
+}
+
+.week_selector_left_button
+{
+	text-align: left;
+}
+
+.week_selector_right_button
+{
+	text-align: right;
+}
+
+.week_selector_current_week
+{
+	text-align: center;
+}
+
+.week_selector_clear
+{
+	clear: both;
+}
+
+.week_selector_element
+{
+	float: left;
+	width: 32%;
+}

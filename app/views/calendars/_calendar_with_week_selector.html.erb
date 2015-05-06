@@ -1,0 +1,7 @@
+<div id="week_selector">
+	<div class="week_selector_left_button week_selector_element"><%= link_to "předchozí týden", calendar_path(id: calendar.id, task: "previous"), remote: true %></div>
+	<div class="week_selector_current_week week_selector_element"><%= l (beginning_date - (beginning_date.wday - 1).days) %> - <%= l ((beginning_date - (beginning_date.wday - 1).days) + 6.days) %></div>
+	<div class="week_selector_right_button week_selector_element"><%= link_to "následující týden", calendar_path(id: calendar.id, task: "next"), remote: true %></div>
+	<div class="week_selector_clear"></div>
+</div>
+<div id="calendar_in_week_selector" data-beginning=<%= beginning_date %>><%= render partial: "calendars/calendar", locals: {calendar: calendar, beginning_date: Date.today} %></div>
