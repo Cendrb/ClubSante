@@ -2,6 +2,7 @@ require 'digest/sha2'
 
 class User < ActiveRecord::Base
   has_many :tickets
+  has_many :tracked_values
   
   validates :email, presence: true, uniqueness: true #, email_format: {message: 'není platný email'}
   validates :password, confirmation: true
@@ -22,6 +23,7 @@ class User < ActiveRecord::Base
   def full_name
     return "#{first_name} #{last_name}"
   end
+  
 
   private
   def password_must_be_present
@@ -43,6 +45,66 @@ class User < ActiveRecord::Base
       if user.hashed_password == encrypt_password(password, user.salt)
         user
       end
+    end
+  end
+  
+  def User.validate_date_signup(date)
+    if date < Date.today
+      render_alert "Nemůžete si rezervovat datum v minulosti"
+      return false
+    end
+    return true
+  end
+  
+  def User.validate_exercise_signup(exercise)
+    if exercise.full?
+      render_alert "Kapacita tohoto cvičení byla již dosažena (#{exercise.timetable.calendar.therapy.capacity})"
+      return false
+    end
+    
+    if exercise.signed_up?(current_user)
+      render_alert "Nemůžete se přihlásit na jedno cvičení vícekrát"
+      return false
+    end
+    return true
+  end
+  
+  # Constants
+  def User.al_admin
+    return 10
+  end
+  
+  def User.al_customer
+    return 8
+  end
+  
+  def User.al_registered
+    return 5
+  end
+  
+  def User.access_levels
+    return %w(registrovaný zákazník administrátor)
+  end
+  
+  def User.get_access_level_string(number)
+    case number
+    when User.al_registered
+      return "registrovaný"
+    when User.al_customer
+      return "zákazník"
+    when User.al_admin
+      return "administrátor"
+    end
+  end
+  
+  def User.parse_access_level(string)
+    case string
+    when "registrovaný"
+      return User.al_registered
+    when "zákazník"
+      return User.al_customer
+    when "administrátor"
+      return User.al_admin
     end
   end
 end

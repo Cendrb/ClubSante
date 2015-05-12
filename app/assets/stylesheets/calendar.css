@@ -1,0 +1,41 @@
+#calendar_timetable
+	{
+  		border-collapse: collapse;
+	}
+	td
+  	{
+    	width: 10em;
+    	border: 1px solid black;
+  	}
+	.calendar_exercise_style
+	{
+    	width: 100%;
+    	display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.calendar_weekday
+	{
+		position: relative;
+		vertical-align: top;
+	}
+	.calendar_hour
+	{
+		height: 24px;
+		text-align: center;
+		position: relative;
+		border-bottom: 1px solid black;
+		margin-bottom: -2px;
+	}
+	.free_exercise
+	{
+		background-color: green;
+	}
+	.full_exercise
+	{
+		background-color: red;
+	}
+	.signed_exercise
+	{
+		background-color: yellow;
+	}

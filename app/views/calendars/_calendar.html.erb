@@ -7,56 +7,9 @@
     @monday_date = beginning_date - (beginning_date.wday - 1).days
     
     @beginning_offset = @first_hour * 60 * Calendar.pixels_per_minute %>
-<% puts @beginning_offset %>
-<style type="text/css">
-	#calendar_timetable
-	{
-  		border-collapse: collapse;
-	}
-	td
-  	{
-    	width: 10em;
-    	border: 1px solid black;
-  	}
-	.calendar_exercise_style
-	{
-    	width: 100%;
-    	display: flex;
-		justify-content: center; /* align horizontal */
-		align-items: center; /* align vertical */
-	}
-	.calendar_weekday
-	{
-		position: relative;
-		vertical-align: top;
-	}
-	.calendar_hour
-	{
-		height: <%= Calendar.pixels_per_minute * 60 %>px;
-		text-align: center;
-		position: relative;
-		border-bottom: 1px solid black;
-		margin-bottom: -2px;
-	}
-	.free_exercise
-	{
-		background-color: green;
-	}
-	.full_exercise
-	{
-		background-color: red;
-	}
-	.signed_exercise
-	{
-		background-color: yellow;
-	}
-</style>
-
-<script>
-
-</script>
 
 <table id="calendar_timetable" data-beginning_offset=<%= @beginning_offset %>>
+	<hr style="border: 1px solid black; position: absolute;" />
 	<tr>
 		<td></td>
 		<% counter = 0 %>

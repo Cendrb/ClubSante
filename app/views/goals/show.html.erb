@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tracked value:</strong>
+  <%= @goal.tracked_value_id %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @goal.value %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @goal.date %>
+</p>
+
+<%= link_to 'Upravit', edit_goal_path(@goal) %> |
+<%= link_to 'Back', goals_path %>

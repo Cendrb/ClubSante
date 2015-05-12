@@ -1,1 +1,1 @@
-$("#week_selector_current_week").html("");
+$(".calendar_with_week_selector[data-therapy=<%= @calendar.therapy.id %>]").html("<%= escape_javascript(render partial: "calendars/calendar_with_week_selector", locals: {calendar: @calendar, beginning_date: @date}) %>");

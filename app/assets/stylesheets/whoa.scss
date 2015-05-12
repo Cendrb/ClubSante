@@ -2,7 +2,6 @@ body
 {
   margin: 0;
   padding: 0;
-  background-color: #48b040;
   #container
   {
     #page
@@ -11,9 +10,18 @@ body
       margin: 5em auto 0 auto;
       width: 80%;
       height: auto;
-      border-radius: 30px;
       background-color: white;
     } 
+  }
+}
+
+a
+{
+  text-decoration: none;
+  color: black;
+  &:hover
+  {
+    text-decoration: underline;
   }
 }
 
@@ -24,7 +32,6 @@ body
   border-radius: 5px;
   background-color: #FFFEE1;
   width: 20%;
-  float: right;
 }
 
 #ticket_selector
@@ -32,11 +39,12 @@ body
   border-collapse: collapse;
 }
 
-#user_summary_tickets_table
+table
 {
-  td, th
-  {
-   
-  }
   border-collapse: collapse;
+}
+
+td
+{
+  border: none;
 }

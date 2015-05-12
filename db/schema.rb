@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412090019) do
+ActiveRecord::Schema.define(version: 20150509124409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "available_values", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "calendars", force: :cascade do |t|
     t.integer  "therapy_id"
@@ -46,6 +52,22 @@ ActiveRecord::Schema.define(version: 20150412090019) do
     t.boolean  "available",    default: true
     t.integer  "timetable_id"
     t.datetime "date"
+  end
+
+  create_table "goals", force: :cascade do |t|
+    t.integer  "tracked_value_id"
+    t.float    "value"
+    t.date     "date"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "records", force: :cascade do |t|
+    t.integer  "tracked_value_id"
+    t.float    "value"
+    t.date     "date"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "therapies", force: :cascade do |t|
@@ -80,6 +102,13 @@ ActiveRecord::Schema.define(version: 20150412090019) do
   end
 
   add_index "timetables", ["calendar_id"], name: "index_timetables_on_calendar_id", using: :btree
+
+  create_table "tracked_values", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "available_value_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email"

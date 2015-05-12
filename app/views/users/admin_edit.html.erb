@@ -1,0 +1,31 @@
+<script>
+$(function() {
+	$("#user_access_level").change(function() {
+		if(this.value == "registrovaný")
+		{
+			$(".goals").hide();
+		}
+		else
+		{
+		  	$(".goals").show();
+		}
+	});
+});
+</script>
+
+<%= form_for(@user, url: ("admin_update")) do |f| %>
+	<div class="field">
+		<h4>Úroveň přístupu</h4>
+		<%= f.select("access_level", User.access_levels, selected: params[:access_level]) %>
+	</div>
+	
+	<div class="field goals">
+		<h4>Sledované cíle</h4>
+		<% @values.each do |key, value| %>
+			<%= key.name %>
+			<%= f.check_box("goals[" + key.id.to_s + "]", {checked: value}) %>
+			<br />
+		<% end %>
+	</div>
+	<%= f.submit "Aktualizovat" %>
+<% end %>

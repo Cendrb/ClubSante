@@ -20,9 +20,9 @@
         <td><%= entry.ticket_id %></td>
         <td><%= entry.user_id %></td>
         <td><%= entry.message %></td>
-        <td><%= link_to 'Show', entry %></td>
-        <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
-        <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Zobrazit', entry %></td>
+        <td><%= link_to 'Upravit', edit_entry_path(entry) %></td>
+        <td><%= link_to 'Odstranit', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

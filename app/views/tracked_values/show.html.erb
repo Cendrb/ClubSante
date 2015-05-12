@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tracked_value.user_id %>
+</p>
+
+<p>
+  <strong>Available value:</strong>
+  <%= @tracked_value.available_value_id %>
+</p>
+
+<%= link_to 'Upravit', edit_tracked_value_path(@tracked_value) %> |
+<%= link_to 'Back', tracked_values_path %>

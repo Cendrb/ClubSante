@@ -2,7 +2,8 @@
 data-id=<%= exercise.id %>
 data-tooltip="<%= exercise.get_time_range_string %><br /><%= exercise.get_duration_string %><br /><%= exercise.get_capacity_string %>" 
 data-duration=<%= exercise.timetable.calendar.therapy.duration_in_minutes %>
-data-registered-by-current-user=<%= Entry.joins(:exercise).joins(:ticket).where("exercises.id = ?", exercise.id).where("tickets.user_id = ?", current_user.id).count > 0 %>
+data-registered-by-current-user=<%= Entry.joins(:exercise).joins(:ticket).where("exercises.id = ?", exercise.id).where("tickets.user_id = ?", current_user.id).count > 0 %> 
+data-calendar-id=<%= exercise.timetable.calendar.id %> 
 style="position: absolute; top: <%= ((exercise.date.hour * 60 + exercise.date.min) * Calendar.pixels_per_minute) - beginning_offset %>px; height: <%= exercise.timetable.calendar.therapy.duration_in_minutes * Calendar.pixels_per_minute %>px">
 <%= exercise.date.to_s(:time) %>
 </div>

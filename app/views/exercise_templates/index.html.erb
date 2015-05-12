@@ -12,9 +12,9 @@
   <tbody>
     <% @exercise_templates.each do |exercise_template| %>
       <tr>
-        <td><%= link_to 'Show', exercise_template %></td>
-        <td><%= link_to 'Edit', edit_exercise_template_path(exercise_template) %></td>
-        <td><%= link_to 'Destroy', exercise_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Zobrazit', exercise_template %></td>
+        <td><%= link_to 'Upravit', edit_exercise_template_path(exercise_template) %></td>
+        <td><%= link_to 'Odstranit', exercise_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

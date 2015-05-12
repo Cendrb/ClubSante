@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :admin_edit, :admin_update]
   
   # GET /users
   # GET /users.json
@@ -29,6 +29,18 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+  end
+  
+  def admin_edit
+    params[:access_level] = User.get_access_level_string(@user.access_level)
+    @values = Hash.new
+    AvailableValue.find_each do |value|
+      if @user.tracked_values.where(available_value: value).count > 0
+        @values[value] = true
+      else
+        @values[value] = false
+      end
+    end
   end
 
   # POST /users
@@ -60,13 +72,39 @@ class UsersController < ApplicationController
       end
     end
   end
+  
+  def admin_update
+    @user.access_level = User.parse_access_level(params[:user][:access_level])
+    
+    params[:user][:goals].each do |key, value|
+      puts "#{AvailableValue.find(key).name}: #{value}"
+      if @user.tracked_values.where("available_value_id = ?", key.to_i).count > 0
+        if value.to_i == 1
+          # keep tracked
+        else
+          # remove tracked
+          @user.tracked_values.where("available_value_id = ?", key.to_i).destroy_all
+        end
+      else
+        if value.to_i == 1
+          # create tracked
+          @user.tracked_values.create(available_value_id: key.to_i)
+        else
+          # do nothing
+        end
+      end
+    end
+    @user.save!
+    
+    redirect_to @user
+  end
 
   def subscribe_for_new
     date = Date.parse(params[:date])
     @exercise_template = ExerciseTemplate.find(params[:exercise_template_id])
     @beginning_offset = params[:beginning_offset].to_i
     
-    if validate_date_signup(date)
+    if User.validate_date_signup(date)
       ticket = ticket_selector(@exercise_template.timetable_template.calendar.therapy, date)
       date = date.to_datetime + @exercise_template.beginning.seconds_since_midnight.seconds
       
@@ -86,7 +124,7 @@ class UsersController < ApplicationController
     @exercise = Exercise.find(params[:exercise_id])
     @beginning_offset = params[:beginning_offset].to_i
     
-    if validate_exercise_signup(@exercise) && validate_date_signup(@exercise.date)
+    if User.validate_exercise_signup(@exercise) && User.validate_date_signup(@exercise.date)
       ticket = ticket_selector(@exercise.timetable.calendar.therapy, @exercise.date)
       
       if ticket
@@ -116,26 +154,7 @@ class UsersController < ApplicationController
 
   private
   
-  def validate_date_signup(date)
-    if date < Date.today
-      render_alert "Nemůžete si rezervovat datum v minulosti"
-      return false
-    end
-    return true
-  end
   
-  def validate_exercise_signup(exercise)
-    if exercise.full?
-      render_alert "Kapacita tohoto cvičení byla již dosažena (#{exercise.timetable.calendar.therapy.capacity})"
-      return false
-    end
-    
-    if exercise.signed_up?(current_user)
-      render_alert "Nemůžete se přihlásit na jedno cvičení vícekrát"
-      return false
-    end
-    return true
-  end
   
   def render_alert(message)
     render "alert", locals: { message: message }, status: 401

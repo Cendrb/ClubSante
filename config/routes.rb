@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
   
+  resources :goals
+
+  controller :records do
+    get "records/new_records"
+    post "records/create_records"
+  end
+
+  resources :records
+
+  resources :tracked_values
+
+  resources :available_values
+
   resources :tickets
 
   resources :entries
@@ -13,6 +26,8 @@ Rails.application.routes.draw do
   resources :users
   
   controller :users do
+    get 'users/:id/admin_edit' => "users#admin_edit", as: "admin_edit_user"
+    patch 'users/:id/admin_update' => "users#admin_update"
     post 'users/subscribe_for_new'
     post 'users/subscribe_for_existing'
     post 'users/unsubscribe_from', as: 'unsubscribe'
@@ -37,7 +52,7 @@ Rails.application.routes.draw do
   
   get 'user_summary' => 'users#summary', as: 'user_summary'
   
-  get 'register' => 'users#new'
+  get 'register' => 'users#new', as: 'register'
   delete 'destroy_account/:id', to: 'users#self_destroy', as: 'destroy_account'
 
   # The priority is based upon order of creation: first created -> highest priority.

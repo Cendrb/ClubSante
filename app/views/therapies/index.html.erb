@@ -18,9 +18,9 @@
         <td><%= therapy.name %></td>
         <td><%= therapy.capacity %></td>
         <td><%= therapy.duration_in_minutes %></td>
-        <td><%= link_to 'Show', therapy %></td>
-        <td><%= link_to 'Edit', edit_therapy_path(therapy) %></td>
-        <td><%= link_to 'Destroy', therapy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Zobrazit', therapy %></td>
+        <td><%= link_to 'Upravit', edit_therapy_path(therapy) %></td>
+        <td><%= link_to 'Odstranit', therapy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

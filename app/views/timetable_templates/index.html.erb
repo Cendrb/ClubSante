@@ -12,9 +12,9 @@
   <tbody>
     <% @timetable_templates.each do |timetable_template| %>
       <tr>
-        <td><%= link_to 'Show', timetable_template %></td>
-        <td><%= link_to 'Edit', edit_timetable_template_path(timetable_template) %></td>
-        <td><%= link_to 'Destroy', timetable_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Zobrazit', timetable_template %></td>
+        <td><%= link_to 'Upravit', edit_timetable_template_path(timetable_template) %></td>
+        <td><%= link_to 'Odstranit', timetable_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

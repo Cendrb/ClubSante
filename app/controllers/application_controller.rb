@@ -2,17 +2,23 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  helper :date
   
   protected
   def authenticate_for_level(required_level)
     current = current_user
-    if current.access_level >= required_level
+    if current && current.access_level >= required_level
       return true
     else
-      if required_level == 0
+      if required_level == User.al_registered
         redirect_to :login, alert: 'Pro přístup do této sekce se musíte přihlásit'
       end
-      redirect_to :root, alert: 'Nemáte dostatečná oprávnění pro přístup do této sekce'
+      if required_level == User.al_visitor
+        redirect_to :root, alert: 'Pro přístup do této sekce musíte mít sjednanou uvítací schůzku'
+      end
+      if required_level == User.al_admin
+        redirect_to :root, alert: 'Nemáte oprávnění pro přístup do této sekce'
+      end
     end
   end
 
@@ -32,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   def access_for_level?(required_level)
-    return current_user.access_level >= required_level
+    return current_user && current_user.access_level >= required_level
   end
 
   helper_method :access_for_level?, :current_user
