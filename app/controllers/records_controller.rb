@@ -4,7 +4,7 @@ class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
   def index
-    @records = Record.all
+    @records = Record.all.order(:date)
   end
 
   # GET /records/1
@@ -18,11 +18,19 @@ class RecordsController < ApplicationController
   end
   
   def new_records
-    @user = User.first
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+    else
+      @user = User.first
+    end
   end
   
   def create_records
-    
+    params[:records].each do |key, value|
+      t_value = TrackedValue.find(key)
+      Record.create(tracked_value: t_value, value: value, date: Date.today)
+      redirect_to t_value.user and return
+    end
   end
 
   # GET /records/1/edit

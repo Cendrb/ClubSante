@@ -1,1 +1,1 @@
-$(".new_records_recordables").html("<%= escape_javascript(render partial: "calendars/calendar_with_week_selector", locals: {calendar: @calendar, beginning_date: @date}) %>");
+$(".new_records_recordables").html("<%= escape_javascript(render partial: "records/user_recordables", locals: {user: @user}) %>");

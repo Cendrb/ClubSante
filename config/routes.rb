@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   resources :goals
 
   controller :records do
-    get "records/new_records"
-    post "records/create_records"
+    get "records/new_records", as: "new_records"
+    post "records/new_records"
+    post "records/create_records", as: "create_records"
   end
 
   resources :records

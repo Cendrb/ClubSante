@@ -1,6 +1,6 @@
 <% user.tracked_values.find_each do |tracked_value| %>
 	<div class="field">
-    <%= label_tag "records[" + tracked_value.id.to_s + "]" %><br>
-    <%= number_field_tag  %>
+    <%= label_tag tracked_value.available_value.name %><br>
+    <%= number_field_tag "records[" + tracked_value.id.to_s + "]" %>
   </div>
 <% end %>
