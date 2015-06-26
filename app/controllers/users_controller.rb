@@ -195,6 +195,11 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def tracked_value_chart
+    tracked_value = TrackedValue.find(params[:tracked_value_id])
+    render json: Record.where(tracked_value: tracked_value).value
+  end
 
   private
 

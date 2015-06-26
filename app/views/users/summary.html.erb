@@ -1,3 +1,9 @@
+<script>
+  var Chartkick = {"language": "cs"};
+</script>
+<%= javascript_include_tag "//www.google.com/jsapi" %>
+<%= javascript_include_tag "application", "chartkick" %>
+
 <div id="user_summary_accordion">
 	<h2>Moje permanentky</h2>
 	<div id="user_summary_tickets">
@@ -36,7 +42,7 @@
 	<h2>Moje cíle</h2>
 	<div id="user_summary_goals">
 		<% if access_for_level?(User.al_customer) %>
-			Tady budou cíle
+			<%= column_chart tracked_value_chart_path %>
 		<% else %>
 			Pro monitorování osobních cílů si sjednejte osobní schůzku
 		<% end %>
@@ -46,7 +52,8 @@
 		<h2>Administrace</h2>
 		<div id="user_summary_administration">
 			<%= link_to "Terapie", therapies_path %><br />
-			<%= link_to "Zaznamenat", new_records_path %>
+			<%= link_to "Zaznamenat", new_records_path %><br />
+			<%= link_to "Uživatelé", users_path %>
 		</div>
 	<% end %>
 </div>

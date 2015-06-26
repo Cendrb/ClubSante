@@ -41,6 +41,12 @@ gem 'validates_email_format_of'
 # JQuery UI
 gem 'jquery-ui-rails', '~> 5.0.3'
 
+# For graphs
+gem 'chartkick'
+
+# Adds time methods like group_by_day, group_by_week and so on
+gem 'groupdate'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
