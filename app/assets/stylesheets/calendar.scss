@@ -1,0 +1,74 @@
+.calendar_with_week_selector
+{
+  .calendar_timetable
+  {
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap
+  }
+  
+	border-collapse: collapse;
+
+  td
+  {
+  	border: 1px solid gray;
+  	padding: 0;
+  }
+  .calendar_exercise_style
+  {
+  	width: 100%;
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	z-index: 10;
+  	padding: 0px;
+  	margin: 0px;
+  	border: 0;
+  	
+  }
+  .calendar_weekday
+  {
+  	position: relative;
+  	vertical-align: top;
+  	padding: 0;
+  }
+  .calendar_hour
+  {
+  	height: 24px; // dependent on (Calendar.pixels_per_minute * 60)!!!
+  	text-align: center;
+  	position: relative;
+  	border-bottom: 0px solid black;
+  }
+  .calendar_date
+  {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  .free_exercise
+  {
+  	background-color: #527A00;
+  }
+  .full_exercise
+  {
+  	background-color: #B71E02;
+  }
+  .signed_exercise
+  {
+  	background-color: #FFCC00;
+  }
+  
+  .hour_separator_line
+  {
+    width: 100%;
+    z-index: 5;
+    border-bottom: 1px solid gray;
+  }
+  
+  .current_time_line
+  {
+    width: 100%;
+    z-index: 5;
+    border-bottom: 2px solid red;
+  }
+}
+	

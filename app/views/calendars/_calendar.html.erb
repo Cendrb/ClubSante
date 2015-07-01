@@ -8,13 +8,13 @@
     
     @beginning_offset = @first_hour * 60 * Calendar.pixels_per_minute %>
 
-<table id="calendar_timetable" data-beginning_offset=<%= @beginning_offset %>>
-	<hr style="border: 1px solid black; position: absolute;" />
+
+<table class="calendar_timetable" data-calendar-id=<%= @calendar.id %> data-beginning_offset=<%= @beginning_offset %> style="position: relative; top: 0; left: 0; right: 0; bottom: 0;">
 	<tr>
 		<td></td>
 		<% counter = 0 %>
-		<% I18n.t(:"date.day_names").rotate.each do |weekday_name| %>
-			<td><%= weekday_name %> (<%= l(@monday_date + counter.days) %>)</td>
+		<% I18n.t(:"date.abbr_day_names").rotate.each do |weekday_name| %>
+			<td class="calendar_date"><%= l(@monday_date + counter.days) %></td>
 			<% counter += 1 %>
 		<% end %>
 	</tr>
@@ -24,6 +24,16 @@
 				<div class="calendar_hour">
 					<%= hour %>:00
 				</div>
+			<% end %>
+			
+			<% counter = 0 %>
+			<% for hour in @first_hour..@last_hour %>
+				<div class="hour_separator_line" style="position: absolute; top: <%= (counter * 60 * Calendar.pixels_per_minute) + 19 %>px; left: 0"></div>
+			    <% counter += 1 %>
+			<% end %>
+			
+			<% if (@first_hour..@last_hour).include?(Time.now.hour) %>
+				<div class="current_time_line" style="position: absolute; top: <%= ((Time.now.seconds_since_midnight / 60) * Calendar.pixels_per_minute) + 19 - @beginning_offset %>px; left: 0"></div>
 			<% end %>
 		</td>
 		

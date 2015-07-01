@@ -7,6 +7,24 @@ class UsersController < ApplicationController
     @users = User.all
   end
   
+  def tracked_value_chart
+    tracked_value = TrackedValue.find(params[:tracked_value_id])
+    
+    records = Record.select("date, avg(value) as avg_value").group("date").where(tracked_value: tracked_value)
+    records = records.map{ |counter| [ counter[:date], counter[:avg_value] ] }
+    records = {name: "Zaznamenaná hodnota", data: records}
+    
+    goals = Goal.select("date, avg(value) as avg_value").group("date").where(tracked_value: tracked_value)
+    goals = goals.map{ |counter| [ counter[:date], counter[:avg_value] ] }
+    goals = {name: "Zadaný cíl", data: goals}
+    
+    result = []
+    result << records
+    result << goals
+    puts result
+    render json: result.chart_json
+  end
+  
   def summary
     user = current_user
     if user
@@ -104,7 +122,7 @@ class UsersController < ApplicationController
     @exercise_template = ExerciseTemplate.find(params[:exercise_template_id])
     @beginning_offset = params[:beginning_offset].to_i
     
-    if User.validate_date_signup(date)
+    if validate_date_signup(date)
       ticket = ticket_selector(@exercise_template.timetable_template.calendar.therapy, date)
       date = date.to_datetime + @exercise_template.beginning.seconds_since_midnight.seconds
       
@@ -124,7 +142,7 @@ class UsersController < ApplicationController
     @exercise = Exercise.find(params[:exercise_id])
     @beginning_offset = params[:beginning_offset].to_i
     
-    if User.validate_exercise_signup(@exercise) && User.validate_date_signup(@exercise.date)
+    if validate_signup(@exercise, current_user)
       ticket = ticket_selector(@exercise.timetable.calendar.therapy, @exercise.date)
       
       if ticket
@@ -148,13 +166,21 @@ class UsersController < ApplicationController
     if(params[:source] == "calendar_view")
       render "users/unsubscribe_from_calendar_view"
     else
-      render "users/unsubscribe_from_user_summary_list"
+      render "users/unsubscribe_from_user_summary_list", locals: { tickets: current_user.tickets }
     end
   end
-
+  
+  # DELETE /users/1
+  # DELETE /users/1.json
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+  
   private
-  
-  
   
   def render_alert(message)
     render "alert", locals: { message: message }, status: 401
@@ -173,7 +199,7 @@ class UsersController < ApplicationController
           return tickets_available.first
         else
           # more than one - show js form
-          @tickets = current_user.tickets
+          @tickets = current_user.tickets.where(therapy: therapy)
           @target_therapy = therapy
           @target_date = date
           render "ticket_selector_form.js.erb", status: 200 and return
@@ -185,23 +211,24 @@ class UsersController < ApplicationController
       end
     end
   end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+  
+  def validate_signup(exercise, user)
+    result = User.validate_exercise_signup(exercise, user)
+    if result != true
+      render_alert(result)
+      return false
     end
+    return true
   end
   
-  def tracked_value_chart
-    tracked_value = TrackedValue.find(params[:tracked_value_id])
-    render json: Record.where(tracked_value: tracked_value).value
+  def validate_date_signup(date)
+    result = User.validate_date_signup(date)
+    if result != true
+      render_alert(result)
+      return false
+    end
+    return true
   end
-
-  private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_user

@@ -1,0 +1,24 @@
+#user_summary_tickets_table
+{
+	border-collapse: collapse;
+}
+
+#user_summary_exercises_table
+{
+	border-collapse: collapse;
+	
+	th
+	{
+	  text-align: left;
+	}
+	
+	.user_summary_exercises_table_last_column
+	{
+	  text-align: center;
+	}
+}
+
+.user_summary_tracked_value_name
+{
+  font-size: 20px;
+}

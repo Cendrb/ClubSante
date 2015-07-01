@@ -1,1 +1,2 @@
+$("#user_summary_tickets_table").replaceWith("<%= escape_javascript(render partial: "tickets/user_summary_tickets_index", locals: { tickets: tickets }) %>");
 $("tr[data-id=<%= @exercise.id %>]").remove();

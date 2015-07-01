@@ -17,11 +17,12 @@ body
 
 a
 {
-  text-decoration: none;
-  color: black;
+  text-decoration: underline;
+  color: gray;
   &:hover
   {
     text-decoration: underline;
+    color: black;
   }
 }
 
@@ -42,9 +43,12 @@ a
 table
 {
   border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
 }
 
 td
 {
-  
+  padding: 1px;
+  padding-right: 6px;
 }

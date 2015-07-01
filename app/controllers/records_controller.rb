@@ -29,8 +29,8 @@ class RecordsController < ApplicationController
     params[:records].each do |key, value|
       t_value = TrackedValue.find(key)
       Record.create(tracked_value: t_value, value: value, date: Date.today)
-      redirect_to t_value.user and return
     end
+    redirect_to records_path and return
   end
 
   # GET /records/1/edit

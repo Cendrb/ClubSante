@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   get 'calendars/show'
 
+  get 'users/tracked_value_chart' => "users#tracked_value_chart", as: 'tracked_value_chart'
+
   resources :users
   
   controller :users do
@@ -32,7 +34,6 @@ Rails.application.routes.draw do
     post 'users/subscribe_for_new'
     post 'users/subscribe_for_existing'
     post 'users/unsubscribe_from', as: 'unsubscribe'
-    get 'users/tracked_value_chart', as: 'tracked_value_chart'
   end
 
   resources :exercises

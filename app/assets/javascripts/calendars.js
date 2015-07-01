@@ -20,7 +20,7 @@ $(document).ready(function(){
 					$.ajax({
 						type: "POST",
 						url: "/users/unsubscribe_from",
-						data: { exercise_id: clicked.data("id"), source: "calendar_view", beginning_offset: $("#calendar_timetable").data("beginning_offset") },
+						data: { exercise_id: clicked.data("id"), source: "calendar_view", beginning_offset: $(".calendar_timetable[data-calendar-id=" + clicked.data("calendar-id") + "]").data("beginning_offset") },
 						dataType: 'script',
 						format: 'js',
 						success: function(msg){
@@ -34,7 +34,7 @@ $(document).ready(function(){
 				$.ajax({
 					type: "POST",
 					url: "/users/subscribe_for_existing",
-					data: { exercise_id: clicked.data("id"), beginning_offset: $("#calendar_timetable").data("beginning_offset") },
+					data: { exercise_id: clicked.data("id"), beginning_offset: $(".calendar_timetable[data-calendar-id=" + clicked.data("calendar-id") + "]").data("beginning_offset") },
 					dataType: 'script',
 					format: 'js',
 					success: function(msg){
@@ -53,7 +53,7 @@ $(document).ready(function(){
 			$.ajax({
 				type: "POST",
 				url: "/users/subscribe_for_new",
-				data: { exercise_template_id: clicked.data("id"), date: clicked.data("date"), beginning_offset: $("#calendar_timetable").data("beginning_offset") },
+				data: { exercise_template_id: clicked.data("id"), date: clicked.data("date"), beginning_offset: $(".calendar_timetable[data-calendar-id=" + calendar_id + "]").data("beginning_offset") },
 				dataType: 'script',
 				format: 'js',
 				success: function(msg){
@@ -80,7 +80,7 @@ $(document).ready(function(){
 					$.ajax({
 						type: "POST",
 						url: "/users/unsubscribe_from",
-						data: { exercise_id: clicked.data("id"), source: "calendar_view", beginning_offset: $("#calendar_timetable").data("beginning_offset") },
+						data: { exercise_id: clicked.data("id"), source: "calendar_view", beginning_offset: $(".calendar_timetable[data-calendar-id=" + calendar_id + "]").data("beginning_offset") },
 						dataType: 'script',
 						format: 'js',
 						success: function(msg){
@@ -94,7 +94,7 @@ $(document).ready(function(){
 				$.ajax({
 					type: "POST",
 					url: "/users/subscribe_for_existing",
-					data: { exercise_id: clicked.data("id"), beginning_offset: $("#calendar_timetable").data("beginning_offset") },
+					data: { exercise_id: clicked.data("id"), beginning_offset: $(".calendar_timetable[data-calendar-id=" + calendar_id + "]").data("beginning_offset") },
 					dataType: 'script',
 					format: 'js',
 					success: function(msg){
@@ -120,6 +120,8 @@ $(document).ready(function(){
 		});
 	
 	}
+
+/*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
 	
 	$(".calendar_template_exercise").click(function(event)
 		{
@@ -127,7 +129,7 @@ $(document).ready(function(){
 			$.ajax({
 				type: "POST",
 				url: "/users/subscribe_for_new",
-				data: { exercise_template_id: clicked.data("id"), date: clicked.data("date"), beginning_offset: $("#calendar_timetable").data("beginning_offset") },
+				data: { exercise_template_id: clicked.data("id"), date: clicked.data("date"), beginning_offset: $(".calendar_timetable[data-calendar-id=" + clicked.data("calendar-id") + "]").data("beginning_offset") },
 				dataType: 'script',
 				format: 'js',
 				success: function(msg){
@@ -154,7 +156,7 @@ $(document).ready(function(){
 					$.ajax({
 						type: "POST",
 						url: "/users/unsubscribe_from",
-						data: { exercise_id: clicked.data("id"), source: "calendar_view", beginning_offset: $("#calendar_timetable").data("beginning_offset") },
+						data: { exercise_id: clicked.data("id"), source: "calendar_view", beginning_offset: $(".calendar_timetable[data-calendar-id=" + clicked.data("calendar-id") + "]").data("beginning_offset") },
 						dataType: 'script',
 						format: 'js',
 						success: function(msg){
@@ -168,7 +170,7 @@ $(document).ready(function(){
 				$.ajax({
 					type: "POST",
 					url: "/users/subscribe_for_existing",
-					data: { exercise_id: clicked.data("id"), beginning_offset: $("#calendar_timetable").data("beginning_offset") },
+					data: { exercise_id: clicked.data("id"), beginning_offset: $(".calendar_timetable[data-calendar-id=" + clicked.data("calendar-id") + "]").data("beginning_offset") },
 					dataType: 'script',
 					format: 'js',
 					success: function(msg){

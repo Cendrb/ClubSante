@@ -13,7 +13,27 @@ class Ticket < ActiveRecord::Base
   
   def entries_available?(required_date, therapy)
     puts activated_on.class
-    return (self.entries_remaining > 0 || self.entries_remaining == -1) && required_date.between?(self.activated_on, self.activated_on + self.time_restriction) && self.therapy == therapy
+    return (self.entries_remaining > 0 || self.entries_remaining == -1) && required_date.between?(self.activated_on, self.activated_on + self.time_restriction) && self.therapy == therapy && self.paid
+  end
+  
+  def get_entries_unavailable_error(required_date, therapy)
+    if !self.paid
+      return "permanentka není zaplacená"
+    end
+    
+    if !(self.entries_remaining > 0 || self.entries_remaining == -1)
+      return "nedostatek vstupů"
+    end
+    
+    if !required_date.between?(self.activated_on, self.activated_on + self.time_restriction)
+      return "platnost vypršela"
+    end
+    
+    if self.therapy != therapy
+      return "nelze použít pro rezervaci #{therapy.name.downcase}"
+    end
+    
+    return "žádné chyby nenalezeny"
   end
   
   def register_entry(exercise)
@@ -41,6 +61,10 @@ class Ticket < ActiveRecord::Base
         self.entries_remaining += 1
         self.save!
       end
+  end
+  
+  def self.unsubscribe_time_limit
+    return 24.hours
   end
   
   validates_presence_of :time_restriction, :entries_remaining, :activated_on, :user_id, :therapy_id, :paid

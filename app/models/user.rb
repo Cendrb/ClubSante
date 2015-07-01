@@ -50,21 +50,23 @@ class User < ActiveRecord::Base
   
   def User.validate_date_signup(date)
     if date < Date.today
-      render_alert "Nemůžete si rezervovat datum v minulosti"
-      return false
+      return "Nemůžete si rezervovat datum v minulosti"
     end
     return true
   end
   
-  def User.validate_exercise_signup(exercise)
-    if exercise.full?
-      render_alert "Kapacita tohoto cvičení byla již dosažena (#{exercise.timetable.calendar.therapy.capacity})"
-      return false
+  def User.validate_exercise_signup(exercise, user)
+    result = validate_date_signup(exercise.date)
+    if result != true
+      return result
     end
     
-    if exercise.signed_up?(current_user)
-      render_alert "Nemůžete se přihlásit na jedno cvičení vícekrát"
-      return false
+    if exercise.signed_up?(user)
+      return "Nemůžete se přihlásit na jedno cvičení vícekrát"
+    end
+    
+    if exercise.full?
+      return "Kapacita tohoto cvičení byla již dosažena (#{exercise.timetable.calendar.therapy.capacity})"
     end
     return true
   end
