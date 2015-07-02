@@ -5,4 +5,8 @@ class TrackedValue < ActiveRecord::Base
   belongs_to :user
   
   validates_presence_of :available_value, :user_id
+  
+  def name
+    return available_value.name
+  end
 end

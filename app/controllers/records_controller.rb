@@ -14,10 +14,7 @@ class RecordsController < ApplicationController
 
   # GET /records/new
   def new
-    @record = Record.new
-  end
-  
-  def new_records
+    params[:date] = Date.today
     if params[:user_id]
       @user = User.find(params[:user_id])
     else
@@ -25,14 +22,6 @@ class RecordsController < ApplicationController
     end
   end
   
-  def create_records
-    params[:records].each do |key, value|
-      t_value = TrackedValue.find(key)
-      Record.create(tracked_value: t_value, value: value, date: Date.today)
-    end
-    redirect_to records_path and return
-  end
-
   # GET /records/1/edit
   def edit
   end
@@ -40,17 +29,11 @@ class RecordsController < ApplicationController
   # POST /records
   # POST /records.json
   def create
-    @record = Record.new(record_params)
-
-    respond_to do |format|
-      if @record.save
-        format.html { redirect_to @record, notice: 'Record was successfully created.' }
-        format.json { render :show, status: :created, location: @record }
-      else
-        format.html { render :new }
-        format.json { render json: @record.errors, status: :unprocessable_entity }
-      end
+    params[:records].each do |key, value|
+      t_value = TrackedValue.find(key)
+      Record.create(tracked_value: t_value, value: value, date: params[:date].map{|k,v| v}.join("-").to_date)
     end
+    redirect_to records_path and return
   end
 
   # PATCH/PUT /records/1

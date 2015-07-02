@@ -12,18 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :tracked_value_id %><br>
-    <%= f.number_field :tracked_value_id %>
+    <%= f.label :tracked_value_id, "Typ záznamu" %><br>
+    <%= f.collection_select(:tracked_value_id, TrackedValue.all, :id, :name) %>
   </div>
   <div class="field">
-    <%= f.label :value %><br>
+    <%= f.label :value, "Hodnota" %><br>
     <%= f.text_field :value %>
   </div>
   <div class="field">
-    <%= f.label :date %><br>
+    <%= f.label :date, "Datum" %><br>
     <%= f.date_select :date %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Aktualizovat záznam" %>
   </div>
 <% end %>

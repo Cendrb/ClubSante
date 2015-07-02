@@ -1,5 +1,11 @@
-<h1>New Record</h1>
-
-<%= render 'form' %>
+<h1>Nový záznam</h1>
+<%= form_tag records_path, method: :post do %>
+	<%= select_tag("users", options_from_collection_for_select(User.all, "id", "full_name"), class: "new_records_user_select") %>
+	<div class="new_records_recordables">
+		<%= render partial: "records/user_recordables", locals: {user: @user} %>
+	</div>
+	<div class="field"><%= select_date(params[:date], prefix: "date") %></div>
+	<%= submit_tag "Zapsat záznam" %>
+<% end %>
 
 <%= link_to 'Back', records_path %>
