@@ -11,9 +11,7 @@
 	</ul>
 	<% Therapy.find_each do |therapy| %>
 		<div id="tab-<%= therapy.id %>">
-			<div class="calendar_with_week_selector" data-therapy=<%= therapy.id %>>
-				<%= render partial: "calendars/calendar_with_week_selector", locals: {calendar: therapy.calendar, beginning_date: Date.today} %>
-			</div>
+			<%= render partial: "calendars/calendar_with_week_selector", locals: {calendar: therapy.calendar, beginning_date: Date.today} %>
 		</div>
 	<% end %>
 </div>

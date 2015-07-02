@@ -19,9 +19,9 @@
 	<td>
 		<% if ticket.entries_available?(@date, therapy) %>
 			<% if @exercise_template %>
-				<%= button_to "Použít", {controller: "users", action: "subscribe_for_new", method: :post, date: @date, exercise_template_id: @exercise_template.id, ticket_id: ticket.id, beginning_offset: @beginning_offset}, disabled: !ticket.entries_available?(@date, therapy), remote: true %>
+				<%= button_to "Použít", {controller: "users", action: "subscribe_for_new", method: :post, date: @date, exercise_template_id: @exercise_template.id, ticket_id: ticket.id, beginning_offset: @beginning_offset}, class: "ticket_selector_use_button", disabled: !ticket.entries_available?(@date, therapy), remote: true %>
 			<% else %>
-				<%= button_to "Použít", {controller: "users", action: "subscribe_for_existing", method: :post, exercise_id: @exercise.id, ticket_id: ticket.id, beginning_offset: @beginning_offset}, disabled: !ticket.entries_available?(@date, therapy), remote: true %>
+				<%= button_to "Použít", {controller: "users", action: "subscribe_for_existing", method: :post, exercise_id: @exercise.id, ticket_id: ticket.id, beginning_offset: @beginning_offset}, class: "ticket_selector_use_button", disabled: !ticket.entries_available?(@date, therapy), remote: true %>
 			<% end %>
 		<% else %>
 			<%= ticket.get_entries_unavailable_error(@date, therapy) %>

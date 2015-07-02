@@ -1,10 +1,15 @@
-.calendar_with_week_selector
+.calendar_in_week_selector
 {
   .calendar_timetable
   {
     table-layout: fixed;
     width: 100%;
-    white-space: nowrap
+    white-space: nowrap;
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
   
 	border-collapse: collapse;
@@ -37,7 +42,7 @@
   	height: 24px; // dependent on (Calendar.pixels_per_minute * 60)!!!
   	text-align: center;
   	position: relative;
-  	border-bottom: 0px solid black;
+  	vertical-align: center;
   }
   .calendar_date
   {

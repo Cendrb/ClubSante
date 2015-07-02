@@ -10,8 +10,7 @@ class TimetableTemplatesController < ApplicationController
   # GET /timetable_templates/1
   # GET /timetable_templates/1.json
   def show
-    @max_pixel_height = 24 * 60 # 1 px = 1 minute
-    @min_diff_time =  5 # 5 minutes
+    
   end
 
   # GET /timetable_templates/new
