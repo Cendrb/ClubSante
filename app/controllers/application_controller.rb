@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
       if required_level == User.al_registered
         redirect_to :login, alert: 'Pro přístup do této sekce se musíte přihlásit'
       end
-      if required_level == User.al_visitor
+      if required_level == User.al_customer
         redirect_to :root, alert: 'Pro přístup do této sekce musíte mít sjednanou uvítací schůzku'
       end
       if required_level == User.al_admin
