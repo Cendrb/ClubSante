@@ -13,14 +13,19 @@ $(function() {
 });
 </script>
 
+<h2><%= @user.full_name %></h2>
+
 <%= form_for(@user, url: ("admin_update")) do |f| %>
 	<div class="field">
-		<h4>Úroveň přístupu</h4>
-		<%= f.select("access_level", User.access_levels, selected: params[:access_level]) %>
+		<%= f.label :access_level, "Úroveň přístupu" %><br>
+		<%= f.select(:access_level, User.access_levels, selected: params[:access_level]) %>
 	</div>
 	
 	<div class="field goals">
-		<h4>Sledované cíle</h4>
+		<%= f.label :goals, "Sledované hodnoty" %> (<%= link_to "přidat", new_available_value_path(return_to: admin_edit_user_path(@user)) %>)<br>
+		<% if @values.count == 0 %>
+		V systému nejsou zadané žádné sledovatelné hodnoty
+		<% end %>
 		<% @values.each do |key, value| %>
 			<%= key.name %>
 			<%= f.check_box("goals[" + key.id.to_s + "]", {checked: value}) %>

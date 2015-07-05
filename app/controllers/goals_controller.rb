@@ -14,7 +14,12 @@ class GoalsController < ApplicationController
 
   # GET /goals/new
   def new
-    @goal = Goal.new
+    params[:date] = Date.today
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+    else
+      @user = User.first
+    end
   end
 
   # GET /goals/1/edit
@@ -24,17 +29,11 @@ class GoalsController < ApplicationController
   # POST /goals
   # POST /goals.json
   def create
-    @goal = Goal.new(goal_params)
-
-    respond_to do |format|
-      if @goal.save
-        format.html { redirect_to @goal, notice: 'Goal was successfully created.' }
-        format.json { render :show, status: :created, location: @goal }
-      else
-        format.html { render :new }
-        format.json { render json: @goal.errors, status: :unprocessable_entity }
-      end
+    params[:goals].each do |key, value|
+      t_value = TrackedValue.find(key)
+      Goal.create(tracked_value: t_value, value: value, date: params[:date].map{|k,v| v}.join("-").to_date)
     end
+    redirect_to goals_path and return
   end
 
   # PATCH/PUT /goals/1

@@ -28,7 +28,7 @@ class AvailableValuesController < ApplicationController
 
     respond_to do |format|
       if @available_value.save
-        format.html { redirect_to @available_value, notice: 'Available value was successfully created.' }
+        format.html { redirect_to :back, notice: 'Available value was successfully created.' }
         format.json { render :show, status: :created, location: @available_value }
       else
         format.html { render :new }

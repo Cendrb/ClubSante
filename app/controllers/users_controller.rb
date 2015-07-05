@@ -115,7 +115,7 @@ class UsersController < ApplicationController
     end
     @user.save!
     
-    redirect_to @user
+    redirect_to users_path
   end
 
   def subscribe_for_new
@@ -207,7 +207,7 @@ class UsersController < ApplicationController
         end
       else
         # any usable tickets were not found
-        render_alert "Nebyly nalezeny žádné platné permanentky"
+        render_alert "Nemáte žádné permanentky pro terapii #{therapy.name.downcase}"
         return
       end
     end

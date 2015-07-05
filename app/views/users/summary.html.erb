@@ -1,8 +1,14 @@
-<script>
-  var Chartkick = {"language": "cs"};
-</script>
-<%= javascript_include_tag "http://www.google.com/jsapi" %>
+<%= javascript_include_tag "http://code.highcharts.com/highcharts.js" %>
 <%= javascript_include_tag "application", "chartkick" %>
+
+<script>
+	Highcharts.setOptions({
+	lang: {
+    	months: ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'],
+    	weekdays: ['Neděle', 'Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek', 'Sobota'],
+    	shortMonths: ["Led", "Úno", "Bře", "Dub", "Kvě", "Čvn", "Čvc", "Srp", "Zář", "Říj", "Lis", "Pro"]
+	} });
+</script>
 
 <div id="user_summary_accordion">
 	<h2>Moje permanentky</h2>
@@ -36,9 +42,13 @@
 	<h2>Moje cíle</h2>
 	<div id="user_summary_goals">
 		<% if access_for_level?(User.al_customer) %>
+			<% if current_user.tracked_values.count == 0 %>
+				Nemáte zapsané žádné sledované hodnoty
+			<% end %>
+			
 			<% current_user.tracked_values.each do |tracked| %>
 				<span class="user_summary_tracked_value_name"><%= tracked.available_value.name %></span>
-				<%= line_chart tracked_value_chart_path(tracked_value_id: tracked.id), library: { height: 300, width: 800, curveType: "function", chartArea: { width: 500, left: 50, top: 35 } } %>
+				<%= line_chart tracked_value_chart_path(tracked_value_id: tracked.id), library: { chart: { marginTop: 30 } } %>
 			<% end %>
 		<% else %>
 			Pro monitorování osobních cílů si sjednejte osobní schůzku
@@ -52,6 +62,7 @@
 			<%= link_to "Zaznamenat", new_record_path %><br />
 			<%= link_to "Uživatelé", users_path %><br />
 			<%= link_to "Permanentky", tickets_path %><br />
+			<%= link_to "Cíle", goals_path %><br />
 			<%= link_to "Sledovatelné hodnoty", available_values_path %>
 		</div>
 	<% end %>

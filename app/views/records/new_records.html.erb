@@ -1,7 +1,0 @@
-<%= form_tag create_records_path, method: :post do %>
-	<%= select_tag("users", options_from_collection_for_select(User.all, "id", "full_name"), class: "new_records_user_select") %>
-	<div class="new_records_recordables">
-		<%= render partial: "records/user_recordables", locals: {user: @user} %>
-	</div>
-	<%= submit_tag "Zapsat záznam" %>
-<% end %>
