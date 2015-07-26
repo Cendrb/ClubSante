@@ -5,9 +5,10 @@
 <table>
   <thead>
     <tr>
-      <th>Tracked value</th>
-      <th>Value</th>
-      <th>Date</th>
+      <th>Datum</th>
+      <th>Jméno uživatele</th>
+      <th>Sledovaný parametr</th>
+      <th>Hodnota</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +16,10 @@
   <tbody>
     <% @goals.each do |goal| %>
       <tr>
-        <td><%= goal.tracked_value_id %></td>
+        <td><%= l goal.date %></td>
+      	<td><%= goal.tracked_value.user.full_name %></td>
+      	<td><%= goal.tracked_value.available_value.name %></td>
         <td><%= goal.value %></td>
-        <td><%= goal.date %></td>
         <td><%= link_to 'Zobrazit', goal %></td>
         <td><%= link_to 'Upravit', edit_goal_path(goal) %></td>
         <td><%= link_to 'Odstranit', goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -36,7 +36,7 @@
 			Nemáte žádné rezervace
 		<% end %>
 		<br />
-		<%= link_to "Zaregistrovat novou", calendar_summary_path, data: { no_turbolink: true } %>
+		<%= link_to "Rezervovat", calendar_summary_path, data: { no_turbolink: true } %>
 	</div>
 	
 	<h2>Moje cíle</h2>
@@ -58,11 +58,15 @@
 	<% if access_for_level?(User.al_admin) %>
 		<h2>Administrace</h2>
 		<div id="user_summary_administration">
+			<%= link_to "Rezervovat", calendar_summary_path, data: { no_turbolink: true } %><br />
 			<%= link_to "Terapie", therapies_path %><br />
-			<%= link_to "Zaznamenat", new_record_path %><br />
+			<br />
+			<%= link_to "Zaznamenat aktuální stav", new_record_path %> (<%= link_to "všechny záznamy", records_path %>)<br />
+			<%= link_to "Zaznamenat cíl", new_goal_path %> (<%= link_to "všechny cíle", goals_path %>)<br />
+			<br />
 			<%= link_to "Uživatelé", users_path %><br />
 			<%= link_to "Permanentky", tickets_path %><br />
-			<%= link_to "Cíle", goals_path %><br />
+
 			<%= link_to "Sledovatelné hodnoty", available_values_path %>
 		</div>
 	<% end %>

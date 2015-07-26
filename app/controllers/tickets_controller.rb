@@ -17,7 +17,6 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new
     params[:type] = "Časově omezená"
     params[:activate] = true
-    params[:time_restriction_days] = 0
     params[:time_restriction_months] = 6
   end
 
@@ -31,7 +30,6 @@ class TicketsController < ApplicationController
     
     params[:activate] = "nope"
     
-    params[:time_restriction_days] = (@ticket.time_restriction/60/60/24) % 30
     params[:time_restriction_months] = (@ticket.time_restriction/60/60/24/30)
   end
 
@@ -50,8 +48,8 @@ class TicketsController < ApplicationController
       
       # pokud omezena vstupy -> activerecord nastaví sám od sebe do modelu (form_for)
     end
-    if params[:time_restriction_days] && params[:time_restriction_months]
-      @ticket.time_restriction = (params[:time_restriction_days].to_i.days + params[:time_restriction_months].to_i.months).to_i
+    if params[:time_restriction_months]
+      @ticket.time_restriction = (params[:time_restriction_months].to_i.months).to_i
       respond_to do |format|
         if @ticket.save
           format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
@@ -62,9 +60,6 @@ class TicketsController < ApplicationController
         end
       end
     else
-      if !params[:time_restriction_days]
-        @ticket.errors.add(:time_restriction_days, "musí být kladné číslo")
-      end
       if !params[:time_restriction_months]
         @ticket.errors.add(:time_restriction_months, "musí být kladné číslo")
       end
@@ -86,8 +81,8 @@ class TicketsController < ApplicationController
       
       # pokud omezena vstupy -> activerecord nastaví sám od sebe do modelu (form_for)
     end
-    if params[:time_restriction_days] && params[:time_restriction_months]
-      @ticket.time_restriction = (params[:time_restriction_days].to_i.days + params[:time_restriction_months].to_i.months).to_i
+    if params[:time_restriction_months]
+      @ticket.time_restriction = (params[:time_restriction_months].to_i.months).to_i
       respond_to do |format|
         if @ticket.save
           format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
@@ -98,9 +93,6 @@ class TicketsController < ApplicationController
         end
       end
     else
-      if !params[:time_restriction_days]
-        @ticket.errors.add(:time_restriction_days, "musí být kladné číslo")
-      end
       if !params[:time_restriction_months]
         @ticket.errors.add(:time_restriction_months, "musí být kladné číslo")
       end
