@@ -53,8 +53,8 @@ $(function() {
     <%= f.check_box :paid %>
   </div>
   <div class="field">
-    <%= f.label :therapy_id, "Terapie" %><br>
-    <%= f.collection_select(:therapy_id, Therapy.all, :id, :name) %>
+    <%= f.label :therapy_category_id, "Kategorie terapie" %><br>
+    <%= f.collection_select(:therapy_category_id, TherapyCategory.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :user_id, "Uživatel" %><br>

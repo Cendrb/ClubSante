@@ -52,7 +52,7 @@ class TicketsController < ApplicationController
       @ticket.time_restriction = (params[:time_restriction_months].to_i.months).to_i
       respond_to do |format|
         if @ticket.save
-          format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
+          format.html { redirect_to tickets_path, notice: 'Permanentka vytvořena' }
           format.json { render :show, status: :created, location: @ticket }
         else
           format.html { render :new }
@@ -70,6 +70,7 @@ class TicketsController < ApplicationController
   # PATCH/PUT /tickets/1
   # PATCH/PUT /tickets/1.json
   def update
+    @ticket.update(ticket_params)
     params.permit!
     if params[:activate]
       @ticket.activated_on = Date.today
@@ -85,7 +86,7 @@ class TicketsController < ApplicationController
       @ticket.time_restriction = (params[:time_restriction_months].to_i.months).to_i
       respond_to do |format|
         if @ticket.save
-          format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
+          format.html { redirect_to tickets_path, notice: 'Permanentka upravena' }
           format.json { render :show, status: :created, location: @ticket }
         else
           format.html { render :new }
@@ -118,6 +119,6 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:entries_remaining, :user_id, :time_restriction, :paid, :activated_on, :therapy_id)
+      params.require(:ticket).permit(:entries_remaining, :user_id, :time_restriction, :paid, :activated_on, :therapy_category_id)
     end
 end

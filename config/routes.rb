@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :therapy_categories
+
   resources :goals
 
   resources :records

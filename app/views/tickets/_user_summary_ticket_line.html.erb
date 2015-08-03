@@ -15,6 +15,10 @@
 		<% end %>
 	</td>
 	<td>
-		<%= ticket.therapy.name %>
+		<% if ticket.therapy_category.therapies.count > 0 %>
+			<%= ticket.therapy_category.name %> (<%= (ticket.therapy_category.therapies.map { |therapy| therapy.name }).join(", ").downcase %>)
+		<% else %>
+			<%= ticket.therapy_category.name %>
+		<% end %>
 	</td>
 </tr>

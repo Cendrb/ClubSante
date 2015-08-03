@@ -1,6 +1,6 @@
 class Ticket < ActiveRecord::Base
   belongs_to :user
-  belongs_to :therapy
+  belongs_to :therapy_category
   
   has_many :entries, dependent: :destroy
   
@@ -13,7 +13,7 @@ class Ticket < ActiveRecord::Base
   
   def entries_available?(required_date, therapy)
     puts activated_on.class
-    return (self.entries_remaining > 0 || self.entries_remaining == -1) && required_date.between?(self.activated_on, self.activated_on + self.time_restriction) && self.therapy == therapy && self.paid
+    return (self.entries_remaining > 0 || self.entries_remaining == -1) && required_date.between?(self.activated_on, self.activated_on + self.time_restriction) && self.therapy_category.includes?(therapy) && self.paid
   end
   
   def get_entries_unavailable_error(required_date, therapy)
@@ -29,7 +29,7 @@ class Ticket < ActiveRecord::Base
       return "platnost vypršela"
     end
     
-    if self.therapy != therapy
+    if !self.therapy_category.includes?(therapy)
       return "nelze použít pro rezervaci #{therapy.name.downcase}"
     end
     
@@ -67,5 +67,5 @@ class Ticket < ActiveRecord::Base
     return 24.hours
   end
   
-  validates_presence_of :time_restriction, :entries_remaining, :activated_on, :user_id, :therapy_id, :paid
+  validates_presence_of :time_restriction, :entries_remaining, :activated_on, :user_id, :therapy_category_id, :paid
 end

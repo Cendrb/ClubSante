@@ -1,0 +1,34 @@
+<%= form_for(@therapy_category) do |f| %>
+  <% if @therapy_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@therapy_category.errors.count, "error") %> prohibited this therapy_category from being saved:</h2>
+
+      <ul>
+      <% @therapy_category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, 'Název' %><br>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="field therapies_category">
+		<%= f.label :goals, "Zahrnuté terapie" %><br />
+		<% if @therapies.count == 0 %>
+			V systému nejsou zadané žádné terapie
+		<% end %>
+		<% @therapies.each do |key, value| %>
+			<%= key.name %>
+			<%= f.check_box("therapies[" + key.id.to_s + "]", {checked: value}) %>
+			<br />
+		<% end %>
+	</div>
+	
+  <div class="actions">
+    <%= f.submit "Odeslat" %>
+  </div>
+<% end %>

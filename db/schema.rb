@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150509124409) do
+ActiveRecord::Schema.define(version: 20150803095943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,14 +78,28 @@ ActiveRecord::Schema.define(version: 20150509124409) do
     t.integer  "duration_in_minutes"
   end
 
+  create_table "therapies_therapy_categories", id: false, force: :cascade do |t|
+    t.integer "therapy_id"
+    t.integer "therapy_category_id"
+  end
+
+  add_index "therapies_therapy_categories", ["therapy_category_id"], name: "index_therapies_therapy_categories_on_therapy_category_id", using: :btree
+  add_index "therapies_therapy_categories", ["therapy_id"], name: "index_therapies_therapy_categories_on_therapy_id", using: :btree
+
+  create_table "therapy_categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tickets", force: :cascade do |t|
     t.integer  "entries_remaining"
     t.datetime "activated_on"
-    t.boolean  "paid",              default: true
+    t.boolean  "paid",                default: true
     t.integer  "user_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.integer  "therapy_id"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "therapy_category_id"
     t.integer  "time_restriction"
   end
 

@@ -13,7 +13,7 @@
 		<% end %>
 	</td>
 	<td>
-		<%= ticket.therapy.name %>
+		<%= ticket.therapy_category.name %> (<%= (ticket.therapy_category.therapies.map { |therapy| therapy.name }).join(", ").downcase %>)
 	</td>
 	<td>
 		<%= b_to_s ticket.paid %>
