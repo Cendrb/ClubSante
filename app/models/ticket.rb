@@ -4,11 +4,10 @@ class Ticket < ActiveRecord::Base
   
   has_many :entries, dependent: :destroy
   
-  scope :with_available_entries, ->(therapy, required_date) { 
-    where("(entries_remaining > 0 OR entries_remaining = -1)").where(therapy: therapy)
+  scope :with_available_entries, ->(required_date) { 
+    where("(entries_remaining > 0 OR entries_remaining = -1)")
     .where("((activated_on + (time_restriction || ' second')::interval) >= ?)", required_date)
     .where("(activated_on <= ?)", required_date)
-    .where(therapy: therapy)
     .where(paid: true) }
   
   def entries_available?(required_date, therapy)
@@ -61,6 +60,10 @@ class Ticket < ActiveRecord::Base
         self.entries_remaining += 1
         self.save!
       end
+  end
+  
+  def self.for_therapy(tickets, therapy)
+    tickets.drop_while {|ticket| !ticket.therapy_category.includes?(therapy) }
   end
   
   def self.unsubscribe_time_limit

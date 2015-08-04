@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Výpis trenérů</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Jméno</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @coaches.each do |coach| %>
+      <tr>
+        <td><%= coach.name %></td>
+        <td><%= link_to 'Nezobrazit', coach %></td>
+        <td><%= link_to 'Upravit', edit_coach_path(coach) %></td>
+        <td><%= link_to 'Odstranit', coach, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nový trenér', new_coach_path %>

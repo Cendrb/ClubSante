@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Exercise Modifications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Exercise template</th>
+      <th>Date</th>
+      <th>Coach</th>
+      <th>Price</th>
+      <th>Note</th>
+      <th>Timetable template</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @exercise_modifications.each do |exercise_modification| %>
+      <tr>
+        <td><%= exercise_modification.exercise_template_id %></td>
+        <td><%= exercise_modification.date %></td>
+        <td><%= exercise_modification.coach_id %></td>
+        <td><%= exercise_modification.price %></td>
+        <td><%= exercise_modification.note %></td>
+        <td><%= exercise_modification.timetable_template_id %></td>
+        <td><%= link_to 'Show', exercise_modification %></td>
+        <td><%= link_to 'Edit', edit_exercise_modification_path(exercise_modification) %></td>
+        <td><%= link_to 'Destroy', exercise_modification, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Exercise modification', new_exercise_modification_path %>

@@ -20,7 +20,7 @@
         <td><%= therapy.duration_in_minutes %></td>
         <td><%= link_to 'Zobrazit', therapy %></td>
         <td><%= link_to 'Upravit', edit_therapy_path(therapy) %></td>
-        <td><%= link_to 'Odstranit', therapy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Odstranit', therapy, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
       </tr>
     <% end %>
   </tbody>

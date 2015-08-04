@@ -22,7 +22,7 @@
         <td><%= (user.tracked_values.map { |tracked| tracked.name }).join(", ").downcase %></td>
         <td><%= link_to 'Nastavit sledované hodnoty a úroveň přístupu', admin_edit_user_path(user) %></td>
         <td><%= link_to 'Upravit', edit_user_path(user) %></td>
-        <td><%= link_to 'Odstranit', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Odstranit', user, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
       </tr>
     <% end %>
   </tbody>

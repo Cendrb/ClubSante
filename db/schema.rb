@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803095943) do
+ActiveRecord::Schema.define(version: 20150803113155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 20150803095943) do
 
   add_index "calendars", ["therapy_id"], name: "index_calendars_on_therapy_id", using: :btree
 
+  create_table "coaches", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "entries", force: :cascade do |t|
     t.integer  "exercise_id"
     t.integer  "ticket_id"
@@ -38,12 +45,26 @@ ActiveRecord::Schema.define(version: 20150803095943) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "exercise_modifications", force: :cascade do |t|
+    t.integer  "exercise_template_id"
+    t.datetime "date"
+    t.integer  "coach_id"
+    t.string   "price"
+    t.text     "note"
+    t.integer  "timetable_template_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
   create_table "exercise_templates", force: :cascade do |t|
     t.time     "beginning"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.integer  "weekday"
     t.integer  "timetable_template_id"
+    t.string   "price"
+    t.integer  "coach_id"
+    t.text     "note"
   end
 
   create_table "exercises", force: :cascade do |t|

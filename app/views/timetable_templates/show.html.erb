@@ -81,13 +81,13 @@
 		
 	onDragStop = function(event, ui) {
 			var id = ui.helper.attr("data-id");
-			ui.helper.find(".timetable_template_exercise_status").text("Ukládání...");
+			ui.helper.find(".timetable_template_exercise_status").text("...");
 			$.ajax({
 				type: "PATCH",
 				url: "/exercise_templates/" + id + ".whoa",
 				data: { exercise_template: { beginning: getTimeFor(ui.helper) } },
 				success: function(msg){
-					ui.helper.find(".timetable_template_exercise_status").text("Uloženo");
+					ui.helper.find(".timetable_template_exercise_status").text("U");
 				},
 				error: function(xhr, textStatus, errorThrown){
 					ui.helper.animate(ui.helper.data().origPosition, "fast");

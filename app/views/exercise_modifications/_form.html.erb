@@ -1,0 +1,41 @@
+<%= form_for(@exercise_modification) do |f| %>
+  <% if @exercise_modification.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@exercise_modification.errors.count, "error") %> prohibited this exercise_modification from being saved:</h2>
+
+      <ul>
+      <% @exercise_modification.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :exercise_template_id %><br>
+    <%= f.number_field :exercise_template_id %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.datetime_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :coach_id %><br>
+    <%= f.number_field :coach_id %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :note %><br>
+    <%= f.text_area :note %>
+  </div>
+  <div class="field">
+    <%= f.label :timetable_template_id %><br>
+    <%= f.number_field :timetable_template_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

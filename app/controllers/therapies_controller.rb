@@ -29,7 +29,7 @@ class TherapiesController < ApplicationController
 
     respond_to do |format|
       if @therapy.save
-        format.html { redirect_to @therapy, notice: 'Therapy was successfully created.' }
+        format.html { redirect_to @therapy }
         format.json { render :show, status: :created, location: @therapy }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class TherapiesController < ApplicationController
   def update
     respond_to do |format|
       if @therapy.update(therapy_params)
-        format.html { redirect_to @therapy, notice: 'Therapy was successfully updated.' }
+        format.html { redirect_to @therapy }
         format.json { render :show, status: :ok, location: @therapy }
       else
         format.html { render :edit }

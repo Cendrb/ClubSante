@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  resources :exercise_modifications
+
+  resources :coaches
+
   resources :therapy_categories
 
   resources :goals

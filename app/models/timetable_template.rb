@@ -3,7 +3,7 @@ class TimetableTemplate < ActiveRecord::Base
   has_many :exercise_templates, dependent: :destroy
   
   def self.pixels_per_minute
-    return 0.7
+    return 1
   end
   
   def self.min_diff_time

@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h2><%= @coach.name %></h2>
+  <p><%= @coach.description %><p>
+</p>
+
+<%= link_to 'Upravit', edit_coach_path(@coach) %> |
+<%= link_to 'Zpět', coaches_path %>

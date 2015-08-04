@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Exercise template:</strong>
+  <%= @exercise_modification.exercise_template_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @exercise_modification.date %>
+</p>
+
+<p>
+  <strong>Coach:</strong>
+  <%= @exercise_modification.coach_id %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @exercise_modification.price %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @exercise_modification.note %>
+</p>
+
+<p>
+  <strong>Timetable template:</strong>
+  <%= @exercise_modification.timetable_template_id %>
+</p>
+
+<%= link_to 'Edit', edit_exercise_modification_path(@exercise_modification) %> |
+<%= link_to 'Back', exercise_modifications_path %>

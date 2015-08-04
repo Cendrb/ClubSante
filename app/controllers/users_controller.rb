@@ -192,7 +192,7 @@ class UsersController < ApplicationController
       # ticket already selected
       return Ticket.find(params[:ticket_id])
     else
-      tickets_available = current_user.tickets.with_available_entries(therapy, date)
+      tickets_available = Ticket.for_therapy(current_user.tickets.with_available_entries(date), therapy)
       
       if tickets_available.count > 0
         if tickets_available.count == 1
