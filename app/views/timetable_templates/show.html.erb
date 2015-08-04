@@ -33,6 +33,16 @@
   		margin: 0px;
   		border: 0;
 	}
+	.timetable_template_exercise_handle
+	{
+		background-color: red;
+		width: 1.8em;
+		height: 1.8em;
+		position: absolute;
+		left: 0;
+		top: 0;
+		cursor: move;
+		}
 	.timetable_template_weekday
 	{
 		position: relative;
@@ -57,6 +67,23 @@
 
 <script>
 	var current_timetable_id = <%= @timetable_template.id %>;
+	var dragging = false;
+	var clickedOnExercise = false;
+	var selectedExercises = [];
+	
+	function addToSelected(id)
+	{
+		selectedExercises.push(id);
+		$(".timetable_template_exercise[data-id=" + id + "]").css("background-color", "orange");
+	}
+	
+	function clearSelected()
+	{
+		for	(index = 0; index < selectedExercises.length; index++) {
+			$(".timetable_template_exercise[data-id=" + selectedExercises[index] + "]").css("background-color", "yellow");
+		}
+		selectedExercises = [];
+	}
 
 	function getTimeFor(ui)
 	{
@@ -76,10 +103,14 @@
 		}
 		
 	onDragStart = function(event, ui) {
+			$("#container").css("cursor", "move");
+			dragging = true;
 			$(this).data("origPosition", $(this).position());
 		}
 		
 	onDragStop = function(event, ui) {
+			$("#container").css("cursor", "auto");
+			dragging = false;
 			var id = ui.helper.attr("data-id");
 			ui.helper.find(".timetable_template_exercise_status").text("...");
 			$.ajax({
@@ -97,6 +128,7 @@
 		}
 		
 	onMouseDown = function(e){ 
+		clickedOnExercise = true;
     		if( e.button == 2 ) {
     			var element = $(this);
       			var id = $(this).attr("data-id");
@@ -109,47 +141,81 @@
 					}
 				});
       			return false; 
-    		} 
-    		return true; 
+    		}
+    		else
+    		{
+    			if(selectedExercises.length > 0)
+    			{
+    				console.log("PENIS");
+    				// something already selected
+    				if(e.shiftKey)
+    				{
+    					// add to selection
+    					addToSelected($(this).attr("data-id"));
+    				}
+    				else
+    				{
+    					// reset and add
+    					clearSelected();
+    					addToSelected($(this).attr("data-id"));
+    				}
+    			}
+    			else
+    			{
+    				// nothing selected
+    				addToSelected($(this).attr("data-id"));
+    			}
+    			return false; 
+    		}
   		}
 	
 	function setupDraggablesFor(element)
 	{
-		element.draggable({ axis: "y", containment: "parent", grid: [0, <%= TimetableTemplate.min_diff_time * TimetableTemplate.pixels_per_minute %>] });
+		element.draggable({ axis: "y", containment: "parent", grid: [0, <%= TimetableTemplate.min_diff_time * TimetableTemplate.pixels_per_minute %>], handle: ".timetable_template_exercise_handle" });
+		
+		element.mousedown(onMouseDown);
 		
 		element.on("drag", onDrag);
 		
 		element.on("dragstart", onDragStart);
 		
 		element.on("dragstop", onDragStop);
-
-		element.mousedown(onMouseDown);
 	}
 
 	
 	$(function() {
 		setupDraggablesFor($(".timetable_template_exercise"));
 		
-		$(".timetable_template_weekday").click(function(event)
+		$(".timetable_template_weekday").mouseup(function(event)
 		{
-				var relativeYMinutes = ((event.pageY - $(this).offset().top) / <%= TimetableTemplate.pixels_per_minute %>);
-				var beginningHours = Math.floor(relativeYMinutes / 60);
-				var beginningMinutes = Math.floor((relativeYMinutes % 60) / <%= TimetableTemplate.min_diff_time * 2 %>) * <%= TimetableTemplate.min_diff_time * 2 %>;
-				$.ajax({
-					type: "POST",
-					url: "/exercise_templates.js",
-					data: { exercise_template: { beginning: beginningHours + ":" + beginningMinutes, weekday: $(this).data("id"), timetable_template_id: current_timetable_id } },
-					dataType: 'script',
-					format: 'js',
-					success: function(msg){
-						msg = msg.substring(50, msg.length);
-						var idBeginning = msg.search("data-id") + 8;
-						var idEnd = msg.search("data-duration") - 1;
-						var id = msg.substring(idBeginning, idEnd);
-						console.log(id);
-						setupDraggablesFor($(".timetable_template_exercise[data-id=" + id + "]"));
-					}
-				});
+			if(clickedOnExercise)
+			{
+				clickedOnExercise = false;
+			}
+			else
+			{
+				if(!dragging)	
+				{
+					var relativeYMinutes = ((event.pageY - $(this).offset().top) / <%= TimetableTemplate.pixels_per_minute %>);
+					var beginningHours = Math.floor(relativeYMinutes / 60);
+					var beginningMinutes = Math.floor((relativeYMinutes % 60) / <%= TimetableTemplate.min_diff_time * 2 %>) * <%= TimetableTemplate.min_diff_time * 2 %>;
+					$.ajax({
+						type: "POST",
+						url: "/exercise_templates.js",
+						data: { exercise_template: { beginning: beginningHours + ":" + beginningMinutes, weekday: $(this).data("id"), timetable_template_id: current_timetable_id } },
+						dataType: 'script',
+						format: 'js',
+						success: function(msg){
+							msg = msg.substring(50, msg.length);
+							var idBeginning = msg.search("data-id") + 8;
+							var idEnd = msg.search("data-duration") - 1;
+							var id = msg.substring(idBeginning, idEnd);
+							console.log(id);
+							setupDraggablesFor($(".timetable_template_exercise[data-id=" + id + "]"));
+						}
+					});
+				}
+			}
 		});	
 	});
 	</script>
