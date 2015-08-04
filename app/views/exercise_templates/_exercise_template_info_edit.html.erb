@@ -1,0 +1,18 @@
+<%= form_tag(multi_update_path, method: :post, remote: true) do |f| %>
+
+  <div class="field">
+    <%= label_tag :price, "Cena" %><br>
+    <%= text_field_tag :price, params[:price] %>
+  </div>
+  
+  <div class="field">
+    <%= label_tag :coach_id, "Trenér" %><br>
+    <%= select_tag :coach_id, options_from_collection_for_select(Coach.all, :id, :name, params[:coach_id]), include_blank: true %>
+  </div>
+  
+  <%= hidden_field_tag :affected_exercise_templates, params[:affected_exercise_templates].join(",") %>
+
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<% end %>

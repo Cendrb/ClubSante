@@ -19,6 +19,39 @@ class ExerciseTemplatesController < ApplicationController
 
   # GET /exercise_templates/1/edit
   def edit
+    
+  end
+  
+  def multi_edit
+    @exercise_template = ExerciseTemplate.new
+    params[:affected_exercise_templates] = params[:affected_exercise_templates].to_a
+    params[:affected_exercise_templates].each do |id|
+      template = ExerciseTemplate.find(id)
+      if(params[:price] == nil)
+        if(template.price)
+          params[:price] = template.price
+        else
+          params[:price] = "< ponechat >"
+        end
+      else
+        if(params[:price] != template.price)
+          params[:price] = "< ponechat >"
+        end
+      end
+      
+      puts "PENIS: " + template.coach_id.to_s
+      if(params[:coach_id] == nil)
+        if(template.coach_id)
+          params[:coach_id] = template.coach_id
+        else
+          params[:coach_id] = 0
+        end
+      else
+        if(params[:coach_id] != template.coach_id)
+          params[:coach_id] = 0
+        end
+      end
+    end
   end
 
   # POST /exercise_templates
@@ -56,6 +89,18 @@ class ExerciseTemplatesController < ApplicationController
       end
     end
   end
+  
+  def multi_update
+    params[:affected_exercise_templates] = params[:affected_exercise_templates].split(",")
+    params[:affected_exercise_templates].each.each do |id|
+      template = ExerciseTemplate.find(id)
+      template.price = params[:price]
+      template.coach_id = params[:coach_id]
+      template.save!
+    end
+    
+    render nothing: true
+  end
 
   # DELETE /exercise_templates/1
   # DELETE /exercise_templates/1.json
@@ -76,6 +121,6 @@ class ExerciseTemplatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exercise_template_params
-      params.require(:exercise_template).permit(:beginning, :weekday, :timetable_template_id)
+      params.require(:exercise_template).permit(:beginning, :weekday, :timetable_template_id, :coach_id, :price)
     end
 end

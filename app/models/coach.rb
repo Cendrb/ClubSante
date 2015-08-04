@@ -1,3 +1,3 @@
 class Coach < ActiveRecord::Base
-  belongs_to :exercise_template
+  has_many :exercise_template
 end

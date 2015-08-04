@@ -1,8 +1,7 @@
 class ExerciseTemplate < ActiveRecord::Base
   validates_presence_of :beginning, :timetable_template_id
   belongs_to :timetable_template
-  
-  has_one :coach
+  belongs_to :coach
   has_one :therapy, through: [:timetable_template, :calendar, :therapy]
   
   def get_capacity_string
@@ -19,5 +18,15 @@ class ExerciseTemplate < ActiveRecord::Base
   
   def get_duration_string
     return "#{self.timetable_template.calendar.therapy.duration_in_minutes} minut"
+  end
+  
+  def get_coach_string
+    if(coach)
+      return "#{coach.name}"
+    end
+  end
+  
+  def get_price_string
+    return "#{price}"
   end
 end

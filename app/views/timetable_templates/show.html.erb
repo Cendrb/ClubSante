@@ -19,6 +19,11 @@
     	padding: 0;
     	border: 1px solid black;
   	}
+  	#timetable_template_data_form
+  	{
+  		background-color: #EEEEEE;
+  		height: 200px;
+  	}
 	.timetable_template_exercise
 	{
     	width: 100%;
@@ -73,8 +78,31 @@
 	
 	function addToSelected(id)
 	{
-		selectedExercises.push(id);
-		$(".timetable_template_exercise[data-id=" + id + "]").css("background-color", "orange");
+		$("#timetable_template_data_form").text("Získávání dat...");
+		if($.inArray(id, selectedExercises) != -1)
+		{
+			selectedExercises.splice($.inArray(id, selectedExercises), 1);
+			$(".timetable_template_exercise[data-id=" + id + "]").css("background-color", "yellow");
+		}
+		else
+		{
+			selectedExercises.push(id);
+			$(".timetable_template_exercise[data-id=" + id + "]").css("background-color", "orange");
+		}
+		
+		$.ajax({
+			type: "GET",
+			url: "/exercise_templates/multi_edit",
+			data: { affected_exercise_templates: selectedExercises },
+			dataType: 'script',
+			format: 'js',
+			success: function(msg){
+				
+			},
+			error: function(xhr, textStatus, errorThrown){
+				$("#timetable_template_data_form").text("Došlo k chybě");
+			}
+		});
 	}
 	
 	function clearSelected()
@@ -146,7 +174,6 @@
     		{
     			if(selectedExercises.length > 0)
     			{
-    				console.log("PENIS");
     				// something already selected
     				if(e.shiftKey)
     				{
@@ -180,6 +207,14 @@
 		element.on("dragstart", onDragStart);
 		
 		element.on("dragstop", onDragStop);
+		
+		element.tooltip({
+		items: "[data-tooltip]",
+        content: function()
+        {
+          	return this.getAttribute("data-tooltip");
+        }
+     	});	
 	}
 
 	
@@ -194,7 +229,7 @@
 			}
 			else
 			{
-				if(!dragging)	
+				if(!dragging && event.button != 2)	
 				{
 					var relativeYMinutes = ((event.pageY - $(this).offset().top) / <%= TimetableTemplate.pixels_per_minute %>);
 					var beginningHours = Math.floor(relativeYMinutes / 60);
@@ -219,6 +254,12 @@
 		});	
 	});
 	</script>
+
+<h1>Stránka v průběhu vývoje</h1>
+
+<div id="timetable_template_data_form">
+	
+</div>
 
 <table id="timetable_template">
 	<tr>

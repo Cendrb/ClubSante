@@ -18,8 +18,12 @@ Rails.application.routes.draw do
 
   resources :entries
 
+  controller :exercise_templates do
+    get 'exercise_templates/multi_edit' => "exercise_templates#multi_edit"
+    post 'exercise_templates/multi_edit' => "exercise_templates#multi_update", as: "multi_update"
+  end
   resources :exercise_templates
-
+  
   resources :timetable_templates
 
   get 'calendars/show'
