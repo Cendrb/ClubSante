@@ -1,7 +1,7 @@
 <div class="calendar_exercise_style calendar_template_exercise free_exercise" 
 data-id=<%= exercise_template.id %> 
 data-date=<%= date %> 
-data-tooltip="<%= exercise_template.get_time_range_string %><br /><%= exercise_template.get_duration_string %><br /><%= exercise_template.get_capacity_string %>" 
+data-tooltip="<%= exercise_template.get_tooltip_calendar %>" 
 data-duration=<%= exercise_template.timetable_template.calendar.therapy.duration_in_minutes %> 
 data-calendar-id=<%= exercise_template.timetable_template.calendar.id %> 
 style="position: absolute; top: <%= ((exercise_template.beginning.hour * 60 + exercise_template.beginning.min) * Calendar.pixels_per_minute) - beginning_offset %>px; height: <%= exercise_template.timetable_template.calendar.therapy.duration_in_minutes * Calendar.pixels_per_minute %>px">

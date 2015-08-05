@@ -36,11 +36,11 @@ class ExerciseTemplatesController < ApplicationController
           if(template.price)
             params[:price] = template.price
           else
-            params[:price] = "< ponechat >"
+            params[:price] = ExerciseTemplate.get_the_same_string
           end
         else
           if(params[:price] != template.price)
-            params[:price] = "< ponechat >"
+            params[:price] = ExerciseTemplate.get_the_same_string
           end
         end
         
@@ -64,7 +64,7 @@ class ExerciseTemplatesController < ApplicationController
   # POST /exercise_templates.json
   def create
     @exercise_template = ExerciseTemplate.new(exercise_template_params)
-    @exercise_template.price = "Nezobrazovat"
+    @exercise_template.price = ExerciseTemplate.get_hide_string
     @exercise_template.coach = Coach.get_nobody
 
     respond_to do |format|

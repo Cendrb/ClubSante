@@ -4,6 +4,22 @@ class ExerciseTemplate < ActiveRecord::Base
   belongs_to :coach
   has_one :therapy, through: [:timetable_template, :calendar, :therapy]
   
+  def get_tooltip_calendar
+    string = "#{get_time_range_string}<br />#{get_duration_string}<br />#{get_capacity_string}"
+    if(price != ExerciseTemplate.get_hide_string)
+      string += "<br />#{price}"
+    end
+    if(coach != Coach.get_nobody)
+      string += "<br />#{coach.name}"
+    end
+    return string
+  end
+  
+  def get_tooltip_template
+    string = "Cena: #{self.price}<br />Trenér: #{self.coach.name}"
+    return string
+  end
+  
   def get_capacity_string
     return "obsazeno 0 z #{self.timetable_template.calendar.therapy.capacity}"
   end
@@ -27,7 +43,12 @@ class ExerciseTemplate < ActiveRecord::Base
     end
   end
   
-  def get_price_string
-    return "#{price}"
+  
+  def self.get_hide_string
+    return "Nezobrazovat"
+  end
+  
+  def self.get_the_same_string
+    return "< ponechat >"
   end
 end
