@@ -1,5 +1,5 @@
 class TimetableTemplatesController < ApplicationController
-  before_action :set_timetable_template, only: [:show, :edit, :update, :destroy]
+  before_action :set_timetable_template, only: [:show, :show_with_modifications, :edit, :update, :destroy]
 
   # GET /timetable_templates
   # GET /timetable_templates.json
@@ -10,6 +10,10 @@ class TimetableTemplatesController < ApplicationController
   # GET /timetable_templates/1
   # GET /timetable_templates/1.json
   def show
+    
+  end
+  
+  def show_with_modifications
     
   end
 

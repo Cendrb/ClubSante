@@ -1,13 +1,13 @@
-<div class="calendar_with_week_selector" data-therapy=<%= calendar.therapy.id %>>
+<div class="timetable_with_mods_and_week_selector" data-therapy=<%= timetable_template.calendar.therapy.id %>>
 	<div id="week_selector">
 		<div class="week_selector_left_button week_selector_element">
-			<a href="javascript:void(0)" class="calendar_week_selector_button" data-calendar-id=<%= calendar.id %> data-target-date=<%= beginning_date - 1.week %>>předchozí týden</a>
+			<a href="javascript:void(0)" class="week_selector_button" data-timetable-template-id=<%= calendar.id %> data-target-date=<%= beginning_date - 1.week %>>předchozí týden</a>
 		</div>
 		<div class="week_selector_current_week week_selector_element">
 			<%= l get_beginning_of_week(beginning_date) %> - <%= l get_end_of_week(beginning_date) %>
 		</div>
 		<div class="week_selector_right_button week_selector_element">
-			<a href="javascript:void(0)" class="calendar_week_selector_button" data-calendar-id=<%= calendar.id %> data-target-date=<%= beginning_date + 1.week %>>následující týden</a>
+			<a href="javascript:void(0)" class="week_selector_button" data-timetable-template-id=<%= calendar.id %> data-target-date=<%= beginning_date + 1.week %>>následující týden</a>
 		</div>
 		<div class="week_selector_clear"></div>
 	</div>

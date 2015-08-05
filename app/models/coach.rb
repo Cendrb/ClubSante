@@ -1,5 +1,6 @@
 class Coach < ActiveRecord::Base
-  has_many :exercise_template
+  has_many :exercise_templates
+  has_many :exercise_modifications
   
   scope :valid, -> { where("description != ?", "SYSTEM") }
   

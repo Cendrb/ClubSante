@@ -11,8 +11,7 @@ class Ticket < ActiveRecord::Base
     .where(paid: true) }
   
   def entries_available?(required_date, therapy)
-    puts activated_on.class
-    return (self.entries_remaining > 0 || self.entries_remaining == -1) && required_date.between?(self.activated_on, self.activated_on + self.time_restriction) && self.therapy_category.includes?(therapy) && self.paid
+    return (self.entries_remaining > 0 || self.entries_remaining == -1) && required_date.between?(self.activated_on, self.activated_on + self.time_restriction) && self.therapy_category.includes?(therapy)
   end
   
   def get_entries_unavailable_error(required_date, therapy)
@@ -53,13 +52,29 @@ class Ticket < ActiveRecord::Base
   
   def unregister_entry(exercise, entry)
     entry.destroy
-    if self.entries_remaining == -1
+    if !self.paid && self.entries_remaining == 0
+      # single use -> delete
+      self.destroy
+    else
+      if self.entries_remaining == -1
         # time based
       else
         # entries based
         self.entries_remaining += 1
         self.save!
       end
+    end
+  end
+  
+  def self.create_single_use(user, therapy)
+    TherapyCategory.for_therapy(therapy).find_each do |category|
+      if(category.therapies.count == 1)
+        ticket = Ticket.new(time_restriction: Ticket.single_use_register_date_range, entries_remaining: 1, activated_on: Date.today, paid: false, user: user, therapy_category: category)
+        ticket.save!
+        return ticket
+      end
+    end
+    return nil
   end
   
   def self.for_therapy(tickets, therapy)
@@ -70,5 +85,9 @@ class Ticket < ActiveRecord::Base
     return 24.hours
   end
   
-  validates_presence_of :time_restriction, :entries_remaining, :activated_on, :user_id, :therapy_category_id, :paid
+  def self.single_use_register_date_range
+    return 30.days
+  end
+  
+  validates_presence_of :time_restriction, :entries_remaining, :activated_on, :user_id, :therapy_category_id
 end

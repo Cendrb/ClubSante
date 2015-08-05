@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   end
   resources :exercise_templates
   
+  controller :timetable_templates do
+    get 'timetable_templates/:id/mods' =>"timetable_templates#show_with_modifications", as: "timetable_modifications"
+  end
   resources :timetable_templates
 
   get 'calendars/show'

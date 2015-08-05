@@ -207,8 +207,15 @@ class UsersController < ApplicationController
         end
       else
         # any usable tickets were not found
-        render_alert "Nemáte žádné permanentky pro terapii #{therapy.name.downcase}"
-        return
+        # try creating single use one
+        single_use = Ticket.create_single_use(current_user, therapy)
+        if(single_use)
+          return single_use
+        else
+          # you cannot create single use ticket from this therapy (need special category)
+          render_alert "Pro tuto terapii (#{therapy.name.downcase}) musíte mít předem koupenou permanentku"
+          return
+        end
       end
     end
   end
