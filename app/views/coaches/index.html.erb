@@ -14,7 +14,7 @@
     <% @coaches.each do |coach| %>
       <tr>
         <td><%= coach.name %></td>
-        <td><%= link_to 'Nezobrazit', coach %></td>
+        <td><%= link_to 'Zobrazit', coach %></td>
         <td><%= link_to 'Upravit', edit_coach_path(coach) %></td>
         <td><%= link_to 'Odstranit', coach, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
       </tr>

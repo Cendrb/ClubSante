@@ -25,30 +25,36 @@ class ExerciseTemplatesController < ApplicationController
   def multi_edit
     @exercise_template = ExerciseTemplate.new
     params[:affected_exercise_templates] = params[:affected_exercise_templates].to_a
-    params[:affected_exercise_templates].each do |id|
-      template = ExerciseTemplate.find(id)
-      if(params[:price] == nil)
-        if(template.price)
-          params[:price] = template.price
+    if(params[:affected_exercise_templates].length == 1)
+      template = ExerciseTemplate.find(params[:affected_exercise_templates].first)
+      params[:price] = template.price
+      params[:coach_id] = template.coach_id
+    else
+      params[:affected_exercise_templates].each do |id|
+        template = ExerciseTemplate.find(id)
+        if(params[:price] == nil)
+          if(template.price)
+            params[:price] = template.price
+          else
+            params[:price] = "< ponechat >"
+          end
         else
-          params[:price] = "< ponechat >"
+          if(params[:price] != template.price)
+            params[:price] = "< ponechat >"
+          end
         end
-      else
-        if(params[:price] != template.price)
-          params[:price] = "< ponechat >"
-        end
-      end
-      
-      puts "PENIS: " + template.coach_id.to_s
-      if(params[:coach_id] == nil)
-        if(template.coach_id)
-          params[:coach_id] = template.coach_id
+        
+        puts "PENIS: " + template.coach_id.to_s
+        if(params[:coach_id] == nil)
+          if(template.coach_id)
+            params[:coach_id] = template.coach_id
+          else
+            params[:coach_id] = 0
+          end
         else
-          params[:coach_id] = 0
-        end
-      else
-        if(params[:coach_id] != template.coach_id)
-          params[:coach_id] = 0
+          if(params[:coach_id] != template.coach_id)
+            params[:coach_id] = 0
+          end
         end
       end
     end
@@ -58,6 +64,8 @@ class ExerciseTemplatesController < ApplicationController
   # POST /exercise_templates.json
   def create
     @exercise_template = ExerciseTemplate.new(exercise_template_params)
+    @exercise_template.price = "Nezobrazovat"
+    @exercise_template.coach = Coach.get_nobody
 
     respond_to do |format|
       if @exercise_template.save
@@ -92,14 +100,18 @@ class ExerciseTemplatesController < ApplicationController
   
   def multi_update
     params[:affected_exercise_templates] = params[:affected_exercise_templates].split(",")
-    params[:affected_exercise_templates].each.each do |id|
+    @exercise_templates = []
+    params[:affected_exercise_templates].each do |id|
       template = ExerciseTemplate.find(id)
-      template.price = params[:price]
-      template.coach_id = params[:coach_id]
+      if(params[:price] != "< ponechat >")
+        template.price = params[:price]
+      end
+      if(params[:coach_id] != "")
+        template.coach_id = params[:coach_id]
+      end
       template.save!
+      @exercise_templates.push(template)
     end
-    
-    render nothing: true
   end
 
   # DELETE /exercise_templates/1

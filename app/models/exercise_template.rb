@@ -22,6 +22,7 @@ class ExerciseTemplate < ActiveRecord::Base
   
   def get_coach_string
     if(coach)
+      puts coach.name
       return "#{coach.name}"
     end
   end

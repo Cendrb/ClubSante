@@ -241,12 +241,6 @@
 						dataType: 'script',
 						format: 'js',
 						success: function(msg){
-							msg = msg.substring(50, msg.length);
-							var idBeginning = msg.search("data-id") + 8;
-							var idEnd = msg.search("data-duration") - 1;
-							var id = msg.substring(idBeginning, idEnd);
-							console.log(id);
-							setupDraggablesFor($(".timetable_template_exercise[data-id=" + id + "]"));
 						}
 					});
 				}

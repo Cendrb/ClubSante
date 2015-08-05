@@ -1,0 +1,5 @@
+<% @exercise_templates.each do |template| %>
+	$(".timetable_template_exercise[data-id=<%= template.id %>]").replaceWith("<%= escape_javascript(render template) %>");
+	setupDraggablesFor($(".timetable_template_exercise[data-id=<%= template.id %>]"));
+<% end %>
+clearSelected();
