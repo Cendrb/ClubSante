@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :timetable_modifications
+
   resources :exercise_modifications
 
   resources :coaches
@@ -23,11 +25,8 @@ Rails.application.routes.draw do
     post 'exercise_templates/multi_edit' => "exercise_templates#multi_update", as: "multi_update"
   end
   resources :exercise_templates
-  
-  controller :timetable_templates do
-    get 'timetable_templates/:id/mods' =>"timetable_templates#show_with_modifications", as: "timetable_modifications"
-  end
-  resources :timetable_templates
+
+  resources :timetable_templates, except: :show
 
   get 'calendars/show'
 
@@ -38,9 +37,13 @@ Rails.application.routes.draw do
   controller :users do
     get 'users/:id/admin_edit' => "users#admin_edit", as: "admin_edit_user"
     patch 'users/:id/admin_update' => "users#admin_update"
-    post 'users/subscribe_for_new'
-    post 'users/subscribe_for_existing'
-    post 'users/unsubscribe_from', as: 'unsubscribe'
+  end
+  
+  controller :exercise_register do
+    post 'registering_handler/subscribe_for_template' => "exercise_register#subscribe_for_template"
+    post 'registering_handler/subscribe_for_modification' => "exercise_register#subscribe_for_modification"
+    post 'registering_handler/subscribe_for_existing' => "exercise_register#subscribe_for_existing"
+    post 'registering_handler/unsubscribe_from', as: 'unsubscribe'
   end
 
   resources :exercises
@@ -56,6 +59,7 @@ Rails.application.routes.draw do
   controller :calendars do
     get 'calendars/summary' => :summary, as: :calendar_summary
     get 'calendars/:id' => :show, as: :calendar
+    get 'calendars/:id/final' => :show_final, as: :calendar_final
   end
   
   root to: 'users#summary'

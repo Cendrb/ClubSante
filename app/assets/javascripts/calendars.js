@@ -20,7 +20,7 @@ $(document).ready(function(){
 				{
 					$.ajax({
 						type: "POST",
-						url: "/users/unsubscribe_from",
+						url: "/registering_handler/unsubscribe_from",
 						data: { exercise_id: id, source: "calendar_view", beginning_offset: $(".calendar_timetable[data-calendar-id=" + clicked.data("calendar-id") + "]").data("beginning_offset") },
 						dataType: 'script',
 						format: 'js',
@@ -34,7 +34,7 @@ $(document).ready(function(){
 			{
 				$.ajax({
 					type: "POST",
-					url: "/users/subscribe_for_existing",
+					url: "/registering_handler/subscribe_for_existing",
 					data: { exercise_id: id, beginning_offset: $(".calendar_timetable[data-calendar-id=" + clicked.data("calendar-id") + "]").data("beginning_offset") },
 					dataType: 'script',
 					format: 'js',
@@ -53,21 +53,6 @@ $(document).ready(function(){
 		{
 			filter = "[data-calendar-id=" + calendar_id + "]";
 		}
-
-		$(".calendar_template_exercise" + filter).click(function(event)
-		{
-			var clicked = $(this);
-			$.ajax({
-				type: "POST",
-				url: "/users/subscribe_for_new",
-				data: { exercise_template_id: clicked.data("id"), date: clicked.data("date"), beginning_offset: $(".calendar_timetable" + filter).data("beginning_offset") },
-				dataType: 'script',
-				format: 'js',
-				success: function(msg){
-					setupHandlersFor(clicked.data("id"));
-				}
-			});
-		});
 	
 		$(".calendar_exercise_style" + filter).tooltip({
 		items: "[data-tooltip]",
@@ -76,6 +61,36 @@ $(document).ready(function(){
           	return this.getAttribute("data-tooltip");
         }
      	});	
+     	
+     	$(".calendar_template_exercise" + filter).click(function(event)
+		{
+			var clicked = $(this);
+			$.ajax({
+				type: "POST",
+				url: "/registering_handler/subscribe_for_template",
+				data: { exercise_template_id: clicked.data("id"), date: clicked.data("date"), beginning_offset: $(".calendar_timetable" + filter).data("beginning_offset") },
+				dataType: 'script',
+				format: 'js',
+				success: function(msg){
+					setupHandlersFor(clicked.data("id"));
+				}
+			});
+		});
+		
+		$(".calendar_modification_exercise" + filter).click(function(event)
+		{
+			var clicked = $(this);
+			$.ajax({
+				type: "POST",
+				url: "/registering_handler/subscribe_for_modification",
+				data: { exercise_modification_id: clicked.data("id"), beginning_offset: $(".calendar_timetable" + filter).data("beginning_offset") },
+				dataType: 'script',
+				format: 'js',
+				success: function(msg){
+					setupHandlersFor(clicked.data("id"));
+				}
+			});
+		});
 	
 		$(".calendar_exercise" + filter).click(function(event)
 		{
@@ -87,7 +102,7 @@ $(document).ready(function(){
 				{
 					$.ajax({
 						type: "POST",
-						url: "/users/unsubscribe_from",
+						url: "/registering_handler/unsubscribe_from",
 						data: { exercise_id: id, source: "calendar_view", beginning_offset: $(".calendar_timetable" + filter).data("beginning_offset") },
 						dataType: 'script',
 						format: 'js',
@@ -101,7 +116,7 @@ $(document).ready(function(){
 			{
 				$.ajax({
 					type: "POST",
-					url: "/users/subscribe_for_existing",
+					url: "/registering_handler/subscribe_for_existing",
 					data: { exercise_id: id, beginning_offset: $(".calendar_timetable" + filter).data("beginning_offset") },
 					dataType: 'script',
 					format: 'js',
@@ -117,7 +132,7 @@ $(document).ready(function(){
 			var clicked = $(this);
 			$.ajax({
 				type: "GET",
-				url: "/calendars/" + clicked.data("calendar-id") + ".js",
+				url: "/calendars/" + clicked.data("calendar-id") + "/final.js",
 				data: { target_date: clicked.data("target-date") },
 				dataType: 'script',
 				format: 'js',

@@ -1,16 +1,15 @@
 class Calendar < ActiveRecord::Base
   belongs_to :therapy
   has_one :timetable, dependent: :destroy
-  has_one :timetable_template, dependent: :destroy
+  has_many :timetable_templates, dependent: :destroy
+  has_one :timetable_modification, dependent: :destroy
   
   before_create :init_dependent
   
   def init_dependent
-    puts "1"
      self.timetable = Timetable.create
-     puts "2"
-     self.timetable_template = TimetableTemplate.create
-     puts "3"
+     self.timetable_modification = TimetableModification.create
+     self.timetable_templates << TimetableTemplate.create(beginning: Time.new(0))
      true
   end
   
@@ -19,23 +18,25 @@ class Calendar < ActiveRecord::Base
   end
   
   def self.min_hour_for(exercises, exercise_templates)
-    if(exercises.minimum("EXTRACT(HOUR FROM date)").nil?)
-      registered_min_hour = 69
+    if(exercises.joins(:exercise_modification).minimum("EXTRACT(HOUR FROM exercise_modifications.date)").nil?)
+      registered_min_modification_hour = 69
     else
-      registered_min_hour = exercises.minimum("EXTRACT(HOUR FROM date)").round
+      registered_min_modification_hour = exercises.joins(:exercise_modification).minimum("EXTRACT(HOUR FROM exercise_modifications.date)").round
     end
+    puts "MIN: #{registered_min_modification_hour}"
     
-    return [registered_min_hour, exercise_templates.minimum(:beginning).hour].min
+    return [registered_min_modification_hour, exercise_templates.minimum(:beginning).hour].min
     
   end
   
   def self.max_hour_for(exercises, exercise_templates)
-    if(exercises.maximum("EXTRACT(HOUR FROM date)").nil?)
-      registered_max_hour = -69
+    if(exercises.joins(:exercise_modification).maximum("EXTRACT(HOUR FROM exercise_modifications.date)").nil?)
+      registered_max_modification_hour = -69
     else
-      registered_max_hour = exercises.minimum("EXTRACT(HOUR FROM date)").round
+      registered_max_modification_hour = exercises.joins(:exercise_modification).maximum("EXTRACT(HOUR FROM exercise_modifications.date)").round
     end
+    puts "MAX: #{registered_max_modification_hour}"
     
-    return [registered_max_hour, exercise_templates.maximum(:beginning).hour].max + 1
+    return [registered_max_modification_hour, exercise_templates.maximum(:beginning).hour].max + 1
   end
 end

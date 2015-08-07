@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803113155) do
+ActiveRecord::Schema.define(version: 20150806144621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(version: 20150803113155) do
     t.integer  "coach_id"
     t.string   "price"
     t.text     "note"
-    t.integer  "timetable_template_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.integer  "timetable_modification_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "exercise_templates", force: :cascade do |t|
@@ -68,11 +68,11 @@ ActiveRecord::Schema.define(version: 20150803113155) do
   end
 
   create_table "exercises", force: :cascade do |t|
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.boolean  "available",    default: true
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.boolean  "available",                default: true
     t.integer  "timetable_id"
-    t.datetime "date"
+    t.integer  "exercise_modification_id"
   end
 
   create_table "goals", force: :cascade do |t|
@@ -124,10 +124,17 @@ ActiveRecord::Schema.define(version: 20150803113155) do
     t.integer  "time_restriction"
   end
 
+  create_table "timetable_modifications", force: :cascade do |t|
+    t.integer  "calendar_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "timetable_templates", force: :cascade do |t|
     t.integer  "calendar_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.datetime "beginning"
   end
 
   create_table "timetables", force: :cascade do |t|

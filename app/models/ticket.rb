@@ -35,7 +35,7 @@ class Ticket < ActiveRecord::Base
   end
   
   def register_entry(exercise)
-    if (self.activated_on..(self.activated_on + Time.at(self.time_restriction).to_i)).cover?(exercise.date)
+    if (self.activated_on..(self.activated_on + Time.at(self.time_restriction).to_i)).cover?(exercise.exercise_modification.date)
       # valid
       entry = self.entries.create(exercise: exercise)
       if self.entries_remaining == -1

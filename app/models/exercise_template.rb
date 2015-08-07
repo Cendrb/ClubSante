@@ -2,14 +2,16 @@ class ExerciseTemplate < ActiveRecord::Base
   validates_presence_of :beginning, :timetable_template_id
   belongs_to :timetable_template
   belongs_to :coach
-  has_one :therapy, through: [:timetable_template, :calendar, :therapy]
+  has_one :exercise_modification
+  has_one :therapy, through: [:timetable_template, :calendar]
+  has_one :calendar, through: :timetable_template
   
   def get_tooltip_calendar
-    string = "#{get_time_range_string}<br />#{get_duration_string}<br />#{get_capacity_string}"
+    string = "TEMPLATE<br />#{get_time_range_string}<br />#{get_duration_string}<br />#{get_capacity_string}"
     if(price != ExerciseTemplate.get_hide_string)
       string += "<br />#{price}"
     end
-    if(coach != Coach.get_nobody)
+    if(coach && coach != Coach.get_nobody)
       string += "<br />#{coach.name}"
     end
     return string

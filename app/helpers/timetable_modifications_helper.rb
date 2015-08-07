@@ -1,0 +1,2 @@
+module TimetableModificationsHelper
+end

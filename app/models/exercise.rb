@@ -1,12 +1,17 @@
 class Exercise < ActiveRecord::Base
+  validates_presence_of :timetable_id, :exercise_modification_id
+  validates_uniqueness_of :exercise_modification_id
   belongs_to :timetable
+  
+  belongs_to :exercise_modification
+  
   has_many :entries, dependent: :destroy
   
   has_one :therapy, through: [:timetable_template, :calendar, :therapy]
   
   
-  scope :between, ->(first, second) { where(date: first..second) }
-  scope :in_future, ->() { where("date >= :today", today: Date.today) }
+  scope :between, ->(first, second) { joins(:exercise_modification).where('exercise_modifications.date' => first..second) }
+  scope :in_future, ->() { joins(:exercise_modification).where("exercise_modifications.date >= :today", today: Date.today) }
   
   def full?
     return self.timetable.calendar.therapy.capacity <= self.entries.count
@@ -21,11 +26,11 @@ class Exercise < ActiveRecord::Base
   end
   
   def get_beginning_string
-    return self.date.to_s(:time)
+    return self.exercise_modification.date.to_s(:time)
   end
   
   def get_time_range_string
-    return "#{get_beginning_string} - #{(self.date + self.timetable.calendar.therapy.duration_in_minutes.minutes).to_s(:time)}"
+    return "#{get_beginning_string} - #{(self.exercise_modification.date + self.timetable.calendar.therapy.duration_in_minutes.minutes).to_s(:time)}"
   end
   
   def get_duration_string

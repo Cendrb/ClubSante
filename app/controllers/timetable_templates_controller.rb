@@ -1,25 +1,16 @@
 class TimetableTemplatesController < ApplicationController
-  before_action :set_timetable_template, only: [:show, :show_with_modifications, :edit, :update, :destroy]
+  before_action :set_timetable_template, only: [:edit, :update, :destroy]
 
   # GET /timetable_templates
   # GET /timetable_templates.json
   def index
     @timetable_templates = TimetableTemplate.all
   end
-
-  # GET /timetable_templates/1
-  # GET /timetable_templates/1.json
-  def show
-    
-  end
   
-  def show_with_modifications
-    
-  end
-
   # GET /timetable_templates/new
   def new
-    @timetable_template = TimetableTemplate.new
+    @timetable_template = TimetableTemplate.create(beginning: Date.today, calendar: Calendar.find(params[:calendar_id]))
+    @timetable_template.save!
   end
 
   # GET /timetable_templates/1/edit
@@ -74,6 +65,6 @@ class TimetableTemplatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def timetable_template_params
-      params[:timetable_template].permit(:calendar_id)
+      params[:timetable_template].permit(:calendar_id, :beginning)
     end
 end
