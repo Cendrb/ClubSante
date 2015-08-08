@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
         redirect_to :root, alert: 'Pro přístup do této sekce musíte mít sjednanou uvítací schůzku'
       end
       if required_level == User.al_admin
-        redirect_to :root, alert: 'Nemáte oprávnění pro přístup do této sekce'
+        redirect_to :root, alert: 'Přístup do této sekce mají pouze administrátoři'
       end
     end
   end

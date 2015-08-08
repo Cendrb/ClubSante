@@ -2,6 +2,8 @@
 
 <h1><%= @therapy.name %></h1>
 
+<h2>Terapie</h2>
+
 <p>
   <strong>Maximální počet osob:</strong>
   <%= @therapy.capacity %>
@@ -12,9 +14,11 @@
   <%= @therapy.duration_in_minutes %>
 </p>
 
+
+<%= link_to 'Upravit', edit_therapy_path(@therapy) %>
+
 <p>
   <%= render partial: "calendars/calendar", locals: { calendar: @therapy.calendar } %>
 </p>
 
-<%= link_to 'Upravit', edit_therapy_path(@therapy) %> |
 <%= link_to 'Zpět', therapies_path %>

@@ -1,1 +1,5 @@
-$(".calendar_exercise[data-id=<%= @exercise.id %>]").replaceWith("<%= escape_javascript(render partial: "exercises/exercise", locals: { exercise: @exercise, beginning_offset: @beginning_offset }) %>");
+<% if @exercise_modification %>
+	$(".calendar_exercise[data-id=<%= @exercise.id %>]").replaceWith("<%= escape_javascript(render partial: "exercise_modifications/exercise_modification_for_calendar", locals: { exercise_modification: @exercise_modification, beginning_offset: @beginning_offset }) %>");
+<% else %>
+	$(".calendar_exercise[data-id=<%= @exercise.id %>]").replaceWith("<%= escape_javascript(render partial: "exercises/exercise", locals: { exercise: @exercise, beginning_offset: @beginning_offset }) %>");
+<% end %>

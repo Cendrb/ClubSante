@@ -1,3 +1,4 @@
+<h2>Týdenní plány</h2>
 <table>
 	<th>Platí od</th>
 	<th></th>
@@ -5,7 +6,10 @@
 		<tr>
 			<td><%= l timetable_template.beginning %></td>
 			<td><%= link_to 'Upravit', edit_timetable_template_path(timetable_template) %></td>
+			<td><%= link_to 'Odstranit', timetable_template, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
 		</tr>
 	<% end %>
 </table>
 <%= link_to 'Nový týdenní plán', new_timetable_template_path(calendar_id: calendar.id) %>
+<h2>Modifikace</h2>
+<%= link_to 'Upravit modifikace', edit_timetable_modification_path(calendar.timetable_modification) %>

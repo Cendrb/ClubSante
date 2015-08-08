@@ -1,5 +1,6 @@
 class ExerciseModification < ActiveRecord::Base
   validates_presence_of :date, :coach_id, :price, :timetable_modification_id
+  validates_uniqueness_of :exercise_template_id
   
   belongs_to :timetable_modification
   belongs_to :coach

@@ -7,11 +7,6 @@ class TimetableModificationsController < ApplicationController
     @timetable_modifications = TimetableModification.all
   end
 
-  # GET /timetable_modifications/1
-  # GET /timetable_modifications/1.json
-  def show
-  end
-
   # GET /timetable_modifications/new
   def new
     @timetable_modification = TimetableModification.new
@@ -19,6 +14,16 @@ class TimetableModificationsController < ApplicationController
 
   # GET /timetable_modifications/1/edit
   def edit
+    if params[:target_date]
+      @date = Date.parse(params[:target_date])
+    else
+      @date = Date.today
+    end
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /timetable_modifications

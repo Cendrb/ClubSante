@@ -13,6 +13,17 @@ class Exercise < ActiveRecord::Base
   scope :between, ->(first, second) { joins(:exercise_modification).where('exercise_modifications.date' => first..second) }
   scope :in_future, ->() { joins(:exercise_modification).where("exercise_modifications.date >= :today", today: Date.today) }
   
+  def get_tooltip_calendar
+    string = "FINAL EXERCISE<br />#{get_time_range_string}<br />#{get_duration_string}<br />#{get_capacity_string}"
+    if(exercise_modification.price != ExerciseTemplate.get_hide_string)
+      string += "<br />#{exercise_modification.price}"
+    end
+    if(exercise_modification.coach && exercise_modification.coach != Coach.get_nobody)
+      string += "<br />#{exercise_modification.coach.name}"
+    end
+    return string
+  end
+  
   def full?
     return self.timetable.calendar.therapy.capacity <= self.entries.count
   end

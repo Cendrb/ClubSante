@@ -1,0 +1,18 @@
+<div class="timetable_modification_with_week_selector">
+	<div id="week_selector">
+		<div class="week_selector_left_button week_selector_element">
+			<a href="javascript:void(0)" class="timetable_week_selector_button" data-timetable-modification-id=<%= timetable_modification.id %> data-target-date=<%= beginning_date - 1.week %>>předchozí týden</a>
+		</div>
+		<div class="week_selector_current_week week_selector_element">
+			<%= l get_beginning_of_week(beginning_date) %> - <%= l get_end_of_week(beginning_date) %>
+		</div>
+		<div class="week_selector_right_button week_selector_element">
+			<a href="javascript:void(0)" class="timetable_week_selector_button" data-timetable-modification-id=<%= timetable_modification.id %> data-target-date=<%= beginning_date + 1.week %>>následující týden</a>
+		</div>
+		<div class="week_selector_clear"></div>
+	</div>
+	
+	<div class="timetable_modification_in_week_selector" data-beginning=<%= beginning_date %>>
+		<%= render partial: "timetable_modifications/timetable_modification", locals: {timetable_modification: timetable_modification, beginning_date: beginning_date} %>
+	</div>
+</div>

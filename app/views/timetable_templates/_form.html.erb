@@ -28,7 +28,6 @@
 	{
     	width: 100%;
     	background-color: yellow;
-		height: <%= @timetable_template.calendar.therapy.duration_in_minutes * TimetableTemplate.pixels_per_minute %>px;
 		width: 100%;
   		display: flex;
   		justify-content: center;
@@ -38,6 +37,10 @@
   		margin: 0px;
   		border: 0;
 	}
+	.timetable_template_exercise_time
+  	{
+    
+  	}
 	.timetable_template_exercise_handle
 	{
 		background-color: red;
@@ -249,9 +252,8 @@
 	});
 	</script>
 
-<h1>Stránka v průběhu vývoje</h1>
 <p>
-	Pomocí shiftu lze označit více položek najednou a všem upravit vlastnosti najednou
+	Pomocí shiftu lze označit více položek najednou a všem upravit vlastnosti
 </p>
 
 <%= form_for @timetable_template, url: @timetable_template, method: :patch, remote: true do |f| %>
@@ -290,11 +292,12 @@
 				<div class="hour_separator_line" style="position: absolute; top: <%= (hour * 60 * TimetableTemplate.pixels_per_minute) + 19 %>px; left: 0"></div>
 			<% end %>
 		</td>
+		<% duration = @timetable_template.calendar.thearpy.duration_in_minutes %>
 		<% for i in 0..6 do %>
 			<td class="timetable_template_weekday" oncontextmenu="return false;" data-id=<%= i %>>
 				<% if @timetable_template.exercise_templates.where(weekday: i).count > 0 %>
 					<% @timetable_template.exercise_templates.where(weekday: i).each do |exercise| %>
-						<%= render exercise %>
+						<%= render exercise, locals: { exercise_template: exercise, duration: duration} %>
 					<% end %>
 				<% end %>
 			</td>

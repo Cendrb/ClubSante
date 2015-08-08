@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   
-  resources :timetable_modifications
-
   resources :exercise_modifications
 
   resources :coaches
@@ -27,6 +25,8 @@ Rails.application.routes.draw do
   resources :exercise_templates
 
   resources :timetable_templates, except: :show
+  
+  resources :timetable_modifications, except: :show
 
   get 'calendars/show'
 
@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     post 'registering_handler/subscribe_for_template' => "exercise_register#subscribe_for_template"
     post 'registering_handler/subscribe_for_modification' => "exercise_register#subscribe_for_modification"
     post 'registering_handler/subscribe_for_existing' => "exercise_register#subscribe_for_existing"
-    post 'registering_handler/unsubscribe_from', as: 'unsubscribe'
+    post 'registering_handler/unsubscribe_from' => "exercise_register#unsubscribe_from", as: 'unsubscribe'
   end
 
   resources :exercises

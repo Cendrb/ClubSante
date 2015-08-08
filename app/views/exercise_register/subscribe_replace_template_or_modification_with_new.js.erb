@@ -1,0 +1,7 @@
+<% if @exercise_template %>
+$(".calendar_template_exercise[data-id=<%= @exercise_template.id %>]").replaceWith("<%= escape_javascript(render partial: "exercises/exercise", locals: { exercise: @exercise, beginning_offset: @beginning_offset }) %>");
+<% end %>
+
+<% if @exercise_modification %>
+	$(".calendar_modification_exercise[data-id=<%= @exercise_modification.id %>]").replaceWith("<%= escape_javascript(render partial: "exercises/exercise", locals: { exercise: @exercise, beginning_offset: @beginning_offset }) %>");
+<% end %>

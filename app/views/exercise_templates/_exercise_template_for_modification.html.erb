@@ -1,0 +1,3 @@
+<div class="timetable_modification_template timetable_modification_style" data-id=<%= exercise_template.id %> data-duration=<%= exercise_template.timetable_template.calendar.therapy.duration_in_minutes %> style="position: absolute; top: <%= exercise_template.beginning.hour * 60 * TimetableModification.pixels_per_minute + exercise_template.beginning.min * TimetableModification.pixels_per_minute %>px; height: <%= duration * TimetableTemplate.pixels_per_minute %>px;" data-tooltip="<%= exercise_template.get_tooltip_template %>" >
+	<div class="timetable_modification_template_time"><%= exercise_template.get_time_range_string %></div>
+</div> 

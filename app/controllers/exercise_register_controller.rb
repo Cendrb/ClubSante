@@ -3,10 +3,10 @@ class ExerciseRegisterController < ApplicationController
     date = Date.parse(params[:date])
     @exercise_template = ExerciseTemplate.find(params[:exercise_template_id])
     @beginning_offset = params[:beginning_offset].to_i
+    date = date.to_datetime + @exercise_template.beginning.seconds_since_midnight.seconds
     
     if validate_date_signup(date)
       ticket = ticket_selector(@exercise_template.timetable_template.calendar.therapy, date)
-      date = date.to_datetime + @exercise_template.beginning.seconds_since_midnight.seconds
       
       if ticket
         if ticket.entries_available?(date, @exercise_template.timetable_template.calendar.therapy)
@@ -14,7 +14,7 @@ class ExerciseRegisterController < ApplicationController
           exercise_modification.save!
           @exercise = Exercise.create(exercise_modification: exercise_modification, timetable: @exercise_template.timetable_template.calendar.timetable)
           ticket.register_entry(@exercise)
-          render "subscribe_create_exercise.js.erb"
+          render "subscribe_replace_template_or_modification_with_new.js.erb"
         else
           render plain: "allahu akbar"
         end
@@ -23,21 +23,17 @@ class ExerciseRegisterController < ApplicationController
   end
   
   def subscribe_for_modification
-    date = Date.parse(params[:date])
-    @exercise_template = ExerciseTemplate.find(params[:exercise_template_id])
+    @exercise_modification = ExerciseModification.find(params[:exercise_modification_id])
     @beginning_offset = params[:beginning_offset].to_i
     
-    if validate_date_signup(date)
-      ticket = ticket_selector(@exercise_template.timetable_template.calendar.therapy, date)
-      date = date.to_datetime + @exercise_template.beginning.seconds_since_midnight.seconds
+    if validate_date_signup(@exercise_modification.date)
+      ticket = ticket_selector(@exercise_modification.timetable_modification.calendar.therapy, @exercise_modification.date)
       
       if ticket
-        if ticket.entries_available?(date, @exercise_template.timetable_template.calendar.therapy)
-          exercise_modification = ExerciseModification.new(date: date, timetable_modification: @exercise_template.timetable_template.calendar.timetable_modification, exercise_template: @exercise_template)
-          exercise_modification.save!
-          @exercise = Exercise.create(exercise_modification: exercise_modification, timetable: @exercise_template.timetable_template.calendar.timetable)
+        if ticket.entries_available?(@exercise_modification.date, @exercise_modification.timetable_modification.calendar.therapy)
+          @exercise = Exercise.create(exercise_modification: @exercise_modification, timetable: @exercise_modification.timetable_modification.calendar.timetable)
           ticket.register_entry(@exercise)
-          render "subscribe_create_exercise.js.erb"
+          render "subscribe_replace_template_or_modification_with_new.js.erb"
         else
           render plain: "allahu akbar"
         end
@@ -69,11 +65,15 @@ class ExerciseRegisterController < ApplicationController
     entry = Entry.joins(:ticket).where("tickets.user_id = ?", current_user.id).where("exercise_id = ?", @exercise.id).first
     ticket = entry.ticket
     ticket.unregister_entry(@exercise, entry)
+    if(@exercise.entries.count == 0)
+      @exercise_modification = @exercise.exercise_modification
+      @exercise.destroy
+    end
     
     if(params[:source] == "calendar_view")
-      render "users/unsubscribe_from_calendar_view"
+      render "unsubscribe_from_calendar_view"
     else
-      render "users/unsubscribe_from_user_summary_list", locals: { tickets: current_user.tickets }
+      render "unsubscribe_from_user_summary_list", locals: { tickets: current_user.tickets }
     end
   end
   
