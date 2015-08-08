@@ -26,7 +26,7 @@ class ExerciseRegisterController < ApplicationController
     @exercise_modification = ExerciseModification.find(params[:exercise_modification_id])
     @beginning_offset = params[:beginning_offset].to_i
     
-    if validate_date_signup(@exercise_modification.date)
+    if validate_date_signup(@exercise_modification.date) && validate_modification_signup(@exercise_modification)
       ticket = ticket_selector(@exercise_modification.timetable_modification.calendar.therapy, @exercise_modification.date)
       
       if ticket
@@ -129,6 +129,14 @@ class ExerciseRegisterController < ApplicationController
     result = User.validate_date_signup(date)
     if result != true
       render_alert(result)
+      return false
+    end
+    return true
+  end
+  
+  def validate_modification_signup(modification)
+    if(modification.removal)
+      render_alert("Tato hodina byla zrušena")
       return false
     end
     return true

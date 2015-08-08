@@ -1,1 +1,1 @@
-$(".timetable_modification_with_week_selector").replaceWith("<%= escape_javascript(render partial: "timetable_modification_with_week_selector", locals: { timetable_modification: @timetable_modification, beginning_date: @date}) %>");
+$(".timetable_modification_with_week_selector").replaceWith("<%= escape_javascript(render partial: "timetable_modifications/timetable_modification_with_week_selector", locals: { timetable_modification: @timetable_modification, beginning_date: @date}) %>");

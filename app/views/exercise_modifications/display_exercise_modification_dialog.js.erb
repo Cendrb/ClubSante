@@ -1,0 +1,11 @@
+$("body").append("<%= escape_javascript(render partial: "form") %>");
+$('.exercise_modification_form').dialog(
+{
+    resizable: false,
+    modal: true,
+    width:'auto',
+	close: function(event, ui)
+    {
+        $(this).dialog('destroy').remove();
+    }
+});

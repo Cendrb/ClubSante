@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806144621) do
+ActiveRecord::Schema.define(version: 20150808141620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150806144621) do
     t.integer  "timetable_modification_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.boolean  "removal"
   end
 
   create_table "exercise_templates", force: :cascade do |t|

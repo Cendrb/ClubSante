@@ -1,6 +1,5 @@
 class ExerciseModification < ActiveRecord::Base
   validates_presence_of :date, :coach_id, :price, :timetable_modification_id
-  validates_uniqueness_of :exercise_template_id
   
   belongs_to :timetable_modification
   belongs_to :coach
@@ -11,8 +10,12 @@ class ExerciseModification < ActiveRecord::Base
   before_validation :load_default_values
   
   def load_default_values
-    self.coach_id ||= self.exercise_template.coach_id
-    self.price ||= self.exercise_template.price
+    load_default_values_from(self.exercise_template)
+  end
+  
+  def load_default_values_from(exercise_template)
+    self.coach_id ||= exercise_template.coach_id
+    self.price ||= exercise_template.price
   end
   
   

@@ -7,7 +7,7 @@
   
   <div class="field">
     <%= label_tag :coach_id, "Trenér" %><br>
-    <%= select_tag :coach_id, options_from_collection_for_select(Coach.all, :id, :name, params[:coach_id]), include_blank: "< ponechat >" %>
+    <%= select_tag :coach_id, options_from_collection_for_select(Coach.all, :id, :name, params[:coach_id]), include_blank: ExerciseTemplate.get_the_same_string %>
   </div>
   
   <%= hidden_field_tag :affected_exercise_templates, params[:affected_exercise_templates].join(",") %>

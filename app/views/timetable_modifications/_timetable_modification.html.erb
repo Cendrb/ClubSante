@@ -2,7 +2,7 @@
 	@calendar = timetable_modification.calendar
     @monday_date = get_beginning_of_week(beginning_date)
  %>
-
+<div class="timetable_modification_div">
 <table class="timetable_modification">
 	<tr>
 		<td></td>
@@ -30,12 +30,12 @@
 		
 		<% duration = @calendar.therapy.duration_in_minutes %>
 		<% for weekday in 0..6 %>
-			<td class="timetable_modification_weekday" oncontextmenu="return false;" data-weekday=<%= weekday %>">
-				<% date = @monday_date + weekday.days %>
+			<% date = @monday_date + weekday.days %>
+			<td class="timetable_modification_weekday" oncontextmenu="return false;" data-calendar-id=<%= @calendar.id %> data-date=<%= date %>>
 				<% timetable_template = TimetableTemplate.where(calendar: @calendar).where("beginning < ?", date).order(:beginning).last %>
 				<% timetable_template.exercise_templates.where(weekday: weekday).find_each do |template| %> 
 					<% if template.exercise_modification == nil %>
-						<%= render partial: "exercise_templates/exercise_template_for_modification", locals: { exercise_template: template, duration: duration } %>
+						<%= render partial: "exercise_templates/exercise_template_for_modification", locals: { exercise_template: template, duration: duration, date: date, calendar: @calendar } %>
 					<% end %>
 				<% end %>
 				
@@ -46,3 +46,4 @@
 		<% end %>
 	</tr>
 </table>
+</div>

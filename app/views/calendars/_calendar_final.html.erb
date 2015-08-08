@@ -56,7 +56,7 @@
 					<% end %>
 				<% end %>
 				
-				<% @modifications.where("date::date = ?", date).find_each do |modification| %>
+				<% @modifications.where(removal: false).where("date::date = ?", date).find_each do |modification| %>
 					<%= render partial: "exercise_modifications/exercise_modification_for_calendar", locals: { exercise_modification: modification, beginning_offset: @beginning_offset } %>
 				<% end %>
 				

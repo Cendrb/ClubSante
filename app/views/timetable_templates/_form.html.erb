@@ -292,12 +292,12 @@
 				<div class="hour_separator_line" style="position: absolute; top: <%= (hour * 60 * TimetableTemplate.pixels_per_minute) + 19 %>px; left: 0"></div>
 			<% end %>
 		</td>
-		<% duration = @timetable_template.calendar.thearpy.duration_in_minutes %>
+		<% duration = @timetable_template.calendar.therapy.duration_in_minutes %>
 		<% for i in 0..6 do %>
 			<td class="timetable_template_weekday" oncontextmenu="return false;" data-id=<%= i %>>
 				<% if @timetable_template.exercise_templates.where(weekday: i).count > 0 %>
 					<% @timetable_template.exercise_templates.where(weekday: i).each do |exercise| %>
-						<%= render exercise, locals: { exercise_template: exercise, duration: duration} %>
+						<%= render partial: "exercise_templates/exercise_template", locals: { exercise_template: exercise, duration: duration} %>
 					<% end %>
 				<% end %>
 			</td>
