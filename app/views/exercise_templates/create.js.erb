@@ -1,2 +1,2 @@
-$(".timetable_template_weekday[data-id=" + <%= escape_javascript(@exercise_template.weekday.to_s) %> + "]").append("<%= escape_javascript(render @exercise_template) %>");
+$(".timetable_template_weekday[data-id=" + <%= escape_javascript(@exercise_template.weekday.to_s) %> + "]").append("<%= escape_javascript(render partial: "exercise_template", locals: { exercise_template: @exercise_template, duration: @exercise_template.timetable_template.calendar.therapy.duration_in_minutes }) %>");
 setupDraggablesFor($(".timetable_template_exercise[data-id=<%= @exercise_template.id %>]"));
