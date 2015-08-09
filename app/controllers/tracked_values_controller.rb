@@ -1,4 +1,5 @@
 class TrackedValuesController < ApplicationController
+  before_filter :authenticate_admin
   before_action :set_tracked_value, only: [:show, :edit, :update, :destroy]
 
   # GET /tracked_values

@@ -1,4 +1,5 @@
 class ExerciseTemplatesController < ApplicationController
+  before_filter :authenticate_admin
   before_action :set_exercise_template, only: [:show, :edit, :update, :destroy]
 
   # GET /exercise_templates
@@ -111,6 +112,9 @@ class ExerciseTemplatesController < ApplicationController
       end
       template.save!
       @exercise_templates.push(template)
+    end
+    if(@exercise_templates.count > 0)
+      @duration = @exercise_templates.first.timetable_template.calendar.therapy.duration_in_minutes
     end
   end
 

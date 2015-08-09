@@ -1,4 +1,6 @@
 class CalendarsController < ApplicationController
+  before_filter :authenticate_admin, only: [:show]
+  before_filter :authenticate_registered, only: [:show_final, :summary]
   
   def show
     @calendar = Calendar.find(params[:id])

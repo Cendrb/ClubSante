@@ -1,4 +1,5 @@
 class ExerciseModificationsController < ApplicationController
+  before_filter :authenticate_admin
   before_action :set_exercise_modification, only: [:show, :edit, :update, :destroy]
 
   # GET /exercise_modifications

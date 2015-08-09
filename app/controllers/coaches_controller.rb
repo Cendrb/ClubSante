@@ -1,4 +1,5 @@
 class CoachesController < ApplicationController
+  before_filter :authenticate_admin
   before_action :set_coach, only: [:show, :edit, :update, :destroy]
 
   # GET /coaches

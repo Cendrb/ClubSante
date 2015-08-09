@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_admin, only: [:index, :admin_edit, :admin_update]
+  before_filter :self_edit?, only: [:show, :edit, :update, :destroy, :tracked_value_chart]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :admin_edit, :admin_update]
   
   # GET /users
@@ -127,6 +129,21 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+  
+  private
+  
+  def self_edit?
+    if(access_for_level?(User.al_admin))
+      return true
+    else
+      set_user
+      if(@user == current_user)
+        return true
+      else
+        redirect_to :root, alert: 'Máte právo spravovat pouze své vlastní údaje'
+      end
     end
   end
 

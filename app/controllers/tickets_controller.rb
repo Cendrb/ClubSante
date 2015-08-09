@@ -1,4 +1,5 @@
 class TicketsController < ApplicationController
+  before_filter :authenticate_admin
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   # GET /tickets

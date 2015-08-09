@@ -1,4 +1,5 @@
 class AvailableValuesController < ApplicationController
+  before_filter :authenticate_admin
   before_action :set_available_value, only: [:show, :edit, :update, :destroy]
 
   # GET /available_values

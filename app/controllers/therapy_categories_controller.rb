@@ -1,4 +1,5 @@
 class TherapyCategoriesController < ApplicationController
+  before_filter :authenticate_admin
   before_action :set_therapy_category, only: [:show, :edit, :update, :destroy]
 
   # GET /therapy_categories

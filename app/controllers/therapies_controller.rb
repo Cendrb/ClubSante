@@ -1,4 +1,5 @@
 class TherapiesController < ApplicationController
+  before_filter :authenticate_admin
   before_action :set_therapy, only: [:show, :edit, :update, :destroy]
 
   # GET /therapies

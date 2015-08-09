@@ -1,4 +1,5 @@
 class TimetableTemplatesController < ApplicationController
+  before_filter :authenticate_admin
   before_action :set_timetable_template, only: [:edit, :update, :destroy]
 
   # GET /timetable_templates

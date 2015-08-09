@@ -1,4 +1,6 @@
 class ExerciseRegisterController < ApplicationController
+  before_filter :authenticate_registered
+  
   def subscribe_for_template
     date = Date.parse(params[:date])
     @exercise_template = ExerciseTemplate.find(params[:exercise_template_id])
