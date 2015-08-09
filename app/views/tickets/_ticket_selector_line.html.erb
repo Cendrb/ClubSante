@@ -17,11 +17,22 @@
 		<%= b_to_s ticket.paid %>
 	</td>
 	<td>
+		<% if ticket.therapy_category.therapies.count > 0 %>
+			<%= ticket.therapy_category.name %> (<%= (ticket.therapy_category.therapies.map { |therapy| therapy.name }).join(", ").downcase %>)
+		<% else %>
+			<%= ticket.therapy_category.name %>
+		<% end %>
+	</td>
+	<td>
 		<% if ticket.entries_available?(@date, therapy) %>
 			<% if @exercise_template %>
-				<%= button_to "Použít", {controller: "users", action: "subscribe_for_new", method: :post, date: @date, exercise_template_id: @exercise_template.id, ticket_id: ticket.id, beginning_offset: @beginning_offset}, class: "ticket_selector_use_button", disabled: !ticket.entries_available?(@date, therapy), remote: true %>
+				<%= button_to "Použít", {controller: "exercise_register", action: "subscribe_for_template", method: :post, date: @date, exercise_template_id: @exercise_template.id, ticket_id: ticket.id, beginning_offset: @beginning_offset}, class: "ticket_selector_use_button", remote: true %>
 			<% else %>
-				<%= button_to "Použít", {controller: "users", action: "subscribe_for_existing", method: :post, exercise_id: @exercise.id, ticket_id: ticket.id, beginning_offset: @beginning_offset}, class: "ticket_selector_use_button", disabled: !ticket.entries_available?(@date, therapy), remote: true %>
+				<% if @exercise_modification %>
+					<%= button_to "Použít", {controller: "exercise_register", action: "subscribe_for_modification", method: :post, exercise_modification_id: @exercise_modification.id, ticket_id: ticket.id, beginning_offset: @beginning_offset}, class: "ticket_selector_use_button", remote: true %>
+				<% else %>
+					<%= button_to "Použít", {controller: "exercise_register", action: "subscribe_for_existing", method: :post, exercise_id: @exercise.id, ticket_id: ticket.id, beginning_offset: @beginning_offset}, class: "ticket_selector_use_button", remote: true %>
+				<% end %>
 			<% end %>
 		<% else %>
 			<%= ticket.get_entries_unavailable_error(@date, therapy) %>

@@ -1,6 +1,9 @@
 class Ticket < ActiveRecord::Base
   belongs_to :user
   belongs_to :therapy_category
+ 
+  validates_presence_of :time_restriction, :entries_remaining, :activated_on, :user_id, :therapy_category_id
+  validates_inclusion_of :single_use, in: [true, false]
   
   has_many :entries, dependent: :destroy
   
@@ -67,9 +70,9 @@ class Ticket < ActiveRecord::Base
   end
   
   def self.create_single_use(user, therapy)
-    TherapyCategory.for_therapy(therapy).find_each do |category|
+    TherapyCategory.for_therapy(therapy).joins(:therapy_categories).where("therapy_categories.can_single_use = ?", true).find_each do |category|
       if(category.therapies.count == 1)
-        ticket = Ticket.new(time_restriction: Ticket.single_use_register_date_range, entries_remaining: 1, activated_on: Date.today, paid: false, user: user, therapy_category: category)
+        ticket = Ticket.new(time_restriction: Ticket.single_use_register_date_range, entries_remaining: 1, activated_on: Date.today, paid: false, user: user, therapy_category: category, single_use: true)
         ticket.save!
         return ticket
       end
@@ -88,6 +91,4 @@ class Ticket < ActiveRecord::Base
   def self.single_use_register_date_range
     return 30.days
   end
-  
-  validates_presence_of :time_restriction, :entries_remaining, :activated_on, :user_id, :therapy_category_id
 end

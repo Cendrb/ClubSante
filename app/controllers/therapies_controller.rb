@@ -26,6 +26,9 @@ class TherapiesController < ApplicationController
   # POST /therapies.json
   def create
     @therapy = Therapy.new(therapy_params)
+    if(@therapy.can_single_use)
+      TherapyCategory.create(name: @therapy.name)
+    end
 
     respond_to do |format|
       if @therapy.save
@@ -70,6 +73,6 @@ class TherapiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def therapy_params
-      params.require(:therapy).permit(:name, :capacity, :duration_in_minutes)
+      params.require(:therapy).permit(:name, :capacity, :duration_in_minutes, :can_single_use)
     end
 end

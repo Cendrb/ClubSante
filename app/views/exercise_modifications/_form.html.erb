@@ -11,10 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :date, "Termín" %><br>
-    <%= f.datetime_select :date %>
-  </div>
+  <% if @exercise_modification.exercise_template_id %>
+  	  <!-- Disallow changing date when editing existing template  -->
+	  <div class="field">
+	    <%= f.label :date, "Termín" %><br>
+	    <%= f.time_select :date %>
+	  </div>
+  <% else %>
+  	  <!-- Allow changing whole date - new modification - not bound to anything  -->
+	  <div class="field">
+	    <%= f.label :date, "Termín" %><br>
+	    <%= f.datetime_select :date %>
+	  </div>
+  <% end %>
   <div class="field">
     <%= f.label :coach_id, "Trenér" %><br>
     <%= f.collection_select :coach_id, Coach.all, :id, :name, include_blank: ExerciseTemplate.get_the_same_string %>
@@ -28,10 +37,10 @@
     <%= f.text_area :note %>
   </div>
   <% if @exercise_modification.exercise_template_id %>
-  <div class="field">
-  	<%= f.label :removal, "Pouze odebrat", title: "Při zaškrtnutí zmizí tato hodina z rozvrhu. Jinak bude pouze upravena." %>
-    <%= f.check_box :removal %>
-  </div>
+	  <div class="field">
+	  	<%= f.label :removal, "Pouze odebrat", title: "Při zaškrtnutí zmizí tato hodina z rozvrhu. Jinak bude pouze upravena." %>
+	    <%= f.check_box :removal %>
+	  </div>
   <% end %>
   <%= f.hidden_field :timetable_modification_id %>
   <%= f.hidden_field :exercise_template_id %>

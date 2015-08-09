@@ -1,5 +1,6 @@
 class ExerciseModification < ActiveRecord::Base
   validates_presence_of :date, :coach_id, :price, :timetable_modification_id
+  validates_inclusion_of :removal, in: [true, false]
   
   belongs_to :timetable_modification
   belongs_to :coach
@@ -55,6 +56,14 @@ class ExerciseModification < ActiveRecord::Base
     if(coach)
       puts coach.name
       return "#{coach.name}"
+    end
+  end
+  
+  def differs_from_template
+    if(exercise_template)
+      return date.to_time != exercise_template.beginning || coach != exercise_template.coach || price != exercise_template.price
+    else
+      return true
     end
   end
 end

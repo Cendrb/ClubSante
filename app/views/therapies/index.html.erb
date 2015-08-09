@@ -8,6 +8,7 @@
       <th>Název</th>
       <th>Maximální počet osob</th>
       <th>Délka v minutách</th>
+      <th>Lze zarezervovat bez permanentky</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
         <td><%= therapy.name %></td>
         <td><%= therapy.capacity %></td>
         <td><%= therapy.duration_in_minutes %></td>
+        <td><%= therapy.can_single_use ? "ano" : "ne" %></td>
         <td><%= link_to 'Zobrazit', therapy %></td>
         <td><%= link_to 'Upravit', edit_therapy_path(therapy) %></td>
         <td><%= link_to 'Odstranit', therapy, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>

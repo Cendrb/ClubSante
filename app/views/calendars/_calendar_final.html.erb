@@ -51,7 +51,7 @@
 				<% date = @monday_date + weekday.days %>
 				<% timetable_template = TimetableTemplate.where(calendar: @calendar).where("beginning < ?", date).order(:beginning).last %>
 				<% timetable_template.exercise_templates.where(weekday: weekday).find_each do |template| %> 
-					<% if template.exercise_modification == nil %>
+					<% if template.exercise_modifications.where("date::date = ?", date).count == 0 %>
 						<%= render partial: "exercise_templates/exercise_template_for_calendar", locals: { exercise_template: template, date: date, beginning_offset: @beginning_offset } %>
 					<% end %>
 				<% end %>

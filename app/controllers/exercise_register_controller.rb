@@ -10,7 +10,7 @@ class ExerciseRegisterController < ApplicationController
       
       if ticket
         if ticket.entries_available?(date, @exercise_template.timetable_template.calendar.therapy)
-          exercise_modification = ExerciseModification.new(date: date, timetable_modification: @exercise_template.timetable_template.calendar.timetable_modification, exercise_template: @exercise_template)
+          exercise_modification = ExerciseModification.new(date: date, timetable_modification: @exercise_template.timetable_template.calendar.timetable_modification, exercise_template: @exercise_template, removal: false)
           exercise_modification.save!
           @exercise = Exercise.create(exercise_modification: exercise_modification, timetable: @exercise_template.timetable_template.calendar.timetable)
           ticket.register_entry(@exercise)
@@ -65,9 +65,16 @@ class ExerciseRegisterController < ApplicationController
     entry = Entry.joins(:ticket).where("tickets.user_id = ?", current_user.id).where("exercise_id = ?", @exercise.id).first
     ticket = entry.ticket
     ticket.unregister_entry(@exercise, entry)
+    exercise_modification = @exercise.exercise_modification
+    @date = exercise_modification.date.to_date
     if(@exercise.entries.count == 0)
-      @exercise_modification = @exercise.exercise_modification
       @exercise.destroy
+      if(!exercise_modification.differs_from_template)
+        @exercise_template = exercise_modification.exercise_template
+        exercise_modification.destroy
+      else
+        @exercise_modification = exercise_modification
+      end
     end
     
     if(params[:source] == "calendar_view")
@@ -96,7 +103,7 @@ class ExerciseRegisterController < ApplicationController
           return tickets_available.first
         else
           # more than one - show js form
-          @tickets = current_user.tickets.where(therapy: therapy)
+          @tickets = Ticket.for_therapy(current_user.tickets, therapy)
           @target_therapy = therapy
           @target_date = date
           render "ticket_selector_form.js.erb", status: 200 and return
