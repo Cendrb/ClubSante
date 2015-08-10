@@ -13,12 +13,12 @@
 <%= link_to 'Nový týdenní plán', new_timetable_template_path(calendar_id: calendar.id) %>
 <h2>Modifikace</h2>
 <table>
-	<% calendar.timetable_modification.exercise_modifications.where("date > ?", Time.now).order(:date).each do |timetable_modification| %>
+	<% calendar.timetable_modification.exercise_modifications.where("date > ?", Time.now).order(:date).each do |exercise_modification| %>
 		<tr>
-			<td><%= timetable_modification.date.strftime("%d. %m. %Y") %></td>
-			<td><%= timetable_modification.get_string %></td>
-			<td><%= link_to 'Upravit', edit_timetable_modification_path(timetable_modification) %></td>
-			<td><%= link_to 'Odstranit', timetable_modification, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
+			<td><%= exercise_modification.date.strftime("%d. %m. %Y") %></td>
+			<td class="multi_line"><p><%= exercise_modification.get_string %></p></td>
+			<td><%= link_to 'Upravit', edit_exercise_modification_path(exercise_modification), remote: true %></td>
+			<td><%= link_to 'Odstranit', exercise_modification, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
 		</tr>
 	<% end %>
 </table>
