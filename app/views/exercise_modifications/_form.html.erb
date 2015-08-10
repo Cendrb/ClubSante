@@ -41,6 +41,8 @@
 	  	<%= f.label :removal, "Pouze odebrat", title: "Při zaškrtnutí zmizí tato hodina z rozvrhu. Jinak bude pouze upravena." %>
 	    <%= f.check_box :removal %>
 	  </div>
+  <% else %>
+  	  <%= f.hidden_field :removal, value: false %>
   <% end %>
   <%= f.hidden_field :timetable_modification_id %>
   <%= f.hidden_field :exercise_template_id %>

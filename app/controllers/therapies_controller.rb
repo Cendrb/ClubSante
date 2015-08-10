@@ -28,7 +28,9 @@ class TherapiesController < ApplicationController
   def create
     @therapy = Therapy.new(therapy_params)
     if(@therapy.can_single_use)
-      TherapyCategory.create(name: @therapy.name)
+      category = TherapyCategory.new(name: @therapy.name)
+      category.therapies << @therapy
+      category.save!
     end
 
     respond_to do |format|

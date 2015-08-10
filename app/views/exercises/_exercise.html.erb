@@ -1,9 +1,9 @@
 <div class="calendar_exercise_style calendar_exercise <%= exercise.signed_up?(current_user) ? "signed_exercise" : (exercise.full? ? "full_exercise" : "free_exercise") %>"
 data-id=<%= exercise.id %>
-data-tooltip="<%= exercise.get_tooltip_calendar %>" 
+data-tooltip="<%= get_calendar_tooltip exercise %>" 
 data-duration=<%= exercise.timetable.calendar.therapy.duration_in_minutes %>
 data-registered-by-current-user=<%= Entry.joins(:exercise).joins(:ticket).where("exercises.id = ?", exercise.id).where("tickets.user_id = ?", current_user.id).count > 0 %> 
 data-calendar-id=<%= exercise.timetable.calendar.id %> 
 style="position: absolute; top: <%= ((exercise.exercise_modification.date.hour * 60 + exercise.exercise_modification.date.min) * Calendar.pixels_per_minute) - beginning_offset %>px; height: <%= exercise.timetable.calendar.therapy.duration_in_minutes * Calendar.pixels_per_minute %>px">
-<%= exercise.exercise_modification.date.to_s(:time) %>
+<%= get_beginning_string exercise %>
 </div>

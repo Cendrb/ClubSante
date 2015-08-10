@@ -47,7 +47,7 @@ class ExerciseModificationsController < ApplicationController
     @exercise_modification = ExerciseModification.new(exercise_modification_params)
 
     respond_to do |format|
-      if @exercise_modification.save
+      if @exercise_modification.save!
         format.js { render "timetable_modifications/reload_timetable_modification", locals: {timetable_modification: @exercise_modification.timetable_modification, beginning_date: @exercise_modification.date} }
       else
         format.js { render plain: @exercise_modification.errors.full_messages, status: :error }

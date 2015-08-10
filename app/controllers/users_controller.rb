@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_admin, only: [:index, :admin_edit, :admin_update]
-  before_filter :self_edit?, only: [:show, :edit, :update, :destroy, :tracked_value_chart]
+  before_filter :authenticate_admin, only: [:index, :admin_edit, :admin_update, :admin_summary]
+  before_filter :self_edit?, only: [:show, :edit, :update, :destroy, :tracked_value_chart, :summary]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :admin_edit, :admin_update]
   
   # GET /users
@@ -32,6 +32,18 @@ class UsersController < ApplicationController
     if user
       @tickets = user.tickets
       @exercises = Exercise.joins(:exercise_modification).joins(:entries).joins(entries: :ticket).joins(entries: {ticket: :user}).where("tickets.user_id = ?", user.id).where("exercise_modifications.date >= ?", Date.today).order("exercise_modifications.date")
+      @user = user
+    else
+      redirect_to login_path
+    end
+  end
+  
+  def admin_summary
+    if(params[:id] && access_for_level?(User.al_admin))
+      user = User.find(params[:id])
+      @tickets = user.tickets
+      @exercises = Exercise.joins(:exercise_modification).joins(:entries).joins(entries: :ticket).joins(entries: {ticket: :user}).where("tickets.user_id = ?", user.id).where("exercise_modifications.date >= ?", Date.today).order("exercise_modifications.date")
+      @user = user
     else
       redirect_to login_path
     end

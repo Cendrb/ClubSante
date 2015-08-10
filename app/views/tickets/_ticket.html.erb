@@ -16,7 +16,7 @@
 		<%= ticket.therapy_category.name %> (<%= (ticket.therapy_category.therapies.map { |therapy| therapy.name }).join(", ").downcase %>)
 	</td>
 	<td>
-		<%= b_to_s ticket.paid %>
+		<%= b ticket.paid %>
 	</td>
 	<td>
 		<%= ticket.user.full_name %>

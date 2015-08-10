@@ -1,5 +1,5 @@
 module BoolHelper
-  def b_to_s(bool, upper = false)
+  def b(bool, upper = false)
     if bool
       if upper
         return "Ano"

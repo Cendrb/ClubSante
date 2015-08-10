@@ -47,12 +47,12 @@
 	
 	<h2>Moje cíle</h2>
 	<div id="user_summary_goals">
-		<% if access_for_level?(User.al_customer) %>
-			<% if current_user.tracked_values.count == 0 %>
+		<% if @user.access_for_level?(User.al_customer) %>
+			<% if @user.tracked_values.count == 0 %>
 				Nemáte zapsané žádné sledované hodnoty
 			<% end %>
 			
-			<% current_user.tracked_values.each do |tracked| %>
+			<% @user.tracked_values.each do |tracked| %>
 				<span class="user_summary_tracked_value_name"><%= tracked.available_value.name %></span>
 				<%= line_chart tracked_value_chart_path(tracked_value_id: tracked.id), library: { chart: { marginTop: 30 } } %>
 			<% end %>

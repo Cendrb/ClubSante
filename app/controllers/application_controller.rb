@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
   end
 
   def access_for_level?(required_level)
-    return current_user && current_user.access_level >= required_level
+    return current_user.access_for_level?(required_level)
   end
 
   helper_method :access_for_level?, :current_user

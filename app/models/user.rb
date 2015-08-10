@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
     return "#{first_name} #{last_name}"
   end
   
+  def access_for_level?(required_level)
+    return access_level >= required_level
+  end
+  
 
   private
   def password_must_be_present

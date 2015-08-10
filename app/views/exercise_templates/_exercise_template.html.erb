@@ -1,5 +1,5 @@
-<div class="timetable_template_exercise ui-draggable ui-draggable-handle" data-id=<%= exercise_template.id %> data-duration=<%= duration %> style="position: absolute; top: <%= exercise_template.beginning.hour * 60 * TimetableTemplate.pixels_per_minute + exercise_template.beginning.min * TimetableTemplate.pixels_per_minute %>px; height: <%= duration * TimetableTemplate.pixels_per_minute %>px;" data-tooltip="<%= exercise_template.get_tooltip_template %>" >
+<div class="timetable_template_exercise ui-draggable ui-draggable-handle" data-id=<%= exercise_template.id %> data-duration=<%= duration %> style="position: absolute; top: <%= exercise_template.beginning.hour * 60 * TimetableTemplate.pixels_per_minute + exercise_template.beginning.min * TimetableTemplate.pixels_per_minute %>px; height: <%= duration * TimetableTemplate.pixels_per_minute %>px;" data-tooltip="<%= get_template_tooltip exercise_template  %>" >
 	<div class="timetable_template_exercise_handle"></div>
-	<div class="timetable_template_exercise_time"><%= exercise_template.get_time_range_string %></div>
+	<div class="timetable_template_exercise_time"><%= get_time_range_string exercise_template %></div>
 	&nbsp;(<div class="timetable_template_exercise_status">U</div>)
 </div> 
