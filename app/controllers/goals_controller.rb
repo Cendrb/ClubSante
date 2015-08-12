@@ -5,7 +5,13 @@ class GoalsController < ApplicationController
   # GET /goals
   # GET /goals.json
   def index
-    @goals = Goal.all
+    @data = {}
+    if (params[:user_id])
+      @goals = Goal.joins(:tracked_value).where("tracked_values.user_id = ?", params[:user_id]).order(:date)
+      @data[:user] = User.find(params[:user_id])
+    else
+      @goals = Goal.all.order(:date)
+    end
   end
 
   # GET /goals/1

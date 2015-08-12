@@ -13,6 +13,9 @@
 <%= link_to 'Nový týdenní plán', new_timetable_template_path(calendar_id: calendar.id) %>
 <h2>Modifikace</h2>
 <table>
+	<th>Datum</th>
+	<th>Změny</th>
+	<th colspan="2"></th>
 	<% calendar.timetable_modification.exercise_modifications.where("date > ?", Time.now).order(:date).each do |exercise_modification| %>
 		<tr>
 			<td><%= exercise_modification.date.strftime("%d. %m. %Y") %></td>

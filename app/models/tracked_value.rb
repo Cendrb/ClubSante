@@ -9,4 +9,12 @@ class TrackedValue < ActiveRecord::Base
   def name
     return available_value.name
   end
+
+  def current_value
+    Record.where("date <= ?", Date.today).where(tracked_value: self).order(:date).last
+  end
+
+  def next_goal
+    Goal.where("date >= ?", Date.today).where(tracked_value: self).order(:date).first
+  end
 end

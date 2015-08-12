@@ -1,0 +1,19 @@
+<div id="pending_singles">
+  <table>
+    <tr>
+      <th>Registrováno dne</th>
+      <th>Použito pro registraci</th>
+      <th colspan="2"></th>
+    </tr>
+    <% pending_singles.find_each do |single_use| %>
+        <tr>
+          <% exercise_modification = single_use.entries.first.exercise.exercise_modification %>
+          <td><%= l single_use.entries.first.created_at %></td>
+          <td><%= exercise_modification.timetable_modification.calendar.therapy.name %>
+            (<%= l exercise_modification.date %>)
+          </td>
+          <td><%= link_to 'Označit jako zaplacené', tickets_mark_as_paid_path(id: single_use), remote: true, method: :post %></td>
+        </tr>
+    <% end %>
+  </table>
+</div>

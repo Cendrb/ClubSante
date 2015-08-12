@@ -1,6 +1,7 @@
 <script>
 $(function() {
-	$(".type_selector").change(function() {
+    var type_selector = $(".type_selector");
+    type_selector.change(function() {
 		if(this.value == "Omezená vstupy")
 		{
 			$(".entries").show();
@@ -10,7 +11,7 @@ $(function() {
 		  	$(".entries").hide();
 		}
 	});
-	$(".type_selector").change();
+    type_selector.change();
 	
 	if(<%= params[:activate] == "nope" %>)
 	{

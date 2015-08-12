@@ -1,24 +1,12 @@
 <% ticket = user_summary_ticket_line %>
 <tr>
 	<td>
-		<% if ticket.activated_on == nil %>
-			ještě nebyla aktivována
-		<% else %>
-			<%= l (ticket.activated_on + ticket.time_restriction), format: :date %>
-		<% end %>
+		<%= get_ticket_end_date ticket %>
 	</td>
 	<td>
-		<% if ticket.entries_remaining == -1 %>
-			není omezená vstupy
-		<% else %>
-			<%= ticket.entries_remaining %>
-		<% end %>
+		<%= get_ticket_entries_remaining_string ticket %>
 	</td>
 	<td>
-		<% if ticket.therapy_category.therapies.count > 0 %>
-			<%= ticket.therapy_category.name %> (<%= (ticket.therapy_category.therapies.map { |therapy| therapy.name }).join(", ").downcase %>)
-		<% else %>
-			<%= ticket.therapy_category.name %>
-		<% end %>
+		<%= get_ticket_therapies_string ticket %>
 	</td>
 </tr>

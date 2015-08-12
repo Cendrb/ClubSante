@@ -70,8 +70,8 @@ class Ticket < ActiveRecord::Base
   end
   
   def self.create_single_use(user, therapy)
-    TherapyCategories.where("therapy_categories.can_single_use = ?", true).find_each do |category|
-      if(category.therapies.count == 1)
+    TherapyCategory.find_each do |category|
+      if(category.therapies.count == 1 && category.therapies.first == therapy && category.therapies.first.can_single_use)
         ticket = Ticket.new(time_restriction: Ticket.single_use_register_date_range, entries_remaining: 1, activated_on: Date.today, paid: false, user: user, therapy_category: category, single_use: true)
         ticket.save!
         return ticket

@@ -1,34 +1,114 @@
+<%= javascript_include_tag "http://code.highcharts.com/highcharts.js" %>
+<%= javascript_include_tag "application", "chartkick" %>
+
+<script>
+    Highcharts.setOptions({
+        lang: {
+            months: ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'],
+            weekdays: ['Neděle', 'Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek', 'Sobota'],
+            shortMonths: ["Led", "Úno", "Bře", "Dub", "Kvě", "Čvn", "Čvc", "Srp", "Zář", "Říj", "Lis", "Pro"]
+        }
+    });
+</script>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+<h1><%= @user.full_name %></h1>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+<div id="user_show_accordion">
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
+  <h2>Základní údaje</h2>
 
-<p>
-  <strong>Hashed password:</strong>
-  <%= @user.hashed_password %>
-</p>
+  <div class="user_show_category">
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </p>
+    <%= link_to 'Upravit', edit_user_path(@user) %>
+  </div>
 
-<p>
-  <strong>Salt:</strong>
-  <%= @user.salt %>
-</p>
+  <h2>Cíle a přístup</h2>
 
-<p>
-  <strong>Access level:</strong>
-  <%= @user.access_level %>
-</p>
+  <div class="user_show_category">
+    <p>
+      <strong>Úroveň přístupu:</strong>
+      <%= User.get_access_level_string(@user.access_level) %>
+    </p>
 
-<%= link_to 'Upravit', edit_user_path(@user) %> |
-<%= link_to 'Zpět', users_path %>
+    <p>
+      <strong>Sledované hodnoty:</strong>
+      <%= @data[:tracked].pluck('available_values.name').join(', ').downcase %>
+    </p>
+
+    <table>
+      <tr>
+        <th>Název</th>
+        <th>Aktuální hodnota</th>
+        <th>Další cíl</th>
+      </tr>
+      <% @data[:tracked].find_each do |tracked| %>
+        <tr>
+          <td><%= tracked.name %></td>
+          <td><%= tracked.current_value ? tracked.current_value.value.to_s + " (" + l(tracked.current_value.date) + ")" : "Nebyla zaznamenány žádné hodnoty" %></td>
+          <td><%= tracked.next_goal ? tracked.next_goal.value.to_s + " (" + l(tracked.next_goal.date) + ")" : "Žádné nadcházející cíle" %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <%= link_to 'Upravit', admin_edit_user_path(@user) %><br>
+    <%= link_to 'Zaznamenat aktuální stav', new_record_path(user_id: @user.id) %>
+    (<%= link_to 'všechny záznamy', records_path(user_id: @user.id) %>)<br>
+    <%= link_to 'Zaznamenat cíl', new_goal_path(user_id: @user.id) %>
+    (<%= link_to 'všechny cíle', goals_path(user_id: @user.id) %>)<br>
+
+
+  </div>
+
+  <h2>Grafy</h2>
+
+  <div class="user_show_category">
+    <% if @user.access_for_level?(User.al_customer) %>
+        <% @user.tracked_values.each do |tracked| %>
+            <span class="user_summary_tracked_value_name"><%= tracked.available_value.name %></span>
+            <%= line_chart tracked_value_chart_path(tracked_value_id: tracked.id), library: {chart: {marginTop: 30}} %>
+        <% end %>
+    <% else %>
+        Nemá dostatečná práva pro sledování cílů
+    <% end %>
+  </div>
+
+  <h2>Permanentky</h2>
+
+  <div class="user_show_category" id="user_show_tickets">
+    <table>
+      <tr>
+        <th>Konec platnosti</th>
+        <th>Zbývá vstupů</th>
+        <th>Terapie</th>
+        <th colspan="2"></th>
+      </tr>
+
+      <% @data[:tickets].find_each do |ticket| %>
+          <tr>
+            <td><%= get_ticket_end_date ticket %></td>
+            <td><%= get_ticket_entries_remaining_string ticket %></td>
+            <td><%= get_ticket_therapies_string ticket %></td>
+            <td><%= link_to 'Upravit', edit_ticket_path(ticket) %></td>
+            <td><%= link_to 'Odstranit', ticket, method: :delete, data: {confirm: 'Jste si jisti?'} %></td>
+          </tr>
+      <% end %>
+
+    </table>
+    <%= link_to 'Přidat', new_ticket_path(user_id: @user.id) %>
+  </div>
+
+  <% if @data[:pending_singles].count > 0 %>
+      <h2>Nezaplacené vstupy</h2>
+
+      <div class="user_show_category">
+        <%= render partial: "tickets/user_show/pending_singles", locals: {pending_singles: @data[:pending_singles]} %>
+      </div>
+  <% end %>
+</div>
+
+<br/><%= link_to 'Zpět', users_path %>

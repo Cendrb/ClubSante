@@ -5,7 +5,13 @@ class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
   def index
-    @records = Record.all.order(:date)
+    @data = {}
+    if (params[:user_id])
+      @records = Record.joins(:tracked_value).where("tracked_values.user_id = ?", params[:user_id]).order(:date)
+      @data[:user] = User.find(params[:user_id])
+    else
+      @records = Record.all.order(:date)
+    end
   end
 
   # GET /records/1
@@ -22,7 +28,7 @@ class RecordsController < ApplicationController
       @user = User.first
     end
   end
-  
+
   # GET /records/1/edit
   def edit
   end
@@ -32,7 +38,7 @@ class RecordsController < ApplicationController
   def create
     params[:records].each do |key, value|
       t_value = TrackedValue.find(key)
-      Record.create(tracked_value: t_value, value: value, date: params[:date].map{|k,v| v}.join("-").to_date)
+      Record.create(tracked_value: t_value, value: value, date: params[:date].map { |k, v| v }.join("-").to_date)
     end
     redirect_to records_path and return
   end
@@ -62,13 +68,13 @@ class RecordsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_record
-      @record = Record.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_record
+    @record = Record.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def record_params
-      params.require(:record).permit(:tracked_value_id, :value, :date)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def record_params
+    params.require(:record).permit(:tracked_value_id, :value, :date)
+  end
 end

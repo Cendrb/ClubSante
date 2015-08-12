@@ -27,14 +27,12 @@
 	.timetable_template_exercise
 	{
     	width: 100%;
-    	background-color: yellow;
-		width: 100%;
   		display: flex;
   		justify-content: center;
   		align-items: center;
   		z-index: 10;
-  		padding: 0px;
-  		margin: 0px;
+  		padding: 0;
+  		margin: 0;
   		border: 0;
 	}
 	.timetable_template_exercise_time
@@ -110,6 +108,7 @@
 	
 	function clearSelected()
 	{
+        var index;
 		for	(index = 0; index < selectedExercises.length; index++) {
 			$(".timetable_template_exercise[data-id=" + selectedExercises[index] + "]").css("background-color", "yellow");
 		}
@@ -131,13 +130,13 @@
 			var endTime = new Date(time.getTime() + ui.helper.attr("data-duration") * 60000);
 			var options = { hour: "2-digit", minute: "2-digit" };
 			ui.helper.find(".timetable_template_exercise_time").text(time.toLocaleTimeString("cs-CS", options) + " - " + endTime.toLocaleTimeString("cs-CS", options));
-		}
+		};
 		
 	onDragStart = function(event, ui) {
 			$("#container").css("cursor", "move");
 			dragging = true;
 			$(this).data("origPosition", $(this).position());
-		}
+		};
 		
 	onDragStop = function(event, ui) {
 			$("#container").css("cursor", "auto");
@@ -156,7 +155,7 @@
 					ui.helper.find(".timetable_template_exercise_status").text("Nezdařilo se");
 				}
 			});
-		}
+		};
 		
 	onMouseDown = function(e){ 
 		clickedOnExercise = true;
@@ -197,7 +196,7 @@
     			}
     			return false; 
     		}
-  		}
+  		};
 	
 	function setupDraggablesFor(element)
 	{

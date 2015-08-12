@@ -199,7 +199,7 @@ cs:
   time:
     am: am
     formats:
-      default: ! '%a %d. %B %Y %H:%M %z'
+      default: ! '%d. %B %Y %H:%M'
       long: ! '%A %d. %B %Y %H:%M'
       short: ! '%d. %m. %H:%M'
       date: ! '%d. %B %Y'

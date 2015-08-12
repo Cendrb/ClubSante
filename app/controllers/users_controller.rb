@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_admin, only: [:index, :admin_edit, :admin_update, :admin_summary]
-  before_filter :self_edit?, only: [:show, :edit, :update, :destroy, :tracked_value_chart, :summary]
+  before_filter :authenticate_admin, only: [:index, :admin_edit, :admin_update, :show]
+  before_filter :self_edit?, only: [:edit, :update, :destroy, :tracked_value_chart, :summary]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :admin_edit, :admin_update]
   
   # GET /users
@@ -29,13 +29,10 @@ class UsersController < ApplicationController
   
   def summary
     user = current_user
-    if user
-      @tickets = user.tickets
-      @exercises = Exercise.joins(:exercise_modification).joins(:entries).joins(entries: :ticket).joins(entries: {ticket: :user}).where("tickets.user_id = ?", user.id).where("exercise_modifications.date >= ?", Date.today).order("exercise_modifications.date")
-      @user = user
-    else
-      redirect_to login_path
-    end
+    @tickets = user.tickets.where(single_use: false)
+    @exercises = Exercise.joins(:exercise_modification).joins(:entries).joins(entries: :ticket).joins(entries: {ticket: :user}).where("tickets.user_id = ?", user.id).where("exercise_modifications.date >= ?", Date.today).order("exercise_modifications.date")
+    @user = user
+    @pending_singles = user.tickets.where(single_use: true).where(paid: false)
   end
   
   def admin_summary
@@ -52,6 +49,10 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @data = {}
+    @data[:tracked] = @user.tracked_values.joins(:available_value)
+    @data[:tickets] = @user.tickets.where(single_use: false)
+    @data[:pending_singles] = @user.tickets.where(single_use: true).where(paid: false)
   end
 
   # GET /users/new

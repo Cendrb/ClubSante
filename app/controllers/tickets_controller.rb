@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
   before_filter :authenticate_admin
-  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+  before_action :set_ticket, only: [:show, :edit, :update, :destroy, :mark_as_paid]
 
   # GET /tickets
   # GET /tickets.json
@@ -19,6 +19,7 @@ class TicketsController < ApplicationController
     params[:type] = "Časově omezená"
     params[:activate] = true
     params[:time_restriction_months] = 6
+    @ticket.user_id = params[:user_id]
   end
 
   # GET /tickets/1/edit
@@ -101,6 +102,15 @@ class TicketsController < ApplicationController
       end
       render :new
     end
+  end
+  
+  def mark_as_paid
+    @ticket.paid = true
+    @ticket.save
+
+    @data = { pending_singles: current_user.tickets.where(single_use: true).where(paid: false)}
+
+    render "tickets/user_show/replace_pending_singles"
   end
 
   # DELETE /tickets/1
