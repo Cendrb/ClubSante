@@ -52,10 +52,7 @@ class TimetableTemplatesController < ApplicationController
   # DELETE /timetable_templates/1.json
   def destroy
     @timetable_template.destroy
-    respond_to do |format|
-      format.html { redirect_to timetable_templates_url, notice: 'Timetable template was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to :back
   end
 
   private

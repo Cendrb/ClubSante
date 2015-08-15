@@ -1,6 +1,5 @@
-<h1>Editing Timetable Modification</h1>
+<h1><%= @timetable_modification.calendar.therapy.name %> - modifikace</h1>
 
 <%= render partial: "timetable_modification_with_week_selector", locals: { timetable_modification: @timetable_modification, beginning_date: @date}%>
 
-<%= link_to 'Show', @timetable_modification %> |
-<%= link_to 'Back', timetable_modifications_path %>
+<%= link_to 'Zpět', @timetable_modification.calendar.therapy %>

@@ -2,84 +2,106 @@
 <%= javascript_include_tag "application", "chartkick" %>
 
 <script>
-	Highcharts.setOptions({
-	lang: {
-    	months: ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'],
-    	weekdays: ['Neděle', 'Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek', 'Sobota'],
-    	shortMonths: ["Led", "Úno", "Bře", "Dub", "Kvě", "Čvn", "Čvc", "Srp", "Zář", "Říj", "Lis", "Pro"]
-	} });
+    Highcharts.setOptions({
+        lang: {
+            months: ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'],
+            weekdays: ['Neděle', 'Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek', 'Sobota'],
+            shortMonths: ["Led", "Úno", "Bře", "Dub", "Kvě", "Čvn", "Čvc", "Srp", "Zář", "Říj", "Lis", "Pro"]
+        }
+    });
 </script>
 
 <% if alert %>
-<p id="alert">
-    <%= alert %>
-</p>
+    <p id="alert">
+      <%= alert %>
+    </p>
 <% end %>
 
 <div id="user_summary_accordion">
-	
-	<% if @pending_singles.count > 0 %>
-		<h2>Nezaplacené vstupy</h2>
-		<div id="user_summary_notifications">
-			<table>
-				<tr>
-					<th>Registrováno dne</th>
-					<th>Použito pro registraci</th>
-				</tr>
-				<% @pending_singles.find_each do |single_use| %>
-					<tr>
-                      <% if single_use.entries.first %>
-						<% exercise_modification = single_use.entries.first.exercise.exercise_modification %>
-						<td><%= l single_use.entries.first.created_at %></td>
-						<td><%= exercise_modification.timetable_modification.calendar.therapy.name %> (<%= l exercise_modification.date %>)</td>
-                          <% end %>
-					</tr>
-				<% end %>
-			</table>
-		</div>
-	<% end %>
-	
-	<h2>Moje permanentky</h2>
-	<div id="user_summary_tickets">
-		<% if @tickets.count > 0 %>
-			<%= render partial: "tickets/user_summary_tickets_index", locals: {tickets: @tickets} %>
-		<% else %>
-			Nemáte zakoupeny žádné permanentky
-		<% end %>
-	</div>
-	
-	<h2>Moje rezervace</h2>
-	<div id="user_summary_exercises">
-		<% if @exercises.count > 0 %>
-			<table id="user_summary_exercises_table">
-				<tr>
-					<th>Datum</th>
-					<th>Čas</th>
-					<th>Terapie</th>
-					<th></th>
-				</tr>
-				<%= render partial: "exercises/user_summary_exercise_line", collection: @exercises %>
-			</table>
-		<% else %>
-			Nemáte žádné rezervace
-		<% end %>
-		<br />
-		<%= link_to "Rezervovat", calendar_summary_path, data: { no_turbolink: true } %>
-	</div>
-	
-	<h2>Moje cíle</h2>
-	<div id="user_summary_goals">
-		<% if @user.access_for_level?(User.al_customer) %>
-			<% if @user.tracked_values.count == 0 %>
-				Nemáte zapsané žádné sledované hodnoty
-			<% end %>
-			
-			<% @user.tracked_values.each do |tracked| %>
-				<span class="user_summary_tracked_value_name"><%= tracked.available_value.name %></span>
-				<%= line_chart tracked_value_chart_path(tracked_value_id: tracked.id), library: { chart: { marginTop: 30 } } %>
-			<% end %>
-		<% else %>
-			Pro monitorování osobních cílů si sjednejte schůzku
-		<% end %>
-	</div>
+
+  <% if @pending_singles.count > 0 %>
+      <h2>Nezaplacené vstupy</h2>
+
+      <div id="user_summary_notifications">
+        <table>
+          <tr>
+            <th>Registrováno dne</th>
+            <th>Použito pro registraci</th>
+          </tr>
+          <% @pending_singles.find_each do |single_use| %>
+              <tr>
+                <% if single_use.entries.first %>
+                    <% exercise_modification = single_use.entries.first.exercise.exercise_modification %>
+                    <td><%= l single_use.entries.first.created_at %></td>
+                    <td><%= exercise_modification.timetable_modification.calendar.therapy.name %>
+                      (<%= l exercise_modification.date %>)
+                    </td>
+                <% end %>
+              </tr>
+          <% end %>
+        </table>
+      </div>
+  <% end %>
+
+  <h2>Moje permanentky</h2>
+
+  <div id="user_summary_tickets">
+    <% if @tickets.count > 0 %>
+        <%= render partial: "tickets/user_summary_tickets_index", locals: {tickets: @tickets} %>
+    <% else %>
+        Nemáte zakoupeny žádné permanentky
+    <% end %>
+  </div>
+
+  <h2>Moje rezervace</h2>
+
+  <div id="user_summary_exercises">
+    <% if @exercises.count > 0 %>
+        <table id="user_summary_exercises_table">
+          <tr>
+            <th>Datum</th>
+            <th>Čas</th>
+            <th>Terapie</th>
+            <th></th>
+          </tr>
+          <%= render partial: "exercises/user_summary_exercise_line", collection: @exercises %>
+        </table>
+    <% else %>
+        Nemáte žádné rezervace
+    <% end %>
+    <br/>
+    <%= link_to "Rezervovat", calendar_summary_path, data: {no_turbolink: true} %>
+  </div>
+
+  <h2>Moje cíle</h2>
+
+  <div id="user_summary_goals">
+    <% if @user.access_for_level?(User.al_customer) %>
+        <% if @user.tracked_values.count == 0 %>
+            Nemáte zapsané žádné sledované hodnoty
+        <% end %>
+
+        <table>
+          <tr>
+            <th>Název</th>
+            <th>Aktuální hodnota</th>
+            <th>Další cíl</th>
+          </tr>
+          <% @user.tracked_values.find_each do |tracked| %>
+              <tr>
+                <td><%= tracked.name %></td>
+                <td><%= tracked.current_value ? tracked.current_value.value.to_s + " (" + l(tracked.current_value.date) + ")" : "Nebyla zaznamenány žádné hodnoty" %></td>
+                <td><%= tracked.next_goal ? tracked.next_goal.value.to_s + " (" + l(tracked.next_goal.date) + ")" : "Žádné nadcházející cíle" %></td>
+              </tr>
+          <% end %>
+        </table>
+
+        <% @user.tracked_values.each do |tracked| %>
+            <span class="user_summary_tracked_value_name"><%= tracked.available_value.name %></span>
+            <%= line_chart tracked_value_chart_path(tracked_value_id: tracked.id), library: {chart: {marginTop: 30}} %>
+        <% end %>
+    <% else %>
+        Pro monitorování osobních cílů si sjednejte schůzku
+    <% end %>
+  </div>
 </div>
