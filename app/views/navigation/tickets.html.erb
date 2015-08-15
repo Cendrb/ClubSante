@@ -1,0 +1,5 @@
+<% if @tickets.count > 0 %>
+    <%= render partial: "tickets/user_summary_tickets_index", locals: {tickets: @tickets} %>
+<% else %>
+    Nemáte zakoupeny žádné permanentky
+<% end %>

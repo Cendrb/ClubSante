@@ -3,7 +3,7 @@
 		Jméno: <%= current_user.full_name %><br />
 		<%= link_to "Přehled", user_summary_path %><br />
           <% if access_for_level?(User.al_admin) %>
-              <%= link_to "Administrace", administration_path %><br />
+              <%= link_to "Administrace", nav_administration_path %><br />
           <% end %>
 		<%= link_to "Odhlásit se", logout_path %>
 	<% else %>

@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  
+
+  controller :navigation do
+    get 'summary' => 'navigation#summary', as: 'nav_summary'
+    get 'tiemtable' => 'navigation#reservations', as: 'nav_reservations'
+    get 'tickets' => 'navigation#tickets', as: 'nav_tickets'
+    get 'goals' => 'navigation#goals', as: 'nav_goals'
+    get 'administration' => 'navigation#administration', as: 'nav_administration'
+  end
+
   resources :exercise_modifications
 
   resources :coaches
@@ -68,7 +76,6 @@ Rails.application.routes.draw do
   root to: 'users#summary'
   
   get 'user_summary' => 'users#summary', as: 'user_summary'
-  get 'administration' => "users#administration", as: 'administration'
   
   get 'register' => 'users#new', as: 'register'
   delete 'destroy_account/:id', to: 'users#self_destroy', as: 'destroy_account'

@@ -133,14 +133,6 @@ class UsersController < ApplicationController
     
     redirect_to users_path
   end
-
-  def administration
-    @data = {}
-    @data[:exercises] = Exercise.joins(:exercise_modification).where("exercise_modifications.date > ?", Time.now).order("exercise_modifications.date DESC").limit(20)
-    @data[:therapies] = Therapy.all
-    @data[:users] = User.all
-    @data[:coaches] = Coach.valid.all
-  end
   
   # DELETE /users/1
   # DELETE /users/1.json

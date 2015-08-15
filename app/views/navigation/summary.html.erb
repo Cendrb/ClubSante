@@ -1,0 +1,41 @@
+<h2>Moje rezervace</h2>
+
+<div id="user_summary_exercises">
+  <% if @data[:exercises].count > 0 %>
+      <table id="user_summary_exercises_table">
+        <tr>
+          <th>Datum</th>
+          <th>Čas</th>
+          <th>Terapie</th>
+          <th></th>
+        </tr>
+        <%= render partial: "exercises/user_summary_exercise_line", collection: @exercises %>
+      </table>
+  <% else %>
+      Nemáte žádné rezervace
+  <% end %>
+</div>
+
+<% if @data[:pending_singles].count > 0 %>
+    <h2>Nezaplacené vstupy</h2>
+
+    <div id="user_summary_notifications">
+      <table>
+        <tr>
+          <th>Registrováno dne</th>
+          <th>Použito pro registraci</th>
+        </tr>
+        <% @data[:pending_singles].find_each do |single_use| %>
+            <tr>
+              <% if single_use.entries.first %>
+                  <% exercise_modification = single_use.entries.first.exercise.exercise_modification %>
+                  <td><%= l single_use.entries.first.created_at %></td>
+                  <td><%= exercise_modification.timetable_modification.calendar.therapy.name %>
+                    (<%= l exercise_modification.date %>)
+                  </td>
+              <% end %>
+            </tr>
+        <% end %>
+      </table>
+    </div>
+<% end %>
