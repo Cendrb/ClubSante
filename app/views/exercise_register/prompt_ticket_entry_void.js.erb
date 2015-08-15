@@ -1,0 +1,12 @@
+if(confirm('Odhlášování je povoleno pouze <%= Ticket.unsubscribe_time_limit / 60 / 60 %> hodin před cvičením. Pokud se nyní odhlásíte, Váš vstup propadne.'))
+{
+    $.ajax({
+        type: "POST",
+        url: "/registering_handler/unsubscribe_from",
+        data: { exercise_id: <%= @exercise.id %>, beginning_offset: <%= @beginning_offset %>, force: true, source: "<%= @source %>" },
+        dataType: 'script',
+        format: 'js',
+        success: function(msg){
+        }
+    });
+}

@@ -47,11 +47,11 @@
         <th>Další cíl</th>
       </tr>
       <% @data[:tracked].find_each do |tracked| %>
-        <tr>
-          <td><%= tracked.name %></td>
-          <td><%= tracked.current_value ? tracked.current_value.value.to_s + " (" + l(tracked.current_value.date) + ")" : "Nebyla zaznamenány žádné hodnoty" %></td>
-          <td><%= tracked.next_goal ? tracked.next_goal.value.to_s + " (" + l(tracked.next_goal.date) + ")" : "Žádné nadcházející cíle" %></td>
-        </tr>
+          <tr>
+            <td><%= tracked.name %></td>
+            <td><%= tracked.current_value ? tracked.current_value.value.to_s + " (" + l(tracked.current_value.date) + ")" : "Nebyla zaznamenány žádné hodnoty" %></td>
+            <td><%= tracked.next_goal ? tracked.next_goal.value.to_s + " (" + l(tracked.next_goal.date) + ")" : "Žádné nadcházející cíle" %></td>
+          </tr>
       <% end %>
     </table>
 
@@ -64,17 +64,50 @@
 
   </div>
 
+
   <h2>Grafy</h2>
 
   <div class="user_show_category">
     <% if @user.access_for_level?(User.al_customer) %>
-        <% @user.tracked_values.each do |tracked| %>
-            <span class="user_summary_tracked_value_name"><%= tracked.available_value.name %></span>
-            <%= line_chart tracked_value_chart_path(tracked_value_id: tracked.id), library: {chart: {marginTop: 30}} %>
+        <% if @data[:tracked].count > 0 %>
+            <% @data[:tracked].each do |tracked| %>
+                <span class="user_summary_tracked_value_name"><%= tracked.name %></span>
+                <%= line_chart tracked_value_chart_path(tracked_value_id: tracked.id), library: {chart: {marginTop: 30}} %>
+            <% end %>
+        <% else %>
+            Žádné sledované hodnoty
         <% end %>
     <% else %>
         Nemá dostatečná práva pro sledování cílů
     <% end %>
+  </div>
+
+  <h2>Rezervace</h2>
+
+  <div class="user_show_category">
+    <table>
+      <tr>
+        <th>Datum</th>
+        <th>Čas</th>
+        <th>Terapie</th>
+      </tr>
+      <div class="user_show_category">
+        <% @data[:exercises].find_each do |exercise| %>
+            <tr>
+              <td>
+                <%= l exercise.exercise_modification.date, format: :date %>
+              </td>
+              <td>
+                <%= l exercise.exercise_modification.date, format: :short_time %>
+              </td>
+              <td>
+                <%= exercise.timetable.calendar.therapy.name %>
+              </td>
+            </tr>
+
+        <% end %>
+      </div>
+    </table>
   </div>
 
   <h2>Permanentky</h2>

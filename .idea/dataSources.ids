@@ -38867,7 +38867,4 @@
       </prototype>
     </procedure>
   </data-source>
-  <data-source name="Rails ClubSante: production" uuid="d2d0f328-ad98-42b1-a3fb-cb29b77d9c9f">
-    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
-  </data-source>
 </component>

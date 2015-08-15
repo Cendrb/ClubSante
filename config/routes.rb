@@ -68,6 +68,7 @@ Rails.application.routes.draw do
   root to: 'users#summary'
   
   get 'user_summary' => 'users#summary', as: 'user_summary'
+  get 'administration' => "users#administration", as: 'administration'
   
   get 'register' => 'users#new', as: 'register'
   delete 'destroy_account/:id', to: 'users#self_destroy', as: 'destroy_account'

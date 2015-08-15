@@ -1,15 +1,15 @@
 <% exercise = user_summary_exercise_line %>
 <tr data-id=<%= exercise.id %>>
 	<td>
-		<%= l exercise.exercise_modification.date, format: :date %>
-	</td>
-	<td>
-		<%= l exercise.exercise_modification.date, format: :short_time %>
-	</td>
-	<td>
-		<%= exercise.timetable.calendar.therapy.name %>
-	</td>
-	<td class="user_summary_exercises_table_last_column">
-		<%= button_to "Odhlásit", unsubscribe_path(exercise_id: exercise.id), {onclick: "return confirm('Pokračováním se odhlásíte z tohoto cvičení. Chcete pokračovat?')", remote: true} %>
-	</td>
+  <%= l exercise.exercise_modification.date, format: :date %>
+</td>
+  <td>
+    <%= l exercise.exercise_modification.date, format: :short_time %>
+  </td>
+  <td>
+    <%= exercise.timetable.calendar.therapy.name %>
+  </td>
+  <td class="user_summary_exercises_table_last_column">
+    <%= button_to "Odhlásit", unsubscribe_path(exercise_id: exercise.id), {onclick: "return confirm('Pokračováním se odhlásíte z tohoto cvičení. Chcete pokračovat?')", remote: true} %>
+  </td>
 </tr>

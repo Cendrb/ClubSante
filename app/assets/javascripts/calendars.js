@@ -9,7 +9,7 @@ function setupHandlersFor(id)
         }
  	});
  	
-	$(".calendar_exercise[data-id=" + id + "]").click(function(event)
+	$(".calendar_exercise[data-id=" + id + "][data-in-past=false]").click(function(event)
 	{
 		var clicked = $(this);
 		var id = clicked.data("id");
@@ -145,7 +145,7 @@ function setupHandlersForCalendar(calendar_id)
 		});
 	});
 	
-	$(".calendar_exercise" + filter).click(function(event)
+	$(".calendar_exercise[data-in-past=false]" + filter).click(function(event)
 	{
 		var clicked = $(this);
 		var id = clicked.data("id");

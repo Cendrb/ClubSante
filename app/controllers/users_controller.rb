@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_admin, only: [:index, :admin_edit, :admin_update, :show]
+  before_filter :authenticate_admin, only: [:index, :admin_edit, :admin_update, :show, :administration]
   before_filter :self_edit?, only: [:edit, :update, :destroy, :tracked_value_chart, :summary]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :admin_edit, :admin_update]
   
@@ -52,6 +52,7 @@ class UsersController < ApplicationController
     @data = {}
     @data[:tracked] = @user.tracked_values.joins(:available_value)
     @data[:tickets] = @user.tickets.where(single_use: false)
+    @data[:exercises] = Exercise.joins(:exercise_modification).joins(:entries).joins(entries: :ticket).joins(entries: {ticket: :user}).where("tickets.user_id = ?", @user.id).where("exercise_modifications.date >= ?", Date.today).order("exercise_modifications.date")
     @data[:pending_singles] = @user.tickets.where(single_use: true).where(paid: false)
   end
 
@@ -133,7 +134,13 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
-  
+  def administration
+    @data = {}
+    @data[:exercises] = Exercise.joins(:exercise_modification).where("exercise_modifications.date > ?", Time.now).order("exercise_modifications.date DESC").limit(20)
+    @data[:therapies] = Therapy.all
+    @data[:users] = User.all
+    @data[:coaches] = Coach.all
+  end
   
   # DELETE /users/1
   # DELETE /users/1.json

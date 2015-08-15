@@ -21,4 +21,4 @@ test:
 
 production:
   <<: *default
-  database: ClubSante_production
+  url: postgres://rrwgbunnlfngig:wDTM-eEQY86StPwZ4ys_opw_ug@ec2-54-243-48-204.compute-1.amazonaws.com:5432/dabqbfdhru1kil

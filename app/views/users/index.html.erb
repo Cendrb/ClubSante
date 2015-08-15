@@ -19,7 +19,6 @@
       	<td><%= user.full_name %></td>
         <td><%= user.email %></td>
         <td><%= User.get_access_level_string(user.access_level) %></td>
-        <td><%= (user.tracked_values.map { |tracked| tracked.name }).join(", ").downcase %></td>
         <td><%= link_to 'Přehled', user %></td>
         <td><%= link_to 'Sledované hodnoty a úroveň přístupu', admin_edit_user_path(user) %></td>
         <td><%= link_to 'Upravit', edit_user_path(user) %></td>

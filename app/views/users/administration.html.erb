@@ -1,0 +1,110 @@
+<div id="user_administration_accordion">
+  <h2>Nejbližší cvičení</h2>
+
+  <div class="user_administration_category">
+    <table>
+      <tr>
+        <th>Čas</th>
+        <th>Datum</th>
+        <th>Terapie</th>
+        <th>Přihlášení uživatelé</th>
+      </tr>
+      <% @data[:exercises].each do |exercise| %>
+          <tr>
+            <td><%= l(exercise.exercise_modification.date, format: :short_time) %></td>
+            <td><%= l(exercise.exercise_modification.date, format: :date) %></td>
+            <td><%= exercise.timetable.calendar.therapy.name %></td>
+            <td><%= User.where("entries.exercise_id = ?", exercise.id).joins(tickets: :entries).map { |i| i.full_name }.to_sentence %></td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <h2>Uživatelé</h2>
+
+  <div class="user_administration_category">
+    <table>
+      <tr>
+        <th>Jméno</th>
+        <th>Email</th>
+        <th>Úroveň přístupu</th>
+        <th colspan="2"></th>
+      </tr>
+      <% @data[:users].each do |user| %>
+          <tr>
+            <td><%= user.full_name %></td>
+            <td><%= user.email %></td>
+            <td><%= User.get_access_level_string(user.access_level) %></td>
+            <td><%= link_to 'Upravit', user %></td>
+            <td><%= link_to 'Odstranit', user, method: :delete, data: {confirm: "Pokračováním plně odstraníte uživatele #{user.full_name} se všemi permanentkami, registracemi apod."} %></td>
+          </tr>
+      <% end %>
+    </table>
+    <br>
+    <%= link_to 'Zaregistrovat nového', new_user_path %>
+  </div>
+
+  <h2>Terapie</h2>
+
+  <div class="user_administration_category">
+    <table>
+      <thead>
+      <tr>
+        <th>Název</th>
+        <th>Maximální počet osob</th>
+        <th>Délka v minutách</th>
+        <th>Lze zarezervovat bez permanentky</th>
+        <th colspan="2"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @data[:therapies].each do |therapy| %>
+          <tr>
+            <td><%= therapy.name %></td>
+            <td><%= therapy.capacity %></td>
+            <td><%= therapy.duration_in_minutes %></td>
+            <td><%= therapy.can_single_use ? "ano" : "ne" %></td>
+            <td><%= link_to 'Upravit', therapy %></td>
+            <td><%= link_to 'Odstranit', therapy, method: :delete, data: {confirm: 'Jste si jisti?'} %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <br>
+    <%= link_to 'Nová terapie', new_therapy_path %>
+  </div>
+
+  <h2>Trenéři</h2>
+
+  <div class="user_administration_category">
+    <table>
+      <thead>
+      <tr>
+        <th>Jméno</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @data[:coaches].each do |coach| %>
+          <tr>
+            <td><%= coach.name %></td>
+            <td><%= link_to 'Zobrazit', coach %></td>
+            <td><%= link_to 'Upravit', edit_coach_path(coach) %></td>
+            <td><%= link_to 'Odstranit', coach, method: :delete, data: {confirm: 'Jste si jisti?'} %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <br>
+    <%= link_to 'Nový trenér', new_coach_path %>
+  </div>
+
+  <h2>Ostatní</h2>
+
+  <div class="user_administration_category">
+    <%= link_to "Kategorie", therapy_categories_path %><br/>
+    <%= link_to "Sledovatelné hodnoty", available_values_path %><br/>
+  </div>
+</div>

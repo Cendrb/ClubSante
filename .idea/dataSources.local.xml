@@ -13,8 +13,5 @@
       <schema-pattern>ClubSante_test.pg_catalog ClubSante_test.public</schema-pattern>
       <default-schemas>ClubSante_test.pg_catalog ClubSante_test.public</default-schemas>
     </data-source>
-    <data-source name="Rails ClubSante: production" uuid="d2d0f328-ad98-42b1-a3fb-cb29b77d9c9f">
-      <first-sync>true</first-sync>
-    </data-source>
   </component>
 </project>

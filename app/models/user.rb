@@ -53,14 +53,14 @@ class User < ActiveRecord::Base
   end
   
   def User.validate_date_signup(date)
-    if date < Date.today
+    if date < Time.now
       return "Nemůžete si rezervovat datum v minulosti"
     end
     return true
   end
   
   def User.validate_exercise_signup(exercise, user)
-    result = validate_date_signup(exercise.date)
+    result = validate_date_signup(exercise.exercise_modification.date)
     if result != true
       return result
     end
