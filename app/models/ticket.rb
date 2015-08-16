@@ -87,7 +87,7 @@ class Ticket < ActiveRecord::Base
   end
 
   def self.unsubscribe_time_limit
-    return 24.hours
+    return 12.hours
   end
 
   def self.single_use_register_date_range
