@@ -11,7 +11,7 @@
     right: 0;
     bottom: 0;
   }
-  
+
 	border-collapse: collapse;
 
   td
@@ -29,13 +29,13 @@
   	padding: 0;
   	margin: 0;
   	border: 0;
-  	
+
   }
-  
+
   // three types of exercise
   .calendar_template_exercise
   {
-    
+
   }
   .calendar_modification_exercise
   {
@@ -43,9 +43,9 @@
   }
   .calendar_exercise
   {
-    
+
   }
-  
+
   .calendar_weekday
   {
   	position: relative;
@@ -76,14 +76,14 @@
   {
   	background-color: #FFCC00;
   }
-  
+
   .hour_separator_line
   {
     width: 100%;
     z-index: 5;
     border-bottom: 1px solid gray;
   }
-  
+
   .current_time_line
   {
     z-index: 5;

@@ -40,7 +40,6 @@
           </tr>
       <% end %>
     </table>
-    <br>
     <%= link_to 'Zaregistrovat nového', new_user_path %>
   </div>
 
@@ -100,10 +99,35 @@
     <%= link_to 'Nový trenér', new_coach_path %>
   </div>
 
+  <h2>Sledování hodnot</h2>
+
+  <div class="user_administration_category">
+    <table>
+      <thead>
+      <tr>
+        <th>Jméno</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @data[:available_values].each do |available_value| %>
+          <tr>
+            <td><%= available_value.name %></td>
+            <td><%= link_to 'Upravit', edit_available_value_path(available_value) %></td>
+            <td><%= link_to 'Odstranit', available_value, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'Nová sledovatelná hodnota', new_available_value_path %><br>
+    <%= link_to 'Nový záznam', new_record_path %><br>
+    <%= link_to 'Nový cíl', new_goal_path %><br>
+  </div>
+
   <h2>Ostatní</h2>
 
   <div class="user_administration_category">
     <%= link_to "Kategorie", therapy_categories_path %><br/>
-    <%= link_to "Sledovatelné hodnoty", available_values_path %><br/>
   </div>
 </div>

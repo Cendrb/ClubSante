@@ -17,14 +17,17 @@ module TooltipsHelper
   
   def get_modification_tooltip(object)
     string = ""
-    
-    string << get_development_prefix(object) + br
+
+    if(Rails.env.development?)
+      string << get_development_prefix(object) + br
+    end
 
     string << get_time_range_string(object) + br
     string << get_duration_string(object) + br
     string << get_capacity_string(object)
     string << get_coach_string(object)
-    string << get_price_string(object)
+    string << get_price_string(object) + br
+    string << get_modification_string(object)
     
     return string
   end
@@ -119,6 +122,27 @@ module TooltipsHelper
         return object.price != ExerciseTemplate.get_hide_string ? (br + object.price) : ""
       when ExerciseModification
         return object.price != ExerciseTemplate.get_hide_string ? (br + object.price) : ""
+      else
+        return unsupported
+    end
+  end
+
+  def get_modification_string(object)
+    case object
+      when Exercise
+        return ""
+      when ExerciseTemplate
+        return ""
+      when ExerciseModification
+        if(object.removal)
+          return "odstraňuje obvyklé cvičení"
+        else
+          if(object.exercise_template == nil)
+            return "přidává cvičení"
+          else
+            return "mění vlastnosti obvyklého cvičení"
+          end
+        end
       else
         return unsupported
     end

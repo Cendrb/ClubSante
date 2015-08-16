@@ -25,5 +25,6 @@ class NavigationController < ApplicationController
     @data[:therapies] = Therapy.all
     @data[:users] = User.all
     @data[:coaches] = Coach.valid.all
+    @data[:available_values] = AvailableValue.all
   end
 end

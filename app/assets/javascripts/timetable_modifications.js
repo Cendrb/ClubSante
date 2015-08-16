@@ -71,9 +71,9 @@ function setupHandlersForTimetableModification()
 	$(".timetable_modification_weekday").click(function(event)
 	{
 		var clicked = $(this);
-		var relativeYMinutes = ((event.pageY - clicked.offset().top) / 1);
+		var relativeYMinutes = (event.pageY - clicked.offset().top) / 1;
 		var beginningHours = Math.floor(relativeYMinutes / 60);
-		var beginningMinutes = Math.floor((relativeYMinutes % 60) / 10 * 2 ) * 10 * 2;
+		var beginningMinutes = Math.floor((relativeYMinutes % 60) / 10 * 2 );
 		$.ajax({
 			type: "GET",
 			url: "/exercise_modifications/new",

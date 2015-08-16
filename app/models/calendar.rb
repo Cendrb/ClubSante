@@ -9,7 +9,7 @@ class Calendar < ActiveRecord::Base
   def init_dependent
      self.timetable = Timetable.create
      self.timetable_modification = TimetableModification.create
-     self.timetable_templates << TimetableTemplate.create(beginning: Time.new(0))
+     self.timetable_templates << TimetableTemplate.create(beginning: Time.new(2001))
      true
   end
   
