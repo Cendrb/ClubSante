@@ -49,9 +49,9 @@ class ApplicationController < ActionController::Base
 
   def access_for_level?(required_level)
     if current_user != nil
-      current_user.access_for_level?(required_level)
+      return current_user.access_for_level?(required_level)
     else
-      redirect_to login_path
+      return false
     end
   end
 
