@@ -39,9 +39,11 @@ class TimetableTemplatesController < ApplicationController
   def update
     respond_to do |format|
       if @timetable_template.update(timetable_template_params)
+        format.js { render nothing: true }
         format.html { redirect_to @timetable_template, notice: 'Timetable template was successfully updated.' }
         format.json { render :show, status: :ok, location: @timetable_template }
       else
+        format.js { render inline: "window.location.replace(\"<%= escape_javascript(edit_timetable_template_path(@timetable_template)) %>\");", type: :js }
         format.html { render :edit }
         format.json { render json: @timetable_template.errors, status: :unprocessable_entity }
       end
@@ -51,8 +53,11 @@ class TimetableTemplatesController < ApplicationController
   # DELETE /timetable_templates/1
   # DELETE /timetable_templates/1.json
   def destroy
-    @timetable_template.destroy
-    redirect_to :back
+    if @timetable_template.destroy
+      redirect_to :back
+    else
+      redirect_to :back, notice: @timetable_template.errors[:base].first.to_s
+    end
   end
 
   private

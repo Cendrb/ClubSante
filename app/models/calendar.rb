@@ -1,4 +1,5 @@
 class Calendar < ActiveRecord::Base
+  validates_presence_of :timetable_templates
   belongs_to :therapy
   has_one :timetable, dependent: :destroy
   has_many :timetable_templates, dependent: :destroy

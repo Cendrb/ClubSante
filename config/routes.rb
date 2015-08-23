@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   controller :navigation do
     get 'summary' => 'navigation#summary', as: 'nav_summary'
-    get 'tiemtable' => 'navigation#reservations', as: 'nav_reservations'
+    get 'timetable' => 'navigation#reservations', as: 'nav_reservations'
     get 'tickets' => 'navigation#tickets', as: 'nav_tickets'
     get 'goals' => 'navigation#goals', as: 'nav_goals'
     get 'administration' => 'navigation#administration', as: 'nav_administration'
