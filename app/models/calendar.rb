@@ -25,8 +25,12 @@ class Calendar < ActiveRecord::Base
       registered_min_modification_hour = exercises.joins(:exercise_modification).minimum("EXTRACT(HOUR FROM exercise_modifications.date)").round
     end
     puts "MIN: #{registered_min_modification_hour}"
-    
-    return [registered_min_modification_hour, exercise_templates.minimum(:beginning).hour].min
+
+    if(exercise_templates.count > 0)
+      return [registered_min_modification_hour, exercise_templates.minimum(:beginning).hour].min
+    else
+      return 0
+    end
     
   end
   
