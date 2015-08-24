@@ -9,7 +9,7 @@
           <th>Terapie</th>
           <th></th>
         </tr>
-        <%= render partial: "exercises/user_summary_exercise_line", collection: @exercises %>
+        <%= render partial: "exercises/user_summary_exercise_line", collection: @data[:exercises] %>
       </table>
   <% else %>
       Nemáte žádné rezervace

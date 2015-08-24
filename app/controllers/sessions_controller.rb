@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
         cookies.permanent.signed[:user_id] = user.id
       end
       session[:user_id] = user.id
-      redirect_to user_summary_path
+      redirect_to nav_reservations_path
     else
       respond_to do |format|
         format.html {redirect_to login_url, alert: "Neplatné jméno nebo heslo!"}

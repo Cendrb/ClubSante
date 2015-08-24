@@ -73,7 +73,7 @@ Rails.application.routes.draw do
     get 'calendars/:id/final' => :show_final, as: :calendar_final
   end
   
-  root to: 'users#summary'
+  root to: 'navigation#reservations'
   
   get 'user_summary' => 'users#summary', as: 'user_summary'
   
