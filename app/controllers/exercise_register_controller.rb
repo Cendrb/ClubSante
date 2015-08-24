@@ -66,12 +66,12 @@ class ExerciseRegisterController < ApplicationController
     @beginning_offset = params[:beginning_offset].to_i
     entry = Entry.joins(:ticket).where("tickets.user_id = ?", current_user.id).where("exercise_id = ?", @exercise.id).first
     exercise_modification = @exercise.exercise_modification
-    @date = exercise_modification.date.to_date
+    @date = exercise_modification.date
 
     if (@date < Time.now.utc)
       render_alert("Není možné se odhlásit ze cvičení z minulosti")
     else
-      entry_void = @date - Date.today < Ticket.unsubscribe_time_limit
+      entry_void = @date - Time.now < Ticket.unsubscribe_time_limit
       if (entry_void && !params[:force])
         render 'prompt_ticket_entry_void'
       else

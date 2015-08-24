@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a19e92ad-d5cb-404b-835e-049a7b95d470" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ticket_form.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/calendars/_calendar_final.html.erb" afterPath="$PROJECT_DIR$/app/views/calendars/_calendar_final.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tickets/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/tickets/_form.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/calendars.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/calendars.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/exercise_register_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/exercise_register_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/exercise_template.rb" afterPath="$PROJECT_DIR$/app/models/exercise_template.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/therapy.rb" afterPath="$PROJECT_DIR$/app/models/therapy.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ticket.rb" afterPath="$PROJECT_DIR$/app/models/ticket.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/tickets_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/tickets_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
     </list>
     <ignored path="ClubSante.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,8 +47,28 @@
       <file leaf-file-name="exercise_register_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/exercise_register_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5158817">
-              <caret line="110" column="78" selection-start-line="110" selection-start-column="78" selection-end-line="110" selection-end-column="78" />
+            <state vertical-scroll-proportion="0.42825848">
+              <caret line="68" column="38" selection-start-line="68" selection-start-column="38" selection-end-line="68" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="navigation_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/navigation_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="76" column="31" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -111,7 +123,6 @@
         <option value="$PROJECT_DIR$/app/views/users/_current_user_status.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/menu.scss" />
         <option value="$PROJECT_DIR$/app/views/navigation/global_pass.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/navigation_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/administration.scss" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/controllers/global_settings_controller.rb" />
@@ -126,7 +137,6 @@
         <option value="$PROJECT_DIR$/app/views/exercise_modifications/display_exercise_modification_dialog.js.erb" />
         <option value="$PROJECT_DIR$/app/views/timetable_templates/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-        <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/app/views/global_settings/pass_form.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/show.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
@@ -141,8 +151,10 @@
         <option value="$PROJECT_DIR$/app/controllers/tickets_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/exercise_template.rb" />
         <option value="$PROJECT_DIR$/app/views/calendars/_calendar_final.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/exercise_register_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/ticket.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/navigation_controller.rb" />
+        <option value="$PROJECT_DIR$/app/models/user.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/exercise_register_controller.rb" />
       </list>
     </option>
   </component>
@@ -309,7 +321,7 @@
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="ticket_sele&#9;null&#9;null&#10;ticket c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/tickets_controller.rb&#10;time t&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/timetable_templates_controller.rb&#10;tickets&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/tickets_controller.rb&#10;exe r&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;cale f&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;thera&#9;null&#9;null&#10;cale&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;navig&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;admi&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/administration.html.erb&#10;summ&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/summary.html.erb&#10;coa c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/coaches_controller.rb&#10;coach c&#9;null&#9;null&#10;use c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb&#10;use&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb&#10;timet&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/timetable_modification.scss&#10;exer m c&#9;null&#9;null&#10;exer m&#9;null&#9;null&#10;record&#9;null&#9;null&#10;summa&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/summary.html.erb&#10;who&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/whoa.scss&#10;app&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/layouts/application.html.erb&#10;appl&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/application_controller.rb&#10;men&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/menu.scss&#10;whoa&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/whoa.scss&#10;unsu&#9;null&#9;null&#10;user c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb&#10;user_s&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/users/_current_user_status.html.erb&#10;users&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb&#10;sess c&#9;null&#9;null&#10;users c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb&#10;naviga&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;user&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb&#10;tracke&#9;null&#9;null&#10;goals/in&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/goals/index.html.erb&#10;records/in&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/records/index.html.erb&#10;goals co&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/goals_controller.rb&#10;records/index&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/records/index.html.erb&#10;goal&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/goals_controller.rb&#10;recor&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/records_controller.rb&#10;goals&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/goals_controller.rb&#10;records&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="nav&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;ticket_sele&#9;null&#9;null&#10;ticket c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/tickets_controller.rb&#10;time t&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/timetable_templates_controller.rb&#10;tickets&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/tickets_controller.rb&#10;exe r&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;cale f&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;thera&#9;null&#9;null&#10;cale&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;navig&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;admi&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/administration.html.erb&#10;summ&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/summary.html.erb&#10;coa c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/coaches_controller.rb&#10;coach c&#9;null&#9;null&#10;use c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb&#10;use&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb&#10;timet&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/timetable_modification.scss&#10;exer m c&#9;null&#9;null&#10;exer m&#9;null&#9;null&#10;record&#9;null&#9;null&#10;summa&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/summary.html.erb&#10;who&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/whoa.scss&#10;app&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/layouts/application.html.erb&#10;appl&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/application_controller.rb&#10;men&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/menu.scss&#10;whoa&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/whoa.scss&#10;unsu&#9;null&#9;null&#10;user c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb&#10;user_s&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/users/_current_user_status.html.erb&#10;users&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb&#10;sess c&#9;null&#9;null&#10;users c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb&#10;naviga&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;user&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb&#10;tracke&#9;null&#9;null&#10;goals/in&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/goals/index.html.erb&#10;records/in&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/records/index.html.erb&#10;goals co&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/goals_controller.rb&#10;records/index&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/records/index.html.erb&#10;goal&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/goals_controller.rb&#10;recor&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/records_controller.rb&#10;goals&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/goals_controller.rb&#10;records&#9;null&#9;null" />
     <property name="byebug.present.asked" value="true" />
     <property name="Ruby.ViewRefParam.DefaultExtension" value="html.erb" />
     <property name="RailsGeneratorsPopup.hiddenIncluded" value="false" />
@@ -586,36 +598,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/sessions/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075">
-          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/whoa.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.807693">
-          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/calendar.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/records/new.js.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -821,26 +803,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33296824">
-          <caret line="27" column="6" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/coach.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/navigation_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5399781">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -973,6 +939,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/ticket.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -981,10 +979,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="76" column="31" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/navigation_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/exercise_register_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5158817">
-          <caret line="110" column="78" selection-start-line="110" selection-start-column="78" selection-end-line="110" selection-end-column="78" />
+        <state vertical-scroll-proportion="0.42825848">
+          <caret line="68" column="38" selection-start-line="68" selection-start-column="38" selection-end-line="68" selection-end-column="38" />
           <folding />
         </state>
       </provider>
