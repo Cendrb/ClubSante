@@ -116,7 +116,7 @@ class ExerciseRegisterController < ApplicationController
           return tickets_available.first
         else
           # more than one - show js form
-          @tickets = Ticket.for_therapy(current_user.tickets, therapy)
+          @tickets = Ticket.for_therapy(current_user.tickets.where(single_use: false), therapy)
           @target_therapy = therapy
           @target_date = date
           render "ticket_selector_form.js.erb", status: 200 and return

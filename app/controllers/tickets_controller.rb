@@ -44,7 +44,7 @@ class TicketsController < ApplicationController
     if params[:activate]
       @ticket.activated_on = Date.today
     else
-      @ticket.activated_on = nil
+      @ticket.activated_on = params[:activated_on]
     end
     if params[:type] == "Časově omezená"
       @ticket.entries_remaining = -1
@@ -78,7 +78,7 @@ class TicketsController < ApplicationController
     if params[:activate]
       @ticket.activated_on = Date.today
     else
-      @ticket.activated_on = nil
+      @ticket.activated_on = params[:activated_on]
     end
     if params[:type] == "Časově omezená"
       @ticket.entries_remaining = -1

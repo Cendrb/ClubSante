@@ -1,67 +1,81 @@
 <script>
-$(function() {
-    var type_selector = $(".type_selector");
-    type_selector.change(function() {
-		if(this.value == "Omezená vstupy")
-		{
-			$(".entries").show();
-		}
-		else
-		{
-		  	$(".entries").hide();
-		}
-	});
-    type_selector.change();
-	
-	if(<%= params[:activate] == "nope" %>)
-	{
-		$(".activate").hide();
-	}
-});
+    $(function () {
+        var type_selector = $(".type_selector");
+        type_selector.change(function () {
+            if (this.value == "Omezená vstupy") {
+                $(".entries").show();
+            }
+            else {
+                $(".entries").hide();
+            }
+        });
+        type_selector.change();
+
+        if (<%= params[:activate] == "nope" %>) {
+            $(".activate").hide();
+        }
+
+        var activate_today_box = $(".activate_today_box");
+        activate_today_box.change(function (event) {
+            if (this.checked) {
+                $(".activate_date_select").hide();
+            }
+            else
+            {
+                $(".activate_date_select").show();
+            }
+        });
+        activate_today_box.change();
+
+    });
 </script>
 
 <%= form_for(@ticket) do |f| %>
-  <% if @ticket.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+    <% if @ticket.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
 
-      <ul>
-      <% @ticket.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @ticket.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= select_tag :type, options_for_select(["Časově omezená", "Omezená vstupy"], params[:type]), class: "type_selector" %>
     </div>
-  <% end %>
-
-  <div class="field">
-  	<%= select_tag :type, options_for_select([ "Časově omezená", "Omezená vstupy" ], params[:type]), class: "type_selector" %>
-  </div>
-  <div class="field entries">
-	<%= f.label :entries_remaining, "Zbývající vstupy", class: "entries" %><br>
-	<%= f.number_field :entries_remaining, class: "entries" %>
-  </div>
-  <div class="field">
-  	Platnost<br />
-    <%= number_field_tag :time_restriction_months, params[:time_restriction_months] %>
-    <%= label_tag :time_restriction_months, 'měsíců' %>
-  </div>
-  <div class="field activate">
-    <%= label_tag :activate, 'Platí od dnešního dne' %>
-    <%= check_box_tag :activate, true, params[:activate] %>
-  </div>
-  <div class="field">
-    <%= f.label :paid, 'Zaplaceno' %>
-    <%= f.check_box :paid %>
-  </div>
-  <div class="field">
-    <%= f.label :therapy_category_id, "Kategorie terapie" %><br>
-    <%= f.collection_select(:therapy_category_id, TherapyCategory.all, :id, :name) %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id, "Uživatel" %><br>
-    <%= f.collection_select(:user_id, User.all, :id, :full_name) %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Uložit" %>
-  </div>
+    <div class="field entries">
+      <%= f.label :entries_remaining, "Zbývající vstupy", class: "entries" %><br>
+      <%= f.number_field :entries_remaining, class: "entries" %>
+    </div>
+    <div class="field">
+      Platnost<br/>
+      <%= number_field_tag :time_restriction_months, params[:time_restriction_months] %>
+      <%= label_tag :time_restriction_months, 'měsíců' %>
+    </div>
+    <div class="field activate">
+      <%= label_tag :activate, 'Platí od dnešního dne' %>
+      <%= check_box_tag :activate, true, params[:activate], class: "activate_today_box" %>
+    </div>
+    <div class="field activate activate_date_select">
+      <%= label_tag :activated_on, 'Platí od' %>
+      <%= date_field_tag :activated_on, Date.today %>
+    </div>
+    <div class="field">
+      <%= f.label :paid, 'Zaplaceno' %>
+      <%= f.check_box :paid %>
+    </div>
+    <div class="field">
+      <%= f.label :therapy_category_id, "Kategorie terapie" %><br>
+      <%= f.collection_select(:therapy_category_id, TherapyCategory.all, :id, :name) %>
+    </div>
+    <div class="field">
+      <%= f.label :user_id, "Uživatel" %><br>
+      <%= f.collection_select(:user_id, User.all, :id, :full_name) %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Uložit" %>
+    </div>
 <% end %>

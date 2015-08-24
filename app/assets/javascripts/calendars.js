@@ -8,7 +8,7 @@ function setupHandlersFor(id)
           	return this.getAttribute("data-tooltip");
         }
  	});
- 	
+
 	$(".calendar_exercise[data-id=" + id + "][data-in-past=false]").click(function(event)
 	{
 		var clicked = $(this);
@@ -55,7 +55,7 @@ function setupHandlersForTemplate(id)
           	return this.getAttribute("data-tooltip");
         }
  	});
- 	
+
  	$(".calendar_template_exercise[data-id=" + id + "]").click(function(event)
 	{
 		var clicked = $(this);
@@ -82,7 +82,7 @@ function setupHandlersForModification(id)
           	return this.getAttribute("data-tooltip");
         }
  	});
- 	
+
  	$(".calendar_modification_exercise[data-id=" + id + "]").click(function(event)
 	{
 		var clicked = $(this);
@@ -98,7 +98,7 @@ function setupHandlersForModification(id)
 		});
 	});
 }
-	
+
 function setupHandlersForCalendar(calendar_id)
 {
 	var filter = "";
@@ -106,15 +106,15 @@ function setupHandlersForCalendar(calendar_id)
 	{
 		filter = "[data-calendar-id=" + calendar_id + "]";
 	}
-	
+
 	$(".calendar_exercise_style" + filter).tooltip({
 	items: "[data-tooltip]",
     content: function()
     {
       	return this.getAttribute("data-tooltip");
     }
- 	});	
- 	
+ 	});
+
  	$(".calendar_template_exercise" + filter).click(function(event)
 	{
 		var clicked = $(this);
@@ -129,7 +129,7 @@ function setupHandlersForCalendar(calendar_id)
 			}
 		});
 	});
-	
+
 	$(".calendar_modification_exercise" + filter).click(function(event)
 	{
 		var clicked = $(this);
@@ -144,7 +144,7 @@ function setupHandlersForCalendar(calendar_id)
 			}
 		});
 	});
-	
+
 	$(".calendar_exercise[data-in-past=false]" + filter).click(function(event)
 	{
 		var clicked = $(this);
@@ -179,7 +179,7 @@ function setupHandlersForCalendar(calendar_id)
 			});
 		}
 	});
-	
+
 	$(".calendar_week_selector_button" + filter).click(function(event)
 	{
 		var clicked = $(this);
@@ -194,7 +194,7 @@ function setupHandlersForCalendar(calendar_id)
 			}
 		});
 	});
-	
+
 }
 
 $(document).ready(function(){

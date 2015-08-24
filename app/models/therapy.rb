@@ -10,4 +10,13 @@ class Therapy < ActiveRecord::Base
      self.calendar = Calendar.create
      true
   end
+
+  def can_single_use_meth
+    TherapyCategory.find_each do |category|
+      if(category.therapies.count == 1 && category.therapies.first == self && category.therapies.first.can_single_use)
+        return true
+      end
+    end
+    return false
+  end
 end

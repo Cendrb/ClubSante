@@ -14,7 +14,8 @@
    end
     @monday_date = get_beginning_of_week(beginning_date)
     
-    @beginning_offset = @first_hour * 60 * Calendar.pixels_per_minute %>
+    @beginning_offset = @first_hour * 60 * Calendar.pixels_per_minute
+%>
 
 <table class="calendar_timetable" data-calendar-id=<%= @calendar.id %> data-beginning_offset=<%= @beginning_offset %>>
 	<tr>
@@ -51,7 +52,7 @@
 				<% date = @monday_date + weekday.days %>
 				<% timetable_template = TimetableTemplate.where(calendar: @calendar).where("beginning < ?", date).order(:beginning).last %>
 				<% timetable_template.exercise_templates.where(weekday: weekday).find_each do |template| %> 
-					<% if template.exercise_modifications.where("date::date = ?", date).count == 0 %>
+					<% if !template.exercise_modification %>
 						<%= render partial: "exercise_templates/exercise_template_for_calendar", locals: { exercise_template: template, date: date, beginning_offset: @beginning_offset } %>
 					<% end %>
 				<% end %>
