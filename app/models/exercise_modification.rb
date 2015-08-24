@@ -5,7 +5,7 @@ class ExerciseModification < ActiveRecord::Base
   belongs_to :timetable_modification
   belongs_to :coach
   belongs_to :exercise_template
-  has_one :exercise
+  has_one :exercise, dependent: :destroy
   has_one :therapy, through: [:timetable_template, :calendar, :therapy]
   
   before_validation :load_default_values
