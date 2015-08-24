@@ -182,6 +182,7 @@ function setupHandlersForCalendar(calendar_id)
 
 	$(".calendar_week_selector_button" + filter).click(function(event)
 	{
+        NProgress.start();
 		var clicked = $(this);
 		$.ajax({
 			type: "GET",
@@ -191,6 +192,7 @@ function setupHandlersForCalendar(calendar_id)
 			format: 'js',
 			success: function(msg){
 				setupHandlersForCalendar(clicked.data("calendar-id"));
+                NProgress.done();
 			}
 		});
 	});
@@ -199,6 +201,4 @@ function setupHandlersForCalendar(calendar_id)
 
 $(function(){
 	setupHandlersForCalendar(null);
-
-    Turbolinks.ProgressBar.enable();
 });

@@ -1614,6 +1614,7 @@
       <column name="description" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="created_at" sqlType="timestamp" precision="29" scale="6" nullable="false" jdbcType="93"/>
       <column name="updated_at" sqlType="timestamp" precision="29" scale="6" nullable="false" jdbcType="93"/>
+      <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="coaches_pkey" columns="id"/>
     </table>
     <table name="coaches_id_seq" schema="public" catalog="ClubSante_development" type="SEQUENCE">
@@ -1926,6 +1927,7 @@
       <column name="access_level" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="created_at" sqlType="timestamp" precision="29" scale="6" nullable="false" jdbcType="93"/>
       <column name="updated_at" sqlType="timestamp" precision="29" scale="6" nullable="false" jdbcType="93"/>
+      <column name="note" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="users_pkey" columns="id"/>
     </table>
     <table name="users_id_seq" schema="public" catalog="ClubSante_development" type="SEQUENCE">
