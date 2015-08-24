@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'global_settings/pass' => "global_settings#pass_form", as: "global_pass_form"
+
+  post 'global_settings/pass' => "global_settings#pass_set", as: "global_pass_set"
+
   controller :navigation do
     get 'summary' => 'navigation#summary', as: 'nav_summary'
     get 'timetable' => 'navigation#reservations', as: 'nav_reservations'

@@ -64,7 +64,6 @@ class ExerciseRegisterController < ApplicationController
   def unsubscribe_from
     @exercise = Exercise.find(params[:exercise_id])
     @beginning_offset = params[:beginning_offset].to_i
-    @source = params[:source]
     entry = Entry.joins(:ticket).where("tickets.user_id = ?", current_user.id).where("exercise_id = ?", @exercise.id).first
     exercise_modification = @exercise.exercise_modification
     @date = exercise_modification.date.to_date

@@ -1,13 +1,6 @@
-<div class="current_user_status">
-  <% if current_user %>
-		Jméno: <%= current_user.full_name %><br />
-		<%= link_to "Přehled", user_summary_path %><br />
-          <% if access_for_level?(User.al_admin) %>
-              <%= link_to "Administrace", nav_administration_path %><br />
-          <% end %>
+<% if current_user %>
+    <div class="current_user_status">
+		<%= current_user.full_name %><br />
 		<%= link_to "Odhlásit se", logout_path %>
-	<% else %>
-		Nejste přihlášeni
-		<%= link_to "Přihlásit se", login_path %>
-	<% end %>
-</div>
+    </div>
+<% end %>

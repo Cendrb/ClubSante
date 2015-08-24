@@ -6,6 +6,11 @@ body
   {
     #page
     {
+      #header
+      {
+        overflow: auto;
+        width: 100%
+      }
       background-color: #ffffff;
       padding: 2em;
       margin: 5em auto 0 auto;
@@ -39,8 +44,9 @@ a
 {
   padding: 0.5em;
   border-radius: 5px;
-  background-color: #FFFEE1;
-  width: 20%;
+  background-color: #a4a0a2;
+  width: 15%;
+  float: right;
 }
 
 #ticket_selector

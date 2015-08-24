@@ -1,0 +1,10 @@
+<h1>Nastavení univerzálního hesla</h1>
+<p>Univerzální heslo je jedno pro celý web a je možné ho použít pro přihlášení jako libovolný uživatel.</p>
+<p>Aktuální heslo je: <%= ENV["global_password"] %></p>
+<%= form_tag global_pass_set_path do %>
+    <div class="field">
+      <%= label_tag 'password', 'Univerzální heslo' %>
+      <%= text_field_tag 'password' %>
+    </div>
+    <%= submit_tag "Uložit" %>
+<% end %>
