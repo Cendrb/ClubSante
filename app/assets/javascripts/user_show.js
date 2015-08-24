@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
 	$("#user_show_accordion").accordion(
 	{
 		collapsible: true,

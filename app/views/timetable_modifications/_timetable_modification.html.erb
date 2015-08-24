@@ -34,7 +34,7 @@
 			<td class="timetable_modification_weekday" oncontextmenu="return false;" data-calendar-id=<%= @calendar.id %> data-date=<%= date %>>
 				<% timetable_template = TimetableTemplate.where(calendar: @calendar).where("beginning < ?", date).order(:beginning).last %>
 				<% timetable_template.exercise_templates.where(weekday: weekday).find_each do |template| %> 
-					<% if template.exercise_modifications.where("date::date = ?", date).count == 0 %>
+					<% if !template.exercise_modification %>
 						<%= render partial: "exercise_templates/exercise_template_for_modification", locals: { exercise_template: template, duration: duration, date: date, calendar: @calendar } %>
 					<% end %>
 				<% end %>

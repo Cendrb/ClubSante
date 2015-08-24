@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
 		$(".new_records_user_select").change(function() {
 			$.ajax({
 				type: "GET",

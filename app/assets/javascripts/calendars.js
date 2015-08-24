@@ -197,6 +197,8 @@ function setupHandlersForCalendar(calendar_id)
 
 }
 
-$(document).ready(function(){
+$(function(){
 	setupHandlersForCalendar(null);
+
+    Turbolinks.ProgressBar.enable();
 });

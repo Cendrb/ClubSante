@@ -86,7 +86,7 @@ function setupHandlersForTimetableModification()
 	});
 }
 
-$(document).ready(function(){
+$(function(){
 	
 	setupHandlersForTimetableModification();
 });
