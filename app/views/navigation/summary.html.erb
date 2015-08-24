@@ -22,17 +22,17 @@
     <div id="user_summary_notifications">
       <table>
         <tr>
-          <th>Registrováno dne</th>
           <th>Použito pro registraci</th>
+          <th>Registrováno dne</th>
         </tr>
         <% @data[:pending_singles].find_each do |single_use| %>
             <tr>
               <% if single_use.entries.first %>
                   <% exercise_modification = single_use.entries.first.exercise.exercise_modification %>
-                  <td><%= l single_use.entries.first.created_at %></td>
                   <td><%= exercise_modification.timetable_modification.calendar.therapy.name %>
                     (<%= l exercise_modification.date %>)
                   </td>
+                  <td><%= l single_use.entries.first.created_at %></td>
               <% end %>
             </tr>
         <% end %>

@@ -41,7 +41,11 @@ class Calendar < ActiveRecord::Base
       registered_max_modification_hour = exercises.joins(:exercise_modification).maximum("EXTRACT(HOUR FROM exercise_modifications.date)").round
     end
     puts "MAX: #{registered_max_modification_hour}"
-    
-    return [registered_max_modification_hour, exercise_templates.maximum(:beginning).hour].max + 1
+
+    if(exercise_templates.count > 0)
+      return [registered_max_modification_hour, exercise_templates.maximum(:beginning).hour].max + 1
+    else
+      return 0
+    end
   end
 end
