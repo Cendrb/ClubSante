@@ -55,7 +55,7 @@ class TicketsController < ApplicationController
       @ticket.time_restriction = (params[:time_restriction_months].to_i.months).to_i
       respond_to do |format|
         if @ticket.save
-          format.html { redirect_to tickets_path, notice: 'Permanentka vytvořena' }
+          format.html { redirect_to @ticket.user, notice: 'Permanentka vytvořena' }
           format.json { render :show, status: :created, location: @ticket }
         else
           format.html { render :new }

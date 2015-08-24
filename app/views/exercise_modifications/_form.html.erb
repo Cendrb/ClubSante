@@ -1,52 +1,55 @@
-<%= form_for(@exercise_modification, remote: true, html: { class: "exercise_modification_form" }) do |f| %>
-  <% if @exercise_modification.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@exercise_modification.errors.count, "error") %> prohibited this exercise_modification from being saved:</h2>
+<div class="exercise_modification_dialog" title="<%= @exercise_modification.exercise_template_id ? "Úprava modifikace" : "Nová modifikace" %>">
+  <%= form_for(@exercise_modification, remote: true, html: {class: "exercise_modification_form"}) do |f| %>
+      <% if @exercise_modification.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@exercise_modification.errors.count, "error") %> prohibited this exercise_modification
+              from being saved:</h2>
 
-      <ul>
-      <% @exercise_modification.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+            <ul>
+              <% @exercise_modification.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <% if @exercise_modification.exercise_template_id %>
-  	  <!-- Disallow changing date when editing existing template  -->
-	  <div class="field">
-	    <%= f.label :date, "Termín" %><br>
-	    <%= f.time_select :date %>
-	  </div>
-  <% else %>
-  	  <!-- Allow changing whole date - new modification - not bound to anything  -->
-	  <div class="field">
-	    <%= f.label :date, "Termín" %><br>
-	    <%= f.datetime_select :date %>
-	  </div>
+      <% if @exercise_modification.exercise_template_id %>
+          <!-- Disallow changing date when editing existing template  -->
+          <div class="field">
+            <%= f.label :date, "Termín" %><br>
+            <%= f.time_select :date %>
+          </div>
+      <% else %>
+          <!-- Allow changing whole date - new modification - not bound to anything  -->
+          <div class="field">
+            <%= f.label :date, "Termín" %><br>
+            <%= f.datetime_select :date %>
+          </div>
+      <% end %>
+      <div class="field">
+        <%= f.label :coach_id, "Trenér" %><br>
+        <%= f.collection_select :coach_id, Coach.all, :id, :name, include_blank: ExerciseTemplate.get_the_same_string %>
+      </div>
+      <div class="field">
+        <%= f.label :price, "Cena" %><br>
+        <%= f.text_field :price %>
+      </div>
+      <div class="field">
+        <%= f.label :note, "Poznámka" %><br>
+        <%= f.text_area :note %>
+      </div>
+      <% if @exercise_modification.exercise_template_id %>
+          <div class="field">
+            <%= f.label :removal, "Pouze odebrat", title: "Při zaškrtnutí zmizí tato hodina z rozvrhu. Jinak bude pouze upravena." %>
+            <%= f.check_box :removal %>
+          </div>
+      <% else %>
+          <%= f.hidden_field :removal, value: false %>
+      <% end %>
+      <%= f.hidden_field :timetable_modification_id %>
+      <%= f.hidden_field :exercise_template_id %>
+      <div class="actions">
+        <%= f.submit "Uložit" %>
+      </div>
   <% end %>
-  <div class="field">
-    <%= f.label :coach_id, "Trenér" %><br>
-    <%= f.collection_select :coach_id, Coach.all, :id, :name, include_blank: ExerciseTemplate.get_the_same_string %>
-  </div>
-  <div class="field">
-    <%= f.label :price, "Cena" %><br>
-    <%= f.text_field :price %>
-  </div>
-  <div class="field">
-    <%= f.label :note, "Poznámka" %><br>
-    <%= f.text_area :note %>
-  </div>
-  <% if @exercise_modification.exercise_template_id %>
-	  <div class="field">
-	  	<%= f.label :removal, "Pouze odebrat", title: "Při zaškrtnutí zmizí tato hodina z rozvrhu. Jinak bude pouze upravena." %>
-	    <%= f.check_box :removal %>
-	  </div>
-  <% else %>
-  	  <%= f.hidden_field :removal, value: false %>
-  <% end %>
-  <%= f.hidden_field :timetable_modification_id %>
-  <%= f.hidden_field :exercise_template_id %>
-  <div class="actions">
-    <%= f.submit "Uložit" %>
-  </div>
-<% end %>
+</div>

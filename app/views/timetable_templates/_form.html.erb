@@ -1,266 +1,260 @@
 <p id="notice">
-	<%= notice %>
+  <%= notice %>
 </p>
 
 <style type="text/css">
-	#timetable_template
-	{
-  		table-layout: fixed;
-    	width: 100%;
-    	white-space: nowrap;
-    	position: relative;
-    	top: 0;
-    	left: 0;
-    	right: 0;
-    	bottom: 0;
-	}
-	td
-  	{
-    	padding: 0;
-    	border: 1px solid black;
-  	}
-  	#timetable_template_data_form
-  	{
-  		background-color: #EEEEEE;
-  		height: 200px;
-  	}
-	.timetable_template_exercise
-	{
-    	width: 100%;
-  		display: flex;
-  		justify-content: center;
-  		align-items: center;
+    #timetable_template {
+        table-layout: fixed;
+        width: 100%;
+        white-space: nowrap;
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    td {
+        padding: 0;
+        border: 1px solid black;
+    }
+
+    #timetable_template_data_form {
+        background-color: #EEEEEE;
+        height: 140px;
+    }
+
+    .timetable_template_exercise {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background-color: yellow;
-  		z-index: 10;
-  		padding: 0;
-  		margin: 0;
-  		border: 0;
-	}
-	.timetable_template_exercise_time
-  	{
-    
-  	}
-	.timetable_template_exercise_handle
-	{
-		background-color: red;
-		width: 1.8em;
-		height: 1.8em;
-		position: absolute;
-		left: 0;
-		top: 0;
-		cursor: move;
-		}
-	.timetable_template_weekday
-	{
-		position: relative;
-  		vertical-align: top;
-  		padding: 0;
-	}
-	.timetable_template_hour
-	{
-		height: <%= TimetableTemplate.pixels_per_minute * 60 %>px;
-  		text-align: center;
-  		position: relative;
-  		vertical-align: center;
-	}
-	
-	.hour_separator_line
-  	{
-  	  width: 100%;
-  	  z-index: 5;
-  	  border-bottom: 1px solid gray;
-  	}
+        z-index: 10;
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
+
+    .timetable_template_exercise_time {
+
+    }
+
+    .timetable_template_exercise_handle {
+        background-color: red;
+        width: 1.8em;
+        height: 1.8em;
+        position: absolute;
+        left: 0;
+        top: 0;
+        cursor: move;
+    }
+
+    .timetable_template_weekday {
+        position: relative;
+        vertical-align: top;
+        padding: 0;
+    }
+
+    .timetable_template_hour {
+        height: <%= TimetableTemplate.pixels_per_minute * 60 %>px;
+        text-align: center;
+        position: relative;
+        vertical-align: center;
+    }
+
+    .hour_separator_line {
+        width: 100%;
+        z-index: 5;
+        border-bottom: 1px solid gray;
+    }
 </style>
 
 <script>
-	var current_timetable_id = <%= @timetable_template.id %>;
-	var dragging = false;
-	var clickedOnExercise = false;
-	var selectedExercises = [];
-	
-	function addToSelected(id)
-	{
-		$("#timetable_template_data_form").text("Získávání dat...");
-		if($.inArray(id, selectedExercises) != -1)
-		{
-			selectedExercises.splice($.inArray(id, selectedExercises), 1);
-			$(".timetable_template_exercise[data-id=" + id + "]").css("background-color", "yellow");
-		}
-		else
-		{
-			selectedExercises.push(id);
-			$(".timetable_template_exercise[data-id=" + id + "]").css("background-color", "orange");
-		}
-		
-		$.ajax({
-			type: "GET",
-			url: "/exercise_templates/multi_edit",
-			data: { affected_exercise_templates: selectedExercises },
-			dataType: 'script',
-			format: 'js',
-			success: function(msg){
-				
-			},
-			error: function(xhr, textStatus, errorThrown){
-				$("#timetable_template_data_form").text("Došlo k chybě");
-			}
-		});
-	}
-	
-	function clearSelected()
-	{
-        var index;
-		for	(index = 0; index < selectedExercises.length; index++) {
-			$(".timetable_template_exercise[data-id=" + selectedExercises[index] + "]").css("background-color", "yellow");
-		}
-		selectedExercises = [];
-	}
+    var current_timetable_id = <%= @timetable_template.id %>;
+    var dragging = false;
+    var clickedOnExercise = false;
+    var selectedExercises = [];
 
-	function getTimeFor(ui)
-	{
-		var offset = (ui.css("top").slice(0, -2));
-		var hours = Math.floor((offset / <%= TimetableTemplate.pixels_per_minute %>) / 60);
-		var minutes = (offset / <%= TimetableTemplate.pixels_per_minute %>) % 60;
-		var time = new Date();
-		time.setHours(hours, minutes);
-		return time;
-	}
-	
-	onDrag = function(event, ui) {
-			var time = getTimeFor(ui.helper);
-			var endTime = new Date(time.getTime() + ui.helper.attr("data-duration") * 60000);
-			var options = { hour: "2-digit", minute: "2-digit" };
-			ui.helper.find(".timetable_template_exercise_time").text(time.toLocaleTimeString("cs-CS", options) + " - " + endTime.toLocaleTimeString("cs-CS", options));
-		};
-		
-	onDragStart = function(event, ui) {
-			$("#container").css("cursor", "move");
-			dragging = true;
-			$(this).data("origPosition", $(this).position());
-		};
-		
-	onDragStop = function(event, ui) {
-			$("#container").css("cursor", "auto");
-			dragging = false;
-			var id = ui.helper.attr("data-id");
-			ui.helper.find(".timetable_template_exercise_status").text("...");
-			$.ajax({
-				type: "PATCH",
-				url: "/exercise_templates/" + id + ".whoa",
-				data: { exercise_template: { beginning: getTimeFor(ui.helper) } },
-				success: function(msg){
-					ui.helper.find(".timetable_template_exercise_status").text("U");
-				},
-				error: function(xhr, textStatus, errorThrown){
-					ui.helper.animate(ui.helper.data().origPosition, "fast");
-					ui.helper.find(".timetable_template_exercise_status").text("Nezdařilo se");
-				}
-			});
-		};
-		
-	onMouseDown = function(e){ 
-		clickedOnExercise = true;
-    		if( e.button == 2 ) {
-    			var element = $(this);
-      			var id = $(this).attr("data-id");
-				$(this).find(".timetable_template_exercise_status").text("Odstraňování...");
-				$.ajax({
-					type: "DELETE",
-					url: "/exercise_templates/" + id + ".whoa",
-					success: function(msg){
-						element.remove();
-					}
-				});
-      			return false; 
-    		}
-    		else
-    		{
-    			if(selectedExercises.length > 0)
-    			{
-    				// something already selected
-    				if(e.shiftKey)
-    				{
-    					// add to selection
-    					addToSelected($(this).attr("data-id"));
-    				}
-    				else
-    				{
-    					// reset and add
-    					clearSelected();
-    					addToSelected($(this).attr("data-id"));
-    				}
-    			}
-    			else
-    			{
-    				// nothing selected
-    				addToSelected($(this).attr("data-id"));
-    			}
-    			return false; 
-    		}
-  		};
-	
-	function setupDraggablesFor(element)
-	{
-		element.draggable({ axis: "y", containment: "parent", grid: [0, <%= TimetableTemplate.min_diff_time * TimetableTemplate.pixels_per_minute %>], handle: ".timetable_template_exercise_handle" });
-		
-		element.mousedown(onMouseDown);
-		
-		element.on("drag", onDrag);
-		
-		element.on("dragstart", onDragStart);
-		
-		element.on("dragstop", onDragStop);
-		
-		element.tooltip({
-		items: "[data-tooltip]",
-        content: function()
-        {
-          	return this.getAttribute("data-tooltip");
+    function addToSelected(id) {
+        $("#timetable_template_data_form").text("Získávání dat...");
+        if ($.inArray(id, selectedExercises) != -1) {
+            selectedExercises.splice($.inArray(id, selectedExercises), 1);
+            $(".timetable_template_exercise[data-id=" + id + "]").css("background-color", "yellow");
         }
-     	});	
-	}
+        else {
+            selectedExercises.push(id);
+            $(".timetable_template_exercise[data-id=" + id + "]").css("background-color", "orange");
+        }
 
-	
-	$(function() {
-		setupDraggablesFor($(".timetable_template_exercise"));
-		
-		$(".timetable_template_weekday").mouseup(function(event)
-		{
-			if(clickedOnExercise)
-			{
-				clickedOnExercise = false;
-			}
-			else
-			{
-				if(!dragging && event.button != 2)	
-				{
-					var relativeYMinutes = ((event.pageY - $(this).offset().top) / <%= TimetableTemplate.pixels_per_minute %>);
-					var beginningHours = Math.floor(relativeYMinutes / 60);
-					var beginningMinutes = Math.floor((relativeYMinutes % 60) / <%= TimetableTemplate.min_diff_time * 2 %>) * <%= TimetableTemplate.min_diff_time * 2 %>;
-					$.ajax({
-						type: "POST",
-						url: "/exercise_templates.js",
-						data: { exercise_template: { beginning: beginningHours + ":" + beginningMinutes, weekday: $(this).data("id"), timetable_template_id: current_timetable_id } },
-						dataType: 'script',
-						format: 'js',
-						success: function(msg){
-						}
-					});
-				}
-			}
-		});	
-	});
-	</script>
+        $.ajax({
+            type: "GET",
+            url: "/exercise_templates/multi_edit",
+            data: {affected_exercise_templates: selectedExercises},
+            dataType: 'script',
+            format: 'js',
+            success: function (msg) {
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                $("#timetable_template_data_form").text("Došlo k chybě");
+            }
+        });
+    }
+
+    function clearSelected() {
+        var index;
+        for (index = 0; index < selectedExercises.length; index++) {
+            $(".timetable_template_exercise[data-id=" + selectedExercises[index] + "]").css("background-color", "yellow");
+        }
+        selectedExercises = [];
+    }
+
+    function getTimeFor(ui) {
+        var offset = (ui.css("top").slice(0, -2));
+        var hours = Math.floor((offset / <%= TimetableTemplate.pixels_per_minute %>) / 60);
+        var minutes = (offset / <%= TimetableTemplate.pixels_per_minute %>) % 60;
+        var time = new Date();
+        time.setHours(hours, minutes);
+        return time;
+    }
+
+    onDrag = function (event, ui) {
+        var time = getTimeFor(ui.helper);
+        var endTime = new Date(time.getTime() + ui.helper.attr("data-duration") * 60000);
+        var options = {hour: "2-digit", minute: "2-digit"};
+        ui.helper.find(".timetable_template_exercise_time").text(time.toLocaleTimeString("cs-CS", options) + " - " + endTime.toLocaleTimeString("cs-CS", options));
+    };
+
+    onDragStart = function (event, ui) {
+        $("#container").css("cursor", "move");
+        dragging = true;
+        $(this).data("origPosition", $(this).position());
+    };
+
+    onDragStop = function (event, ui) {
+        $("#container").css("cursor", "auto");
+        dragging = false;
+        var id = ui.helper.attr("data-id");
+        ui.helper.find(".timetable_template_exercise_status").text("...");
+        $.ajax({
+            type: "PATCH",
+            url: "/exercise_templates/" + id + ".whoa",
+            data: {exercise_template: {beginning: getTimeFor(ui.helper)}},
+            success: function (msg) {
+                ui.helper.find(".timetable_template_exercise_status").text("U");
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                ui.helper.animate(ui.helper.data().origPosition, "fast");
+                ui.helper.find(".timetable_template_exercise_status").text("Nezdařilo se");
+            }
+        });
+    };
+
+    onMouseDown = function (e) {
+        clickedOnExercise = true;
+        if (e.button == 2) {
+            var element = $(this);
+            var id = $(this).attr("data-id");
+            $(this).find(".timetable_template_exercise_status").text("Odstraňování...");
+            $.ajax({
+                type: "DELETE",
+                url: "/exercise_templates/" + id + ".whoa",
+                success: function (msg) {
+                    element.remove();
+                }
+            });
+            return false;
+        }
+        else {
+            if (selectedExercises.length > 0) {
+                // something already selected
+                if (e.shiftKey) {
+                    // add to selection
+                    addToSelected($(this).attr("data-id"));
+                }
+                else {
+                    // reset and add
+                    clearSelected();
+                    addToSelected($(this).attr("data-id"));
+                }
+            }
+            else {
+                // nothing selected
+                addToSelected($(this).attr("data-id"));
+            }
+            return false;
+        }
+    };
+
+    function setupDraggablesFor(element) {
+        element.draggable({
+            axis: "y",
+            containment: "parent",
+            grid: [0, <%= TimetableTemplate.min_diff_time * TimetableTemplate.pixels_per_minute %>],
+            handle: ".timetable_template_exercise_handle"
+        });
+
+        element.mousedown(onMouseDown);
+
+        element.on("drag", onDrag);
+
+        element.on("dragstart", onDragStart);
+
+        element.on("dragstop", onDragStop);
+
+        element.tooltip({
+            items: "[data-tooltip]",
+            content: function () {
+                return this.getAttribute("data-tooltip");
+            }
+        });
+    }
+
+
+    $(function () {
+        setupDraggablesFor($(".timetable_template_exercise"));
+
+        $(".timetable_template_weekday").mouseup(function (event) {
+            if (clickedOnExercise) {
+                clickedOnExercise = false;
+            }
+            else {
+                if (!dragging && event.button != 2) {
+                    var relativeYMinutes = ((event.pageY - $(this).offset().top) / <%= TimetableTemplate.pixels_per_minute %>);
+                    var beginningHours = Math.floor(relativeYMinutes / 60);
+                    var beginningMinutes = Math.floor((relativeYMinutes % 60) / <%= TimetableTemplate.min_diff_time * 2 %>) * <%= TimetableTemplate.min_diff_time * 2 %>;
+                    $.ajax({
+                        type: "POST",
+                        url: "/exercise_templates.js",
+                        data: {
+                            exercise_template: {
+                                beginning: beginningHours + ":" + beginningMinutes,
+                                weekday: $(this).data("id"),
+                                timetable_template_id: current_timetable_id
+                            }
+                        },
+                        dataType: 'script',
+                        format: 'js',
+                        success: function (msg) {
+                        }
+                    });
+                }
+            }
+        });
+    });
+</script>
 
 <p>
-	Pomocí shiftu lze označit více položek najednou a všem upravit vlastnosti
+  Pomocí shiftu lze označit více položek najednou a všem upravit vlastnosti
 </p>
 
 <%= form_for @timetable_template, url: @timetable_template, method: :patch, remote: true do |f| %>
 
     <% if @timetable_template.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@available_value.errors.count, "error") %> prohibited this available_value from being saved:</h2>
+          <h2><%= pluralize(@available_value.errors.count, "error") %> prohibited this available_value from being
+            saved:</h2>
 
           <ul>
             <% @timetable_template.errors.full_messages.each do |message| %>
@@ -270,49 +264,47 @@
         </div>
     <% end %>
 
-	<div class="field">
-    	<%= f.label :beginning, 'Platí od' %><br>
-    	<%= f.date_field :beginning %>
-  	</div>
+    <div class="field">
+      <%= f.label :beginning, 'Platí od' %><br>
+      <%= f.date_field :beginning %>
+    </div>
 
-	<div class="actions">
-    	<%= f.submit 'Aktualizovat' %>
-  	</div>
-	
+    <div class="actions">
+      <%= f.submit 'Aktualizovat' %>
+    </div>
+
 <% end %>
 
-<div id="timetable_template_data_form">
-	
-</div>
-
 <table id="timetable_template">
-	<tr>
-		<td></td>
-		<% I18n.t(:"date.day_names").rotate.each do |weekday_name| %>
-			<td><%= weekday_name %></td>
-		<% end %>
-	</tr>
-	<tr>
-		<td> 
-			<% for hour in 0..24 %>
-				<div class="timetable_template_hour">
-					<%= hour %>:00
-				</div>
-			<% end %>
-			
-			<% for hour in 0..24 %>
-				<div class="hour_separator_line" style="position: absolute; top: <%= (hour * 60 * TimetableTemplate.pixels_per_minute) + 19 %>px; left: 0"></div>
-			<% end %>
-		</td>
-		<% duration = @timetable_template.calendar.therapy.duration_in_minutes %>
-		<% for i in 0..6 do %>
-			<td class="timetable_template_weekday" oncontextmenu="return false;" data-id=<%= i %>>
-				<% if @timetable_template.exercise_templates.where(weekday: i).count > 0 %>
-					<% @timetable_template.exercise_templates.where(weekday: i).each do |exercise| %>
-						<%= render partial: "exercise_templates/exercise_template", locals: { exercise_template: exercise, duration: duration} %>
-					<% end %>
-				<% end %>
-			</td>
-		<% end %>
-	</tr>
+  <tr>
+    <td></td>
+    <% I18n.t(:"date.day_names").rotate.each do |weekday_name| %>
+        <td><%= weekday_name %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <td>
+      <% for hour in 0..24 %>
+          <div class="timetable_template_hour">
+            <%= hour %>:00
+          </div>
+      <% end %>
+
+      <% for hour in 0..24 %>
+          <div class="hour_separator_line" style="position: absolute; top: <%= (hour * 60 * TimetableTemplate.pixels_per_minute) + 19 %>px; left: 0"></div>
+      <% end %>
+    </td>
+    <% duration = @timetable_template.calendar.therapy.duration_in_minutes %>
+    <% for i in 0..6 do %>
+        <td class="timetable_template_weekday" oncontextmenu="return false;" data-id=<%= i %>>
+          <% if @timetable_template.exercise_templates.where(weekday: i).count > 0 %>
+              <% @timetable_template.exercise_templates.where(weekday: i).each do |exercise| %>
+                  <%= render partial: "exercise_templates/exercise_template", locals: {exercise_template: exercise, duration: duration} %>
+              <% end %>
+          <% end %>
+        </td>
+    <% end %>
+  </tr>
 </table>
+
+<div id="timetable_template_data_form"></div>
