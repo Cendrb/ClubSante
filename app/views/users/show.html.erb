@@ -24,7 +24,15 @@
       <strong>Email:</strong>
       <%= @user.email %>
     </p>
-    <%= link_to 'Upravit', edit_user_path(@user) %>
+
+    <p>
+      <strong>Poznámka</strong><br>
+      <%= form_for @user do |f| %>
+          <%= f.text_area :note, cols: 80, rows: 15 %><br>
+          <%= f.submit 'Uložit poznámku' %>
+      <% end %>
+    </p>
+    <%= link_to 'Změnit heslo', edit_user_path(@user) %>
   </div>
 
   <h2>Cíle a přístup</h2>

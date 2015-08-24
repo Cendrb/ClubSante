@@ -25,6 +25,9 @@ class ApplicationController < ActionController::Base
   def authenticate_admin
     authenticate_for_level(User.al_admin)
   end
+  def authenticate_coach
+    authenticate_for_level(User.al_coach)
+  end
   def authenticate_customer
     authenticate_for_level(User.al_customer)
   end

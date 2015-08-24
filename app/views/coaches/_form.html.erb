@@ -1,25 +1,29 @@
 <%= form_for(@coach) do |f| %>
-  <% if @coach.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@coach.errors.count, "error") %> prohibited this coach from being saved:</h2>
+    <% if @coach.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@coach.errors.count, "error") %> prohibited this coach from being saved:</h2>
 
-      <ul>
-      <% @coach.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @coach.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name, "Jméno" %><br>
+      <%= f.text_field :name %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name, "Jméno" %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description, "Popis" %><br>
-    <%= f.text_area :description, cols: "30", rows: "5" %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Uložit" %>
-  </div>
+    <div class="field">
+      <%= f.label :description, "Popis" %><br>
+      <%= f.text_area :description, cols: "30", rows: "5" %>
+    </div>
+    <div class="field">
+      <%= f.label :user_id, "Uživatel" %><br>
+      <%= f.select :user_id, User.all.select(:id, :first_name, :last_name).collect { |p| [ p.full_name, p.id ] }, include_blank: true %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Uložit" %>
+    </div>
 <% end %>

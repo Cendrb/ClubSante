@@ -100,7 +100,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: 'Údaje úspěšně změněny.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -167,6 +167,6 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)
+    params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation, :note)
   end
 end

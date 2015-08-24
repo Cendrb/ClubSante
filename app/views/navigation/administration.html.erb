@@ -81,6 +81,7 @@
       <thead>
       <tr>
         <th>Jméno</th>
+        <th>Propojený uživatel</th>
         <th colspan="2"></th>
       </tr>
       </thead>
@@ -89,6 +90,7 @@
       <% @data[:coaches].each do |coach| %>
           <tr>
             <td><%= coach.name %></td>
+            <td><%= coach.user.full_name if coach.user %></td>
             <td><%= link_to 'Upravit', edit_coach_path(coach) %></td>
             <td><%= link_to 'Odstranit', coach, method: :delete, data: {confirm: 'Jste si jisti?'} %></td>
           </tr>

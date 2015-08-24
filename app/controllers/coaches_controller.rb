@@ -29,7 +29,7 @@ class CoachesController < ApplicationController
 
     respond_to do |format|
       if @coach.save
-        format.html { redirect_to coaches_path }
+        format.html { redirect_to nav_administration_path }
         format.json { render :show, status: :created, location: @coach }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class CoachesController < ApplicationController
   def update
     respond_to do |format|
       if @coach.update(coach_params)
-        format.html { redirect_to coaches_path }
+        format.html { redirect_to nav_administration_path }
         format.json { render :show, status: :ok, location: @coach }
       else
         format.html { render :edit }
@@ -70,6 +70,6 @@ class CoachesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coach_params
-      params.require(:coach).permit(:name, :description)
+      params.require(:coach).permit(:name, :description, :user_id)
     end
 end

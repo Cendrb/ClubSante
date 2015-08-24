@@ -3,6 +3,7 @@ require 'digest/sha2'
 class User < ActiveRecord::Base
   has_many :tickets
   has_many :tracked_values
+  has_one :coach
   
   validates :email, presence: true, uniqueness: true #, email_format: {message: 'není platný email'}
   validates :password, confirmation: true
@@ -79,7 +80,11 @@ class User < ActiveRecord::Base
   def User.al_admin
     return 10
   end
-  
+
+  def User.al_coach
+    return 9
+  end
+
   def User.al_customer
     return 8
   end
@@ -89,7 +94,7 @@ class User < ActiveRecord::Base
   end
   
   def User.access_levels
-    return %w(registrovaný zákazník administrátor)
+    return %w(registrovaný zákazník trenér administrátor)
   end
   
   def User.get_access_level_string(number)
@@ -98,6 +103,8 @@ class User < ActiveRecord::Base
       return "registrovaný"
     when User.al_customer
       return "zákazník"
+    when User.al_coach
+      return "trénér"
     when User.al_admin
       return "administrátor"
     end
@@ -109,6 +116,8 @@ class User < ActiveRecord::Base
       return User.al_registered
     when "zákazník"
       return User.al_customer
+    when "trenér"
+      return User.al_coach
     when "administrátor"
       return User.al_admin
     end
