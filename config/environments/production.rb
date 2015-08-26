@@ -47,6 +47,8 @@ Rails.application.configure do
       authentication:       'plain',
       enable_starttls_auto: true  }
 
+  config.time_zone = "Prague"
+
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Specifies the header that your server uses for sending files.
