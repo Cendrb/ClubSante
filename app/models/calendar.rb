@@ -17,34 +17,31 @@ class Calendar < ActiveRecord::Base
     return 0.4
   end
 
-  def self.min_hour_for(exercises, exercise_templates)
-    if (exercises.joins(:exercise_modification).minimum("EXTRACT(HOUR FROM exercise_modifications.date)").nil?)
-      registered_min_modification_hour = 69
-    else
-      registered_min_modification_hour = exercises.joins(:exercise_modification).minimum("EXTRACT(HOUR FROM exercise_modifications.date)").round
+  def self.min_max_hour_for(exercise_templates, exercise_modifications)
+    min_modification_hour = 24
+    if(exercise_modifications.count > 0)
+      min_modification_hour = exercise_modifications.minimum(:date).hour
     end
-    puts "MIN: #{registered_min_modification_hour}"
-
+    min_template_hour = 24
     if (exercise_templates.count > 0)
-      return [registered_min_modification_hour, exercise_templates.minimum(:beginning).hour].min
-    else
-      return 0
+      min_template_hour = exercise_templates.minimum(:beginning).hour
     end
+    min_hour = [min_modification_hour, min_template_hour].min
 
-  end
-
-  def self.max_hour_for(exercises, exercise_templates)
-    if (exercises.joins(:exercise_modification).maximum("EXTRACT(HOUR FROM exercise_modifications.date)").nil?)
-      registered_max_modification_hour = -69
-    else
-      registered_max_modification_hour = exercises.joins(:exercise_modification).maximum("EXTRACT(HOUR FROM exercise_modifications.date)").round
+    max_modification_hour = 0
+    if(exercise_modifications.count > 0)
+      max_modification_hour = exercise_modifications.maximum(:date).hour + 1
     end
-    puts "MAX: #{registered_max_modification_hour}"
-
+    max_template_hour = 0
     if (exercise_templates.count > 0)
-      return [registered_max_modification_hour, exercise_templates.maximum(:beginning).hour].max + 1
-    else
-      return 0
+      max_template_hour = exercise_templates.maximum(:beginning).hour + 1
     end
+    max_hour = [max_modification_hour, max_template_hour].max
+
+    if(min_hour > max_hour)
+      min_hour = 0
+      max_hour = 0
+    end
+    return min_hour, max_hour
   end
 end
