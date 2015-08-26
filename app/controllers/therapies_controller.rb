@@ -63,7 +63,7 @@ class TherapiesController < ApplicationController
   def destroy
     @therapy.destroy
     respond_to do |format|
-      format.html { redirect_to therapies_url, notice: 'Therapy was successfully destroyed.' }
+      format.html { redirect_to nav_administration_path, notice: 'Therapy was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

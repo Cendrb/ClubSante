@@ -35,6 +35,9 @@ gem 'turbolinks'
 # Progress bars for turbolinks and ajax calls
 gem 'nprogress-rails'
 
+# Another javascript library - faster animations than JQuery
+gem 'greensock-rails'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 
