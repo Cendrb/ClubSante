@@ -46,6 +46,11 @@
 
   }
 
+  .calendar_grey_past
+  {
+    background-color: #b0b0b0;
+  }
+
   .calendar_weekday
   {
   	position: relative;
@@ -66,15 +71,15 @@
   }
   .free_exercise
   {
-  	background-color: #527A00;
+  	background-color: #679e00;
   }
   .full_exercise
   {
-  	background-color: #B71E02;
+  	background-color: #dd2002;
   }
   .signed_exercise
   {
-  	background-color: #FFCC00;
+  	background-color: #ffcc00;
   }
 
   .hour_separator_line

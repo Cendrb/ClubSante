@@ -40,8 +40,8 @@
 		</td>
 
 		<% for weekday in 0..6 %>
-			<td class="calendar_weekday" oncontextmenu="return false;" data-weekday=<%= weekday %>">
-				<% date = @monday_date + weekday.days %>
+            <% date = @monday_date + weekday.days %>
+			<td class="calendar_weekday<%= " calendar_grey_past" if date.past? %>" oncontextmenu="return false;" data-weekday=<%= weekday %>">
 				<% timetable_template = TimetableTemplate.where(calendar: @calendar).where("beginning < ?", date).order(:beginning).last %>
 				<% timetable_template.exercise_templates.where(weekday: weekday).find_each do |template| %>
 					<% if !template.exercise_modification %>
