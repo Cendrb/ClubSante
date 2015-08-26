@@ -85,13 +85,15 @@
   .hour_separator_line
   {
     width: 100%;
-    z-index: 5;
+    z-index: 6;
     border-bottom: 1px solid gray;
   }
 
   .current_time_line
   {
     z-index: 5;
+    padding-left: -1px;
+    border-left: 1px solid grey;
     border-bottom: 2px solid red;
   }
 }

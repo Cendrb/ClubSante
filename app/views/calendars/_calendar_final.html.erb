@@ -34,8 +34,8 @@
 
 			<% if (@first_hour..@last_hour).include?(Time.now.hour) && (@monday_date..@monday_date + 6.days).include?(Date.today) %>
 				<% one_column_percentage = 100.0 / 8.0
-				   line_left_offset = one_column_percentage * (((Date.today - @monday_date).to_i) + 1) %>
-				<div class="current_time_line" style="position: absolute; top: <%= ((Time.now.seconds_since_midnight / 60) * Calendar.pixels_per_minute) + 19 - @beginning_offset %>px; left: <%= line_left_offset %>%; width: <%= one_column_percentage %>%"></div>
+				   line_left_offset = (one_column_percentage * (((Date.today - @monday_date).to_i) + 1)) %>
+				<div class="current_time_line calendar_grey_past" style="position: absolute; top: 19px; height: <%= ((Time.now.in_time_zone.seconds_since_midnight / 60) * Calendar.pixels_per_minute) - @beginning_offset %>px; left: <%= line_left_offset %>%; width: <%= one_column_percentage %>%"></div>
 			<% end %>
 		</td>
 
