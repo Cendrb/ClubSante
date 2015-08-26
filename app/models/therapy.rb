@@ -7,11 +7,7 @@ class Therapy < ActiveRecord::Base
   before_create :init_dependent
 
   def init_dependent
-    begin
-      self.calendar = Calendar.create!
-    rescue => e
-      puts "zidan #{e.class.name} : #{e.message}"
-    end
+    self.calendar = Calendar.create!
     true
   end
 

@@ -7,15 +7,9 @@ class Calendar < ActiveRecord::Base
   before_create :init_dependent
 
   def init_dependent
-    begin
-      puts "allahu"
-      self.timetable = Timetable.create!
-      self.timetable_modification = TimetableModification.create!
-      self.timetable_templates << TimetableTemplate.create!(beginning: Time.new(2001))
-      puts "akbar"
-    rescue => e
-      puts "motorku #{e.class.name} : #{e.message} \n #{e.backtrace}"
-    end
+    self.timetable = Timetable.create!
+    self.timetable_modification = TimetableModification.create!
+    self.timetable_templates << TimetableTemplate.create!(beginning: Time.new(2001))
     true
   end
 

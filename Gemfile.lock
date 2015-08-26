@@ -60,6 +60,7 @@ GEM
     execjs (2.4.0)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    greensock-rails (1.17.0.0)
     groupdate (2.4.0)
       activesupport (>= 3)
     hike (1.2.3)
@@ -177,6 +178,7 @@ DEPENDENCIES
   byebug
   chartkick
   coffee-rails (~> 4.1.0)
+  greensock-rails
   groupdate
   jbuilder (~> 2.0)
   jquery-rails
