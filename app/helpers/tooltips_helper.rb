@@ -1,24 +1,24 @@
 module TooltipsHelper
   def get_calendar_tooltip(object)
     string = ""
-    
-    if(Rails.env.development?)
-        string << get_development_prefix(object) + br
-     end
+
+    if (Rails.env.development?)
+      string << get_development_prefix(object) + br
+    end
 
     string << get_time_range_string(object) + br
     string << get_duration_string(object) + br
     string << get_capacity_string(object)
     string << get_coach_string(object)
     string << get_price_string(object)
-    
+
     return string
   end
-  
+
   def get_modification_tooltip(object)
     string = ""
 
-    if(Rails.env.development?)
+    if (Rails.env.development?)
       string << get_development_prefix(object) + br
     end
 
@@ -27,27 +27,28 @@ module TooltipsHelper
     string << get_capacity_string(object)
     string << get_coach_string(object)
     string << get_price_string(object) + br
-    string << get_modification_string(object)
-    
+    string << get_modification_string(object) + br
+    string << get_modification_user_string(object)
+
     return string
   end
-  
+
   def get_template_tooltip(object)
     string = ""
-    
-    if(Rails.env.development?)
-        string << get_development_prefix(object) + br
-     end
+
+    if (Rails.env.development?)
+      string << get_development_prefix(object) + br
+    end
 
     string << get_time_range_string(object) + br
     string << get_duration_string(object) + br
     string << get_capacity_string(object)
     string << get_coach_string(object)
     string << get_price_string(object)
-    
+
     return string
   end
-  
+
   def get_time_range_string(object)
     case object
       when Exercise
@@ -60,7 +61,7 @@ module TooltipsHelper
         return unsupported
     end
   end
-  
+
   def get_capacity_string(object)
     case object
       when Exercise
@@ -74,7 +75,7 @@ module TooltipsHelper
     end
     return string
   end
-  
+
   def get_duration_string(object)
     case object
       when Exercise
@@ -87,7 +88,7 @@ module TooltipsHelper
         return unsupported
     end
   end
-  
+
   def get_beginning_string(object)
     case object
       when Exercise
@@ -100,7 +101,7 @@ module TooltipsHelper
         return unsupported
     end
   end
-  
+
   def get_coach_string(object)
     case object
       when Exercise
@@ -113,7 +114,7 @@ module TooltipsHelper
         return unsupported
     end
   end
-  
+
   def get_price_string(object)
     case object
       when Exercise
@@ -134,20 +135,45 @@ module TooltipsHelper
       when ExerciseTemplate
         return ""
       when ExerciseModification
-        if(object.removal)
+        if (object.removal)
           return "odstraňuje obvyklé cvičení"
         else
-          if(object.exercise_template == nil)
+          if (object.exercise_template == nil)
             return "přidává cvičení"
           else
-            return "mění vlastnosti obvyklého cvičení"
+            if (object.differs_from_template?)
+              return "mění vlastnosti obvyklého cvičení"
+            else
+              if (object.exercise)
+                return "pouze přihlášení uživatelé"
+              else
+                return "nic nemění"
+              end
+            end
           end
         end
       else
         return unsupported
     end
   end
-  
+
+  def get_modification_user_string(object)
+    case object
+      when Exercise
+        return ""
+      when ExerciseTemplate
+        return ""
+      when ExerciseModification
+        if (object.exercise)
+          return User.where("entries.exercise_id = ?", object.exercise.id).joins(tickets: :entries).map { |i| i.full_name }.to_sentence
+        else
+          return ""
+        end
+      else
+        return unsupported
+    end
+  end
+
   def get_development_prefix(object)
     case object
       when Exercise
@@ -160,12 +186,13 @@ module TooltipsHelper
         return unsupported
     end
   end
-  
+
   def br
     return "<br />"
   end
-  
+
   def unsupported
     return "UNSUPPORTED"
   end
+
 end

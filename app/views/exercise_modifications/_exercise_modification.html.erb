@@ -1,4 +1,4 @@
-<div class="timetable_modification_modification timetable_modification_style" 
+<div class="timetable_modification_style <%= exercise_modification.differs_from_template? ? "timetable_modification_modification" : (exercise_modification.exercise ? "timetable_modification_registered" : "timetable_modification_nothing") %>"
 data-id=<%= exercise_modification.id %> 
 data-tooltip="<%= get_modification_tooltip exercise_modification %>" 
 data-duration=<%= exercise_modification.timetable_modification.calendar.therapy.duration_in_minutes %> 

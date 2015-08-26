@@ -26,7 +26,7 @@ class ExerciseModification < ActiveRecord::Base
     if(removal == false && !exercise_template)
       return "přidaná hodina (#{date.to_s(:time)})"
     end
-    if(removal == false && exercise_template && differs_from_template)
+    if(removal == false && exercise_template && differs_from_template?)
       string = []
       date.to_s(:time) != exercise_template.beginning.to_s(:time) ? (string << "přesunuto z #{exercise_template.beginning.to_s(:time)} na #{date.to_s(:time)}") : ""
       coach != exercise_template.coach ? (string << "trenér změněn z #{exercise_template.coach.name} na #{coach.name}") : ""
@@ -37,7 +37,7 @@ class ExerciseModification < ActiveRecord::Base
     return "nic nemění"
   end
   
-  def differs_from_template
+  def differs_from_template?
     if(exercise_template)
       return date.to_s(:time) != exercise_template.beginning.to_s(:time) || coach != exercise_template.coach || price != exercise_template.price
     else

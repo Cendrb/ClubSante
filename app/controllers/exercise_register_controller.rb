@@ -79,7 +79,7 @@ class ExerciseRegisterController < ApplicationController
         ticket.unregister_entry(@exercise, entry, entry_void)
         if (@exercise.entries.count == 0)
           @exercise.destroy
-          if (!exercise_modification.differs_from_template)
+          if (!exercise_modification.differs_from_template?)
             @exercise_template = exercise_modification.exercise_template
             exercise_modification.destroy
           else
