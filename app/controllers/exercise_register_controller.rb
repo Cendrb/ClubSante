@@ -2,7 +2,7 @@ class ExerciseRegisterController < ApplicationController
   before_filter :authenticate_registered
 
   def subscribe_for_template
-    date = Date.parse(params[:date]).to_datetime.in_time_zone - Time.now.utc_offset - (Time.now.dst? ? 3600 : 0 )
+    date = Date.parse(params[:date]).to_datetime.in_time_zone - Time.now.in_time_zone.utc_offset - (Time.now.in_time_zone.dst? ? 3600 : 0 )
     @exercise_template = ExerciseTemplate.find(params[:exercise_template_id])
     if !@exercise_template.exercise_modification
       @beginning_offset = params[:beginning_offset].to_i
