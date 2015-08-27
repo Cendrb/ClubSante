@@ -72,7 +72,7 @@ class ExerciseModificationsController < ApplicationController
   def destroy
     @exercise_modification.destroy
     respond_to do |format|
-      format.html { redirect_to exercise_modifications_url, notice: 'Exercise modification was successfully destroyed.' }
+      format.html { redirect_to @exercise_modification.timetable_modification.calendar.therapy, notice: 'Exercise modification was successfully destroyed.' }
       format.json { head :no_content }
       format.js { render "timetable_modifications/reload_timetable_modification", locals: {timetable_modification: @exercise_modification.timetable_modification, beginning_date: @exercise_modification.date} }
     end

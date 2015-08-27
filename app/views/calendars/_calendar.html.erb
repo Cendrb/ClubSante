@@ -22,7 +22,7 @@
 			<td><%= exercise_modification.date.strftime("%d. %m. %Y") %></td>
 			<td class="multi_line"><p><%= exercise_modification.get_string %></p></td>
 			<td><%= link_to 'Upravit', edit_exercise_modification_path(exercise_modification), remote: true %></td>
-			<td><%= link_to 'Odstranit', exercise_modification, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
+			<td><%= link_to 'Odstranit', exercise_modification, method: :delete %></td>
 		</tr>
       <% end %>
 	<% end %>

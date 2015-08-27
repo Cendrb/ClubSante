@@ -2,25 +2,30 @@ class ExerciseRegisterController < ApplicationController
   before_filter :authenticate_registered
 
   def subscribe_for_template
-    date = Date.parse(params[:date])
+    date = Date.parse(params[:date]).to_datetime.in_time_zone - Time.now.utc_offset - (Time.now.dst? ? 3600 : 0 )
     @exercise_template = ExerciseTemplate.find(params[:exercise_template_id])
-    @beginning_offset = params[:beginning_offset].to_i
-    date = date.to_datetime + @exercise_template.beginning.seconds_since_midnight.seconds
+    if !@exercise_template.exercise_modification
+      @beginning_offset = params[:beginning_offset].to_i
+      puts "Motorku" + @beginning_offset.to_s
+      date = date + @exercise_template.beginning.in_time_zone.seconds_since_midnight.seconds
 
-    if validate_date_signup(date)
-      ticket = ticket_selector(@exercise_template.timetable_template.calendar.therapy, date)
+      if validate_date_signup(date)
+        ticket = ticket_selector(@exercise_template.timetable_template.calendar.therapy, date)
 
-      if ticket
-        if ticket.entries_available?(date, @exercise_template.timetable_template.calendar.therapy)
-          exercise_modification = ExerciseModification.new(date: date, timetable_modification: @exercise_template.timetable_template.calendar.timetable_modification, exercise_template: @exercise_template, removal: false)
-          exercise_modification.save!
-          @exercise = Exercise.create(exercise_modification: exercise_modification, timetable: @exercise_template.timetable_template.calendar.timetable)
-          ticket.register_entry(@exercise)
-          render "subscribe_replace_template_or_modification_with_new.js.erb"
-        else
-          render plain: "allahu akbar"
+        if ticket
+          if ticket.entries_available?(date, @exercise_template.timetable_template.calendar.therapy)
+            exercise_modification = ExerciseModification.new(date: date, timetable_modification: @exercise_template.timetable_template.calendar.timetable_modification, exercise_template: @exercise_template, removal: false)
+            exercise_modification.save!
+            @exercise = Exercise.create(exercise_modification: exercise_modification, timetable: @exercise_template.timetable_template.calendar.timetable)
+            ticket.register_entry(@exercise)
+            render "subscribe_replace_template_or_modification_with_new.js.erb"
+          else
+            render plain: "allahu akbar"
+          end
         end
       end
+    else
+      render_alert "Not a template"
     end
   end
 
