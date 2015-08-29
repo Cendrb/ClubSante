@@ -23,7 +23,7 @@
 //= require_tree .
 
 NProgress.configure({
-    showSpinner: true,
+    showSpinner: false,
     trickleRate: 0.04,
     trickleSpeed: 700,
     easing: "ease"

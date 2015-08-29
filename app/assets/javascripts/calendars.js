@@ -182,6 +182,9 @@ function setupHandlersForCalendar(calendar_id)
 
 	$(".calendar_week_selector_button" + filter).click(function(event)
 	{
+        NProgress.configure({
+            showSpinner: true
+        });
         NProgress.start();
 		var clicked = $(this);
 		$.ajax({
@@ -193,6 +196,9 @@ function setupHandlersForCalendar(calendar_id)
 			success: function(msg){
 				setupHandlersForCalendar(clicked.data("calendar-id"));
                 NProgress.done();
+                NProgress.configure({
+                    showSpinner: false
+                });
 			}
 		});
 	});
