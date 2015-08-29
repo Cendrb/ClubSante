@@ -18,4 +18,16 @@ class Entry < ActiveRecord::Base
   validates_with EntryValidator
   
   validates_presence_of :exercise_id, :ticket_id
+
+  after_destroy :destroy_exercise_if_empty
+
+  def destroy_exercise_if_empty
+    if (exercise.entries.count == 0)
+      exercise.destroy!
+      if (!exercise.exercise_modification.differs_from_template?)
+        exercise.exercise_modification.exercise_template = exercise.exercise_modification.exercise_template
+        exercise.exercise_modification.destroy!
+      end
+    end
+  end
 end

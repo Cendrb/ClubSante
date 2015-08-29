@@ -82,19 +82,22 @@ class ExerciseRegisterController < ApplicationController
       else
         ticket = entry.ticket
         ticket.unregister_entry(@exercise, entry, entry_void)
-        if (@exercise.entries.count == 0)
-          @exercise.destroy
-          if (!exercise_modification.differs_from_template?)
-            @exercise_template = exercise_modification.exercise_template
-            exercise_modification.destroy
+
+        if entry.exercise.destroyed?
+          if entry.exercise.exercise_modification.destroyed?
+            @exercise_template = entry.exercise.exercise_modification.exercise_template
+            mode = :template
           else
-            @exercise_modification = exercise_modification
+            @exercise_modification = entry.exercise.exercise_modification
+            mode = :modification
           end
+        else
+          @exercise = entry.exercise
+          mode = :exercise
         end
 
-
         if (params[:source] == "calendar_view")
-          render "unsubscribe_from_calendar_view"
+          render "unsubscribe_from_calendar_view", locals: {mode: mode}
         else
           render "unsubscribe_from_user_summary_list", locals: {tickets: current_user.tickets}
         end

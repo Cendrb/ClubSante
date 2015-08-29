@@ -40,8 +40,8 @@ class ApplicationController < ActionController::Base
       if !session[:user_id].nil?
         User.find(session[:user_id])
       else if !cookies.signed[:user_id].nil?
-          User.find(cookies.signed[:user_id])
-        end
+             User.find(cookies.signed[:user_id])
+           end
       end
     rescue Exception => e
       cookies.delete :user_id

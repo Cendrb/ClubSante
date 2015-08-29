@@ -1,6 +1,7 @@
 class TicketsController < ApplicationController
   before_filter :authenticate_admin
   before_action :set_ticket, only: [:show, :edit, :update, :destroy, :mark_as_paid]
+  after_action :null_out_pendings, only: [:create, :update]
 
   # GET /tickets
   # GET /tickets.json
@@ -29,9 +30,9 @@ class TicketsController < ApplicationController
     else
       params[:type] = "Omezená vstupy"
     end
-    
+
     params[:activate] = "nope"
-    
+
     params[:time_restriction_months] = (@ticket.time_restriction/60/60/24/30)
   end
 
@@ -48,7 +49,7 @@ class TicketsController < ApplicationController
     end
     if params[:type] == "Časově omezená"
       @ticket.entries_remaining = -1
-      
+
       # pokud omezena vstupy -> activerecord nastaví sám od sebe do modelu (form_for)
     end
     if params[:time_restriction_months]
@@ -82,7 +83,7 @@ class TicketsController < ApplicationController
     end
     if params[:type] == "Časově omezená"
       @ticket.entries_remaining = -1
-      
+
       # pokud omezena vstupy -> activerecord nastaví sám od sebe do modelu (form_for)
     end
     if params[:time_restriction_months]
@@ -103,12 +104,12 @@ class TicketsController < ApplicationController
       render :new
     end
   end
-  
+
   def mark_as_paid
     @ticket.paid = true
     @ticket.save
 
-    @data = { pending_singles: current_user.tickets.where(single_use: true).where(paid: false)}
+    @data = {pending_singles: current_user.tickets.where(single_use: true).where(paid: false)}
 
     render "tickets/user_show/replace_pending_singles"
   end
@@ -118,19 +119,32 @@ class TicketsController < ApplicationController
   def destroy
     @ticket.destroy
     respond_to do |format|
-      format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
+      format.html { redirect_to @ticket.user, notice: "Permanentka na #{get_ticket_therapies_string @ticket} úspěšně odstraněna" }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ticket
-      @ticket = Ticket.find(params[:id])
+  def null_out_pendings
+    if @ticket.entries_remaining > 0
+      @ticket.user.tickets.where(single_use: true).where(paid: false).find_each do |pending|
+        if @ticket.entries_remaining > 0 && (@ticket.activated_on <= (pending.activated_on + pending.time_restriction)) && ((@ticket.activated_on + @ticket.time_restriction) >= pending.activated_on)
+          @ticket.entries_remaining += 1
+          pending.paid = true
+          pending.save!
+        end
+      end
     end
+    @ticket.save!
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ticket_params
-      params.require(:ticket).permit(:entries_remaining, :user_id, :time_restriction, :paid, :activated_on, :therapy_category_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ticket
+    @ticket = Ticket.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def ticket_params
+    params.require(:ticket).permit(:entries_remaining, :user_id, :time_restriction, :paid, :activated_on, :therapy_category_id)
+  end
 end

@@ -2,17 +2,19 @@
 
 <div id="user_summary_exercises">
   <% if @data[:exercises].count > 0 %>
-      <table id="user_summary_exercises_table">
+      <table>
         <tr>
           <th>Datum</th>
           <th>Čas</th>
           <th>Terapie</th>
           <th></th>
         </tr>
-        <%= render partial: "exercises/user_summary_exercise_line", collection: @data[:exercises] %>
+        <% @data[:exercises].each do |exercise| %>
+            <%= render partial: "exercises/user_summary_exercise_line", locals: {exercise: exercise} %>
+        <% end %>
       </table>
   <% else %>
-      Nemáte žádné rezervace
+    Nemáte žádné rezervace
   <% end %>
 </div>
 

@@ -4,14 +4,10 @@
     <data-source name="Rails ClubSante: development" uuid="333da81d-e096-4e68-b94d-a7feaecdf7c3">
       <user-name>postgres</user-name>
       <user-password>dfcedfcbdfc4dfc0dfcfdfcddfcbdfd3</user-password>
-      <schema-pattern>ClubSante_development.pg_catalog ClubSante_development.public</schema-pattern>
-      <default-schemas>ClubSante_development.pg_catalog ClubSante_development.public</default-schemas>
     </data-source>
     <data-source name="Rails ClubSante: test" uuid="a3cc3ac5-00f8-4f64-a904-913e367bbad6">
       <user-name>postgres</user-name>
       <user-password>dfcedfcbdfc4dfc0dfcfdfcddfcbdfd3</user-password>
-      <schema-pattern>ClubSante_test.pg_catalog ClubSante_test.public</schema-pattern>
-      <default-schemas>ClubSante_test.pg_catalog ClubSante_test.public</default-schemas>
     </data-source>
   </component>
 </project>
