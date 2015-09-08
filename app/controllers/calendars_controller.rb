@@ -14,9 +14,4 @@ class CalendarsController < ApplicationController
       @date = Date.today
     end
   end
-  
-  def summary
-    @data = {}
-    @data[:tickets] = current_user.tickets.where(single_use: false)
-  end
 end

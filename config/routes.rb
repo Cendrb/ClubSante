@@ -72,7 +72,6 @@ Rails.application.routes.draw do
   end
   
   controller :calendars do
-    get 'calendars/summary' => :summary, as: :calendar_summary
     get 'calendars/:id' => :show, as: :calendar
     get 'calendars/:id/final' => :show_final, as: :calendar_final
   end

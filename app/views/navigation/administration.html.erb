@@ -82,6 +82,7 @@
       <tr>
         <th>Jméno</th>
         <th>Propojený uživatel</th>
+        <th>Barva v rozvrhu</th>
         <th colspan="2"></th>
       </tr>
       </thead>
@@ -91,6 +92,7 @@
           <tr>
             <td><%= coach.name %></td>
             <td><%= coach.user.full_name if coach.user %></td>
+            <td><div style="background-color: <%= coach.color_code %>; width: 100%; height: 1em"></div></td>
             <td><%= link_to 'Upravit', edit_coach_path(coach) %></td>
             <td><%= link_to 'Odstranit', coach, method: :delete, data: {confirm: 'Jste si jisti?'} %></td>
           </tr>

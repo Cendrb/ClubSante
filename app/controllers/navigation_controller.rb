@@ -7,7 +7,9 @@ class NavigationController < ApplicationController
   end
 
   def reservations
-    redirect_to calendar_summary_path
+    @data = {}
+    @data[:tickets] = current_user.tickets.where(single_use: false)
+    @data[:coaches] = Coach.valid.all
   end
 
   def tickets

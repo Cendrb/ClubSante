@@ -20,6 +20,10 @@
       <%= f.text_area :description, cols: "30", rows: "5" %>
     </div>
     <div class="field">
+      <%= f.label :color_code, "Barva v rozvrhu" %>
+      <%= f.text_field :color_code, class: "color_selector" %>
+    </div>
+    <div class="field">
       <%= f.label :user_id, "Uživatel" %><br>
       <%= f.select :user_id, User.all.select(:id, :first_name, :last_name).collect { |p| [ p.full_name, p.id ] }, include_blank: true %>
     </div>

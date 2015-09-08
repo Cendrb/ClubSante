@@ -35,6 +35,12 @@ gem 'turbolinks'
 # Progress bars for turbolinks and ajax calls
 gem 'nprogress-rails'
 
+# Color picker
+gem 'jquery-minicolors-rails'
+
+# Uploader
+gem 'carrierwave'
+
 # Another javascript library - faster animations than JQuery
 gem 'greensock-rails'
 
