@@ -20,11 +20,7 @@
     <div class="coach_view">
       <h6><%= coach.name %></h6>
       <div style="background-color: <%= coach.color_code %>; width: 100%; height: 1em"></div>
-      <div>
-        <%= label_tag :photo, "Fotka" %>
-        <%= f.file_field :photo %>
-        <%= f.hidden_field :photo_cache %>
-      </div>
+      <%= image_tag coach.photo.resized.url.to_s if coach.photo_url.present? %>
     </div>
   <% end %>
 </div>

@@ -9,8 +9,6 @@ class Coach < ActiveRecord::Base
 
   mount_uploader :photo, CoachPhotoUploader
 
-  attr_accessor :photo_cache
-
   def set_access_level
     if(user && !user.access_for_level?(User.al_coach))
       user.access_level = User.al_coach

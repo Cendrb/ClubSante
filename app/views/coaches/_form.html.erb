@@ -24,6 +24,13 @@
       <%= f.text_field :color_code, class: "color_selector" %>
     </div>
     <div class="field">
+      <%= f.label :photo, "Fotka" %><br>
+      <%= image_tag @coach.photo.resized.url.to_s if @coach.photo_url.present? %>
+      <br>
+      <%= f.label :photo, "Změnit fotku" %><br>
+      <%= f.file_field :photo %>
+    </div>
+    <div class="field">
       <%= f.label :user_id, "Uživatel" %><br>
       <%= f.select :user_id, User.all.select(:id, :first_name, :last_name).collect { |p| [ p.full_name, p.id ] }, include_blank: true %>
     </div>

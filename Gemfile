@@ -38,6 +38,9 @@ gem 'nprogress-rails'
 # Color picker
 gem 'jquery-minicolors-rails'
 
+# Resizing images
+gem 'mini_magick'
+
 # Uploader
 gem 'carrierwave'
 
