@@ -7,7 +7,7 @@ class CoachPhotoUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   version :resized do
-    process resize_to_fit: [100, 100000]
+    process resize_to_fit: [150, 100000]
   end
 
   # Choose what kind of storage to use for this uploader:

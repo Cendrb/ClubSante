@@ -18,9 +18,9 @@
 <div id="calendars_summary_coaches">
   <% @data[:coaches].each do |coach| %>
     <div class="coach_view">
-      <h6><%= coach.name %></h6>
-      <div style="background-color: <%= coach.color_code %>; width: 100%; height: 1em"></div>
+      <h3><%= coach.name %></h3>
       <%= image_tag coach.photo.resized.url.to_s if coach.photo_url.present? %>
+      <div style="background-color: <%= coach.color_code %>; width: 100%; height: 1em"></div>
     </div>
   <% end %>
 </div>

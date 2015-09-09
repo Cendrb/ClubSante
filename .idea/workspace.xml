@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a19e92ad-d5cb-404b-835e-049a7b95d470" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/initializers/carrierwave.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.generators" afterPath="$PROJECT_DIR$/.idea/.generators" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ClubSante.iml" afterPath="$PROJECT_DIR$/.idea/ClubSante.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/coaches/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/coaches/_form.html.erb" />
+      <change type="DELETED" beforePath="D:\Documents\Aptana3Workspace\ClubSante\public\uploads\coach\photo\1\akbar.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Documents\Aptana3Workspace\ClubSante\public\uploads\coach\photo\9\akbarCore.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Documents\Aptana3Workspace\ClubSante\public\uploads\coach\photo\9\resized_akbarCore.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/exercises/_exercise.html.erb" afterPath="$PROJECT_DIR$/app/views/exercises/_exercise.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/coach.rb" afterPath="$PROJECT_DIR$/app/models/coach.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/uploaders/coach_photo_uploader.rb" afterPath="$PROJECT_DIR$/app/uploaders/coach_photo_uploader.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/colors_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/colors_helper.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/navigation/reservations.html.erb" afterPath="$PROJECT_DIR$/app/views/navigation/reservations.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -35,7 +33,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/ClubSante@db_migrate__ClubSante.coverage" NAME="db:migrate: ClubSante Coverage Results" MODIFIED="1441743621628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ClubSante" />
     <SUITE FILE_PATH="coverage/ClubSante@db_create__ClubSante.coverage" NAME="db:create: ClubSante Coverage Results" MODIFIED="1441286168413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ClubSante" />
-    <SUITE FILE_PATH="coverage/ClubSante@Development__ClubSante.coverage" NAME="Development: ClubSante Coverage Results" MODIFIED="1441783454847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ClubSante" />
+    <SUITE FILE_PATH="coverage/ClubSante@Development__ClubSante.coverage" NAME="Development: ClubSante Coverage Results" MODIFIED="1441810094506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ClubSante" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -68,11 +66,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="_form.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_form.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/coaches/_form.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43638393">
+            <state vertical-scroll-proportion="-15.038462">
               <caret line="23" column="62" selection-start-line="23" selection-start-column="62" selection-end-line="23" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="whoa.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/whoa.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.153846">
+              <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="coach.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/coach.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="32" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="calendar.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/calendar.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-20.423077">
+              <caret line="81" column="22" selection-start-line="81" selection-start-column="22" selection-end-line="81" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_exercise.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/exercises/_exercise.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.576923">
+              <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.38720173">
+              <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="colors_helper.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/helpers/colors_helper.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="77" selection-start-line="4" selection-start-column="77" selection-end-line="4" selection-end-column="77" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="calendars_summary.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/calendars_summary.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.8846154">
+              <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="coach_photo_uploader.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/uploaders/coach_photo_uploader.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -81,9 +159,11 @@
       <file leaf-file-name="reservations.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/navigation/reservations.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="93" selection-start-line="21" selection-start-column="93" selection-end-line="21" selection-end-column="93" />
-              <folding />
+            <state vertical-scroll-proportion="-14.384615">
+              <caret line="22" column="93" selection-start-line="22" selection-start-column="93" selection-end-line="22" selection-end-column="93" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -111,7 +191,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/models/timetable_template.rb" />
         <option value="$PROJECT_DIR$/app/models/therapy.rb" />
         <option value="$PROJECT_DIR$/app/mailers/application_mailer.rb" />
         <option value="$PROJECT_DIR$/app/mailers/user_mailer.rb" />
@@ -145,23 +224,24 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/coaches.js" />
         <option value="$PROJECT_DIR$/app/views/navigation/administration.html.erb" />
         <option value="$PROJECT_DIR$/app/views/exercise_templates/_exercise_template_for_calendar.html.erb" />
-        <option value="$PROJECT_DIR$/app/helpers/colors_helper.rb" />
         <option value="$PROJECT_DIR$/app/views/exercise_modifications/_exercise_modification_for_calendar.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/exercises/_exercise.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/calendars_controller.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/whoa.scss" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/calendars_summary.scss" />
         <option value="$PROJECT_DIR$/app/controllers/coaches_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/navigation_controller.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/config/environments/development.rb" />
         <option value="$PROJECT_DIR$/config/environments/production.rb" />
         <option value="$PROJECT_DIR$/config/initializers/carrierwave.rb" />
-        <option value="$PROJECT_DIR$/app/uploaders/coach_photo_uploader.rb" />
-        <option value="$PROJECT_DIR$/app/models/coach.rb" />
-        <option value="$PROJECT_DIR$/app/views/navigation/reservations.html.erb" />
         <option value="$PROJECT_DIR$/app/views/coaches/_form.html.erb" />
+        <option value="$PROJECT_DIR$/app/uploaders/coach_photo_uploader.rb" />
+        <option value="$PROJECT_DIR$/app/views/navigation/reservations.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/calendars_summary.scss" />
+        <option value="$PROJECT_DIR$/app/models/coach.rb" />
+        <option value="$PROJECT_DIR$/app/helpers/colors_helper.rb" />
+        <option value="$PROJECT_DIR$/app/views/exercises/_exercise.html.erb" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -224,6 +304,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="RailsProjectView" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -356,6 +438,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ClubSante" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ClubSante" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -385,8 +485,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="RailsProjectView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -397,7 +495,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="reser&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/reservations.html.erb&#10;coach&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/coach.rb&#10;_form&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/coaches/_form.html.erb&#10;coach c&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/controllers/coaches_controller.rb&#10;coac&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/models/coach.rb&#10;Coach&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/models/coach.rb&#10;schema&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/db/schema.rb&#10;routes&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/config/routes.rb&#10;for_calendar&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/views/exercise_modifications/_exercise_modification_for_calendar.html.erb&#10;_exe&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/views/exercise_templates/_exercise_template_for_calendar.html.erb&#10;admini&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/views/navigation/administration.html.erb&#10;schem&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/db/schema.rb&#10;entry&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/entry.rb&#10;regis&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;summa&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/summary.html.erb&#10;controll&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;ticke&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/tickets_controller.rb&#10;exerc&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercises_controller.rb&#10;nav&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;tick&#9;null&#9;null&#10;calenda&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;nav c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;calenda c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/calendars_controller.rb&#10;user&#9;null&#9;null&#10;e&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;exe c&#9;null&#9;null&#10;admin&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/administration.html.erb&#10;navig c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;rese&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/reservations.html.erb&#10;calend&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/calendar.rb&#10;week_se&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final_with_week_selector.html.erb&#10;calendar&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/calendar.rb&#10;ex mod c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_modifications_controller.rb&#10;cale&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/calendar.rb&#10;registe&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;admi&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/administration.html.erb&#10;exe mo&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/exercise_modification.rb&#10;thera&#9;null&#9;null&#10;_pend&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/tickets/user_show/_pending_singles.html.erb&#10;pending s&#9;null&#9;null&#10;ticket_sele&#9;null&#9;null&#10;ticket c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/tickets_controller.rb&#10;time t&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/timetable_templates_controller.rb&#10;tickets&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/tickets_controller.rb&#10;exe r&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;cale f&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;navig&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;summ&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/summary.html.erb&#10;coa c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/coaches_controller.rb&#10;use c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb" />
+    <property name="SearchEverywhereHistoryKey" value="calendar&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/exercise_modifications/_exercise_modification_for_calendar.html.erb&#10;exerc&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/exercises/_exercise.html.erb&#10;coach&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/coach.rb&#10;reser&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/reservations.html.erb&#10;_form&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/coaches/_form.html.erb&#10;coach c&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/controllers/coaches_controller.rb&#10;coac&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/models/coach.rb&#10;Coach&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/models/coach.rb&#10;schema&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/db/schema.rb&#10;routes&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/config/routes.rb&#10;for_calendar&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/views/exercise_modifications/_exercise_modification_for_calendar.html.erb&#10;_exe&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/views/exercise_templates/_exercise_template_for_calendar.html.erb&#10;admini&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/views/navigation/administration.html.erb&#10;schem&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/db/schema.rb&#10;entry&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/entry.rb&#10;regis&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;summa&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/summary.html.erb&#10;controll&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;ticke&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/tickets_controller.rb&#10;nav&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;tick&#9;null&#9;null&#10;calenda&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;nav c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;calenda c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/calendars_controller.rb&#10;user&#9;null&#9;null&#10;e&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;exe c&#9;null&#9;null&#10;admin&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/administration.html.erb&#10;navig c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;rese&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/reservations.html.erb&#10;calend&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/calendar.rb&#10;week_se&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final_with_week_selector.html.erb&#10;ex mod c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_modifications_controller.rb&#10;cale&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/calendar.rb&#10;registe&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;admi&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/administration.html.erb&#10;exe mo&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/exercise_modification.rb&#10;thera&#9;null&#9;null&#10;_pend&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/tickets/user_show/_pending_singles.html.erb&#10;pending s&#9;null&#9;null&#10;ticket_sele&#9;null&#9;null&#10;ticket c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/tickets_controller.rb&#10;time t&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/timetable_templates_controller.rb&#10;tickets&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/tickets_controller.rb&#10;exe r&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;cale f&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;navig&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;summ&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/summary.html.erb&#10;coa c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/coaches_controller.rb&#10;use c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb" />
     <property name="byebug.present.asked" value="true" />
     <property name="Ruby.ViewRefParam.DefaultExtension" value="html.erb" />
     <property name="RailsGeneratorsPopup.hiddenIncluded" value="false" />
@@ -673,8 +771,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="false" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32947367" sideWeight="0.4978678" order="12" side_tool="false" content_ui="tabs" x="2936" y="311" width="896" height="262" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -682,9 +780,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26918977" sideWeight="0.49565217" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27452025" sideWeight="0.49565217" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3995749" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3293348" sideWeight="0.49421966" order="2" side_tool="false" content_ui="tabs" x="2927" y="8" width="904" height="297" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.3293348" sideWeight="0.49421966" order="2" side_tool="false" content_ui="tabs" x="2927" y="8" width="904" height="297" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2603912" sideWeight="0.5043478" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3273684" sideWeight="0.5127932" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943678" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -724,13 +822,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/exercises_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/navigation/summary.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.076923">
@@ -756,13 +847,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6899662">
           <caret line="135" column="47" selection-start-line="135" selection-start-column="20" selection-end-line="135" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/calendar.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7824126">
-          <caret line="93" column="15" selection-start-line="93" selection-start-column="15" selection-end-line="93" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -941,31 +1025,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/colors_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23050848">
-          <caret line="8" column="104" selection-start-line="8" selection-start-column="104" selection-end-line="8" selection-end-column="104" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/exercise_templates/_exercise_template_for_calendar.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18085106">
           <caret line="6" column="70" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/exercise_modifications/_exercise_modification_for_calendar.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15070923">
-          <caret line="5" column="68" selection-start-line="5" selection-start-column="68" selection-end-line="5" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/exercises/_exercise.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2109929">
-          <caret line="7" column="55" selection-start-line="7" selection-start-column="55" selection-end-line="7" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -1004,20 +1067,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/whoa.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12723215">
-          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/calendars_summary.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9615384">
-          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/coaches_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1051,36 +1100,95 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/uploaders/coach_photo_uploader.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/coach.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16594361">
-          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/navigation/reservations.html.erb">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.384615">
+          <caret line="22" column="93" selection-start-line="22" selection-start-column="93" selection-end-line="22" selection-end-column="93" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/calendars_summary.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154">
+          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/exercise_modifications/_exercise_modification_for_calendar.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.094866075">
+          <caret line="5" column="68" selection-start-line="5" selection-start-column="68" selection-end-line="5" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/colors_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="93" selection-start-line="21" selection-start-column="93" selection-end-line="21" selection-end-column="93" />
+          <caret line="4" column="77" selection-start-line="4" selection-start-column="77" selection-end-line="4" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/whoa.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/coaches/_form.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43638393">
+        <state vertical-scroll-proportion="-15.038462">
           <caret line="23" column="62" selection-start-line="23" selection-start-column="62" selection-end-line="23" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/coach.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="32" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/calendar.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.423077">
+          <caret line="81" column="22" selection-start-line="81" selection-start-column="22" selection-end-line="81" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/exercises/_exercise.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.576923">
+          <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38720173">
+          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
           <folding />
         </state>
       </provider>

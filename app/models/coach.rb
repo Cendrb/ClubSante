@@ -17,7 +17,15 @@ class Coach < ActiveRecord::Base
   end
 
   def self.default_color
-    return "#656565"
+    return "#009900"
+  end
+
+  def self.full_color
+    return "#dd2002"
+  end
+
+  def self.signed_color
+    return "#ffcc00"
   end
   
   def self.get_nobody

@@ -1,4 +1,4 @@
-<div class="calendar_exercise_style calendar_exercise <%= exercise.signed_up?(current_user) ? "signed_exercise" : (exercise.full? ? "full_exercise" : "free_exercise") %>"
+<div class="calendar_exercise_style calendar_exercise"
 data-id=<%= exercise.id %>
 data-tooltip="<%= get_calendar_tooltip exercise %>" 
 data-duration=<%= exercise.timetable.calendar.therapy.duration_in_minutes %>
