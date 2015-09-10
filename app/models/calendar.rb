@@ -14,7 +14,7 @@ class Calendar < ActiveRecord::Base
   end
 
   def self.pixels_per_minute
-    return 0.4
+    return 0.8
   end
 
   def self.min_max_hour_for(exercise_templates, exercise_modifications)

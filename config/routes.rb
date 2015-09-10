@@ -59,6 +59,7 @@ Rails.application.routes.draw do
     post 'registering_handler/subscribe_for_modification' => "exercise_register#subscribe_for_modification"
     post 'registering_handler/subscribe_for_existing' => "exercise_register#subscribe_for_existing"
     post 'registering_handler/unsubscribe_from' => "exercise_register#unsubscribe_from", as: 'unsubscribe'
+    post 'registering_handler/admin_edit' => "exercise_register#admin_edit"
   end
 
   resources :exercises

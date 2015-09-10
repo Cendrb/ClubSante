@@ -29,7 +29,7 @@
   	padding: 0;
   	margin: 0;
   	border: 0;
-
+    font-size: larger;
   }
 
   // three types of exercise
@@ -59,10 +59,13 @@
   }
   .calendar_hour
   {
-  	height: 24px; // dependent on (Calendar.pixels_per_minute * 60)!!!
+  	height: 48px; // dependent on (Calendar.pixels_per_minute * 60)!!!
   	text-align: center;
   	position: relative;
-  	vertical-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
   }
   .calendar_date
   {
@@ -72,14 +75,6 @@
   .free_exercise
   {
   	background-color: #679e00;
-  }
-  .full_exercise
-  {
-  	background-color: #dd2002;
-  }
-  .signed_exercise
-  {
-  	background-color: #ffcc00;
   }
 
   .hour_separator_line

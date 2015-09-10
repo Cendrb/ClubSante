@@ -1,5 +1,6 @@
 class ExerciseRegisterController < ApplicationController
   before_filter :authenticate_registered
+  before_filter :authenticate_admin, only: :admin_edit
 
   def subscribe_for_template
     date = Date.parse(params[:date]).to_datetime.in_time_zone - Time.now.in_time_zone.utc_offset - (Time.now.in_time_zone.dst? ? 3600 : 0 )
@@ -103,6 +104,10 @@ class ExerciseRegisterController < ApplicationController
         end
       end
     end
+  end
+
+  def admin_edit
+
   end
 
   private

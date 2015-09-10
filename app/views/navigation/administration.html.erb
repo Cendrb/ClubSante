@@ -35,7 +35,7 @@
             <td><%= user.full_name %></td>
             <td><%= user.email %></td>
             <td><%= User.get_access_level_string(user.access_level) %></td>
-            <td><%= link_to 'Upravit', user %></td>
+            <td><%= link_to 'Upravit', user, data: { no_turbolink: true } %></td>
             <td><%= link_to 'Odstranit', user, method: :delete, data: {confirm: "Pokračováním plně odstraníte uživatele #{user.full_name} se všemi permanentkami, registracemi apod."} %></td>
           </tr>
       <% end %>

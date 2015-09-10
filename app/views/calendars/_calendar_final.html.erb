@@ -9,6 +9,10 @@
     @beginning_offset = @first_hour * 60 * Calendar.pixels_per_minute
 %>
 
+<script>
+    var admin = <%= current_user.access_for_level?(User.al_admin) %>
+</script>
+
 <table class="calendar_timetable" data-calendar-id=<%= @calendar.id %> data-beginning_offset=<%= @beginning_offset %>>
 	<tr>
 		<td></td>
