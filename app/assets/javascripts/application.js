@@ -17,9 +17,6 @@
 //= require turbolinks
 //= require nprogress
 //= require nprogress-turbolinks
-//= require 'greensock/TweenLite'
-//= require 'greensock/easing/EasePack'
-//= require 'greensock/jquery.gsap.js'
 //= require jquery.minicolors
 //= require_tree .
 

@@ -220,7 +220,7 @@ function setupHandlersForCalendar(calendar_id) {
 }
 
 function setupAdminEdit(filter) {
-    if (admin)
+    if (typeof admin !== 'undefined' && admin)
         $(filter).mousedown(function (event) {
             var clicked = $(this);
             var id = clicked.data("id");
