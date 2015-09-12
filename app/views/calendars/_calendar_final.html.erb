@@ -45,7 +45,7 @@
 
 		<% for weekday in 0..6 %>
             <% date = @monday_date + weekday.days %>
-			<td class="calendar_weekday<%= " calendar_grey_past" if date.past? || (date == Date.today && @last_hour < Time.now.in_time_zone.hour) %>" oncontextmenu="return false;" data-weekday=<%= weekday %>">
+			<td class="calendar_weekday<%= " calendar_grey_past" if date.past? || (date == Date.today && @last_hour < Time.now.in_time_zone.hour) %>" data-weekday=<%= weekday %>">
 				<% timetable_template = TimetableTemplate.where(calendar: @calendar).where("beginning < ?", date).order(:beginning).last %>
 				<% timetable_template.exercise_templates.where(weekday: weekday).find_each do |template| %>
 					<% if !template.exercise_modification %>

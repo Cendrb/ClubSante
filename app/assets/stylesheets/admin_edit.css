@@ -1,0 +1,16 @@
+.admin_edit_dialog
+{
+
+}
+.admin_edit_forms
+{
+    width: 50%;
+    float: left;
+    border-right: dashed 1px black;
+}
+.admin_edit_registered
+{
+    width: 49%;
+    float: right;
+    margin-left: 5px;
+}

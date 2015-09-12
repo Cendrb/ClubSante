@@ -1,8 +1,6 @@
 function setupHandlersFor(id) {
     console.log(id);
 
-    setupAdminEdit(".calendar_exercise[data-id=" + id + "]");
-
     $(".calendar_exercise_style[data-id=" + id + "]").tooltip({
         items: "[data-tooltip]",
         content: function () {
@@ -47,12 +45,12 @@ function setupHandlersFor(id) {
             });
         }
     });
+
+    setupAdminEdit(".calendar_exercise[data-id=" + id + "]");
 }
 
 function setupHandlersForTemplate(id) {
     console.log(id);
-
-    setupAdminEdit(".calendar_template_exercise[data-id=" + id + "]");
 
     $(".calendar_exercise_style[data-id=" + id + "]").tooltip({
         items: "[data-tooltip]",
@@ -78,12 +76,12 @@ function setupHandlersForTemplate(id) {
             }
         });
     });
+
+    setupAdminEdit(".calendar_template_exercise[data-id=" + id + "]");
 }
 
 function setupHandlersForModification(id) {
     console.log(id);
-
-    setupAdminEdit(".calendar_modification_exercise[data-id=" + id + "]");
 
     $(".calendar_exercise_style[data-id=" + id + "]").tooltip({
         items: "[data-tooltip]",
@@ -108,6 +106,8 @@ function setupHandlersForModification(id) {
             }
         });
     });
+
+    setupAdminEdit(".calendar_modification_exercise[data-id=" + id + "]");
 }
 
 function setupHandlersForCalendar(calendar_id) {
@@ -123,7 +123,7 @@ function setupHandlersForCalendar(calendar_id) {
         }
     });
 
-    setupAdminEdit(".calendar_exercise_style" + filter);
+    setupUniversalHandler($(".calendar_template_exercise" + filter));
 
     $(".calendar_template_exercise" + filter).click(function (event) {
         var clicked = $(this);
@@ -217,24 +217,70 @@ function setupHandlersForCalendar(calendar_id) {
         });
     });
 
+    setupAdminEdit(".calendar_exercise_style" + filter);
+}
+
+function setupUniversalHandler(element)
+{
+    element.click(function(event)
+    {
+        var clicked = element;
+        var id = clicked.data("id");
+        if (clicked.data("registered-by-current-user") == true)
+        {
+            if (confirm("Na toto cvičení jste již přihlášen. Chcete se z něj odhlásit?")) {
+                $.ajax({
+                    type: "POST",
+                    url: "/registering_handler/unsubscribe_from",
+                    data: {
+                        exercise_id: id,
+                        source: "calendar_view",
+                        beginning_offset: $(".calendar_timetable").data("beginning_offset")
+                    },
+                    dataType: 'script',
+                    format: 'js',
+                    success: function (msg) {
+
+                    }
+                });
+            }
+        }
+        else
+        {
+            $.ajax({
+                type: "POST",
+                url: "/registering_handler/subscribe",
+                data: {
+                    exercise_id: id,
+                    beginning_offset: $(".calendar_timetable" + filter).data("beginning_offset"),
+                    date: clicked.data("date"),
+                    mode: clicked.data("mode")
+                },
+                dataType: 'script',
+                format: 'js',
+                success: function (msg) {
+
+                }
+            });
+        }
+    });
 }
 
 function setupAdminEdit(filter) {
     if (typeof admin !== 'undefined' && admin)
-        $(filter).mousedown(function (event) {
+        $(filter).unbind("click");
+        $(filter).click(function (event) {
             var clicked = $(this);
             var id = clicked.data("id");
-            if (event.button == 2) {
-                $.ajax({
-                    type: "POST",
-                    url: "/registering_handler/admin_edit",
-                    data: {id: id, beginning_offset: $(".calendar_timetable" + filter).data("beginning_offset")},
-                    dataType: 'script',
-                    format: 'js',
-                    success: function (msg) {
-                    }
-                });
-            }
+            $.ajax({
+                type: "POST",
+                url: "/registering_handler/admin_edit",
+                data: {id: id, beginning_offset: $(".calendar_timetable").data("beginning_offset"), mode: clicked.data("mode"), date: clicked.data("date")},
+                dataType: 'script',
+                format: 'js',
+                success: function (msg) {
+                }
+            });
         });
 }
 

@@ -1,12 +1,12 @@
 <% case mode %>
     <% when :template %>
-        $(".calendar_exercise[data-id=<%= @exercise.id %>]").replaceWith("<%= escape_javascript(render partial: "exercise_templates/exercise_template_for_calendar", locals: { exercise_template: @exercise_template, beginning_offset: @beginning_offset, date: @date }) %>");
-        setupHandlersForTemplate(<%= @exercise_template.id %>);
+        $(".calendar_exercise[data-id=<%= @exercise.id %>]").replaceWith("<%= escape_javascript(render partial: "exercise_templates/exercise_template_for_calendar", locals: { exercise_template: @data[:result], beginning_offset: @data[:beginning_offset], date: @data[:date] }) %>");
+        setupHandlersForTemplate(<%= @data[:result].id %>);
     <% when :modification %>
-		$(".calendar_exercise[data-id=<%= @exercise.id %>]").replaceWith("<%= escape_javascript(render partial: "exercise_modifications/exercise_modification_for_calendar", locals: { exercise_modification: @exercise_modification, beginning_offset: @beginning_offset }) %>");
-		setupHandlersForModification(<%= @exercise_modification.id %>);
+		$(".calendar_exercise[data-id=<%= @exercise.id %>]").replaceWith("<%= escape_javascript(render partial: "exercise_modifications/exercise_modification_for_calendar", locals: { exercise_modification: @data[:result], beginning_offset: @data[:beginning_offset] }) %>");
+		setupHandlersForModification(<%= @data[:result].id %>);
     <% when :exercise %>
-		$(".calendar_exercise[data-id=<%= @exercise.id %>]").replaceWith("<%= escape_javascript(render partial: "exercises/exercise", locals: { exercise: @exercise, beginning_offset: @beginning_offset }) %>");
-		setupHandlersFor(<%= @exercise.id %>);
+		$(".calendar_exercise[data-id=<%= @exercise.id %>]").replaceWith("<%= escape_javascript(render partial: "exercises/exercise", locals: { exercise: @data[:result], beginning_offset: @data[:beginning_offset] }) %>");
+		setupHandlersFor(<%= @data[:result].id %>);
 <% end %>
 

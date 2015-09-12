@@ -2,26 +2,33 @@ class ExerciseRegisterController < ApplicationController
   before_filter :authenticate_registered
   before_filter :authenticate_admin, only: :admin_edit
 
+  def subscribe
+    get_mode(params[:mode])
+    @data[:beginning_offset] = params[:beginning_offset].to_i
+    case @data[:mode]
+      when :template
+        subscribe_for_template
+      when :modification
+        subscribe_for_modification
+      when :exercise
+        subscribe_for_exercise
+    end
+  end
+
   def subscribe_for_template
-    date = Date.parse(params[:date]).to_datetime.in_time_zone - Time.now.in_time_zone.utc_offset - (Time.now.in_time_zone.dst? ? 3600 : 0 )
-    @exercise_template = ExerciseTemplate.find(params[:exercise_template_id])
-    if !@exercise_template.exercise_modification
-      @beginning_offset = params[:beginning_offset].to_i
-      puts "Motorku" + @beginning_offset.to_s
-      date = date + @exercise_template.beginning.in_time_zone.seconds_since_midnight.seconds
+    if true # todo: add check for existing modification (on current date)
+      if validate_date_signup(@data[:date]) # not in past/ renders error
+        ticket = ticket_selector(@data[:object].timetable_template.calendar.therapy, date) # check for available tickets if more/ render ticket selection form
 
-      if validate_date_signup(date)
-        ticket = ticket_selector(@exercise_template.timetable_template.calendar.therapy, date)
-
-        if ticket
-          if ticket.entries_available?(date, @exercise_template.timetable_template.calendar.therapy)
-            exercise_modification = ExerciseModification.new(date: date, timetable_modification: @exercise_template.timetable_template.calendar.timetable_modification, exercise_template: @exercise_template, removal: false)
+        if ticket # if form rendered then do not register yet
+          if ticket.entries_available?(date, @exercise_template.timetable_template.calendar.therapy) # just to make sure that selected ticket has entries available
+            exercise_modification = ExerciseModification.new(date: date, timetable_modification: @data[:object].timetable_template.calendar.timetable_modification, exercise_template: @data[:object], removal: false)
             exercise_modification.save!
-            @exercise = Exercise.create(exercise_modification: exercise_modification, timetable: @exercise_template.timetable_template.calendar.timetable)
-            ticket.register_entry(@exercise)
+            @data[:exercise_result] = Exercise.create(exercise_modification: exercise_modification, timetable: @data[:object].timetable_template.calendar.timetable)
+            ticket.register_entry(@data[:exercise_result])
             render "subscribe_replace_template_or_modification_with_new.js.erb"
           else
-            render plain: "allahu akbar"
+            render plain: "This should never happen"
           end
         end
       end
@@ -31,69 +38,65 @@ class ExerciseRegisterController < ApplicationController
   end
 
   def subscribe_for_modification
-    @exercise_modification = ExerciseModification.find(params[:exercise_modification_id])
-    @beginning_offset = params[:beginning_offset].to_i
+    if validate_date_signup(@data[:object].date) && validate_modification_signup(@data[:object]) # not in past AND not marked as "removed"/ renders error
+      ticket = ticket_selector(@data[:object].timetable_modification.calendar.therapy, @data[:object].date) # check for available tickets if more/ render ticket selection form
 
-    if validate_date_signup(@exercise_modification.date) && validate_modification_signup(@exercise_modification)
-      ticket = ticket_selector(@exercise_modification.timetable_modification.calendar.therapy, @exercise_modification.date)
-
-      if ticket
-        if ticket.entries_available?(@exercise_modification.date, @exercise_modification.timetable_modification.calendar.therapy)
-          @exercise = Exercise.create(exercise_modification: @exercise_modification, timetable: @exercise_modification.timetable_modification.calendar.timetable)
-          ticket.register_entry(@exercise)
+      if ticket # if form rendered then do not register yet
+        if ticket.entries_available?(@data[:object].date, @data[:object].timetable_modification.calendar.therapy) # just to make sure that selected ticket has entries available
+          @data[:exercise_result] = Exercise.create(exercise_modification: @data[:object], timetable: @data[:object].timetable_modification.calendar.timetable)
+          ticket.register_entry(@data[:exercise_result])
           render "subscribe_replace_template_or_modification_with_new.js.erb"
         else
-          render plain: "allahu akbar"
+          render plain: "This should never happen"
         end
       end
     end
   end
 
-  def subscribe_for_existing
-    @exercise = Exercise.find(params[:exercise_id])
-    @beginning_offset = params[:beginning_offset].to_i
+  def subscribe_for_exercise
+    if validate_signup(@data[:object], current_user) # validate date, capacity, multiple rezervations/ renders error
+      ticket = ticket_selector(@data[:object].timetable.calendar.therapy, @data[:object].date)# check for available tickets if more/ render ticket selection form
 
-    if validate_signup(@exercise, current_user)
-      ticket = ticket_selector(@exercise.timetable.calendar.therapy, @exercise.date)
-
-      if ticket
-        if ticket.entries_available?(@exercise.date, @exercise.timetable.calendar.therapy)
-          ticket.register_entry(@exercise)
-          render "subscribe_edit_existing_exercise.js.erb"
+      if ticket # if form rendered then do not register yet
+        if ticket.entries_available?(@data[:object].date, @data[:object].timetable.calendar.therapy) # just to make sure that selected ticket has entries available
+          ticket.register_entry(@data[:object])
+          render "subscribe_update_existing.js.erb"
         else
-          render nothing: true
+          render plain: "This should never happen"
         end
       end
     end
   end
 
   def unsubscribe_from
-    @exercise = Exercise.find(params[:exercise_id])
-    @beginning_offset = params[:beginning_offset].to_i
+    @data = {}
+    @data[:exercise] = Exercise.find(params[:exercise_id])
+    @data[:beginning_offset] = params[:beginning_offset].to_i
     entry = Entry.joins(:ticket).where("tickets.user_id = ?", current_user.id).where("exercise_id = ?", @exercise.id).first
     exercise_modification = @exercise.exercise_modification
-    @date = exercise_modification.date
+    date = exercise_modification.date
 
-    if (@date < Time.now.utc)
+    if (date < Time.now.utc)
       render_alert("Není možné se odhlásit ze cvičení z minulosti")
     else
-      entry_void = @date - Time.now < Ticket.unsubscribe_time_limit
+      entry_void = date - Time.now < Ticket.unsubscribe_time_limit
       if (entry_void && !params[:force])
         render 'prompt_ticket_entry_void'
       else
         ticket = entry.ticket
-        ticket.unregister_entry(@exercise, entry, entry_void)
+        ticket.unregister_entry(@data[:exercise], entry, entry_void)
 
         if entry.exercise.destroyed?
           if entry.exercise.exercise_modification.destroyed?
-            @exercise_template = entry.exercise.exercise_modification.exercise_template
+            @data[:result] = entry.exercise.exercise_modification.exercise_template
+            @data[:date] = date
             mode = :template
           else
-            @exercise_modification = entry.exercise.exercise_modification
+            @data[:result] = entry.exercise.exercise_modification
             mode = :modification
           end
         else
-          @exercise = entry.exercise
+          @data[:result] = entry.exercise
           mode = :exercise
         end
 
@@ -107,13 +110,22 @@ class ExerciseRegisterController < ApplicationController
   end
 
   def admin_edit
+    @data = {}
+    get_mode(params[:mode])
 
+    if @data[:mode] == :exercise
+      @data[:registered] = User.joins(tickets: {entries: :exercise}).where("exercises.id = ?", @data[:object].id)
+    else
+      @data[:registered] = []
+    end
+
+    @data[:beginning_offset] = params[:beginning_offset].to_i
   end
 
   private
 
   def render_alert(message)
-    render "alert", locals: {message: message}, status: 401
+    render "application/alert.js", locals: {message: message}, status: 403
   end
 
   def ticket_selector(therapy, date)
@@ -174,4 +186,22 @@ class ExerciseRegisterController < ApplicationController
     end
     return true
   end
+
+  def get_mode(mode)
+    @data = {} if !@data
+    if mode.include?("template")
+      @data[:object] = ExerciseTemplate.find(params[:id])
+      @data[:date] = Date.parse(params[:date]).to_datetime.in_time_zone - Time.now.in_time_zone.utc_offset - (Time.now.in_time_zone.dst? ? 3600 : 0) + @data[:object].beginning.in_time_zone.seconds_since_midnight.seconds
+      @data[:mode] = :template
+    else
+      if mode.include?("modification")
+        @data[:object] = ExerciseModification.find(params[:id])
+        @data[:mode] = :modification
+      else
+        @data[:object] = Exercise.find(params[:id])
+        @data[:mode] = :exercise
+      end
+    end
+  end
+end
 end

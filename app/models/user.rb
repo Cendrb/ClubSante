@@ -73,10 +73,6 @@ class User < ActiveRecord::Base
     if exercise.full?
       return "Kapacita tohoto cvičení byla již dosažena (#{exercise.timetable.calendar.therapy.capacity})"
     end
-
-    if exercise.date < Time.now
-      return "Nemůžete si rezervovat cvičení v minulosti"
-    end
     return true
   end
   

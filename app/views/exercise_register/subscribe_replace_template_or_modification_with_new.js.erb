@@ -1,9 +1,10 @@
-<% if @exercise_template %>
-	$(".calendar_template_exercise[data-id=<%= @exercise_template.id %>]").replaceWith("<%= escape_javascript(render partial: "exercises/exercise", locals: { exercise: @exercise, beginning_offset: @beginning_offset }) %>");
-<% end %>
-
-<% if @exercise_modification %>
-	$(".calendar_modification_exercise[data-id=<%= @exercise_modification.id %>]").replaceWith("<%= escape_javascript(render partial: "exercises/exercise", locals: { exercise: @exercise, beginning_offset: @beginning_offset }) %>");
+<% case @data[:mode] %>
+    <% when :template %>
+	    $(".calendar_template_exercise[data-id=<%= @data[:object].id %>]").replaceWith("<%= escape_javascript(render partial: "exercises/exercise", locals: { exercise: @data[:exercise_result], beginning_offset: @data[:beginning_offset] }) %>");
+    <% when :modification %>
+        $(".calendar_modification_exercise[data-id=<%= @data[:object].id %>]").replaceWith("<%= escape_javascript(render partial: "exercises/exercise", locals: { exercise: @data[:exercise_result], beginning_offset: @data[:beginning_offset] }) %>");
+    <% else %>
+        alert("ERROR: This view cannot render different views other than template and modification!");
 <% end %>
 
 setupHandlersFor(<%= @exercise.id %>);

@@ -3,7 +3,8 @@ data-id=<%= exercise_template.id %>
 data-date=<%= date %> 
 data-tooltip="<%= get_calendar_tooltip exercise_template %>" 
 data-duration=<%= exercise_template.timetable_template.calendar.therapy.duration_in_minutes %> 
-data-calendar-id=<%= exercise_template.timetable_template.calendar.id %> 
+data-calendar-id=<%= exercise_template.timetable_template.calendar.id %>
+data-mode="template"
 style="background-color:<%= get_calendar_color(exercise_template) %>; position: absolute; top: <%= ((exercise_template.beginning.hour * 60 + exercise_template.beginning.min) * Calendar.pixels_per_minute) - beginning_offset %>px; height: <%= exercise_template.timetable_template.calendar.therapy.duration_in_minutes * Calendar.pixels_per_minute %>px">
 <%= get_beginning_string exercise_template %>
 </div> 
