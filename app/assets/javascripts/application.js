@@ -14,10 +14,10 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery.turbolinks
+//= require jquery.minicolors
 //= require turbolinks
 //= require nprogress
 //= require nprogress-turbolinks
-//= require jquery.minicolors
 //= require_tree .
 
 NProgress.configure({
