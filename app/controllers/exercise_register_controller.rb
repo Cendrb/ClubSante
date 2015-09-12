@@ -1,9 +1,25 @@
+require 'securerandom'
+
 class ExerciseRegisterController < ApplicationController
   before_filter :authenticate_registered
   before_filter :authenticate_admin, only: :admin_edit
 
   def subscribe
     get_mode(params[:mode])
+    if params[:user] && current_user.access_for_level?(User.al_admin)
+      @data[:user] = User.find(params[:user])
+    else
+      if params[:user_first_name] && params[:user_last_name] && current_user.access_for_level?(User.al_admin)
+        if params[:email] && params[:email] != ""
+          email = params[:email]
+        else
+          email = "#{params[:user_first_name]}.#{params[:user_last_name]}@neplatny.mail"
+        end
+        @data[:user] = User.create(first_name: params[:user_first_name], last_name: params[:user_last_name], email: email, password: SecureRandom.hex)
+      else
+        @data[:user] = current_user
+      end
+    end
     @data[:beginning_offset] = params[:beginning_offset].to_i
     case @data[:mode]
       when :template
@@ -18,11 +34,22 @@ class ExerciseRegisterController < ApplicationController
   def subscribe_for_template
     if true # todo: add check for existing modification (on current date)
       if validate_date_signup(@data[:date]) # not in past/ renders error
-        ticket = ticket_selector(@data[:object].timetable_template.calendar.therapy, date) # check for available tickets if more/ render ticket selection form
+        ticket = ticket_selector(@data[:object].timetable_template.calendar.therapy, @data[:date]) # check for available tickets if more/ render ticket selection form
 
         if ticket # if form rendered then do not register yet
-          if ticket.entries_available?(date, @exercise_template.timetable_template.calendar.therapy) # just to make sure that selected ticket has entries available
-            exercise_modification = ExerciseModification.new(date: date, timetable_modification: @data[:object].timetable_template.calendar.timetable_modification, exercise_template: @data[:object], removal: false)
+          if current_user.access_for_level?(User.al_admin) && params[:require_payment] == "Ne" # allow admin free registration
+            if ticket.single_use # if single_use/ mark as paid
+              ticket.paid = true
+              ticket.save!
+            else
+              if ticket.entries_remaining > 0 # if time based/ nothing else/ add one entry
+                ticket.entries_remaining += 1
+              end
+            end
+            end
+
+          if ticket.entries_available?(@data[:date], @data[:object].timetable_template.calendar.therapy) # just to make sure that selected ticket has entries available
+            exercise_modification = ExerciseModification.new(date: @data[:date], timetable_modification: @data[:object].timetable_template.calendar.timetable_modification, exercise_template: @data[:object], removal: false)
             exercise_modification.save!
             @data[:exercise_result] = Exercise.create(exercise_modification: exercise_modification, timetable: @data[:object].timetable_template.calendar.timetable)
             ticket.register_entry(@data[:exercise_result])
@@ -54,8 +81,8 @@ class ExerciseRegisterController < ApplicationController
   end
 
   def subscribe_for_exercise
-    if validate_signup(@data[:object], current_user) # validate date, capacity, multiple rezervations/ renders error
-      ticket = ticket_selector(@data[:object].timetable.calendar.therapy, @data[:object].date)# check for available tickets if more/ render ticket selection form
+    if validate_signup(@data[:object], @data[:user]) # validate date, capacity, multiple rezervations/ renders error
+      ticket = ticket_selector(@data[:object].timetable.calendar.therapy, @data[:object].date) # check for available tickets if more/ render ticket selection form
 
       if ticket # if form rendered then do not register yet
         if ticket.entries_available?(@data[:object].date, @data[:object].timetable.calendar.therapy) # just to make sure that selected ticket has entries available
@@ -70,10 +97,15 @@ class ExerciseRegisterController < ApplicationController
 
   def unsubscribe_from
     @data = {}
-    @data[:exercise] = Exercise.find(params[:exercise_id])
+    @data[:exercise] = Exercise.find(params[:id])
     @data[:beginning_offset] = params[:beginning_offset].to_i
-    entry = Entry.joins(:ticket).where("tickets.user_id = ?", current_user.id).where("exercise_id = ?", @exercise.id).first
-    exercise_modification = @exercise.exercise_modification
+    if params[:user] && current_user.access_for_level?(User.al_admin)
+      @data[:user] = User.find(params[:user])
+    else
+      @data[:user] = current_user
+    end
+    entry = Entry.joins(:ticket).where("tickets.user_id = ?", @data[:user].id).where("exercise_id = ?", @data[:exercise].id).first
+    exercise_modification = @data[:exercise].exercise_modification
     date = exercise_modification.date
 
     if (date < Time.now.utc)
@@ -103,7 +135,7 @@ class ExerciseRegisterController < ApplicationController
         if (params[:source] == "calendar_view")
           render "unsubscribe_from_calendar_view", locals: {mode: mode}
         else
-          render "unsubscribe_from_user_summary_list", locals: {tickets: current_user.tickets}
+          render "unsubscribe_from_user_summary_list", locals: {tickets: @data[:user].tickets}
         end
       end
     end
@@ -133,7 +165,7 @@ class ExerciseRegisterController < ApplicationController
       # ticket already selected
       return Ticket.find(params[:ticket_id])
     else
-      tickets_available = Ticket.for_therapy(current_user.tickets.with_available_entries(date), therapy)
+      tickets_available = Ticket.for_therapy(@data[:user].tickets.with_available_entries(date), therapy)
 
       if tickets_available.count > 0
         if tickets_available.count == 1
@@ -141,7 +173,7 @@ class ExerciseRegisterController < ApplicationController
           return tickets_available.first
         else
           # more than one - show js form
-          @tickets = Ticket.for_therapy(current_user.tickets.where(single_use: false), therapy)
+          @tickets = Ticket.for_therapy(@data[:user].tickets.where(single_use: false), therapy)
           @target_therapy = therapy
           @target_date = date
           render "ticket_selector_form.js.erb", status: 200 and return
@@ -149,7 +181,7 @@ class ExerciseRegisterController < ApplicationController
       else
         # any usable tickets were not found
         # try creating single use one
-        single_use = Ticket.create_single_use(current_user, therapy)
+        single_use = Ticket.create_single_use(@data[:user], therapy)
         if (single_use)
           return single_use
         else
@@ -203,5 +235,4 @@ class ExerciseRegisterController < ApplicationController
       end
     end
   end
-end
 end

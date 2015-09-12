@@ -3,7 +3,7 @@ if(confirm('Odhlášování je povoleno pouze <%= Ticket.unsubscribe_time_limit 
     $.ajax({
         type: "POST",
         url: "/registering_handler/unsubscribe_from",
-        data: { exercise_id: <%= @exercise.id %>, beginning_offset: <%= @beginning_offset %>, force: true, source: "calendar_view" },
+        data: { id: <%= @data[:exercise].id %>, beginning_offset: <%= @data[:beginning_offset] %>, force: true, source: "calendar_view", user: <%= @data[:user].id %> },
         dataType: 'script',
         format: 'js',
         success: function(msg){

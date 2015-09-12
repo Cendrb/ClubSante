@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   end
   
   controller :exercise_register do
-    post 'registering_handler/subscribe' => "exercise_register#subscribe"
+    post 'registering_handler/subscribe' => "exercise_register#subscribe", as: 'subscribe'
     post 'registering_handler/unsubscribe_from' => "exercise_register#unsubscribe_from", as: 'unsubscribe'
     post 'registering_handler/admin_edit' => "exercise_register#admin_edit"
   end

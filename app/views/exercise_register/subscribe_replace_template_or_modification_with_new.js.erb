@@ -7,5 +7,6 @@
         alert("ERROR: This view cannot render different views other than template and modification!");
 <% end %>
 
-setupHandlersFor(<%= @exercise.id %>);
+setupHandlersForExercise(<%= @data[:exercise_result].id %>);
 $('#ticket_selector').dialog("close");
+$('.admin_edit_dialog').dialog("close");

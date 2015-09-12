@@ -47,13 +47,13 @@
             <% date = @monday_date + weekday.days %>
 			<td class="calendar_weekday<%= " calendar_grey_past" if date.past? || (date == Date.today && @last_hour < Time.now.in_time_zone.hour) %>" data-weekday=<%= weekday %>">
 				<% timetable_template = TimetableTemplate.where(calendar: @calendar).where("beginning < ?", date).order(:beginning).last %>
-				<% timetable_template.exercise_templates.where(weekday: weekday).find_each do |template| %>
-					<% if !template.exercise_modification %>
+				<% timetable_template.exercise_templates.where(weekday: weekday).each do |template| %>
+					<% if template.exercise_modifications.where("date::date = ?", date).count == 0 %>
 						<%= render partial: "exercise_templates/exercise_template_for_calendar", locals: { exercise_template: template, date: date, beginning_offset: @beginning_offset } %>
 					<% end %>
 				<% end %>
 
-				<% @modifications.where(removal: false).where("date::date = ?", date).find_each do |modification| %>
+				<% @modifications.where(removal: false).where("date::date = ?", date).each do |modification| %>
 					<%= render partial: "exercise_modifications/exercise_modification_for_calendar", locals: { exercise_modification: modification, beginning_offset: @beginning_offset } %>
 				<% end %>
 

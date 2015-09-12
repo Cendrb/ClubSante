@@ -1,13 +1,9 @@
-body
-{
+body {
   margin: 0;
   padding: 0;
-  #container
-  {
-    #page
-    {
-      #header
-      {
+  #container {
+    #page {
+      #header {
         overflow: auto;
         width: 100%
       }
@@ -19,29 +15,24 @@ body
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       border-radius: 5px;
-    } 
+    }
   }
 }
 
-a
-{
+a {
   text-decoration: underline;
   color: gray;
-  &:hover
-  {
+  &:hover {
     text-decoration: underline;
     color: black;
   }
 }
 
-.multi_line
-{
+.multi_line {
   white-space: pre;
 }
 
-
-.current_user_status
-{
+.current_user_status {
   padding: 0.5em;
   border-radius: 5px;
   background-color: #a4a0a2;
@@ -49,27 +40,23 @@ a
   float: right;
 }
 
-#ticket_selector
-{
+#ticket_selector {
   border-collapse: collapse;
 }
 
-table
-{
+table {
   border-collapse: collapse;
   table-layout: fixed;
   width: 100%;
   margin-bottom: 10px;
 }
 
-td
-{
+td {
   padding: 1px;
   padding-right: 6px;
 }
 
-.dialog_title
-{
+.dialog_title {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
