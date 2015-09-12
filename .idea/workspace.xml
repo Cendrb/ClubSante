@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a19e92ad-d5cb-404b-835e-049a7b95d470" name="Default" comment="zidan&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/exercise_register/_admin_edit_dialog.html.erb" afterPath="$PROJECT_DIR$/app/views/exercise_register/_admin_edit_dialog.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/calendars/_calendar_final.html.erb" afterPath="$PROJECT_DIR$/app/views/calendars/_calendar_final.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/exercises/_exercise.html.erb" afterPath="$PROJECT_DIR$/app/views/exercises/_exercise.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/calendars.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/calendars.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/exercise_register_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/exercise_register_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/exercise_register/prompt_ticket_entry_void.js.erb" afterPath="$PROJECT_DIR$/app/views/exercise_register/prompt_ticket_entry_void.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/exercise_register/subscribe_replace_template_or_modification_with_new.js.erb" afterPath="$PROJECT_DIR$/app/views/exercise_register/subscribe_replace_template_or_modification_with_new.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/exercise_register/subscribe_update_existing.js.erb" afterPath="$PROJECT_DIR$/app/views/exercise_register/subscribe_update_existing.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/exercise_register/unsubscribe_from_calendar_view.js.erb" afterPath="$PROJECT_DIR$/app/views/exercise_register/unsubscribe_from_calendar_view.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/whoa.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/whoa.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/tickets_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/tickets_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ClubSante.iws" />
@@ -34,9 +25,9 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/ClubSante@db_migrate__ClubSante.coverage" NAME="db:migrate: ClubSante Coverage Results" MODIFIED="1441743621628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ClubSante" />
-    <SUITE FILE_PATH="coverage/ClubSante@db_create__ClubSante.coverage" NAME="db:create: ClubSante Coverage Results" MODIFIED="1441286168413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ClubSante" />
     <SUITE FILE_PATH="coverage/ClubSante@routes__ClubSante.coverage" NAME="routes: ClubSante Coverage Results" MODIFIED="1442046452010" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ClubSante" />
-    <SUITE FILE_PATH="coverage/ClubSante@Development__ClubSante.coverage" NAME="Development: ClubSante Coverage Results" MODIFIED="1442068210505" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ClubSante" />
+    <SUITE FILE_PATH="coverage/ClubSante@db_create__ClubSante.coverage" NAME="db:create: ClubSante Coverage Results" MODIFIED="1441286168413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ClubSante" />
+    <SUITE FILE_PATH="coverage/ClubSante@Development__ClubSante.coverage" NAME="Development: ClubSante Coverage Results" MODIFIED="1442070207908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ClubSante" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -69,25 +60,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="exercise_register_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="exercise_register_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/exercise_register_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27929902">
-              <caret line="15" column="87" selection-start-line="15" selection-start-column="87" selection-end-line="15" selection-end-column="87" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="17" column="183" selection-start-line="17" selection-start-column="183" selection-end-line="17" selection-end-column="183" />
               <folding>
-                <element signature="e#2895#3888#0" expanded="false" />
-                <element signature="e#2930#3882#2" expanded="false" />
-                <element signature="e#3263#3874#0" expanded="false" />
-                <element signature="e#3325#3864#1" expanded="false" />
-                <element signature="e#5554#6010#0" expanded="false" />
-                <element signature="e#5593#5916#1" expanded="false" />
-                <element signature="e#6279#6600#0" expanded="false" />
-                <element signature="e#6342#6531#0" expanded="false" />
-                <element signature="e#6615#6721#0" expanded="false" />
-                <element signature="e#7930#8122#0" expanded="false" />
-                <element signature="e#8029#8100#0" expanded="false" />
-                <element signature="e#8303#8475#0" expanded="false" />
-                <element signature="e#8354#8453#0" expanded="false" />
+                <element signature="e#2929#3922#0" expanded="false" />
+                <element signature="e#2964#3916#2" expanded="false" />
+                <element signature="e#3297#3908#0" expanded="false" />
+                <element signature="e#3359#3898#1" expanded="false" />
+                <element signature="e#5588#6044#0" expanded="false" />
+                <element signature="e#5627#5950#1" expanded="false" />
+                <element signature="e#6313#6634#0" expanded="false" />
+                <element signature="e#6376#6565#0" expanded="false" />
+                <element signature="e#6649#6755#0" expanded="false" />
+                <element signature="e#7964#8156#0" expanded="false" />
+                <element signature="e#8063#8134#0" expanded="false" />
+                <element signature="e#8337#8509#0" expanded="false" />
+                <element signature="e#8388#8487#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -98,9 +89,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-3.2692308">
               <caret line="5" column="165" selection-start-line="5" selection-start-column="165" selection-end-line="5" selection-end-column="165" />
-              <folding>
-                <marker date="1442069628081" expanded="true" signature="171:515" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -128,8 +117,18 @@
       <file leaf-file-name="_admin_edit_dialog.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/exercise_register/_admin_edit_dialog.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.26923">
-              <caret line="55" column="203" selection-start-line="55" selection-start-column="203" selection-end-line="55" selection-end-column="203" />
+            <state vertical-scroll-proportion="-10.576923">
+              <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tickets_controller.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/tickets_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5345017">
+              <caret line="131" column="37" selection-start-line="131" selection-start-column="37" selection-end-line="131" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -138,7 +137,7 @@
       <file leaf-file-name="subscribe_update_existing.js.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/exercise_register/subscribe_update_existing.js.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.9615384">
+            <state vertical-scroll-proportion="0.0">
               <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="40" />
               <folding />
             </state>
@@ -148,7 +147,7 @@
       <file leaf-file-name="unsubscribe_from_calendar_view.js.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/exercise_register/unsubscribe_from_calendar_view.js.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.1923075">
+            <state vertical-scroll-proportion="0.0">
               <caret line="11" column="40" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
               <folding />
             </state>
@@ -170,16 +169,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="63" column="1" selection-start-line="63" selection-start-column="1" selection-end-line="63" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/routes.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="58" column="4" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -209,7 +198,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/views/navigation/summary.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/tickets_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/ticket.rb" />
         <option value="$PROJECT_DIR$/app/models/entry.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
@@ -259,6 +247,7 @@
         <option value="$PROJECT_DIR$/app/views/exercise_register/prompt_ticket_entry_void.js.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/calendars.js" />
         <option value="$PROJECT_DIR$/app/controllers/exercise_register_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/tickets_controller.rb" />
       </list>
     </option>
   </component>
@@ -475,8 +464,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="RailsProjectView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -487,7 +476,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="routes&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/config/routes.rb&#10;route&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/config/routes.rb&#10;exe&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;rout&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/config/routes.rb&#10;EX RE C&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;sche&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/db/schema.rb&#10;exe r c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;exe re&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/exercise_modifications/display_exercise_modification_dialog.js.erb&#10;user&#9;null&#9;null&#10;schem&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/db/schema.rb&#10;calendar&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;show&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/users/show.html.erb&#10;admini&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/administration.html.erb&#10;admi&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/administration.html.erb&#10;exerc&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;calend&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;coach&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/coach.rb&#10;reser&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/reservations.html.erb&#10;_form&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/coaches/_form.html.erb&#10;coach c&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/controllers/coaches_controller.rb&#10;coac&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/models/coach.rb&#10;Coach&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/models/coach.rb&#10;schema&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/db/schema.rb&#10;for_calendar&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/views/exercise_modifications/_exercise_modification_for_calendar.html.erb&#10;_exe&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/views/exercise_templates/_exercise_template_for_calendar.html.erb&#10;entry&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/entry.rb&#10;regis&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;summa&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/summary.html.erb&#10;controll&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;ticke&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/tickets_controller.rb&#10;nav&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;tick&#9;null&#9;null&#10;calenda&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;nav c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;calenda c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/calendars_controller.rb&#10;e&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;exe c&#9;null&#9;null&#10;admin&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/administration.html.erb&#10;navig c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;rese&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/reservations.html.erb&#10;week_se&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final_with_week_selector.html.erb&#10;ex mod c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_modifications_controller.rb&#10;cale&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/calendar.rb&#10;registe&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;exe mo&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/exercise_modification.rb&#10;thera&#9;null&#9;null&#10;_pend&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/tickets/user_show/_pending_singles.html.erb&#10;pending s&#9;null&#9;null&#10;ticket_sele&#9;null&#9;null&#10;ticket c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/tickets_controller.rb" />
+    <property name="SearchEverywhereHistoryKey" value="tickets&#9;null&#9;null&#10;routes&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/config/routes.rb&#10;route&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/config/routes.rb&#10;exe&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;rout&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/config/routes.rb&#10;EX RE C&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;sche&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/db/schema.rb&#10;exe r c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;exe re&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/exercise_modifications/display_exercise_modification_dialog.js.erb&#10;user&#9;null&#9;null&#10;schem&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/db/schema.rb&#10;calendar&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;show&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/users/show.html.erb&#10;admini&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/administration.html.erb&#10;admi&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/administration.html.erb&#10;exerc&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;calend&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;coach&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/coach.rb&#10;reser&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/reservations.html.erb&#10;_form&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/coaches/_form.html.erb&#10;coach c&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/controllers/coaches_controller.rb&#10;coac&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/models/coach.rb&#10;Coach&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/models/coach.rb&#10;schema&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/db/schema.rb&#10;for_calendar&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/views/exercise_modifications/_exercise_modification_for_calendar.html.erb&#10;_exe&#9;FILE&#9;file://C:/Users/Cendrb-NTB/Documents/AptanaProjects/ClubSante/app/views/exercise_templates/_exercise_template_for_calendar.html.erb&#10;entry&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/entry.rb&#10;regis&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;summa&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/summary.html.erb&#10;controll&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;ticke&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/tickets_controller.rb&#10;nav&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;tick&#9;null&#9;null&#10;calenda&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;nav c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;calenda c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/calendars_controller.rb&#10;e&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;exe c&#9;null&#9;null&#10;admin&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/administration.html.erb&#10;navig c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;rese&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/reservations.html.erb&#10;week_se&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final_with_week_selector.html.erb&#10;ex mod c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_modifications_controller.rb&#10;cale&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/calendar.rb&#10;registe&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;exe mo&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/exercise_modification.rb&#10;thera&#9;null&#9;null&#10;_pend&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/tickets/user_show/_pending_singles.html.erb&#10;pending s&#9;null&#9;null&#10;ticket_sele&#9;null&#9;null" />
     <property name="byebug.present.asked" value="true" />
     <property name="Ruby.ViewRefParam.DefaultExtension" value="html.erb" />
     <property name="RailsGeneratorsPopup.hiddenIncluded" value="false" />
@@ -794,7 +783,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27801493" sideWeight="0.49565217" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28121665" sideWeight="0.49565217" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3995749" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.3293348" sideWeight="0.49421966" order="2" side_tool="false" content_ui="tabs" x="2927" y="8" width="904" height="297" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2603912" sideWeight="0.5043478" order="2" side_tool="true" content_ui="tabs" />
@@ -803,12 +792,12 @@
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32842106" sideWeight="0.49710983" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32837406" sideWeight="0.49755502" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32837406" sideWeight="0.49755502" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3273684" sideWeight="0.48720682" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.49573562" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.49573562" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -836,13 +825,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33296824">
-          <caret line="24" column="6" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/user_show.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.03723987">
@@ -1150,7 +1132,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/exercise_register/unsubscribe_from_calendar_view.js.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075">
+        <state vertical-scroll-proportion="0.0">
           <caret line="11" column="40" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
           <folding />
         </state>
@@ -1158,8 +1140,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/exercise_register/subscribe_update_existing.js.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9615384">
+        <state vertical-scroll-proportion="0.0">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/exercise_register_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="183" selection-start-line="17" selection-start-column="183" selection-end-line="17" selection-end-column="183" />
+          <folding>
+            <element signature="e#2929#3922#0" expanded="false" />
+            <element signature="e#2964#3916#2" expanded="false" />
+            <element signature="e#3297#3908#0" expanded="false" />
+            <element signature="e#3359#3898#1" expanded="false" />
+            <element signature="e#5588#6044#0" expanded="false" />
+            <element signature="e#5627#5950#1" expanded="false" />
+            <element signature="e#6313#6634#0" expanded="false" />
+            <element signature="e#6376#6565#0" expanded="false" />
+            <element signature="e#6649#6755#0" expanded="false" />
+            <element signature="e#7964#8156#0" expanded="false" />
+            <element signature="e#8063#8134#0" expanded="false" />
+            <element signature="e#8337#8509#0" expanded="false" />
+            <element signature="e#8388#8487#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/exercise_register/prompt_ticket_entry_void.js.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2692308">
+          <caret line="5" column="165" selection-start-line="5" selection-start-column="165" selection-end-line="5" selection-end-column="165" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -1174,49 +1194,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/exercise_register/_admin_edit_dialog.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.26923">
-          <caret line="55" column="203" selection-start-line="55" selection-start-column="203" selection-end-line="55" selection-end-column="203" />
+        <state vertical-scroll-proportion="-10.576923">
+          <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/tickets_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.5345017">
+          <caret line="131" column="37" selection-start-line="131" selection-start-column="37" selection-end-line="131" selection-end-column="37" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/exercise_register/prompt_ticket_entry_void.js.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2692308">
-          <caret line="5" column="165" selection-start-line="5" selection-start-column="165" selection-end-line="5" selection-end-column="165" />
-          <folding>
-            <marker date="1442069628081" expanded="true" signature="171:515" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/exercise_register_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27929902">
-          <caret line="15" column="87" selection-start-line="15" selection-start-column="87" selection-end-line="15" selection-end-column="87" />
-          <folding>
-            <element signature="e#2895#3888#0" expanded="false" />
-            <element signature="e#2930#3882#2" expanded="false" />
-            <element signature="e#3263#3874#0" expanded="false" />
-            <element signature="e#3325#3864#1" expanded="false" />
-            <element signature="e#5554#6010#0" expanded="false" />
-            <element signature="e#5593#5916#1" expanded="false" />
-            <element signature="e#6279#6600#0" expanded="false" />
-            <element signature="e#6342#6531#0" expanded="false" />
-            <element signature="e#6615#6721#0" expanded="false" />
-            <element signature="e#7930#8122#0" expanded="false" />
-            <element signature="e#8029#8100#0" expanded="false" />
-            <element signature="e#8303#8475#0" expanded="false" />
-            <element signature="e#8354#8453#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>

@@ -15,7 +15,7 @@ class ExerciseRegisterController < ApplicationController
         else
           email = "#{params[:user_first_name]}.#{params[:user_last_name]}@neplatny.mail"
         end
-        @data[:user] = User.create(first_name: params[:user_first_name], last_name: params[:user_last_name], email: email, password: SecureRandom.hex)
+        @data[:user] = User.create(first_name: params[:user_first_name], last_name: params[:user_last_name], email: email, password: SecureRandom.hex, access_level: User.al_registered)
       else
         @data[:user] = current_user
       end

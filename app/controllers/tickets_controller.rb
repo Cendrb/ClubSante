@@ -129,7 +129,7 @@ class TicketsController < ApplicationController
     if @ticket.entries_remaining > 0
       @ticket.user.tickets.where(single_use: true).where(paid: false).find_each do |pending|
         if @ticket.entries_remaining > 0 && (@ticket.activated_on <= (pending.activated_on + pending.time_restriction)) && ((@ticket.activated_on + @ticket.time_restriction) >= pending.activated_on)
-          @ticket.entries_remaining += 1
+          @ticket.entries_remaining -= 1
           pending.paid = true
           pending.save!
         end
