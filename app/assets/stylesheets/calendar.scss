@@ -1,3 +1,14 @@
+// jQuery UI override
+.ui-widget-content
+{
+  border: none;
+}
+
+.ui-widget-header
+{
+  background: none;
+}
+
 .calendar_in_week_selector
 {
   .calendar_timetable

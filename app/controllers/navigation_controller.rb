@@ -22,6 +22,10 @@ class NavigationController < ApplicationController
     @data[:tracked_values] = @user.tracked_values
   end
 
+  def my_account
+    
+  end
+
   def administration
     @data = {}
     @data[:exercises] = Exercise.joins(:exercise_modification).where("exercise_modifications.date > ?", Time.now).order("exercise_modifications.date DESC").limit(20)

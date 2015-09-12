@@ -2,6 +2,7 @@
   <li><%= link_to 'Přehled', nav_summary_path %></li>
   <li><%= link_to 'Permanentky', nav_tickets_path %></li>
   <li><%= link_to 'Rozvrh', nav_reservations_path %></li>
-  <li><%= link_to 'Cíle', nav_goals_path %></li>
-  <% if access_for_level?(User.al_admin) %><li><%= link_to 'Administrace', nav_administration_path %></li><% end %>
+  <li><%= link_to 'Cíle', nav_goals_path if access_for_level?(User.al_customer) %></li>
+  <li><%= link_to 'Můj účet', nav_my_account_path %></li>
+  <li><%= link_to 'Administrace', nav_administration_path if access_for_level?(User.al_admin) %></li>
 </ul>

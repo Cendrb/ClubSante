@@ -1,20 +1,30 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #dfecbb;
   #container {
     #page {
-      #header {
-        overflow: auto;
-        width: 100%
-      }
       background-color: #ffffff;
-      padding: 2em;
-      margin: 5em auto 0 auto;
+      padding: 20px;
+      margin: 20px auto 0 auto;
       width: 1200px;
       height: auto;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
       border-radius: 5px;
+      #header {
+        overflow: auto;
+        width: 100%;
+        #web_title
+        {
+          font-size: 70px;
+          line-height: 100px;
+          color: #000000;
+        }
+      }
+
+      #content
+      {
+
+      }
     }
   }
 }
@@ -35,7 +45,7 @@ a {
 .current_user_status {
   padding: 0.5em;
   border-radius: 5px;
-  background-color: #a4a0a2;
+  background-color: #679e00;
   width: 15%;
   float: right;
 }
@@ -62,3 +72,4 @@ td {
   margin-bottom: 10px;
   margin-top: 16px;
 }
+

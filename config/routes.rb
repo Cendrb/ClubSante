@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'timetable' => 'navigation#reservations', as: 'nav_reservations'
     get 'tickets' => 'navigation#tickets', as: 'nav_tickets'
     get 'goals' => 'navigation#goals', as: 'nav_goals'
+    get 'my_account' => 'navigation#my_account', as: 'nav_my_account'
     get 'administration' => 'navigation#administration', as: 'nav_administration'
   end
 

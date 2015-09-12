@@ -7,16 +7,14 @@
     display: inline;
     a
     {
-      background-color: black;
-      -webkit-border-radius: 4px 4px 0 0;
-      -moz-border-radius: 4px 4px 0 0;
+      background-color: #679e00;
       border-radius: 4px 4px 0 0;
       text-decoration: none;
       padding: 10px 20px;
       color: white;
       &:hover
       {
-        color: white;
+        background-color: #78ba00;
       }
     }
   }
