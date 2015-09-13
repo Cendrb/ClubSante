@@ -141,6 +141,33 @@ function setupAdminEdit(filter) {
     }
 }
 
+function refreshTicketsBar(therapy_id)
+{
+    $("#calendars_summary_tickets_list").html("Probíhá stahování dat...");
+    $.ajax({
+        type: "POST",
+        url: "/reservations_ticket_view",
+        data: {
+            therapy_id: therapy_id
+        },
+        dataType: 'script',
+        format: 'js',
+        success: function (msg) {
+        }
+    });
+}
+
 $(function () {
     setupHandlersForCalendar(null);
+
+    $(function () {
+        $("#calendars_summary_calendars").tabs();
+    });
+
+    $(".calendar-tab-anchor").click(function () {
+        refreshTicketsBar($(this).data("therapy-id"));
+    });
+
+    console.log($("#calendars_summary_calendars").height());
+    $("#content").height($("#calendars_summary_calendars").height());
 });

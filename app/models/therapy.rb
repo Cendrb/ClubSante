@@ -3,7 +3,6 @@ class Therapy < ActiveRecord::Base
   has_and_belongs_to_many :therapy_categories
 
   validates_presence_of :name, :capacity, :duration_in_minutes
-  validates_inclusion_of :can_single_use, in: [true, false]
   before_create :init_dependent
 
   def init_dependent
@@ -11,12 +10,15 @@ class Therapy < ActiveRecord::Base
     true
   end
 
-  def can_single_use_meth
-    TherapyCategory.find_each do |category|
-      if (category.therapies.count == 1 && category.therapies.first == self && category.therapies.first.can_single_use)
-        return true
-      end
+  def can_single_use
+    return single_use_category
+  end
+
+  def single_use_category
+    if single_use_category_id
+      return TherapyCategory.find_by_id(single_use_category_id)
+    else
+      return nil
     end
-    return false
   end
 end

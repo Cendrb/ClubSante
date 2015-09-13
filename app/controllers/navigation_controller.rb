@@ -8,7 +8,9 @@ class NavigationController < ApplicationController
 
   def reservations
     @data = {}
-    @data[:tickets] = current_user.tickets.where(single_use: false)
+    @data[:therapies] = Therapy.all
+    @data[:current_therapy] = @data[:therapies].first
+    @data[:tickets] = Ticket.where(single_use: false).where(user: current_user).where(therapy_category: @data[:current_therapy].therapy_categories)
     @data[:coaches] = Coach.valid.all
   end
 
@@ -33,5 +35,12 @@ class NavigationController < ApplicationController
     @data[:users] = User.all
     @data[:coaches] = Coach.valid.all
     @data[:available_values] = AvailableValue.all
+  end
+
+  def reservations_ticket_view
+    current_therapy = Therapy.find(params[:therapy_id])
+    @data = {}
+    @data[:current_therapy] = current_therapy
+    @data[:tickets] = Ticket.where(single_use: false).where(user: current_user).where(therapy_category: current_therapy.therapy_categories)
   end
 end

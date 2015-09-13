@@ -16,7 +16,7 @@
 
 <p>
   <strong>Lze zarezervovat bez permanentky:</strong>
-  <%= b @therapy.can_single_use %>
+  <%= @therapy.single_use_category ? "ano (pomocí kategorie #{@therapy.single_use_category.name})" : "ne" %>
 </p>
 
 

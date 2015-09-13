@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get 'goals' => 'navigation#goals', as: 'nav_goals'
     get 'my_account' => 'navigation#my_account', as: 'nav_my_account'
     get 'administration' => 'navigation#administration', as: 'nav_administration'
+    post 'reservations_ticket_view'
   end
 
   resources :exercise_modifications

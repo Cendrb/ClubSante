@@ -24,8 +24,8 @@
     <%= f.text_field :duration_in_minutes %>
   </div>
   <div class="field">
-    <%= f.label :can_single_use, "Lze zarezervovat bez permanentky" %>
-    <%= f.check_box :can_single_use %>
+    <%= f.label :single_use_category_id, "Lze zarezervovat bez permanentky pomocí" %>
+    <%= f.collection_select :single_use_category_id, TherapyCategory.all, :id, :name, include_blank: "Nelze zarezervovat bez permanentky" %>
   </div>
   <div class="actions">
     <%= f.submit "Uložit" %>

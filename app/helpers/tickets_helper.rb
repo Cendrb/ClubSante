@@ -6,6 +6,14 @@ module TicketsHelper
       return ticket.entries_remaining
     end
   end
+
+  def get_ticket_entries_remaining_reservations_string(ticket)
+    if ticket.entries_remaining == -1
+      return "časově omezená"
+    else
+      return vstupy_count(ticket.entries_remaining)
+    end
+  end
   
   def get_ticket_end_date(ticket)
     if ticket.activated_on == nil
@@ -20,6 +28,19 @@ module TicketsHelper
       return "#{ticket.therapy_category.name}  (#{ticket.therapy_category.therapies.pluck(:name).join(", ").downcase})"
     else
       return ticket.therapy_category.name
+    end
+  end
+
+  def vstupy_count(count)
+    case count
+      when 0
+        return "žádné vstupy"
+      when 1
+        return "#{count} vstup"
+      when 2..4
+        return "#{count} vstupy"
+      else
+        return "#{count} vstupů"
     end
   end
 end

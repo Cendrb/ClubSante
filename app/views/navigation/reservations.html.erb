@@ -1,12 +1,15 @@
-<script type="text/javascript">
-    $(function () {
-        $("#calendars_summary_calendars").tabs();
-    });
-</script>
+<% set_title "Rozvrh" %>
+
+<div id="calendars_summary_tickets">
+  <div class="reservations_bar_title">Permanentky</div>
+  <div id="calendars_summary_tickets_list">
+    <%= render partial: "navigation/reservations_tickets_view", locals: {tickets: @data[:tickets], therapy: @data[:current_therapy]} %>
+  </div>
+</div>
 <div id="calendars_summary_calendars">
   <ul>
     <% Therapy.select(:id, :name).find_each do |therapy| %>
-        <li><a href="#tab-<%= therapy.id %>"><%= therapy.name %></a></li>
+        <li><a href="#tab-<%= therapy.id %>" class="calendar-tab-anchor" data-therapy-id="<%= therapy.id %>"><%= therapy.name %></a></li>
     <% end %>
   </ul>
   <% Therapy.find_each do |therapy| %>
@@ -14,13 +17,28 @@
         <%= render partial: "calendars/calendar_final_with_week_selector", locals: {calendar: therapy.calendar, beginning_date: Date.today} %>
       </div>
   <% end %>
+  <div id="calendars_summary_color">
+    <div id="calendars_summary_color_left">
+      <div id="calendars_summary_color_free"></div>
+      volno (barva dle trenéra)
+    </div>
+    <div id="calendars_summary_color_mid">
+      <div id="calendars_summary_color_my"></div>
+      moje rezervace
+    </div>
+    <div id="calendars_summary_color_right">
+      <div id="calendars_summary_color_full"></div>
+      plně obsazeno
+    </div>
+  </div>
 </div>
 <div id="calendars_summary_coaches">
+  <div class="reservations_bar_title">Trenéři</div>
   <% @data[:coaches].each do |coach| %>
-    <div class="coach_view">
-      <h3><%= coach.name %></h3>
-      <%= image_tag coach.photo.resized.url.to_s if coach.photo_url.present? %>
-      <div style="background-color: <%= coach.color_code %>; width: 100%; height: 1em"></div>
-    </div>
+      <div class="coach_bar_div">
+        <div class="coach_bar_name"><%= coach.name %></div>
+        <%= image_tag coach.photo.resized.url.to_s if coach.photo_url.present? %>
+        <div style="background-color: <%= coach.color_code %>; width: 100%; height: 1em"></div>
+      </div>
   <% end %>
 </div>

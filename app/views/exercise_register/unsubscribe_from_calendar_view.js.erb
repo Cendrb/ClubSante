@@ -10,4 +10,5 @@
 		setupHandlersForExercise(<%= @data[:result].id %>);
 <% end %>
 $('.admin_edit_dialog').dialog("close");
+refreshTicketsBar(<%= @data[:exercise].timetable.calendar.therapy.id %>);
 
