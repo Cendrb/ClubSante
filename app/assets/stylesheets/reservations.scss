@@ -1,0 +1,104 @@
+#calendars_summary_tickets
+{
+  margin-top: 15px;
+  float: left;
+  width: 200px;
+  position: relative;
+}
+
+#calendars_summary_calendars
+{
+  float: left;
+  width: 725px;
+  position: relative;
+}
+
+#calendars_summary_coaches
+{
+  margin-top: 15px;
+  float: right;
+  width: 250px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  border-bottom-left-radius: 4px;
+}
+
+.tickets_bar_div
+{
+
+}
+.tickets_bar_entries
+{
+  font-size: 16px;
+}
+.tickets_bar_validity
+{
+
+}
+
+.reservations_bar_title
+{
+  font-size: 25px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.coach_bar_name
+{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.coach_bar_div
+{
+  margin-top: 15px;
+}
+
+#calendars_summary_color
+{
+  margin-left: 10px;
+  margin-right: 25px;
+}
+
+#calendars_summary_color_left
+{
+  float: left;
+  width: 33%;
+}
+#calendars_summary_color_mid
+{
+  float: left;
+  text-align: right;
+  width: 33%;
+}
+#calendars_summary_color_right
+{
+  float: right;
+  width: 33%;
+  text-align: right;
+}
+
+#calendars_summary_color_free
+{
+  width: 30%;
+  height: 2em;
+  background-color: #029a02;
+  display: inline-block;
+  vertical-align: middle;
+}
+#calendars_summary_color_my
+{
+  width: 30%;
+  height: 2em;
+  background-color: #ffcc02;
+  display: inline-block;
+  vertical-align: middle;
+}
+#calendars_summary_color_full
+{
+  width: 30%;
+  height: 2em;
+  background-color: #dd2204;
+  display: inline-block;
+  vertical-align: middle;
+}

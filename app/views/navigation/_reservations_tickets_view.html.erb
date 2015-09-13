@@ -1,0 +1,8 @@
+<% tickets.each do |ticket| %>
+    <div class="tickets_bar_div">
+      <div class="tickets_bar_entries"><%= get_ticket_entries_remaining_reservations_string ticket %></div>
+      <div class="tickets_bar_validity">platná do: <%= get_ticket_end_date ticket %></div>
+    </div>
+<% end %>
+<%= "nemáte žádné platné permanentky pro tuto terapii" if !tickets.any? %>
+<%= "můžete si ale zarezervovat hodinu \"na dluh\", poté jí osobně doplatíte na recepci v klubu" if therapy.can_single_use && !tickets.any? %>
