@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     post 'reservations_ticket_view'
   end
 
+  post 'therapies/sort' => "therapies#sort"
+
   resources :exercise_modifications
 
   resources :coaches

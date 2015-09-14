@@ -1,6 +1,7 @@
 class TherapiesController < ApplicationController
   before_filter :authenticate_admin
   before_action :set_therapy, only: [:show, :edit, :update, :destroy]
+  after_action :single_use_category_implements_this, only: [:create, :update]
 
   # GET /therapies
   # GET /therapies.json
@@ -21,6 +22,10 @@ class TherapiesController < ApplicationController
 
   # GET /therapies/1/edit
   def edit
+  end
+
+  def sort
+
   end
 
   # POST /therapies
@@ -72,5 +77,15 @@ class TherapiesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def therapy_params
       params.require(:therapy).permit(:name, :capacity, :duration_in_minutes, :single_use_category_id)
+    end
+
+    def single_use_category_implements_this
+      category = @therapy.single_use_category
+      if category
+        if !category.includes?(@therapy)
+          category.therapies << @therapy
+          category.save!
+        end
+      end
     end
 end

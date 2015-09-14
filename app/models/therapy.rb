@@ -11,7 +11,7 @@ class Therapy < ActiveRecord::Base
   end
 
   def can_single_use
-    return single_use_category
+    return single_use_category && single_use_category.includes?(self)
   end
 
   def single_use_category

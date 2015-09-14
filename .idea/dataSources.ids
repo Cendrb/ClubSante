@@ -2574,6 +2574,7 @@
       <column name="updated_at" sqlType="timestamp" precision="29" scale="6" nullable="false" jdbcType="93"/>
       <column name="duration_in_minutes" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="single_use_category_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="sorting_order" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="therapies_pkey" columns="id"/>
     </table>
     <table name="therapies_id_seq" schema="public" catalog="ClubSante_development" type="SEQUENCE">
