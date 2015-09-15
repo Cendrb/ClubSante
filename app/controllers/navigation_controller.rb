@@ -8,7 +8,7 @@ class NavigationController < ApplicationController
 
   def reservations
     @data = {}
-    @data[:therapies] = Therapy.all
+    @data[:therapies] = Therapy.order(:sorting_order).all
     @data[:current_therapy] = @data[:therapies].first
     @data[:tickets] = Ticket.where(single_use: false).where(user: current_user).where(therapy_category: @data[:current_therapy].therapy_categories)
     @data[:coaches] = Coach.valid.all

@@ -1,18 +1,8 @@
 <% set_title "Cíle" %>
+<head>
   <%= javascript_include_tag "http://code.highcharts.com/highcharts.js" %>
   <%= javascript_include_tag "application", "chartkick" %>
-  <script>
-      Highcharts.setOptions({
-          lang: {
-              months: ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'],
-              weekdays: ['Neděle', 'Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek', 'Sobota'],
-              shortMonths: ["Led", "Úno", "Bře", "Dub", "Kvě", "Čvn", "Čvc", "Srp", "Zář", "Říj", "Lis", "Pro"]
-          }
-      });
-  </script>
-
-
-
+</head>
 
 <% if @user.access_for_level?(User.al_customer) %>
     <% if @user.tracked_values.count == 0 %>

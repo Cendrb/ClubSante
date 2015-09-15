@@ -25,13 +25,22 @@ class TherapiesController < ApplicationController
   end
 
   def sort
-
+    array = params[:data]
+    puts array
+    array.each do |pair|
+      therapy = Therapy.find(pair.last.last)
+      therapy.sorting_order = pair.first.first
+      therapy.save
+    end
+    render nothing: true
   end
 
   # POST /therapies
   # POST /therapies.json
   def create
     @therapy = Therapy.new(therapy_params)
+    category = TherapyCategory.create(name: @therapy.name)
+    @category.therapies << @therapy
 
     respond_to do |format|
       if @therapy.save

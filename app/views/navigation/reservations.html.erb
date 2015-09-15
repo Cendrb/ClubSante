@@ -8,7 +8,7 @@
 </div>
 <div id="calendars_summary_calendars">
   <ul>
-    <% Therapy.select(:id, :name).find_each do |therapy| %>
+    <% Therapy.select(:id, :name).each do |therapy| %>
         <li><a href="#tab-<%= therapy.id %>" class="calendar-tab-anchor" data-therapy-id="<%= therapy.id %>"><%= therapy.name %></a></li>
     <% end %>
   </ul>

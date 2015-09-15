@@ -60,7 +60,7 @@
 
       <tbody id="therapies_sortable">
       <% @data[:therapies].each do |therapy| %>
-          <tr data-therapy-id="<%= therapy.id %>">
+          <tr class="therapy_row" data-therapy-id="<%= therapy.id %>">
             <td><%= therapy.name %></td>
             <td><%= therapy.capacity %></td>
             <td><%= therapy.duration_in_minutes %></td>

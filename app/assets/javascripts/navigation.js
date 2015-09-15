@@ -8,7 +8,17 @@ $(function(){
         {
             update: function(event, ui)
             {
-                console.log($("#therapies_sortable").children().data("therapy-id"));
+                $.ajax({
+                    type: "POST",
+                    url: "/therapies/sort",
+                    data: {
+                        data: $("#therapies_sortable").children().map(function(i, v){ return [[i, $(this).data("therapy-id")]] }).toArray()
+                    },
+                    dataType: 'script',
+                    format: 'js',
+                    success: function (msg) {
+                    }
+                });
             }
         }
     );
