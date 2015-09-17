@@ -5,13 +5,13 @@
   width: 200px;
   height: 100%;
   position: relative;
-  border-right: solid 1px #dddddd;
 }
 
 #calendars_summary_calendars
 {
+  margin-top: 15px;
   float: left;
-  width: 775px;
+  width: 750px;
   position: relative;
 }
 
@@ -23,7 +23,6 @@
   height: 100%;
   padding-left: 10px;
   padding-bottom: 10px;
-  border-left: solid 1px #dddddd;
 }
 
 .tickets_bar_div
@@ -49,7 +48,6 @@
 .coach_bar_name
 {
   font-size: 16px;
-  margin-bottom: 10px;
 }
 
 .coach_bar_div
@@ -59,7 +57,17 @@
 
 .coach_color_div
 {
-  margin-top: -4px;
+  float-clear: both;
+}
+.coach_color_text
+{
+}
+.coach_color_box
+{
+  margin-top: 3px;
+  width: 1em;
+  height: 1em;
+  float: right;
 }
 
 #calendars_summary_color

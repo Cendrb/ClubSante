@@ -8,6 +8,7 @@ $(function(){
         {
             update: function(event, ui)
             {
+                $("#therapies_list_status").text("Ukládání...");
                 $.ajax({
                     type: "POST",
                     url: "/therapies/sort",
@@ -17,6 +18,10 @@ $(function(){
                     dataType: 'script',
                     format: 'js',
                     success: function (msg) {
+                        $("#therapies_list_status").text("Všechny změny uloženy");
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        $("#therapies_list_status").text("Došlo k chybě");
                     }
                 });
             }

@@ -37,8 +37,7 @@
   <% @data[:coaches].each do |coach| %>
       <div class="coach_bar_div">
         <div class="coach_bar_name"><%= coach.name %></div>
-        <%= image_tag coach.photo.resized.url.to_s if coach.photo_url.present? %>
-        <div class="coach_color_div" style="background-color: <%= coach.color_code %>; width: 100%; height: 1em"></div>
+        <div class="coach_color_div">barva v rozvrhu<div class="coach_color_box" style="background-color: <%= coach.color_code %>"></div></div>
       </div>
   <% end %>
 </div>
