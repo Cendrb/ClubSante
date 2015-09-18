@@ -141,8 +141,7 @@ function setupAdminEdit(filter) {
     }
 }
 
-function refreshTicketsBar(therapy_id)
-{
+function refreshTicketsBar(therapy_id) {
     $("#calendars_summary_tickets_list").html("Probíhá stahování dat...");
     $.ajax({
         type: "POST",
@@ -157,6 +156,11 @@ function refreshTicketsBar(therapy_id)
     });
 }
 
+function setHeight() {
+    if ($("#calendars_summary_calendars").length)
+        $("#yield").height($("#calendars_summary_calendars").height() + 20);
+}
+
 $(function () {
     setupHandlersForCalendar(null);
 
@@ -166,8 +170,8 @@ $(function () {
 
     $(".calendar-tab-anchor").click(function () {
         refreshTicketsBar($(this).data("therapy-id"));
+        setHeight();
     });
 
-    console.log($("#calendars_summary_calendars").height());
-    $("#content").height($("#calendars_summary_calendars").height());
+    setHeight();
 });

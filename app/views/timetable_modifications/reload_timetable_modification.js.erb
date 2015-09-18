@@ -1,3 +1,4 @@
-$(".exercise_modification_form").dialog("close");
+$(".exercise_modification_dialog").dialog("close");
 $(".timetable_modification_div").replaceWith("<%= escape_javascript(render partial: "timetable_modifications/timetable_modification", locals: {timetable_modification: timetable_modification, beginning_date: beginning_date.to_date}) %>");
 setupHandlersForTimetableModification();
+clickedOnExercise = false;

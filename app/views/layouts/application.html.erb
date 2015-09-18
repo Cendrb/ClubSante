@@ -12,10 +12,11 @@
   <div id="page">
     <div id="header">
       <div id="web_title">Club Sante</div>
-      <%= render partial: "menu" %>
     </div>
-    <div id="content">
-      <%= yield %>
+    <div id="content"><%= render partial: "menu" %>
+      <div id="yield">
+        <%= yield %>
+      </div>
     </div>
   </div>
 </div>

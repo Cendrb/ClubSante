@@ -1,19 +1,19 @@
-<div class="exercise_modification_dialog" title="<%= @exercise_modification.exercise_template_id ? "Úprava modifikace" : "Nová modifikace" %>">
-  <%= form_for(@exercise_modification, remote: true, html: {class: "exercise_modification_form"}) do |f| %>
-      <% if @exercise_modification.errors.any? %>
+<div class="exercise_modification_dialog" title="<%= @data[:mode] %>">
+  <%= form_for(@data[:exercise_modification], remote: true, html: {class: "exercise_modification_form"}) do |f| %>
+      <% if @data[:exercise_modification].errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(@exercise_modification.errors.count, "error") %> prohibited this exercise_modification
+            <h2><%= pluralize(@data[:exercise_modification].errors.count, "error") %> prohibited this exercise_modification
               from being saved:</h2>
 
             <ul>
-              <% @exercise_modification.errors.full_messages.each do |message| %>
+              <% @data[:exercise_modification].errors.full_messages.each do |message| %>
                   <li><%= message %></li>
               <% end %>
             </ul>
           </div>
       <% end %>
 
-      <% if @exercise_modification.exercise_template_id %>
+      <% if @data[:exercise_modification].exercise_template_id %>
           <!-- Disallow changing date when editing existing template  -->
           <div class="field">
             <%= f.label :date, "Termín" %><br>
@@ -38,7 +38,7 @@
         <%= f.label :note, "Poznámka" %><br>
         <%= f.text_area :note %>
       </div>
-      <% if @exercise_modification.exercise_template_id %>
+      <% if @data[:exercise_modification].exercise_template_id %>
           <div class="field">
             <%= f.label :removal, "Pouze odebrat", title: "Při zaškrtnutí zmizí tato hodina z rozvrhu. Jinak bude pouze upravena." %>
             <%= f.check_box :removal %>

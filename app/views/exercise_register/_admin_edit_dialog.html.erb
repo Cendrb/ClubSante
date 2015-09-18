@@ -47,16 +47,26 @@
         <%= submit_tag 'Rezervovat a vytvořit uživatele' %>
     <% end %>
   </div>
-  <div class="admin_edit_registered">
-    <div class="dialog_title">Aktuálně přihlášení</div>
-    <table>
-      <% @data[:registered].each do |user| %>
-          <tr>
-            <td><%= user.full_name %></td>
-            <td><%= button_to "Odhlásit", unsubscribe_path, method: :post, remote: true, params: {id: @data[:object].id, beginning_offset: @data[:beginning_offset], source: "calendar_view", user: user.id} %></td>
-          </tr>
+  <div class="admin_edit_right">
+    <div class="admin_edit_registered">
+      <div class="dialog_title">Aktuálně přihlášení</div>
+      <table>
+        <% @data[:registered].each do |user| %>
+            <tr>
+              <td><%= user.full_name %></td>
+              <td><%= button_to "Odhlásit", unsubscribe_path, method: :post, remote: true, params: {id: @data[:object].id, beginning_offset: @data[:beginning_offset], source: "calendar_view", user: user.id} %></td>
+            </tr>
+        <% end %>
+      </table>
+      <%= "na tuto hodinu se zatím nikdo nepřihlásil" if @data[:registered].count == 0 %>
+    </div>
+    <div class="admin_edit_modification">
+      <div class="dialog_title">Modifikace</div>
+      <% if @data[:modification] && @data[:modification].differs_from_template? %>
+        <%= @data[:modification].get_string %>
+      <% else %>
+        tato hodina nebyla nijak upravena
       <% end %>
-    </table>
-    <%= "na tuto hodinu se zatím nikdo nepřihlásil" if @data[:registered].count == 0 %>
+    </div>
   </div>
 </div>

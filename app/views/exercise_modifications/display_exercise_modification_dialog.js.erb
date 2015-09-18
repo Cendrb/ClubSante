@@ -3,9 +3,10 @@ $('.exercise_modification_dialog').dialog(
 {
     resizable: false,
     modal: true,
-    width:'auto',
+    width: '371px',
 	close: function(event, ui)
     {
         $(this).dialog('destroy').remove();
+        clickedOnExercise = false;
     }
 });

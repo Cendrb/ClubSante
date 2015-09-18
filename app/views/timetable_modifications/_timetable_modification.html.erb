@@ -1,49 +1,50 @@
-<% 
-	@calendar = timetable_modification.calendar
-    @monday_date = get_beginning_of_week(beginning_date)
- %>
+<%
+   @calendar = timetable_modification.calendar
+   @monday_date = get_beginning_of_week(beginning_date)
+   set_title("Modifikace")
+%>
 <div class="timetable_modification_div">
-<table class="timetable_modification">
-	<tr>
-		<td></td>
-		<% counter = 0 %>
-		<% I18n.t(:"date.abbr_day_names").rotate.each do |weekday_name| %>
-			<td class="timetable_modification_date"><%= l(@monday_date + counter.days) %></td>
-			<% counter += 1 %>
-		<% end %>
-	</tr>
-	
-	<tr>
-		<td> 
-			<% for hour in 0..24 %>
-				<div class="timetable_modification_hour">
-					<%= hour %>:00
-				</div>
-			<% end %>
-			
-			<% counter = 0 %>
-			<% for hour in 0..24 %>
-				<div class="hour_separator_line" style="position: absolute; top: <%= (counter * 60 * TimetableModification.pixels_per_minute) + 19 %>px; left: 0"></div>
-			    <% counter += 1 %>
-			<% end %>
-		</td>
-		
-		<% duration = @calendar.therapy.duration_in_minutes %>
-		<% for weekday in 0..6 %>
-			<% date = @monday_date + weekday.days %>
-			<td class="timetable_modification_weekday" oncontextmenu="return false;" data-calendar-id=<%= @calendar.id %> data-date=<%= date %>>
-				<% timetable_template = TimetableTemplate.where(calendar: @calendar).where("beginning < ?", date).order(:beginning).last %>
-				<% timetable_template.exercise_templates.where(weekday: weekday).find_each do |template| %> 
-					<% if !template.exercise_modification %>
-						<%= render partial: "exercise_templates/exercise_template_for_modification", locals: { exercise_template: template, duration: duration, date: date, calendar: @calendar } %>
-					<% end %>
-				<% end %>
-				
-				<% ExerciseModification.where(timetable_modification: timetable_modification).where("date::date = ?", date).find_each do |modification| %>
-					<%= render partial: "exercise_modifications/exercise_modification", locals: { exercise_modification: modification, beginning_offset: @beginning_offset } %>
-				<% end %>
-			</td>
-		<% end %>
-	</tr>
-</table>
+  <table class="timetable_modification">
+    <tr>
+      <td></td>
+      <% counter = 0 %>
+      <% I18n.t(:"date.abbr_day_names").rotate.each do |weekday_name| %>
+          <td class="timetable_modification_date"><%= l(@monday_date + counter.days) %></td>
+          <% counter += 1 %>
+      <% end %>
+    </tr>
+
+    <tr>
+      <td>
+        <% for hour in 0..24 %>
+            <div class="timetable_modification_hour">
+              <%= hour %>:00
+            </div>
+        <% end %>
+
+        <% counter = 0 %>
+        <% for hour in 0..24 %>
+            <div class="hour_separator_line" style="position: absolute; top: <%= (counter * 60 * TimetableModification.pixels_per_minute) + 19 %>px; left: 0"></div>
+            <% counter += 1 %>
+        <% end %>
+      </td>
+
+      <% duration = @calendar.therapy.duration_in_minutes %>
+      <% for weekday in 0..6 %>
+          <% date = @monday_date + weekday.days %>
+          <td class="timetable_modification_weekday" oncontextmenu="return false;" data-calendar-id=<%= @calendar.id %> data-date=<%= date %>>
+            <% timetable_template = TimetableTemplate.where(calendar: @calendar).where("beginning < ?", date).order(:beginning).last %>
+            <% timetable_template.exercise_templates.where(weekday: weekday).find_each do |template| %>
+                <% if !template.exercise_modifications.where("date::date = ?", date).first %>
+                    <%= render partial: "exercise_templates/exercise_template_for_modification", locals: {exercise_template: template, duration: duration, date: date, calendar: @calendar} %>
+                <% end %>
+            <% end %>
+
+            <% ExerciseModification.where(timetable_modification: timetable_modification).where("date::date = ?", date).find_each do |modification| %>
+                <%= render partial: "exercise_modifications/exercise_modification", locals: {exercise_modification: modification, beginning_offset: @beginning_offset} %>
+            <% end %>
+          </td>
+      <% end %>
+    </tr>
+  </table>
 </div>

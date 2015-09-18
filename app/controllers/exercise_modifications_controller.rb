@@ -15,18 +15,23 @@ class ExerciseModificationsController < ApplicationController
 
   # GET /exercise_modifications/new
   def new
-    @exercise_modification = ExerciseModification.new
+    @data = {}
+    @data[:exercise_modification] = ExerciseModification.new
     calendar = Calendar.find(params[:calendar_id])
-    @exercise_modification.timetable_modification = calendar.timetable_modification
+    @data[:exercise_modification].timetable_modification = calendar.timetable_modification
     if(params[:exercise_template_id])
+      # created with template
       exercise_template = ExerciseTemplate.find(params[:exercise_template_id])
-       @exercise_modification.exercise_template = exercise_template
-       @exercise_modification.load_default_values_from(exercise_template)
-       @exercise_modification.date = params[:date].to_datetime + exercise_template.beginning.seconds_since_midnight.seconds
+      @data[:exercise_modification].exercise_template = exercise_template
+      @data[:exercise_modification].load_default_values_from(exercise_template)
+      @data[:exercise_modification].date = params[:date].to_datetime + exercise_template.beginning.seconds_since_midnight.seconds
+      @data[:mode] = "Modifikace existující hodiny"
     else
-      @exercise_modification.coach = Coach.get_nobody
-      @exercise_modification.price = ExerciseTemplate.get_hide_string
-      @exercise_modification.date = params[:datetime].to_datetime
+      # created without template
+      @data[:exercise_modification].coach = Coach.get_nobody
+      @data[:exercise_modification].price = ExerciseTemplate.get_hide_string
+      @data[:exercise_modification].date = params[:datetime].to_datetime
+      @data[:mode] = "Přidání nové hodiny"
     end
     respond_to do |format|
       format.js { render "display_exercise_modification_dialog" }
@@ -36,6 +41,9 @@ class ExerciseModificationsController < ApplicationController
 
   # GET /exercise_modifications/1/edit
   def edit
+    @data = {}
+    @data[:exercise_modification] = @exercise_modification
+    @data[:mode] = "Úprava existující modifikace"
     respond_to do |format|
       format.js { render "display_exercise_modification_dialog" }
       format.html

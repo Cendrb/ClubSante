@@ -46,7 +46,7 @@ class ExerciseRegisterController < ApplicationController
                 ticket.entries_remaining += 1
               end
             end
-            end
+          end
 
           if ticket.entries_available?(@data[:date], @data[:object].timetable_template.calendar.therapy) # just to make sure that selected ticket has entries available
             exercise_modification = ExerciseModification.new(date: @data[:date], timetable_modification: @data[:object].timetable_template.calendar.timetable_modification, exercise_template: @data[:object], removal: false)
@@ -149,6 +149,14 @@ class ExerciseRegisterController < ApplicationController
       @data[:registered] = User.joins(tickets: {entries: :exercise}).where("exercises.id = ?", @data[:object].id)
     else
       @data[:registered] = []
+    end
+
+    if @data[:mode] == :modification
+      @data[:modification] = @data[:object]
+    else
+      if @data[:mode == :template]
+        @data[:modification] = ExerciseModification.where(exercise_template_id: @data[:object].id).where("date::date = ?", @data[:date]).first
+      end
     end
 
     @data[:beginning_offset] = params[:beginning_offset].to_i
