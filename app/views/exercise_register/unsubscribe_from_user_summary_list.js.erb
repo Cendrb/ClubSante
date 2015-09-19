@@ -1,2 +1,2 @@
-$("#tickets_table").replaceWith("<%= escape_javascript(render partial: "tickets/user_summary_tickets_index", locals: { tickets: tickets }) %>");
-$("tr[data-id=<%= @data[:object].id %>]").remove();
+$("#user_summary_exercises").replaceWith("<%= escape_javascript(render partial: "tickets/user_summary_tickets_index", locals: { tickets: tickets }) %>");
+$(".user_summary_exercise[data-id=<%= @data[:exercise].id %>]").remove();

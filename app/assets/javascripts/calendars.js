@@ -173,5 +173,7 @@ $(function () {
         setHeight();
     });
 
+    $(".calendar-tab-anchor").first().click();
+
     setHeight();
 });

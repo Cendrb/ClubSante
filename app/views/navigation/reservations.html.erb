@@ -1,9 +1,9 @@
 <% set_title "Rozvrh" %>
 
 <div id="calendars_summary_tickets">
-  <div class="reservations_bar_title">Permanentky</div>
+  <h2 class="reservations_bar_title">Permanentky</h2>
   <div id="calendars_summary_tickets_list">
-    <%= render partial: "navigation/reservations_tickets_view", locals: {tickets: @data[:tickets], therapy: @data[:current_therapy]} %>
+    Vyberte terapii pro zobrazení permanentek
   </div>
 </div>
 <div id="calendars_summary_calendars">
@@ -33,7 +33,7 @@
   </div>
 </div>
 <div id="calendars_summary_coaches">
-  <div class="reservations_bar_title">Trenéři</div>
+  <h2 class="reservations_bar_title">Trenéři</h2>
   <% @data[:coaches].each do |coach| %>
       <div class="coach_bar_div">
         <div class="coach_bar_name"><%= coach.name %></div>

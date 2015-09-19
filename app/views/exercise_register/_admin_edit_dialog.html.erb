@@ -62,11 +62,14 @@
     </div>
     <div class="admin_edit_modification">
       <div class="dialog_title">Modifikace</div>
-      <% if @data[:modification] && @data[:modification].differs_from_template? %>
-        <%= @data[:modification].get_string %>
-      <% else %>
-        tato hodina nebyla nijak upravena
-      <% end %>
+      <p>
+        <% if @data[:modification] && @data[:modification].differs_from_template? %>
+            <%= @data[:modification].get_string %>
+        <% else %>
+            tato hodina nebyla nijak upravena
+        <% end %>
+      </p>
+      <%= @data[:modification] ? (link_to 'Upravit', edit_exercise_modification_path(@data[:modification]), remote: true) : (link_to 'Upravit', new_exercise_modification_path(calendar_id: @data[:calendar].id, exercise_template_id: @data[:object].id, date: @data[:date]), remote: true) %>
     </div>
   </div>
 </div>

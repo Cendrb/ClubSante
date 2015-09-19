@@ -1,44 +1,21 @@
 <% set_title "Přehled" %>
-<h2>Moje rezervace</h2>
 
-<div id="user_summary_exercises">
-  <% if @data[:exercises].count > 0 %>
-      <table>
-        <tr>
-          <th>Datum</th>
-          <th>Čas</th>
-          <th>Terapie</th>
-          <th></th>
-        </tr>
-        <% @data[:exercises].each do |exercise| %>
-            <%= render partial: "exercises/user_summary_exercise_line", locals: {exercise: exercise} %>
-        <% end %>
-      </table>
-  <% else %>
-    Nemáte žádné rezervace
-  <% end %>
-</div>
+<%= render partial: "tickets/user_summary_tickets_index", locals: {tickets: @data[:tickets]} %>
 
 <% if @data[:pending_singles].count > 0 %>
-    <h2>Nezaplacené vstupy</h2>
+    <div id="user_summary_notifications_div">
+      <h2 class="user_summary_section_title">Nezaplacené vstupy</h2>
 
-    <div id="user_summary_notifications">
-      <table>
-        <tr>
-          <th>Použito pro registraci</th>
-          <th>Registrováno dne</th>
-        </tr>
+      <div id="user_summary_notifications">
         <% @data[:pending_singles].find_each do |single_use| %>
-            <tr>
-              <% if single_use.entries.first %>
-                  <% exercise_modification = single_use.entries.first.exercise.exercise_modification %>
-                  <td><%= exercise_modification.timetable_modification.calendar.therapy.name %>
-                    (<%= l exercise_modification.date %>)
-                  </td>
-                  <td><%= l single_use.entries.first.created_at %></td>
-              <% end %>
-            </tr>
+            <div class="user_summary_line user_summary_notification">
+              <% exercise_modification = single_use.entries.first.exercise.exercise_modification %>
+              <div class="title"><%= exercise_modification.timetable_modification.calendar.therapy.name %></div>
+              <div class="date"><%= l exercise_modification.date %></div>
+              <div class="price"><%= exercise_modification.price if exercise_modification.price != ExerciseTemplate.get_hide_string %></div>
+              <div class="info" data-tooltip="<%= "rezervováno dne: #{l single_use.entries.first.created_at}" %>"><%= image_tag "http://findicons.com/files/icons/1676/primo/128/info_black.png", size: "24x24" %></div>
+            </div>
         <% end %>
-      </table>
+      </div>
     </div>
 <% end %>

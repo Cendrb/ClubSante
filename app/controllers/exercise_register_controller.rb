@@ -135,6 +135,7 @@ class ExerciseRegisterController < ApplicationController
         if (params[:source] == "calendar_view")
           render "unsubscribe_from_calendar_view", locals: {mode: mode}
         else
+          @data[:exercises] = Exercise.joins(:exercise_modification).joins(:entries).joins(entries: :ticket).joins(entries: {ticket: :user}).where("tickets.user_id = ?", current_user.id).where("exercise_modifications.date >= ?", Date.today).order("exercise_modifications.date")
           render "unsubscribe_from_user_summary_list", locals: {tickets: @data[:user].tickets}
         end
       end
@@ -156,6 +157,10 @@ class ExerciseRegisterController < ApplicationController
     else
       if @data[:mode == :template]
         @data[:modification] = ExerciseModification.where(exercise_template_id: @data[:object].id).where("date::date = ?", @data[:date]).first
+      else
+        if @data[:mode] == :exercise
+          @data[:modification] = @data[:object].exercise_modification
+        end
       end
     end
 
@@ -232,13 +237,16 @@ class ExerciseRegisterController < ApplicationController
       @data[:object] = ExerciseTemplate.find(params[:id])
       @data[:date] = Date.parse(params[:date]).to_datetime.in_time_zone - Time.now.in_time_zone.utc_offset - (Time.now.in_time_zone.dst? ? 3600 : 0) + @data[:object].beginning.in_time_zone.seconds_since_midnight.seconds
       @data[:mode] = :template
+      @data[:calendar] = @data[:object].timetable_template.calendar
     else
       if mode.include?("modification")
         @data[:object] = ExerciseModification.find(params[:id])
         @data[:mode] = :modification
+        @data[:calendar] = @data[:object].timetable_modification.calendar
       else
         @data[:object] = Exercise.find(params[:id])
         @data[:mode] = :exercise
+        @data[:calendar] = @data[:object].timetable.calendar
       end
     end
   end
