@@ -5,5 +5,5 @@ data-duration=<%= exercise_modification.timetable_modification.calendar.therapy.
 data-calendar-id=<%= exercise_modification.timetable_modification.calendar.id %>
 data-mode="modification"
 style="background-color:<%= get_calendar_color(exercise_modification) %>; position: absolute; top: <%= ((exercise_modification.date.hour * 60 + exercise_modification.date.min) * Calendar.pixels_per_minute) - beginning_offset %>px; height: <%= exercise_modification.timetable_modification.calendar.therapy.duration_in_minutes * Calendar.pixels_per_minute %>px">
-<%= get_beginning_string exercise_modification %>
+  <%= get_beginning_string exercise_modification %>
 </div> 

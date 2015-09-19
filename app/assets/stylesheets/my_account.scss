@@ -1,0 +1,27 @@
+#my_account_name
+{
+  margin-top: 16px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+#my_account_email
+{
+  margin-left: 10px;
+  font-size: 12px;
+}
+#my_account_logout
+{
+  padding: 10px 20px;
+  border-radius: 4px;
+  line-height: 60px;
+  font-size: 12px;
+  color: black;
+  text-decoration: none;
+  background-color: #c5e7f0;
+  &:hover
+  {
+    color: black;
+    background-color: #cbedf6;
+  }
+}

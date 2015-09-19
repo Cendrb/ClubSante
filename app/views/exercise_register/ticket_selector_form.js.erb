@@ -1,10 +1,9 @@
-<% @date = @target_date %>
-$("body").append("<%= escape_javascript(render partial: "tickets/ticket_selector", locals: { tickets: @tickets, therapy: @target_therapy }) %>");
+$("body").append("<%= escape_javascript(render partial: "tickets/ticket_selector", locals: { tickets: @data[:tickets], therapy: @data[:target_therapy] }) %>");
 $('#ticket_selector').dialog(
 	{
         resizable: false,
         modal: true,
-        width:'auto',
+        width:'1200px',
 		close: function(event, ui)
         {
             $(this).dialog('destroy').remove();
