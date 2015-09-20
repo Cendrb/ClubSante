@@ -7,7 +7,7 @@
             <div class="title"><%= exercise.timetable.calendar.therapy.name %></div>
             <div class="date"><%= l exercise.exercise_modification.date %></div>
             <div class="unsubscribe">
-              <%= button_to "Odhlásit", unsubscribe_path, params: {id: exercise.id}, remote: true, class: "whoa_button" %>
+              <%= button_to "Odhlásit", unsubscribe_path, params: {id: exercise.id}, remote: true, class: "whoa_button user_summary_unsubscribe" %>
             </div>
           </div>
       <% end %>

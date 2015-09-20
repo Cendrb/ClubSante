@@ -1,15 +1,12 @@
-.user_summary_section_title
-{
+.user_summary_section_title {
   margin-bottom: 20px;
 }
 
-#user_summary_exercises
-{
+#user_summary_exercises {
   margin-bottom: 20px;
 }
 
-.user_summary_line
-{
+.user_summary_line {
   box-shadow: 0px 0px 2px #a0a0a0;
   padding-top: 12px;
   padding-bottom: 12px;
@@ -19,75 +16,66 @@
   margin-bottom: 10px;
 }
 
-.user_summary_exercise
-{
-  .title
-  {
+.user_summary_exercise {
+  .title {
     display: inline-block;
     font-size: 18px;
   }
-  .date
-  {
+  .date {
     margin-left: 80px;
     display: inline-block;
     font-size: 15px;
   }
-  .unsubscribe
-  {
+  .unsubscribe {
     margin-top: -7px;
     display: inline-block;
     float: right;
   }
 }
 
-.user_summary_notification
-{
-  .title
-  {
+.user_summary_notification {
+  .title {
     display: inline-block;
     font-size: 18px;
   }
-  .date
-  {
+  .date {
     margin-left: 80px;
     display: inline-block;
     font-size: 15px;
   }
-  .price
-  {
+  .price {
     margin-left: 120px;
     display: inline-block;
     font-size: 15px;
   }
-  .info
-  {
+  .info {
     margin-top: -2px;
     display: inline-block;
     float: right;
   }
 }
 
-#user_summary_tickets_table
-{
+#user_summary_tickets_table {
   border-collapse: collapse;
 }
 
-#user_summary_exercises_table
-{
+#user_summary_exercises_table {
   border-collapse: collapse;
 
-  th
-  {
+  th {
     text-align: left;
   }
 
-  .user_summary_exercises_table_last_column
-  {
+  .user_summary_exercises_table_last_column {
     text-align: center;
   }
 }
 
-.user_summary_tracked_value_name
-{
+.user_summary_tracked_value_name {
   font-size: 20px;
+}
+
+.user_summary_unsubscribe
+{
+  height: 35px;
 }
