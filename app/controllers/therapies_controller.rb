@@ -29,7 +29,7 @@ class TherapiesController < ApplicationController
     puts array
     array.each do |pair|
       therapy = Therapy.find(pair.last.last)
-      therapy.sorting_order = pair.first.first
+      therapy.sorting_order = pair.last.first
       therapy.save
     end
     render nothing: true
