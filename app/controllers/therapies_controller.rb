@@ -40,7 +40,7 @@ class TherapiesController < ApplicationController
   def create
     @therapy = Therapy.new(therapy_params)
     category = TherapyCategory.create(name: @therapy.name)
-    @category.therapies << @therapy
+    category.therapies << @therapy
 
     respond_to do |format|
       if @therapy.save
