@@ -9,5 +9,11 @@
       <user-name>postgres</user-name>
       <user-password>dfcedfcbdfc4dfc0dfcfdfcddfcbdfd3</user-password>
     </data-source>
+    <data-source name="PostgreSQL - [2]" uuid="80ebe063-b75f-47c9-8bf7-1428e29364f8">
+      <secret-storage>memory</secret-storage>
+      <user-name>rrwgbunnlfngig</user-name>
+      <schema-pattern>dabqbfdhru1kil.pg_catalog dabqbfdhru1kil.public</schema-pattern>
+      <default-schemas>dabqbfdhru1kil.pg_catalog dabqbfdhru1kil.public</default-schemas>
+    </data-source>
   </component>
 </project>

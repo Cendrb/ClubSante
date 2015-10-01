@@ -11,11 +11,7 @@ class NavigationController < ApplicationController
     @data[:therapies] = Therapy.order(:sorting_order)
     @data[:coaches] = Coach.valid.all
   end
-
-  def tickets
-    @tickets = current_user.tickets.where(single_use: false)
-  end
-
+  
   def goals
     @data = {}
     @user = current_user
