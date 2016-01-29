@@ -1,7 +1,7 @@
-$(function() {
+$(function(){
     $(".info").tooltip({
         items: "[data-tooltip]",
-        content: function () {
+        content: function() {
             return this.getAttribute("data-tooltip");
         }
     });

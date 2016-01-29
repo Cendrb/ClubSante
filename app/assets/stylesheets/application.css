@@ -13,6 +13,7 @@
  *= require jquery-ui
  *= require nprogress
  *= require jquery.minicolors
+ *= require material_icons
  *= require_tree .
  *= require_self
  */
