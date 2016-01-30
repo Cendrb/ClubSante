@@ -18,6 +18,8 @@
 //= require turbolinks
 //= require nprogress
 //= require nprogress-turbolinks
+//= require chartkick
+//= require highcharts
 //= require_tree .
 
 NProgress.configure({

@@ -1,13 +1,7 @@
-h2
-{
-  margin: 0;
-  font-size: 25px;
-}
-
 body {
   margin: 0;
   padding: 0;
-  background-color: #dfecbb;
+  background-color: $background-color;
   #container {
     #page {
       padding: 20px;
@@ -23,7 +17,7 @@ body {
         {
           font-size: 70px;
           line-height: 100px;
-          color: #000000;
+          color: #2a2a2a;
         }
       }
 
@@ -54,6 +48,13 @@ body {
             }
           }
         }
+
+        .menu_secondary_button
+        {
+          margin-top: 3px;
+          margin-right: 8px;
+        }
+
         #yield
         {
           background-color: #ffffff;
@@ -73,15 +74,6 @@ body {
   }
 }
 
-a {
-  text-decoration: underline;
-  color: gray;
-  &:hover {
-    text-decoration: underline;
-    color: black;
-  }
-}
-
 .multi_line {
   white-space: pre;
 }
@@ -98,40 +90,9 @@ a {
   border-collapse: collapse;
 }
 
-table {
-  border-collapse: collapse;
-  table-layout: fixed;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-td {
-  padding: 1px;
-  padding-right: 6px;
-}
-
 .dialog_title {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
   margin-top: 16px;
 }
-
-.whoa_button
-{
-  padding: 10px 20px;
-  border-radius: 4px;
-  font-size: 12px;
-  color: black;
-  text-decoration: none;
-  background-color: #c5e7f0;
-  border: 0;
-  box-shadow: 0;
-  &:hover
-  {
-    color: black;
-    background-color: #cbedf6;
-    text-decoration: none;
-  }
-}
-

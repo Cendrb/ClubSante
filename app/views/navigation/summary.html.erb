@@ -7,13 +7,13 @@
       <h2 class="user_summary_section_title">Nezaplacené vstupy</h2>
 
       <div id="user_summary_notifications">
-        <% @data[:pending_singles].find_each do |single_use| %>
+        <% @data[:pending_singles].each do |single_use| %>
             <div class="user_summary_line user_summary_notification">
               <% exercise_modification = single_use.entries.first.exercise.exercise_modification %>
               <div class="title"><%= exercise_modification.timetable_modification.calendar.therapy.name %></div>
               <div class="date"><%= l exercise_modification.date %></div>
               <div class="price"><%= exercise_modification.price if exercise_modification.price != ExerciseTemplate.get_hide_string %></div>
-              <div class="info" data-tooltip="<%= "rezervováno dne: #{l single_use.entries.first.created_at}" %>"><%= image_tag "http://findicons.com/files/icons/1676/primo/128/info_black.png", size: "24x24" %></div>
+              <div class="info" data-tooltip="<%= "rezervováno dne: #{l single_use.entries.first.created_at}" %>"><%= mi.info %></div>
             </div>
         <% end %>
       </div>

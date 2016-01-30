@@ -11,6 +11,9 @@ gem 'rails_12factor', group: :production
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+# highcharts
+gem 'highcharts-rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 

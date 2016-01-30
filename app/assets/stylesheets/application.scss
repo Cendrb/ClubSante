@@ -14,6 +14,19 @@
  *= require nprogress
  *= require jquery.minicolors
  *= require material_icons
- *= require_tree .
- *= require_self
  */
+
+@import "_variables";
+@import "_generics";
+@import "_hs";
+@import "admin_edit";
+@import "administration";
+@import "calendar";
+@import "my_account";
+@import "nprogress_config";
+@import "reservations";
+@import "scaffolds";
+@import "timetable_modification";
+@import "user_summary";
+@import "week_selector";
+@import "whoa";
