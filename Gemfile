@@ -17,6 +17,9 @@ gem 'highcharts-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 
+# use boottstrap?
+gem 'bootstrap-sass'
+
 # Material Icons by Google
 gem 'material_icons'
 

@@ -9,3 +9,11 @@
   font-size: 10px;
   margin-bottom: 5px;
 }
+
+.user_administration_category
+{
+  table
+  {
+    @extend .table;
+  }
+}

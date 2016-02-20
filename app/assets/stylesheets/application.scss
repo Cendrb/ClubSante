@@ -16,17 +16,24 @@
  *= require material_icons
  */
 
-@import "_variables";
-@import "_generics";
-@import "_hs";
-@import "admin_edit";
-@import "administration";
-@import "calendar";
-@import "my_account";
-@import "nprogress_config";
-@import "reservations";
-@import "scaffolds";
-@import "timetable_modification";
-@import "user_summary";
-@import "week_selector";
-@import "whoa";
+@import "general/config/variables";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "general/config/bootstrap_override";
+@import "general/config/nprogress_config";
+
+@import "general/global/generics";
+@import "general/global/hs";
+@import "general/global/menu";
+@import "general/global/whoa";
+
+@import "main_tabs/calendar/calendar";
+@import "main_tabs/calendar/calendar_exercise_admin_edit";
+@import "main_tabs/calendar/calendar_sidebars";
+@import "main_tabs/calendar/calendar_week_selector";
+@import "main_tabs/administration";
+@import "main_tabs/my_account";
+@import "main_tabs/user_summary";
+
+@import "under_views/records_goals";
+@import "under_views/timetable_modification";

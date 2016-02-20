@@ -4,12 +4,15 @@
 
   <div class="user_administration_category">
     <table>
+      <thead>
       <tr>
         <th>Čas</th>
         <th>Datum</th>
         <th>Terapie</th>
         <th>Přihlášení uživatelé</th>
       </tr>
+      </thead>
+      <tbody>
       <% @data[:exercises].each do |exercise| %>
           <tr>
             <td><%= l(exercise.exercise_modification.date, format: :short_time) %></td>
@@ -18,6 +21,7 @@
             <td><%= User.where("entries.exercise_id = ?", exercise.id).joins(tickets: :entries).map { |i| i.full_name }.to_sentence %></td>
           </tr>
       <% end %>
+      </tbody>
     </table>
   </div>
 
@@ -25,21 +29,25 @@
 
   <div class="user_administration_category">
     <table>
+      <thead>
       <tr>
         <th>Jméno</th>
         <th>Email</th>
         <th>Úroveň přístupu</th>
         <th colspan="2"></th>
       </tr>
+      </thead>
+      <tbody>
       <% @data[:users].each do |user| %>
           <tr>
             <td><%= user.full_name %></td>
             <td><%= user.email %></td>
             <td><%= User.get_access_level_string(user.access_level) %></td>
-            <td><%= link_to 'Upravit', user, data: { no_turbolink: true } %></td>
+            <td><%= link_to 'Upravit', user, data: {no_turbolink: true} %></td>
             <td><%= link_to 'Odstranit', user, method: :delete, data: {confirm: "Pokračováním plně odstraníte uživatele #{user.full_name} se všemi permanentkami, registracemi apod."} %></td>
           </tr>
       <% end %>
+      </tbody>
     </table>
     <%= link_to 'Zaregistrovat nového', new_user_path %>
   </div>
@@ -93,7 +101,9 @@
           <tr>
             <td><%= coach.name %></td>
             <td><%= coach.user.full_name if coach.user %></td>
-            <td><div style="background-color: <%= coach.color_code %>; width: 100%; height: 1em"></div></td>
+            <td>
+              <div style="background-color: <%= coach.color_code %>; width: 100%; height: 1em"></div>
+            </td>
             <td><%= link_to 'Upravit', edit_coach_path(coach) %></td>
             <td><%= link_to 'Odstranit', coach, method: :delete, data: {confirm: 'Jste si jisti?'} %></td>
           </tr>
@@ -120,7 +130,7 @@
           <tr>
             <td><%= available_value.name %></td>
             <td><%= link_to 'Upravit', edit_available_value_path(available_value) %></td>
-            <td><%= link_to 'Odstranit', available_value, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
+            <td><%= link_to 'Odstranit', available_value, method: :delete, data: {confirm: 'Jste si jisti?'} %></td>
           </tr>
       <% end %>
       </tbody>

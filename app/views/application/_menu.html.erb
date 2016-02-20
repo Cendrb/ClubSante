@@ -1,4 +1,4 @@
-<ul id="menu">
+<ul id="primary_menu">
   <li><%= get_menu_link 'Přehled', nav_summary_path %></li>
   <li><%= get_menu_link 'Rozvrh', nav_reservations_path %></li>
   <li><%= get_menu_link 'Cíle', nav_goals_path if access_for_level?(User.al_customer) %></li>

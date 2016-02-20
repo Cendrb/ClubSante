@@ -14,8 +14,12 @@
       <div id="web_title">Club Sante</div>
     </div>
     <div id="content">
-      <%= link_to current_user.full_name, nav_my_account_path, class: 'right_float_actions btn btn-default menu_secondary_button' if access_for_level?(User.al_registered) %>
-      <%= render partial: "menu" %>
+      <div id="menu">
+        <ul id="secondary_menu">
+          <li><%= link_to current_user.full_name, nav_my_account_path, class: 'menu_secondary_button' if access_for_level?(User.al_registered) %></li>
+        </ul>
+        <%= render partial: "menu" %>
+      </div>
       <div id="yield">
         <%= yield %>
       </div>

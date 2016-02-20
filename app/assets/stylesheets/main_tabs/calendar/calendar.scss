@@ -9,6 +9,11 @@
   background: none;
 }
 
+.ui-tabs-active
+{
+  background-color: red;
+}
+
 .ui-tabs .ui-tabs-panel
 {
   padding-top: 10px;
