@@ -34,7 +34,7 @@
         <th>Jméno</th>
         <th>Email</th>
         <th>Úroveň přístupu</th>
-        <th colspan="2"></th>
+        <th class="actions_column"></th>
       </tr>
       </thead>
       <tbody>
@@ -43,8 +43,10 @@
             <td><%= user.full_name %></td>
             <td><%= user.email %></td>
             <td><%= User.get_access_level_string(user.access_level) %></td>
-            <td><%= link_to 'Upravit', user, data: {no_turbolink: true} %></td>
-            <td><%= link_to 'Odstranit', user, method: :delete, data: {confirm: "Pokračováním plně odstraníte uživatele #{user.full_name} se všemi permanentkami, registracemi apod."} %></td>
+            <td class="actions_column">
+              <%= link_to mi.delete, user, method: :delete, data: {confirm: "Pokračováním plně odstraníte uživatele #{user.full_name} se všemi permanentkami, registracemi apod."} %>
+              <%= link_to mi.edit, user, data: {no_turbolink: true} %>
+            </td>
           </tr>
       <% end %>
       </tbody>
@@ -62,7 +64,7 @@
         <th>Maximální počet osob</th>
         <th>Délka v minutách</th>
         <th>Lze zarezervovat bez permanentky</th>
-        <th colspan="2"></th>
+        <th class="actions_column"></th>
       </tr>
       </thead>
 
@@ -72,9 +74,11 @@
             <td><%= therapy.name %></td>
             <td><%= therapy.capacity %></td>
             <td><%= therapy.duration_in_minutes %></td>
-            <td><%= therapy.can_single_use ? "ano" : "ne" %></td>
-            <td><%= link_to 'Upravit', therapy %></td>
-            <td><%= link_to 'Odstranit', therapy, method: :delete, data: {confirm: 'Jste si jisti?'} %></td>
+            <td><%= b therapy.can_single_use %></td>
+            <td class="actions_column">
+              <%= link_to mi.delete, therapy, method: :delete, data: {confirm: "Pokračováním odstraníte terapii #{therapy.name}"} %>
+              <%= link_to mi.edit, therapy %>
+            </td>
           </tr>
       <% end %>
       </tbody>
@@ -92,7 +96,7 @@
         <th>Jméno</th>
         <th>Propojený uživatel</th>
         <th>Barva v rozvrhu</th>
-        <th colspan="2"></th>
+        <th class="actions_column"></th>
       </tr>
       </thead>
 
@@ -104,8 +108,10 @@
             <td>
               <div style="background-color: <%= coach.color_code %>; width: 100%; height: 1em"></div>
             </td>
-            <td><%= link_to 'Upravit', edit_coach_path(coach) %></td>
-            <td><%= link_to 'Odstranit', coach, method: :delete, data: {confirm: 'Jste si jisti?'} %></td>
+            <td class="actions_column">
+              <%= link_to mi.delete, coach, method: :delete, data: {confirm: "Pokračováním odstraníte trenéra #{coach.name}"} %>
+              <%= link_to mi.edit, edit_coach_path(coach) %>
+            </td>
           </tr>
       <% end %>
       </tbody>
@@ -121,7 +127,7 @@
       <thead>
       <tr>
         <th>Jméno</th>
-        <th colspan="3"></th>
+        <th class="actions_column"></th>
       </tr>
       </thead>
 
@@ -129,8 +135,10 @@
       <% @data[:available_values].each do |available_value| %>
           <tr>
             <td><%= available_value.name %></td>
-            <td><%= link_to 'Upravit', edit_available_value_path(available_value) %></td>
-            <td><%= link_to 'Odstranit', available_value, method: :delete, data: {confirm: 'Jste si jisti?'} %></td>
+            <td class="actions_column">
+              <%= link_to mi.delete, available_value, method: :delete, data: {confirm: "Pokračováním odstraníte sledovatelnou hodnotu #{available_value.name}"} %>
+              <%= link_to mi.edit, edit_available_value_path(available_value) %>
+            </td>
           </tr>
       <% end %>
       </tbody>
