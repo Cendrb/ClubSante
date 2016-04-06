@@ -105,11 +105,11 @@ module TooltipsHelper
   def get_coach_string(object)
     case object
       when Exercise
-        return object.exercise_modification.coach != Coach.get_nobody ? (br + object.exercise_modification.coach.name) : ""
+        return (!object.exercise_modification.coach.nil? && object.exercise_modification.coach != Coach.get_nobody) ? (br + object.exercise_modification.coach.name) : ""
       when ExerciseTemplate
-        return object.coach != Coach.get_nobody ? (br + object.coach.name) : ""
+        return (!object.coach.nil? && object.coach != Coach.get_nobody) ? (br + object.coach.name) : ""
       when ExerciseModification
-        return object.coach != Coach.get_nobody ? (br + object.coach.name) : ""
+        return (!object.coach.nil? && object.coach != Coach.get_nobody) ? (br + object.coach.name) : ""
       else
         return unsupported
     end
