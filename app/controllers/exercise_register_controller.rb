@@ -82,10 +82,10 @@ class ExerciseRegisterController < ApplicationController
 
   def subscribe_for_exercise
     if validate_signup(@data[:object], @data[:user]) # validate date, capacity, multiple rezervations/ renders error
-      ticket = ticket_selector(@data[:object].timetable.calendar.therapy, @data[:object].date) # check for available tickets if more/ render ticket selection form
+      ticket = ticket_selector(@data[:object].timetable.calendar.therapy, @data[:object].exercise_modification.date) # check for available tickets if more/ render ticket selection form
 
       if ticket # if form rendered then do not register yet
-        if ticket.entries_available?(@data[:object].date, @data[:object].timetable.calendar.therapy) # just to make sure that selected ticket has entries available
+        if ticket.entries_available?(@data[:object].exercise_modification.date, @data[:object].timetable.calendar.therapy) # just to make sure that selected ticket has entries available
           ticket.register_entry(@data[:object])
           render "subscribe_update_existing.js.erb"
         else
