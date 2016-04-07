@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2666375110">
+  <component name="DataSourceManagerImpl" format="xml" hash="2208430790">
     <data-source source="LOCAL" name="Rails ClubSante: development" uuid="333da81d-e096-4e68-b94d-a7feaecdf7c3">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
@@ -29,7 +29,7 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="PostgreSQL - [2]" uuid="80ebe063-b75f-47c9-8bf7-1428e29364f8">
+    <data-source source="LOCAL" name="PostgreSQL - clubsante production" uuid="80ebe063-b75f-47c9-8bf7-1428e29364f8">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
@@ -38,6 +38,12 @@
         <property name="ssl" value="true" />
         <property name="sslfactory" value="org.postgresql.ssl.NonValidatingFactory" />
       </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="PostgreSQL - postgres@localhost" uuid="f476ae61-2220-4984-82b6-a1fa81c065ce">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
     </data-source>
   </component>
 </project>
