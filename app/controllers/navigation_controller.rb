@@ -19,12 +19,12 @@ class NavigationController < ApplicationController
   end
 
   def my_account
-    
+
   end
 
   def administration
     @data = {}
-    @data[:exercises] = Exercise.joins(:exercise_modification).where("exercise_modifications.date > ?", Time.now).order("exercise_modifications.date DESC").limit(20)
+    @data[:exercises] = Exercise.joins(:exercise_modification).where("exercise_modifications.date > ?", Time.now).order("exercise_modifications.date ASC").limit(20)
     @data[:therapies] = Therapy.all
     @data[:users] = User.all
     @data[:coaches] = Coach.valid.all

@@ -157,8 +157,9 @@ function refreshTicketsBar(therapy_id) {
 }
 
 function setHeight() {
-    if ($("#calendars_summary_calendars").length)
-        $("#yield").height($("#calendars_summary_calendars").height() + 20);
+    if ($("#calendars_summary_calendars").length) {
+        $("#yield").height(Math.max($("#calendars_summary_calendars").height() + 20, $("#calendars_summary_coaches").height() + 20));
+    }
 }
 
 $(function () {
