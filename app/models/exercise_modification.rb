@@ -1,6 +1,7 @@
 class ExerciseModification < ActiveRecord::Base
   validates_presence_of :date, :coach_id, :price, :timetable_modification_id
   validates_inclusion_of :removal, in: [true, false]
+  validate :only_one_modification_allowed
   
   belongs_to :timetable_modification
   belongs_to :coach
@@ -9,6 +10,15 @@ class ExerciseModification < ActiveRecord::Base
   has_one :therapy, through: [:timetable_template, :calendar, :therapy]
   
   before_validation :load_default_values
+
+  def only_one_modification_allowed
+    if exercise_template_id
+      # is bound to a template => check for existing modification on that template
+      if ExerciseTemplate.find(exercise_template_id).exercise_modifications.where("date = ?", date).count > 0
+        errors.add("Exercise modification for date #{date} already exists")
+      end
+    end
+  end
   
   def load_default_values
     load_default_values_from(self.exercise_template)

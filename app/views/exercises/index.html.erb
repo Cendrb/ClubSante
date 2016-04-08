@@ -14,11 +14,14 @@
   <tbody>
     <% @exercises.each do |exercise| %>
       <tr>
-        <td><%= exercise.date %></td>
-        <td><%= exercise.available %></td>
-        <td><%= link_to 'Zobrazit', exercise %></td>
-        <td><%= link_to 'Upravit', edit_exercise_path(exercise) %></td>
-        <td><%= link_to 'Odstranit', exercise, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
+        <td><%= exercise.exercise_modification.id %></td>
+        <td><%= l(exercise.exercise_modification.date) %></td>
+        <td><%= exercise.timetable.calendar.therapy.name %></td>
+        <td><%= User.where("entries.exercise_id = ?", exercise.id).joins(tickets: :entries).map { |i| i.full_name }.to_sentence %></td>
+        <td class="actions_column">
+          <%= link_to mi.delete, exercise, method: :delete, data: {confirm: "Pokračováním odstraníte veškeré rezervace tohoto cvičení."} %>
+          <%= link_to mi.edit, exercise, data: {no_turbolink: true} %>
+        </td>
       </tr>
     <% end %>
   </tbody>

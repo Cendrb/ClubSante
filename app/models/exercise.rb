@@ -9,7 +9,6 @@ class Exercise < ActiveRecord::Base
   
   has_one :therapy, through: [:timetable_template, :calendar, :therapy]
   
-  
   scope :between, ->(first, second) { joins(:exercise_modification).where('exercise_modifications.date' => first..second) }
   scope :in_future, ->() { joins(:exercise_modification).where("exercise_modifications.date >= :today", today: Date.today) }
   
