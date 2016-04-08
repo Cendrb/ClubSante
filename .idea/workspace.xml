@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a19e92ad-d5cb-404b-835e-049a7b95d470" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/navigation/goals.html.erb" afterPath="$PROJECT_DIR$/app/views/navigation/goals.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/navigation/my_account.html.erb" afterPath="$PROJECT_DIR$/app/views/navigation/my_account.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/users/edit.html.erb" />
     </list>
     <ignored path="ClubSante.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,7 +26,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/ClubSante@db_create__ClubSante.coverage" NAME="db:create: ClubSante Coverage Results" MODIFIED="1441286168413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ClubSante" />
     <SUITE FILE_PATH="coverage/ClubSante@db_setup__ClubSante.coverage" NAME="db:setup: ClubSante Coverage Results" MODIFIED="1460040125519" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ClubSante" />
-    <SUITE FILE_PATH="coverage/ClubSante@Development__ClubSante.coverage" NAME="Development: ClubSante Coverage Results" MODIFIED="1460143180804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ClubSante" />
+    <SUITE FILE_PATH="coverage/ClubSante@Development__ClubSante.coverage" NAME="Development: ClubSante Coverage Results" MODIFIED="1460147301662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ClubSante" />
     <SUITE FILE_PATH="coverage/ClubSante@routes__ClubSante.coverage" NAME="routes: ClubSante Coverage Results" MODIFIED="1443713289795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ClubSante" />
     <SUITE FILE_PATH="coverage/ClubSante@db_migrate__ClubSante.coverage" NAME="db:migrate: ClubSante Coverage Results" MODIFIED="1442264188258" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ClubSante" />
   </component>
@@ -42,16 +43,6 @@
       <PATH_ELEMENT>
         <option name="myItemId" />
         <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="Rails ClubSante: development" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
     <PATH>
@@ -77,6 +68,24 @@
         <option name="myItemId" value="PostgreSQL - clubsante production" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="public" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="PostgreSQL - clubsante production" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
     </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
@@ -85,21 +94,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="users_controller.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="users_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="156" column="14" selection-start-line="156" selection-start-column="14" selection-end-line="156" selection-end-column="14" />
+            <state relative-caret-position="357">
+              <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="goals.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_form.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/users/_form.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="36" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="goals.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/navigation/goals.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+            <state relative-caret-position="119">
+              <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="navigation_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/navigation_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="my_account.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/navigation/my_account.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -110,6 +149,21 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="205">
               <caret line="50" column="47" selection-start-line="50" selection-start-column="47" selection-end-line="50" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dabqbfdhru1kil.public.users" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/58aa28fa/80ebe063-b75f-47c9-8bf7-1428e29364f8/dabqbfdhru1kil.public.users">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -139,7 +193,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/config/environments/development.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/highcharts.js" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/tooltip.js" />
@@ -154,7 +207,6 @@
         <option value="$PROJECT_DIR$/app/assets/stylesheets/whoa.scss" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/menu.scss" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/general/global/scaffolds.scss" />
-        <option value="$PROJECT_DIR$/app/views/navigation/my_account.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/general/global/menu.scss" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/main_tabs/calendar/calendar.scss" />
@@ -190,6 +242,8 @@
         <option value="$PROJECT_DIR$/app/views/exercise_register/_admin_edit_dialog.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/main_tabs/calendar/calendar_exercise_admin_edit.scss" />
         <option value="$PROJECT_DIR$/app/views/navigation/goals.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/navigation/my_account.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/edit.html.erb" />
       </list>
     </option>
   </component>
@@ -252,7 +306,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="RailsProjectView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -383,8 +439,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="RailsProjectView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -394,7 +448,7 @@
     <property name="dynamic.classpath" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="user c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb&#10;goals&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/goals.html.erb&#10;cs&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/config/locales/cs.yml&#10;routes&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/config/routes.rb&#10;register&#9;null&#9;null&#10;ex&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/exercise.rb&#10;exerci&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/exercise_template.rb&#10;calendar_f&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;exercise te&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/exercise_template.rb&#10;exer&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/exercise_modification.rb&#10;timeta&#9;null&#9;null&#10;exercise&#9;null&#9;null&#10;admi&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/administration.html.erb&#10;exercises&#9;null&#9;null&#10;exercise mo&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/exercise_modification.rb&#10;users con&#9;null&#9;null&#10;summa&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/summary.html.erb&#10;glob&#9;null&#9;null&#10;exercise t&#9;null&#9;null&#10;exerci r c&#9;null&#9;null&#10;naviga c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;exerc&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_modifications_controller.rb&#10;final&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;etfc&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/exercise_templates/_exercise_template_for_calendar.html.erb&#10;admini&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/administration.html.erb&#10;my_a&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/my_account.html.erb&#10;app&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/layouts/application.html.erb&#10;appl&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/layouts/application.html.erb&#10;adm&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/administration.scss&#10;summ&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/summary.html.erb&#10;my&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/my_account.html.erb&#10;menu&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/application/_menu.html.erb&#10;navi&#9;null&#9;null&#10;users c&#9;null&#9;null&#10;nav c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;tickets c&#9;null&#9;null&#10;user_summary_tick&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/tickets/_user_summary_tickets_index.html.erb&#10;the c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/therapies_controller.rb&#10;m&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/my_account.scss&#10;reser&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/reservations.html.erb&#10;my a&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/my_account.html.erb&#10;my_acc&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/my_account.scss&#10;whoa&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/whoa.scss&#10;e r c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;ex m c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_modifications_controller.rb&#10;modifi&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_modifications_controller.rb&#10;tool&#9;null&#9;null&#10;user&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/user_summary.scss&#10;navig&#9;null&#9;null&#10;ex r c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb" />
+    <property name="SearchEverywhereHistoryKey" value="users&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb&#10;user c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/users_controller.rb&#10;goals&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/goals.html.erb&#10;cs&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/config/locales/cs.yml&#10;routes&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/config/routes.rb&#10;register&#9;null&#9;null&#10;ex&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/exercise.rb&#10;exerci&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/exercise_template.rb&#10;calendar_f&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;exercise te&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/exercise_template.rb&#10;exer&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/exercise_modification.rb&#10;timeta&#9;null&#9;null&#10;exercise&#9;null&#9;null&#10;admi&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/administration.html.erb&#10;exercises&#9;null&#9;null&#10;exercise mo&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/models/exercise_modification.rb&#10;users con&#9;null&#9;null&#10;summa&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/summary.html.erb&#10;glob&#9;null&#9;null&#10;exercise t&#9;null&#9;null&#10;exerci r c&#9;null&#9;null&#10;naviga c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;exerc&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_modifications_controller.rb&#10;final&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/calendars/_calendar_final.html.erb&#10;etfc&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/exercise_templates/_exercise_template_for_calendar.html.erb&#10;admini&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/administration.html.erb&#10;my_a&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/my_account.html.erb&#10;app&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/layouts/application.html.erb&#10;appl&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/layouts/application.html.erb&#10;adm&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/administration.scss&#10;summ&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/summary.html.erb&#10;my&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/my_account.html.erb&#10;menu&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/application/_menu.html.erb&#10;navi&#9;null&#9;null&#10;users c&#9;null&#9;null&#10;nav c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/navigation_controller.rb&#10;tickets c&#9;null&#9;null&#10;user_summary_tick&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/tickets/_user_summary_tickets_index.html.erb&#10;the c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/therapies_controller.rb&#10;m&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/my_account.scss&#10;reser&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/reservations.html.erb&#10;my a&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/views/navigation/my_account.html.erb&#10;my_acc&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/my_account.scss&#10;whoa&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/whoa.scss&#10;e r c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_register_controller.rb&#10;ex m c&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_modifications_controller.rb&#10;modifi&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/controllers/exercise_modifications_controller.rb&#10;tool&#9;null&#9;null&#10;user&#9;FILE&#9;file://D:/Documents/Aptana3Workspace/ClubSante/app/assets/stylesheets/user_summary.scss&#10;navig&#9;null&#9;null" />
     <property name="byebug.present.asked" value="true" />
     <property name="Ruby.ViewRefParam.DefaultExtension" value="html.erb" />
     <property name="RailsGeneratorsPopup.hiddenIncluded" value="false" />
@@ -700,7 +754,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1439384238764</updated>
-      <workItem from="1460141483307" duration="4626000" />
+      <workItem from="1460141483307" duration="5127000" />
+      <workItem from="1460146987172" duration="515000" />
     </task>
     <task id="LOCAL-00001" summary="zidan&#10;">
       <created>1441744203761</created>
@@ -800,11 +855,18 @@
       <option name="project" value="LOCAL" />
       <updated>1460145857408</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="[FIX] goals for other users&#10;">
+      <created>1460146145850</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1460146145851</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4626000" />
+    <option name="totallyTimeSpent" value="5642000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -819,17 +881,15 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28784648" sideWeight="0.49565217" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947367" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32139093" sideWeight="0.53571427" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20895523" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.4936034" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3256059" sideWeight="0.4642857" order="2" side_tool="false" content_ui="tabs" x="545" y="617" width="486" height="366" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32139093" sideWeight="0.48933902" order="12" side_tool="false" content_ui="tabs" x="2936" y="311" width="896" height="262" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32771337" sideWeight="0.49520257" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28464818" sideWeight="0.49565217" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20895523" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32665965" sideWeight="0.4827403" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3256059" sideWeight="0.4642857" order="2" side_tool="false" content_ui="tabs" x="545" y="617" width="486" height="366" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32139093" sideWeight="0.48933902" order="12" side_tool="false" content_ui="tabs" x="2936" y="311" width="896" height="262" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2603912" sideWeight="0.5043478" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3987667" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -838,7 +898,9 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.49573562" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32771337" sideWeight="0.49520257" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32665965" sideWeight="0.4827403" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -866,7 +928,8 @@
     <MESSAGE value="[FIX] dont allow more than one modification per template per date" />
     <MESSAGE value="[TASK] cosmetic changes to admin_edit dialog&#10;" />
     <MESSAGE value="[TASK] lil bit of css&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="[TASK] lil bit of css&#10;" />
+    <MESSAGE value="[FIX] goals for other users&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="[FIX] goals for other users&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -878,41 +941,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/highcharts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/main_tabs/calendar/calendar_sidebars.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="15" column="26" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/user_show.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="62" column="11" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/exercise_register/subscribe_replace_template_or_modification_with_new.js.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/exercise_register/subscribe_update_existing.js.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -973,7 +1001,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="40" column="45" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -981,7 +1008,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -989,7 +1015,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -997,7 +1022,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="45" column="12" selection-start-line="45" selection-start-column="12" selection-end-line="48" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1005,7 +1029,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1013,7 +1036,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1026,7 +1048,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1034,7 +1055,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1047,7 +1067,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1060,7 +1079,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1073,7 +1091,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1086,7 +1103,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1099,7 +1115,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1112,7 +1127,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1120,7 +1134,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1133,7 +1146,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1146,7 +1158,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1159,7 +1170,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1172,6 +1182,178 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/exercise_register/admin_edit.js.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="82" selection-start-line="0" selection-start-column="82" selection-end-line="0" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/exercise_modification.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/calendars/_calendar_final.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/exercise.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="51" selection-start-line="2" selection-start-column="51" selection-end-line="2" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/exercise_template.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/locales/cs.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3332">
+          <caret line="205" column="27" selection-start-line="205" selection-start-column="27" selection-end-line="205" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/exercise_register/_admin_edit_dialog.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="51" column="48" selection-start-line="51" selection-start-column="48" selection-end-line="51" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/exercise_register_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="244" column="17" selection-start-line="244" selection-start-column="17" selection-end-line="244" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/58aa28fa/80ebe063-b75f-47c9-8bf7-1428e29364f8/dabqbfdhru1kil.public.exercise_modifications">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/58aa28fa/80ebe063-b75f-47c9-8bf7-1428e29364f8/dabqbfdhru1kil.public.exercises">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/58aa28fa/80ebe063-b75f-47c9-8bf7-1428e29364f8/dabqbfdhru1kil.public.entries">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/58aa28fa/80ebe063-b75f-47c9-8bf7-1428e29364f8/dabqbfdhru1kil.public.tickets">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/main_tabs/calendar/calendar_exercise_admin_edit.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://DATABASE/80ebe063-b75f-47c9-8bf7-1428e29364f8.SCHEMA:dabqbfdhru1kil.public">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>80ebe063-b75f-47c9-8bf7-1428e29364f8.SCHEMA:dabqbfdhru1kil.public</OriginalElement>
+          <nodes>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.users</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.records</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.therapy_categories</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.goals</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.timetable_modifications</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.tracked_values</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.available_values</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.exercises</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.timetable_templates</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.exercise_templates</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.exercise_days</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.entries</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.exercise_modifications</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.therapies</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.tickets</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.timetables</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.therapies_therapy_categories</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.calendars</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.coaches</node>
+            <node x="" y="">80ebe063-b75f-47c9-8bf7-1428e29364f8.TABLE:dabqbfdhru1kil.public.schema_migrations</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.5300546448087432" x="528.0" y="379.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Columns</Category>
+            <Category>Key columns</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="50" column="47" selection-start-line="50" selection-start-column="47" selection-end-line="50" selection-end-column="47" />
           <folding />
         </state>
       </provider>
@@ -1189,168 +1371,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/exercise_register/admin_edit.js.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/navigation/goals.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/navigation_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/navigation/my_account.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/_form.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="82" selection-start-line="0" selection-start-column="82" selection-end-line="0" selection-end-column="82" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="36" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/app/views/users/edit.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/exercise_modification.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/calendars/_calendar_final.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/exercise.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="51" selection-start-line="2" selection-start-column="51" selection-end-line="2" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/exercise_template.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/locales/cs.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3332">
-          <caret line="205" column="27" selection-start-line="205" selection-start-column="27" selection-end-line="205" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/exercise_register/_admin_edit_dialog.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="51" column="48" selection-start-line="51" selection-start-column="48" selection-end-line="51" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/exercise_register_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="244" column="17" selection-start-line="244" selection-start-column="17" selection-end-line="244" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/58aa28fa/80ebe063-b75f-47c9-8bf7-1428e29364f8/dabqbfdhru1kil.public.exercise_modifications">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/58aa28fa/80ebe063-b75f-47c9-8bf7-1428e29364f8/dabqbfdhru1kil.public.exercises">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/58aa28fa/80ebe063-b75f-47c9-8bf7-1428e29364f8/dabqbfdhru1kil.public.entries">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/58aa28fa/80ebe063-b75f-47c9-8bf7-1428e29364f8/dabqbfdhru1kil.public.tickets">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/main_tabs/calendar/calendar_exercise_admin_edit.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="50" column="47" selection-start-line="50" selection-start-column="47" selection-end-line="50" selection-end-column="47" />
+        <state relative-caret-position="212">
+          <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="156" column="14" selection-start-line="156" selection-start-column="14" selection-end-line="156" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/navigation/goals.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+        <state relative-caret-position="357">
+          <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
           <folding />
         </state>
       </provider>
