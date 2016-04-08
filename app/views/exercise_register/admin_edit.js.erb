@@ -1,10 +1,10 @@
 $("body").append("<%= escape_javascript(render partial: "exercise_register/admin_edit_dialog") %>");
 $('.admin_edit_dialog').dialog(
-        {
-            resizable: false,
-            modal: true,
-            width: '800px',
-            close: function (event, ui) {
-                $(this).dialog('destroy').remove();
-            }
-        });
+    {
+      resizable: false,
+      modal: true,
+      width: '800px',
+      close: function (event, ui) {
+        $(this).dialog('destroy').remove();
+      }
+    });

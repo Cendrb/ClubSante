@@ -1,50 +1,55 @@
-<div class="admin_edit_dialog">
+<div class="admin_edit_dialog" title="<%= "#{@data[:therapy].name} - #{l @data[:date], format: :long}" %>">
   <div class="admin_edit_forms">
-    <div class="dialog_title">Existující uživatel</div>
-    <%= form_tag subscribe_path, remote: true do %>
-        <div class="field">
-          <%= label_tag :user, 'Uživatel' %>
-          <%= select_tag :user, options_from_collection_for_select(User.all, :id, :full_name) %>
-        </div>
+    <% if @data[:date] > Time.now %>
+        <div class="dialog_title">Existující uživatel</div>
+        <%= form_tag subscribe_path, remote: true do %>
+            <div class="field">
+              <%= label_tag :user, 'Uživatel' %>
+              <%= select_tag :user, options_from_collection_for_select(User.all, :id, :full_name) %>
+            </div>
 
-        <div class="field">
-          <%= label_tag :require_payment, 'Vyžadovat platbu' %>
-          <%= select_tag :require_payment, options_for_select(["Ano", "Ne"], "Ne") %>
-        </div>
+            <div class="field">
+              <%= label_tag :require_payment, 'Vyžadovat platbu' %>
+              <%= select_tag :require_payment, options_for_select(["Ano", "Ne"], "Ne") %>
+            </div>
 
-        <%= hidden_field_tag :mode, @data[:mode] %>
-        <%= hidden_field_tag :date, @data[:date] %>
-        <%= hidden_field_tag :id, @data[:object].id %>
-        <%= hidden_field_tag :beginning_offset, @data[:beginning_offset] %>
+            <%= hidden_field_tag :mode, @data[:mode] %>
+            <%= hidden_field_tag :date, @data[:date] %>
+            <%= hidden_field_tag :id, @data[:object].id %>
+            <%= hidden_field_tag :beginning_offset, @data[:beginning_offset] %>
 
-        <%= submit_tag 'Rezervovat' %>
-    <% end %>
-    <div class="dialog_title">Nový uživatel</div>
-    <%= form_tag subscribe_path, remote: true do %>
-        <div class="field">
-          <%= label_tag :user_first_name, 'Jméno' %>
-          <%= text_field_tag :user_first_name %>
-          <br>
-          <%= label_tag :user_last_name, 'Příjmení' %>
-          <%= text_field_tag :user_last_name %>
-        </div>
+            <%= submit_tag 'Rezervovat' %>
+        <% end %>
+        <div class="dialog_title">Nový uživatel</div>
+        <%= form_tag subscribe_path, remote: true do %>
+            <div class="field">
+              <%= label_tag :user_first_name, 'Jméno' %>
+              <%= text_field_tag :user_first_name %>
+              <br>
+              <%= label_tag :user_last_name, 'Příjmení' %>
+              <%= text_field_tag :user_last_name %>
+            </div>
 
-        <div class="field">
-          <%= label_tag :email, 'Email' %>
-          <%= email_field_tag :email %>
-        </div>
+            <div class="field">
+              <%= label_tag :email, 'Email' %>
+              <%= email_field_tag :email %>
+            </div>
 
-        <div class="field">
-          <%= label_tag :require_payment, 'Vyžadovat platbu' %>
-          <%= select_tag :require_payment, options_for_select(["Ano", "Ne"], "Ne") %>
-        </div>
+            <div class="field">
+              <%= label_tag :require_payment, 'Vyžadovat platbu' %>
+              <%= select_tag :require_payment, options_for_select(["Ano", "Ne"], "Ne") %>
+            </div>
 
-        <%= hidden_field_tag :mode, @data[:mode] %>
-        <%= hidden_field_tag :date, @data[:date] %>
-        <%= hidden_field_tag :id, @data[:object].id %>
-        <%= hidden_field_tag :beginning_offset, @data[:beginning_offset] %>
+            <%= hidden_field_tag :mode, @data[:mode] %>
+            <%= hidden_field_tag :date, @data[:date] %>
+            <%= hidden_field_tag :id, @data[:object].id %>
+            <%= hidden_field_tag :beginning_offset, @data[:beginning_offset] %>
 
-        <%= submit_tag 'Rezervovat a vytvořit uživatele' %>
+            <%= submit_tag 'Rezervovat a vytvořit uživatele' %>
+        <% end %>
+
+    <% else %>
+      <p>Není možné registrovat data v minulosti</p>
     <% end %>
   </div>
   <div class="admin_edit_right">

@@ -242,12 +242,15 @@ class ExerciseRegisterController < ApplicationController
       if mode.include?("modification")
         @data[:object] = ExerciseModification.find(params[:id])
         @data[:mode] = :modification
+        @data[:date] = @data[:object].date
         @data[:calendar] = @data[:object].timetable_modification.calendar
       else
         @data[:object] = Exercise.find(params[:id])
         @data[:mode] = :exercise
+        @data[:date] = @data[:object].exercise_modification.date
         @data[:calendar] = @data[:object].timetable.calendar
       end
     end
+    @data[:therapy] = @data[:calendar].therapy
   end
 end
