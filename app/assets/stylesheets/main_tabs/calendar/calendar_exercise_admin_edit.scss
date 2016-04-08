@@ -1,16 +1,16 @@
-.admin_edit_dialog
-{
+.admin_edit_dialog {
+  margin-bottom: 10px;
+}
 
+.admin_edit_forms {
+  min-height: 162px;
+  width: 50%;
+  float: left;
+  border-right: dashed 1px black;
 }
-.admin_edit_forms
-{
-    width: 50%;
-    float: left;
-    border-right: dashed 1px black;
-}
-.admin_edit_right
-{
-    width: 49%;
-    float: right;
-    margin-left: 5px;
+
+.admin_edit_right {
+  width: 49%;
+  float: right;
+  margin-left: 5px;
 }
