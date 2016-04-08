@@ -26,7 +26,7 @@
 
     <% @user.tracked_values.each do |tracked| %>
         <span class="user_summary_tracked_value_name"><%= tracked.available_value.name %></span>
-        <%= line_chart tracked_value_chart_path(tracked_value_id: tracked.id), library: {chart: {marginTop: 30}} %>
+        <%= line_chart tracked_value_chart_path(tracked_value_id: tracked.id, id: current_user.id), library: {chart: {marginTop: 30}} %>
     <% end %>
 <% else %>
     Pro monitorování osobních cílů si sjednejte schůzku
