@@ -33,7 +33,7 @@ module ClubSante
         port: 587,
         domain: 'clubsante.herokuapp.com',
         user_name: "utuapp@gmail.com",
-        password: "suprakindrlo69",
+        password: ENV['email_password'],
         authentication: 'plain',
         openssl_verify_mode: 'none',
         enable_starttls_auto: true}
