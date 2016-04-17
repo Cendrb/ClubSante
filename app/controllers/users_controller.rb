@@ -87,7 +87,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         # Send welcome email
-        # we do not have account to send from UserMailer.welcome_email(@user).deliver_later
+        UserMailer.welcome_email(@user).deliver_later
 
         format.html { redirect_to :root, notice: 'Registrace proběhla úspěšně.' }
         format.json { render :show, status: :created, location: @user }

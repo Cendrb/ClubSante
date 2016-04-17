@@ -1,66 +1,78 @@
 <% @calendar = calendar %>
 <% @registered = @calendar.timetable.exercises#.between(1.days.ago, 5.days.from_now)
-	@modifications = calendar.timetable_modification.exercise_modifications
-    @templates = TimetableTemplate.where(calendar: @calendar).where("beginning < ?", beginning_date).order(:beginning).last.exercise_templates
+   @modifications = calendar.timetable_modification.exercise_modifications
+   @templates = TimetableTemplate.where(calendar: @calendar).where("beginning < ?", beginning_date).order(:beginning).last.exercise_templates
 
-    @first_hour, @last_hour = Calendar.min_max_hour_for(@templates, @modifications)
-    @monday_date = get_beginning_of_week(beginning_date)
+   @first_hour, @last_hour = Calendar.min_max_hour_for(@templates, @modifications)
+   @monday_date = get_beginning_of_week(beginning_date)
 
-    @beginning_offset = @first_hour * 60 * Calendar.pixels_per_minute
+   @beginning_offset = @first_hour * 60 * Calendar.pixels_per_minute
 %>
 
 <script>
-    var admin = <%= current_user.access_for_level?(User.al_admin) %>
+  var admin =
+  <%= current_user.access_for_level?(User.al_admin) %>
 </script>
 
 <table class="calendar_timetable" data-calendar-id=<%= @calendar.id %> data-beginning_offset=<%= @beginning_offset %>>
-	<tr>
-		<td></td>
-		<% counter = 0 %>
-		<% I18n.t(:"date.abbr_day_names").rotate.each do |weekday_name| %>
-			<td class="calendar_date"><%= l(@monday_date + counter.days) %></td>
-			<% counter += 1 %>
-		<% end %>
-	</tr>
-	<tr>
-		<td>
-			<% for hour in @first_hour..@last_hour %>
-				<div class="calendar_hour">
-					<%= hour %>:00
-				</div>
-			<% end %>
+  <tr>
+    <td></td>
+    <% counter = 0 %>
+    <% I18n.t(:"date.abbr_day_names").rotate.each do |weekday_name| %>
+        <% current_date = @monday_date + counter.days %>
+        <td class="calendar_date"><%= l current_date %></td>
+        <% counter += 1 %>
+    <% end %>
+  </tr>
+  <tr>
+    <td>
+      <% for hour in @first_hour..@last_hour %>
+          <div class="calendar_hour">
+            <%= hour %>:00
+          </div>
+      <% end %>
 
-			<% counter = 0 %>
-			<% for hour in @first_hour..@last_hour %>
-				<div class="hour_separator_line" style="position: absolute; top: <%= (counter * 60 * Calendar.pixels_per_minute) + 19 %>px; left: 0"></div>
-			    <% counter += 1 %>
-			<% end %>
+      <% counter = 0 %>
+      <% for hour in @first_hour..@last_hour %>
+          <div class="hour_separator_line" style="position: absolute; top: <%= (counter * 60 * Calendar.pixels_per_minute) + 19 %>px; left: 0"></div>
+          <% counter += 1 %>
+      <% end %>
 
-			<% if (@first_hour..@last_hour).include?(Time.now.in_time_zone.hour) && (@monday_date..@monday_date + 6.days).include?(Date.today) %>
-				<% one_column_percentage = 100.0 / 8.0
-				   line_left_offset = (one_column_percentage * (((Date.today - @monday_date).to_i) + 1)) %>
-				<div class="current_time_line" style="position: absolute; top: 19px; height: <%= ((Time.now.in_time_zone.seconds_since_midnight / 60) * Calendar.pixels_per_minute) - @beginning_offset %>px; left: <%= line_left_offset %>%; width: <%= one_column_percentage %>%"></div>
-			<% end %>
-		</td>
+      <% if (@first_hour..@last_hour).include?(Time.now.in_time_zone.hour) && (@monday_date..@monday_date + 6.days).include?(Date.today) %>
+          <% one_column_percentage = 100.0 / 8.0
+             line_left_offset = (one_column_percentage * (((Date.today - @monday_date).to_i) + 1)) %>
+          <div class="current_time_line" style="position: absolute; top: 19px; height: <%= ((Time.now.in_time_zone.seconds_since_midnight / 60) * Calendar.pixels_per_minute) - @beginning_offset %>px; left: <%= line_left_offset %>%; width: <%= one_column_percentage %>%"></div>
+      <% end %>
+    </td>
 
-		<% for weekday in 0..6 %>
-            <% date = @monday_date + weekday.days %>
-			<td class="calendar_weekday<%= " calendar_grey_past" if date.past? || (date == Date.today && @last_hour < Time.now.in_time_zone.hour) %>" data-weekday=<%= weekday %>">
-				<% timetable_template = TimetableTemplate.where(calendar: @calendar).where("beginning < ?", date).order(:beginning).last %>
-				<% timetable_template.exercise_templates.where(weekday: weekday).each do |template| %>
-					<% if template.exercise_modifications.where("date::date = ?", date).count == 0 %>
-						<%= render partial: "exercise_templates/exercise_template_for_calendar", locals: { exercise_template: template, date: date, beginning_offset: @beginning_offset } %>
-					<% end %>
-				<% end %>
+    <% for weekday in 0..6 %>
+        <% date = @monday_date + weekday.days %>
+        <td class="calendar_weekday<%= " calendar_grey_past" if date.past? || (date == Date.today && @last_hour < Time.now.in_time_zone.hour) %>"              <%= weekday %>">
 
-				<% @modifications.where(removal: false).where("date::date = ?", date).each do |modification| %>
-					<%= render partial: "exercise_modifications/exercise_modification_for_calendar", locals: { exercise_modification: modification, beginning_offset: @beginning_offset } %>
-				<% end %>
+        <% timetable_template = TimetableTemplate.where(calendar: @calendar).where("beginning < ?", date).order(:beginning).last %>
 
-				<% @registered.joins(:exercise_modification).where("exercise_modifications.date::date = ?", date).each do |registered| %>
-					<%= render partial: "exercises/exercise", locals: { exercise: registered, beginning_offset: @beginning_offset } %>
-				<% end %>
+        <% timetable_template.exercise_templates.where(weekday: weekday).each do |template| %>
+
+        <% if template.exercise_modifications.where("date::date = ?", date).count == 0 %>
+						<%= render partial: "exercise_templates/exercise_template_for_calendar", locals: {exercise_template: template, date: date, beginning_offset: @beginning_offset} %>
+
+        <% end %>
+
+        <% end %>
+
+
+        <% @modifications.where(removal: false).where("date::date = ?", date).each do |modification| %>
+					<%= render partial: "exercise_modifications/exercise_modification_for_calendar", locals: {exercise_modification: modification, beginning_offset: @beginning_offset} %>
+
+        <% end %>
+
+
+        <% @registered.joins(:exercise_modification).where("exercise_modifications.date::date = ?", date).each do |registered| %>
+					<%= render partial: "exercises/exercise", locals: {exercise: registered, beginning_offset: @beginning_offset} %>
+
+        <% end %>
 			</td>
-		<% end %>
+
+    <% end %>
 	</tr>
 </table>

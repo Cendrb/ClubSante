@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
   def full_name
     return "#{first_name} #{last_name}"
   end
+
+  def smtp_address
+    return "#{full_name} <#{email}>"
+  end
   
   def access_for_level?(required_level)
     return access_level >= required_level
