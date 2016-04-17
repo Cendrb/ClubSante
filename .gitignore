@@ -1,5 +1,5 @@
 # do not save passwords
-/config/app_config.yml
+/config/initializers/dev_env_setup.rb
 
 # See https://help.github.com/articles/ignoring-files for more about ignoring files.
 #

@@ -25,6 +25,10 @@ module ClubSante
 
     config.log_level = :debug
 
+    # Load the app's custom environment variables here, so that they are loaded before environments/*.rb
+    app_environment_variables = File.join(Rails.root, 'config', 'initializers', 'dev_env_setup.rb')
+    load(app_environment_variables) if File.exists?(app_environment_variables)
+
     config.action_mailer.default_url_options = {host: 'localhost:3000'}
 
     config.action_mailer.delivery_method = :smtp
