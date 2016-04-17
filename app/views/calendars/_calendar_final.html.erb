@@ -10,8 +10,7 @@
 %>
 
 <script>
-  var admin =
-  <%= current_user.access_for_level?(User.al_admin) %>
+  var admin = <%= current_user.access_for_level?(User.al_admin) %>;
 </script>
 
 <table class="calendar_timetable" data-calendar-id=<%= @calendar.id %> data-beginning_offset=<%= @beginning_offset %>>
@@ -20,7 +19,7 @@
     <% counter = 0 %>
     <% I18n.t(:"date.abbr_day_names").rotate.each do |weekday_name| %>
         <% current_date = @monday_date + counter.days %>
-        <td class="calendar_date"><%= l current_date %></td>
+        <td class="calendar_date"><%= l current_date, format: "%a %d. %m." %></td>
         <% counter += 1 %>
     <% end %>
   </tr>
