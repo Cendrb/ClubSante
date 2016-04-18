@@ -1,3 +1,5 @@
+var current_therapy_id;
+
 function setupHandlersForExercise(id) {
 
     setupUniversalTooltip($(".calendar_exercise[data-id=" + id + "]"));
@@ -53,6 +55,7 @@ function setupHandlersForCalendar(calendar_id) {
             format: 'js',
             success: function (msg) {
                 setupHandlersForCalendar(clicked.data("calendar-id"));
+                refreshTicketsBar(current_therapy_id);
                 NProgress.done();
                 NProgress.configure({
                     showSpinner: false
@@ -147,7 +150,8 @@ function refreshTicketsBar(therapy_id) {
         type: "POST",
         url: "/reservations_ticket_view",
         data: {
-            therapy_id: therapy_id
+            therapy_id: therapy_id,
+            ticket_max_date: $(".week_selector_current_week").data("end")
         },
         dataType: 'script',
         format: 'js',
@@ -170,7 +174,8 @@ $(function () {
     });
 
     $(".calendar-tab-anchor").click(function () {
-        refreshTicketsBar($(this).data("therapy-id"));
+        current_therapy_id = $(this).data("therapy-id");
+        refreshTicketsBar(current_therapy_id);
         setHeight();
     });
 

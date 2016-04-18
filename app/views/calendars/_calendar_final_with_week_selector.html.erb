@@ -3,7 +3,7 @@
 		<div class="week_selector_left_button week_selector_element">
 			<a href="javascript:void(0)" class="calendar_week_selector_button" data-calendar-id=<%= calendar.id %> data-target-date=<%= beginning_date - 1.week %>>předchozí týden</a>
 		</div>
-		<div class="week_selector_current_week week_selector_element">
+		<div class="week_selector_current_week week_selector_element" data-end="<%= l get_end_of_week(beginning_date) %>">
 			<%= l get_beginning_of_week(beginning_date) %> - <%= l get_end_of_week(beginning_date) %>
 		</div>
 		<div class="week_selector_right_button week_selector_element">

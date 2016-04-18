@@ -34,8 +34,9 @@ class NavigationController < ApplicationController
 
   def reservations_ticket_view
     current_therapy = Therapy.find(params[:therapy_id])
+    max_date = params[:ticket_max_date]
     @data = {}
     @data[:current_therapy] = current_therapy
-    @data[:tickets] = Ticket.where(single_use: false).where(user: current_user).where(therapy_category: current_therapy.therapy_categories)
+    @data[:tickets] = Ticket.with_available_entries(Date.parse(max_date)).where(user: current_user).where(therapy_category: current_therapy.therapy_categories)
   end
 end
