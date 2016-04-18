@@ -198,7 +198,7 @@ class ExerciseRegisterController < ApplicationController
           return single_use
         else
           # you cannot create single use ticket from this therapy (need special category)
-          render_alert "Pro tuto terapii (#{therapy.name.downcase}) musíte mít předem koupenou permanentku"
+          render_alert "Pro tuto aktivitu (#{therapy.name.downcase}) musíte mít předem koupenou permanentku"
           return
         end
       end

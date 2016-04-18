@@ -17,9 +17,9 @@
   </div>
   
   <div class="field therapies_category">
-		<%= f.label :goals, "Zahrnuté terapie" %><br />
+		<%= f.label :goals, "Zahrnuté aktivity" %><br />
 		<% if @therapies.count == 0 %>
-			V systému nejsou zadané žádné terapie
+			V systému nejsou zadané žádné aktivity
 		<% end %>
 		<% @therapies.each do |key, value| %>
 			<%= key.name %>

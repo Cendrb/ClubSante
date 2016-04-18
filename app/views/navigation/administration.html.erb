@@ -8,7 +8,7 @@
       <tr>
         <th>Čas</th>
         <th>Datum</th>
-        <th>Terapie</th>
+        <th>Aktivita</th>
         <th>Přihlášení uživatelé</th>
       </tr>
       </thead>
@@ -54,7 +54,7 @@
     <%= link_to 'Zaregistrovat nového', new_user_path %>
   </div>
 
-  <h2>Terapie</h2>
+  <h2>Aktivity</h2>
 
   <div class="user_administration_category">
     <table>
@@ -76,7 +76,7 @@
             <td><%= therapy.duration_in_minutes %></td>
             <td><%= b therapy.can_single_use %></td>
             <td class="actions_column">
-              <%= link_to mi.delete, therapy, method: :delete, data: {confirm: "Pokračováním odstraníte terapii #{therapy.name}"} %>
+              <%= link_to mi.delete, therapy, method: :delete, data: {confirm: "Pokračováním odstraníte aktivitu #{therapy.name}"} %>
               <%= link_to mi.edit, therapy %>
             </td>
           </tr>
@@ -84,7 +84,7 @@
       </tbody>
     </table>
     <div id="therapies_list_status">Všechny změny uloženy</div>
-    <%= link_to 'Nová terapie', new_therapy_path %>
+    <%= link_to 'Nová aktivita', new_therapy_path %>
   </div>
 
   <h2>Trenéři</h2>

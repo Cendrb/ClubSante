@@ -68,7 +68,7 @@
       <%= f.check_box :paid %>
     </div>
     <div class="field">
-      <%= f.label :therapy_category_id, "Kategorie terapie" %><br>
+      <%= f.label :therapy_category_id, "Kategorie aktivity" %><br>
       <%= f.collection_select(:therapy_category_id, TherapyCategory.all, :id, :name) %>
     </div>
     <div class="field">
