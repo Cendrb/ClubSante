@@ -4,7 +4,6 @@ class NavigationController < ApplicationController
     @data = {}
     @data[:exercises] = Exercise.joins(:exercise_modification).joins(:entries).joins(entries: :ticket).joins(entries: {ticket: :user}).where("tickets.user_id = ?", current_user.id).where("exercise_modifications.date >= ?", Date.today).order("exercise_modifications.date")
     @data[:pending_singles] = current_user.tickets.where(single_use: true).where(paid: false)
-    #UserMailer.cena_mail(current_user).deliver_later
   end
 
   def reservations

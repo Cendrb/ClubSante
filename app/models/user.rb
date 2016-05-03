@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
     return "#{first_name} #{last_name}"
   end
 
+  def official_name
+    return "#{last_name} #{first_name}"
+  end
+
   def smtp_address
     return "#{full_name} <#{email}>"
   end

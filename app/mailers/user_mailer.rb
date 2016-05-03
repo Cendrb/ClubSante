@@ -9,4 +9,9 @@ class UserMailer < ApplicationMailer
     @data[:user] = user
     mail(to: user.smtp_address, subject: "And his name is")
   end
+  def info_mail(subject, message, email_addresses)
+    @data = {}
+    @data[:message] = message
+    mail(bcc: email_addresses , subject: subject)
+  end
 end

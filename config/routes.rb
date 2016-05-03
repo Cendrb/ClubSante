@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  # mailer commands
+  controller :admin_mail do
+    get 'admin_mail/index'
+    get 'admin_mail/access_level' => "admin_mail#form_to_access_level", as: 'admin_mail_to_access_level'
+    post 'admin_mail/access_level' => "admin_mail#send_to_access_level"
+    get 'admin_mail/user' => "admin_mail#form_to_user", as: 'admin_mail_to_user'
+    post 'admin_mail/user' => "admin_mail#send_to_user"
+  end
+
   get 'global_settings/pass' => "global_settings#pass_form", as: "global_pass_form"
 
   post 'global_settings/pass' => "global_settings#pass_set", as: "global_pass_set"
@@ -43,7 +52,7 @@ Rails.application.routes.draw do
   resources :exercise_templates
 
   resources :timetable_templates, except: :show
-  
+
   resources :timetable_modifications, except: :show
 
   get 'calendars/show'
@@ -51,12 +60,12 @@ Rails.application.routes.draw do
   get 'users/tracked_value_chart' => "users#tracked_value_chart", as: 'tracked_value_chart'
 
   resources :users
-  
+
   controller :users do
     get 'users/:id/admin_edit' => "users#admin_edit", as: "admin_edit_user"
     patch 'users/:id/admin_update' => "users#admin_update"
   end
-  
+
   controller :exercise_register do
     post 'registering_handler/subscribe' => "exercise_register#subscribe", as: 'subscribe'
     post 'registering_handler/unsubscribe_from' => "exercise_register#unsubscribe_from", as: 'unsubscribe'
@@ -66,22 +75,22 @@ Rails.application.routes.draw do
   resources :exercises
 
   resources :therapies
-  
+
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
     get 'logout' => :destroy
   end
-  
+
   controller :calendars do
     get 'calendars/:id' => :show, as: :calendar
     get 'calendars/:id/final' => :show_final, as: :calendar_final
   end
-  
+
   root to: 'navigation#reservations'
-  
+
   get 'user_summary' => 'users#summary', as: 'user_summary'
-  
+
   get 'register' => 'users#new', as: 'register'
   delete 'destroy_account/:id', to: 'users#self_destroy', as: 'destroy_account'
 

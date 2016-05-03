@@ -11,6 +11,9 @@ gem 'rails_12factor', group: :production
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+# wysiwyg editor for emails
+gem 'wysiwyg-rails'
+
 # highcharts
 gem 'highcharts-rails'
 

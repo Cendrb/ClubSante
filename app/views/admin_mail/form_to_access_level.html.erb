@@ -1,0 +1,17 @@
+<h2>Odeslat email skupinám uživatelů dle úrovně přístupu</h2>
+<%= form_tag admin_mail_to_access_level_path do %>
+    <h3>Předmět</h3>
+    <%= text_field_tag :subject %>
+    <h3>Zpráva</h3>
+    <%= text_area_tag :message %>
+    <h3>Příjemci</h3>
+    <ul style="padding-left: 0">
+      <% User.access_levels.each do |access_level| %>
+          <li type="none">
+            <%= check_box_tag "access_levels[]", User.parse_access_level(access_level) -%>
+            <%= access_level -%>
+          </li>
+      <% end %>
+    </ul>
+    <%= submit_tag 'Odeslat email' %>
+<% end %>

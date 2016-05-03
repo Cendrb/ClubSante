@@ -1,0 +1,17 @@
+<h2>Odeslat email uživatelům</h2>
+<%= form_tag admin_mail_to_user_path do %>
+    <h3>Předmět</h3>
+    <%= text_field_tag :subject %>
+    <h3>Zpráva</h3>
+    <%= text_area_tag :message %>
+    <h3>Příjemci</h3>
+    <ul style="padding-left: 0">
+      <% User.all.order(:last_name).each do |user| %>
+          <li type="none">
+            <%= check_box_tag "users[]", user.id -%>
+            <%= user.official_name -%>
+          </li>
+      <% end %>
+    </ul>
+    <%= submit_tag 'Odeslat email' %>
+<% end %>

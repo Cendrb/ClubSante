@@ -1,0 +1,4 @@
+<h3>Emaily byly úspěšně odeslány</h3>
+<h4><%= @data[:subject] %></h4>
+<%= @data[:message].html_safe %>
+<p>Odesláno na adresy: <%= @data[:addresses].to_sentence %></p>

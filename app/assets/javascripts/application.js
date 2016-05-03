@@ -20,6 +20,16 @@
 //= require nprogress-turbolinks
 //= require chartkick
 //= require highcharts
+
+//= require froala_editor.min.js
+//= require plugins/lists.min.js
+//= require plugins/colors.min.js
+//= require plugins/emoticons.min.js
+//= require plugins/font_size.min.js
+//= require plugins/link.min.js
+//= require plugins/align.min.js
+//= require plugins/quote.min.js
+//= require plugins/table.min.js
 //= require_tree .
 
 NProgress.configure({
