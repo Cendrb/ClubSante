@@ -4,6 +4,13 @@ class SessionsController < ApplicationController
 
   def create
     if user = User.authenticate(params[:email], params[:password])
+      if !user.activated?
+        respond_to do |format|
+          format.html {redirect_to login_url, alert: "Váš účet není aktivován, aktivaci je možné provést odkazem v emailu. #{view_context.link_to 'Znovu odeslat aktivační email', resend_activation_email_path(user.id)}"}
+          format.whoa {head 69}
+        end
+        return
+      end
       if params[:permanent]
         cookies.permanent.signed[:user_id] = user.id
       end

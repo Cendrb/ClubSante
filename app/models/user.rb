@@ -1,4 +1,5 @@
 require 'digest/sha2'
+require 'securerandom'
 
 class User < ActiveRecord::Base
   has_many :tickets
@@ -36,7 +37,22 @@ class User < ActiveRecord::Base
   def access_for_level?(required_level)
     return access_level >= required_level
   end
-  
+
+  def activated?
+    return verification_token == ""
+  end
+
+  def activation_link
+    if !activated?
+      randomize_verification_token
+      save!
+      return Rails.application.routes.url_helpers.user_url(self) + "/activate_account?token=" + self.verification_token
+    end
+  end
+
+  def randomize_verification_token
+    self.verification_token = SecureRandom.hex
+  end
 
   private
   def password_must_be_present

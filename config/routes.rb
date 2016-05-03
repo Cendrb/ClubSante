@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  default_url_options host: Rails.application.config.domain
+
   # mailer commands
   controller :admin_mail do
     get 'admin_mail/index'
@@ -64,6 +66,8 @@ Rails.application.routes.draw do
   controller :users do
     get 'users/:id/admin_edit' => "users#admin_edit", as: "admin_edit_user"
     patch 'users/:id/admin_update' => "users#admin_update"
+    get 'users/:id/activate_account' => "users#activate_account"
+    get 'users/:id/resend_activation_email' => "users#resend_activation_email", as: "resend_activation_email"
   end
 
   controller :exercise_register do

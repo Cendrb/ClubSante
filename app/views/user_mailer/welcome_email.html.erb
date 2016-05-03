@@ -1,7 +1,7 @@
 <h1>Vítejte, <%= @data[:user].full_name %></h1>
-
+<% activation_link = @data[:user].activation_link %>
 <p>
-  Gratulujeme vám k úspěšné rezervaci do systému.
+  Váš účet aktivujete následujícím odkazem: <a href="<%= activation_link %>"><%= activation_link %></a>
 </p>
 
 <p>

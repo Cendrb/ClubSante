@@ -38,6 +38,10 @@ Rails.application.configure do
 
   config.time_zone = "Prague"
 
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
+
+  config.domain = "localhost:3000"
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_admin, only: [:index, :admin_edit, :admin_update, :show, :administration]
   before_filter :authenticate_registered, only: [:summary]
   before_filter :self_edit?, only: [:edit, :update, :destroy, :tracked_value_chart]
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :admin_edit, :admin_update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :admin_edit, :admin_update, :activate_account, :resend_activation_email]
   
   # GET /users
   # GET /users.json
@@ -83,6 +83,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.access_level = User.al_registered
+    @user.randomize_verification_token
 
     respond_to do |format|
       if @user.save
@@ -146,6 +147,22 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def activate_account
+    if params[:token] && @user.verification_token == params[:token]
+      flash[:notice] = "Aktivace účtu proběhla úspěšně, nyní se můžete přihlásit"
+      @user.verification_token = ""
+      @user.save
+      redirect_to login_path
+    else
+      render 'users/activation/activation_failed'
+    end
+  end
+
+  def resend_activation_email
+    UserMailer.welcome_email(@user).deliver_later
+    render 'users/activation/activation_email_sent'
   end
   
   private
