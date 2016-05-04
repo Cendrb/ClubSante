@@ -68,7 +68,7 @@ Rails.application.routes.draw do
     patch 'users/:id/admin_update' => "users#admin_update"
 
     # activating accounts
-    get 'users/:id/activate_account' => "users#activate_account"
+    get 'users/:id/activate_account' => "users#activate_account", as: "activate_account"
     get 'users/:id/resend_activation_email' => "users#resend_activation_email", as: "resend_activation_email"
 
     # forgeting passwords

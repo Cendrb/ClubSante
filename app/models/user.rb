@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
       self.hashed_password = self.class.encrypt_password(password, salt)
     end
   end
-  
+
   def full_name
     return "#{first_name} #{last_name}"
   end
@@ -42,11 +42,9 @@ class User < ActiveRecord::Base
     return verification_token == ""
   end
 
-  def generate_activation_link
+  def construct_activation_link
     if !activated?
-      randomize_verification_token
-      save!
-      return Rails.application.routes.url_helpers.user_url(self) + "/activate_account?token=" + self.verification_token
+      return Rails.application.routes.url_helpers.activate_account_url(self, token: self.verification_token)
     end
   end
 
@@ -54,10 +52,12 @@ class User < ActiveRecord::Base
     self.verification_token = SecureRandom.hex
   end
 
-  def generate_forgot_password_link
-    self.forgot_password_token = SecureRandom.hex
-    save!
+  def construct_forgot_password_link
     return Rails.application.routes.url_helpers.forgot_password_token_url(self, token: self.forgot_password_token)
+  end
+
+  def randomize_forgot_password_token
+    self.forgot_password_token = SecureRandom.hex
   end
 
   private

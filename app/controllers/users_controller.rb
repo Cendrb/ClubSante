@@ -90,7 +90,7 @@ class UsersController < ApplicationController
         # Send welcome email
         UserMailer.welcome_email(@user).deliver_later
 
-        format.html { redirect_to :root, notice: 'Registrace proběhla úspěšně.' }
+        format.html { redirect_to login_path, notice: "Na emailovou adresu #{@user.email} byl odeslán aktivační email."  }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -158,8 +158,10 @@ class UsersController < ApplicationController
     if user.nil?
       redirect_to forgot_password_form_path, alert: "Uživatel se zadanou emailovou adresou neexistuje"
     else
-      UserMailer.forgot_password(user).deliver
       @user = user
+      @user.randomize_forgot_password_token
+      @user.save!
+      UserMailer.forgot_password(@user).deliver
       render 'users/forgot_password/forgot_password_email_sent'
     end
   end
@@ -168,7 +170,7 @@ class UsersController < ApplicationController
     token = params[:token]
 
     if @user.forgot_password_token == token
-      @user.forgot_password_token = SecureRandom.hex
+      @user.randomize_forgot_password_token
       @user.save!
       session[:user_id] = @user.id
       redirect_to edit_user_path(@user), notice: "Nyní jste dočasně přihlášeni a můžete si změnit své heslo"
@@ -189,6 +191,8 @@ class UsersController < ApplicationController
   end
 
   def resend_activation_email
+    @user.randomize_verification_token
+    @user.save!
     UserMailer.welcome_email(@user).deliver_later
     render 'users/activation/activation_email_sent'
   end

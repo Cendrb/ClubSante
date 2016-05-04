@@ -2,7 +2,7 @@ class UserMailer < ApplicationMailer
   def welcome_email(user)
     @data = {}
     @data[:user] = user
-    @data[:link] = @data[:user].generate_activation_link
+    @data[:link] = @data[:user].construct_activation_link
     mail(to: user.smtp_address, subject: 'Aktivace účtu Club Sante')
   end
   def cena_mail(user)
@@ -17,7 +17,7 @@ class UserMailer < ApplicationMailer
   end
   def forgot_password(user)
     @data = {}
-    @data[:link] = user.generate_forgot_password_link
+    @data[:link] = user.construct_forgot_password_link
     mail(to: user.email, subject: 'Zapomenuté heslo')
   end
 end
