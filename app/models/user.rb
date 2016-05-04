@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
     return verification_token == ""
   end
 
-  def activation_link
+  def generate_activation_link
     if !activated?
       randomize_verification_token
       save!
@@ -52,6 +52,12 @@ class User < ActiveRecord::Base
 
   def randomize_verification_token
     self.verification_token = SecureRandom.hex
+  end
+
+  def generate_forgot_password_link
+    self.forgot_password_token = SecureRandom.hex
+    save!
+    return Rails.application.routes.url_helpers.forgot_password_token_url(self, token: self.forgot_password_token)
   end
 
   private

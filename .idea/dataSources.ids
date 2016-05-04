@@ -10,8 +10,8 @@
       <schema id="2" parent="1" name="public">
         <object-id>2200</object-id>
         <comment>standard public schema</comment>
-        <introspection-state-number>44428</introspection-state-number>
-        <introspection-timestamp>2016-04-14.17:55:13.056</introspection-timestamp>
+        <introspection-state-number>72364</introspection-state-number>
+        <introspection-timestamp>2016-05-04.14:39:05.151</introspection-timestamp>
       </schema>
       <sequence id="3" parent="2" name="available_values_id_seq">
         <object-id>303108</object-id>
@@ -155,7 +155,7 @@
       </table>
       <table id="38" parent="2" name="users">
         <object-id>303219</object-id>
-        <state-number>37681</state-number>
+        <state-number>72364</state-number>
       </table>
       <column id="39" parent="20" name="id">
         <state-number>35574</state-number>
@@ -878,13 +878,17 @@
         <state-number>37681</state-number>
         <data-type>text</data-type>
       </column>
-      <index id="188" parent="38" name="users_pkey">
+      <column id="188" parent="38" name="verification_token">
+        <state-number>72364</state-number>
+        <data-type>varchar</data-type>
+      </column>
+      <index id="189" parent="38" name="users_pkey">
         <object-id>303226</object-id>
         <columns>id</columns>
         <desc-columns></desc-columns>
         <unique>1</unique>
       </index>
-      <key id="189" parent="38" name="users_pkey">
+      <key id="190" parent="38" name="users_pkey">
         <columns>id</columns>
         <underlying-index>users_pkey</underlying-index>
         <primary>1</primary>

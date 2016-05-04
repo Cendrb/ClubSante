@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_admin, only: [:index, :admin_edit, :admin_update, :show, :administration]
   before_filter :authenticate_registered, only: [:summary]
   before_filter :self_edit?, only: [:edit, :update, :destroy, :tracked_value_chart]
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :admin_edit, :admin_update, :activate_account, :resend_activation_email]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :admin_edit, :admin_update, :activate_account, :resend_activation_email, :forgot_password_token]
   
   # GET /users
   # GET /users.json
@@ -146,6 +146,34 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def forgot_password_form
+    render 'users/forgot_password/forgot_password_form'
+  end
+
+  def forgot_password_send
+    user = User.find_by_email(params[:email])
+    if user.nil?
+      redirect_to forgot_password_form_path, alert: "Uživatel se zadanou emailovou adresou neexistuje"
+    else
+      UserMailer.forgot_password(user).deliver
+      @user = user
+      render 'users/forgot_password/forgot_password_email_sent'
+    end
+  end
+
+  def forgot_password_token
+    token = params[:token]
+
+    if @user.forgot_password_token == token
+      @user.forgot_password_token = SecureRandom.hex
+      @user.save!
+      session[:user_id] = @user.id
+      redirect_to edit_user_path(@user), notice: "Nyní jste dočasně přihlášeni a můžete si změnit své heslo"
+    else
+      redirect_to forgot_password_send_path, alert: "Použitý odkaz je neplatný"
     end
   end
 

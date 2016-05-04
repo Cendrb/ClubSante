@@ -21,6 +21,16 @@
         <%= render partial: "menu" %>
       </div>
       <div id="yield">
+        <% if notice %>
+            <p id="notice">
+              <%= notice %>
+            </p>
+        <% end %>
+        <% if alert %>
+            <p id="alert">
+              <%= alert.html_safe %>
+            </p>
+        <% end %>
         <%= yield %>
       </div>
     </div>

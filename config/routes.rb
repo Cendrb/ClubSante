@@ -66,8 +66,15 @@ Rails.application.routes.draw do
   controller :users do
     get 'users/:id/admin_edit' => "users#admin_edit", as: "admin_edit_user"
     patch 'users/:id/admin_update' => "users#admin_update"
+
+    # activating accounts
     get 'users/:id/activate_account' => "users#activate_account"
     get 'users/:id/resend_activation_email' => "users#resend_activation_email", as: "resend_activation_email"
+
+    # forgeting passwords
+    get 'forgot_password' => "users#forgot_password_form", as: "forgot_password_form"
+    post 'forgot_password' => "users#forgot_password_send", as: "forgot_password_send"
+    get 'users/:id/forgot_password_token' => "users#forgot_password_token", as: "forgot_password_token"
   end
 
   controller :exercise_register do
