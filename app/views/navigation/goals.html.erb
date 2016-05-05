@@ -9,19 +9,23 @@
         Nemáte zapsané žádné sledované hodnoty
     <% end %>
 
-    <table>
-      <tr>
-        <th>Název</th>
-        <th>Aktuální hodnota</th>
-        <th>Další cíl</th>
-      </tr>
-      <% @user.tracked_values.find_each do |tracked| %>
-          <tr>
-            <td><%= tracked.name %></td>
-            <td><%= tracked.current_value ? tracked.current_value.value.to_s + " (" + l(tracked.current_value.date) + ")" : "Nebyla zaznamenány žádné hodnoty" %></td>
-            <td><%= tracked.next_goal ? tracked.next_goal.value.to_s + " (" + l(tracked.next_goal.date) + ")" : "Žádné nadcházející cíle" %></td>
-          </tr>
-      <% end %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Název</th>
+          <th>Aktuální hodnota</th>
+          <th>Další cíl</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.tracked_values.find_each do |tracked| %>
+            <tr>
+              <td><%= tracked.name %></td>
+              <td><%= tracked.current_value ? tracked.current_value.value.to_s + " (" + l(tracked.current_value.date) + ")" : "Nebyla zaznamenány žádné hodnoty" %></td>
+              <td><%= tracked.next_goal ? tracked.next_goal.value.to_s + " (" + l(tracked.next_goal.date) + ")" : "Žádné nadcházející cíle" %></td>
+            </tr>
+        <% end %>
+      </tbody>
     </table>
 
     <% @user.tracked_values.each do |tracked| %>

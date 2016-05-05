@@ -1,7 +1,7 @@
 <h2>Odeslat email skupinám uživatelů dle úrovně přístupu</h2>
 <%= form_tag admin_mail_to_access_level_path do %>
     <h3>Předmět</h3>
-    <%= text_field_tag :subject %>
+    <%= text_field_tag :subject, nil, class: 'form-control' %>
     <h3>Zpráva</h3>
     <%= text_area_tag :message %>
     <h3>Příjemci</h3>
