@@ -42,6 +42,7 @@
           <tr>
             <td><%= user.full_name %></td>
             <td><%= user.email %></td>
+            <td><%= user.activated? %></td>
             <td><%= User.get_access_level_string(user.access_level) %></td>
             <td class="actions_column">
               <%= link_to mi.delete, user, method: :delete, data: {confirm: "Pokračováním plně odstraníte uživatele #{user.full_name} se všemi permanentkami, registracemi apod."} %>
