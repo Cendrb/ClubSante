@@ -8,7 +8,7 @@ class UserMailer < ApplicationMailer
   def cena_mail(user)
     @data = {}
     @data[:user] = user
-    mail(to: user.smtp_address, subject: 'And his name is')
+    mail(to: user.smtp_address, subject: 'And his rname is')
   end
   def info_mail(subject, message, email_addresses)
     @data = {}
