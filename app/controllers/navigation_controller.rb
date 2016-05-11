@@ -38,4 +38,8 @@ class NavigationController < ApplicationController
     @data[:current_therapy] = current_therapy
     @data[:tickets] = Ticket.with_available_entries(Date.parse(max_date)).where(user: current_user).where(therapy_category: current_therapy.therapy_categories)
   end
+
+  def update
+    render nothing: true
+  end
 end

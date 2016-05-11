@@ -42,6 +42,12 @@ Rails.application.configure do
 
   config.domain = "localhost:3000"
 
+  Dynopoker.configure do |config|
+    config.address = 'http://localhost:3000/update'
+    config.enable = true
+    config.poke_frequency = 1800
+  end
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

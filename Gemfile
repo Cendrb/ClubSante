@@ -41,6 +41,9 @@ gem 'responders', '~> 2.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+# some kind of cron
+gem 'dynopoker'
+
 # Enable document.ready with turbolinks
 gem 'jquery-turbolinks'
 

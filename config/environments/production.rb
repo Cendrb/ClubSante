@@ -74,6 +74,12 @@ Rails.application.configure do
 
   config.domain = "clubsante.herokuapp.com"
 
+  Dynopoker.configure do |config|
+    config.address = 'http://clubsante.herokuapp.com/update'
+    config.enable = true
+    config.poke_frequency = 1800
+  end
+
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
