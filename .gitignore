@@ -21,5 +21,5 @@
 *.class
 *.pyc
 *.pyo
-.idea
+/.idea
 /public

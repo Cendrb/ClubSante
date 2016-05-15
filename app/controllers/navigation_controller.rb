@@ -1,5 +1,5 @@
 class NavigationController < ApplicationController
-  before_filter :authenticate_registered
+  before_filter :authenticate_registered, except: :update
   def summary
     @data = {}
     @data[:exercises] = Exercise.joins(:exercise_modification).joins(:entries).joins(entries: :ticket).joins(entries: {ticket: :user}).where("tickets.user_id = ?", current_user.id).where("exercise_modifications.date >= ?", Date.today).order("exercise_modifications.date")
