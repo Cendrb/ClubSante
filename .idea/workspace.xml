@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a19e92ad-d5cb-404b-835e-049a7b95d470" name="Default" comment="[FIX] we are poking now">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ClubSante.iml" afterPath="$PROJECT_DIR$/.idea/ClubSante.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="a19e92ad-d5cb-404b-835e-049a7b95d470" name="Default" comment="[FIX] fuck .idea&#10;">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <ignored path="ClubSante.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -111,21 +110,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="welcome_email.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/user_mailer/welcome_email.html.erb">
+      <file leaf-file-name="forgot_password.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/user_mailer/forgot_password.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+            <state relative-caret-position="34">
+              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forgot_password.html.erb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/user_mailer/forgot_password.html.erb">
+      <file leaf-file-name="welcome_email.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/user_mailer/welcome_email.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+            <state relative-caret-position="102">
+              <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -782,7 +781,7 @@
       <workItem from="1462365540044" duration="5932000" />
       <workItem from="1462449556514" duration="1924000" />
       <workItem from="1462458874423" duration="1781000" />
-      <workItem from="1463303502792" duration="124000" />
+      <workItem from="1463303502792" duration="174000" />
     </task>
     <task id="LOCAL-00001" summary="zidan&#10;">
       <created>1441744203761</created>
@@ -1001,11 +1000,18 @@
       <option name="project" value="LOCAL" />
       <updated>1462986981438</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="[FIX] fuck .idea&#10;">
+      <created>1463303640791</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1463303640791</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43414000" />
+    <option name="totallyTimeSpent" value="43464000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1055,7 +1061,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[TASK] ui optimalizations&#10;&#10;" />
     <MESSAGE value="[TASK] hopefuly fixed the crash&#10;&#10;&#10;" />
     <MESSAGE value="[TASK] few cosmitcis&#10;&#10;&#10;" />
     <MESSAGE value="[TASK] you can now register more people to single exercise&#10;&#10;&#10;" />
@@ -1080,7 +1085,8 @@
     <MESSAGE value="[FIX] activation should work" />
     <MESSAGE value="[FIX] show activated account state in administration" />
     <MESSAGE value="[FIX] we are poking now" />
-    <option name="LAST_COMMIT_MESSAGE" value="[FIX] we are poking now" />
+    <MESSAGE value="[FIX] fuck .idea&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="[FIX] fuck .idea&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1420,22 +1426,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/user_mailer/welcome_email.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/mailers/user_mailer.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1456,6 +1446,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/user_mailer/welcome_email.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
           <folding />
         </state>
       </provider>
