@@ -20,6 +20,9 @@ gem 'highcharts-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 
+# use multithreaded and heroku supported server
+gem 'puma'
+
 # use boottstrap?
 gem 'bootstrap-sass'
 
